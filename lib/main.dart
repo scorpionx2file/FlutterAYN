@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:traveller/config/routes/app_routes.dart';
-import 'package:traveller/config/routes/route_generator.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
 
 void main() {
@@ -16,8 +15,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: getLightTheme(),
       themeMode: ThemeMode.light,
-      initialRoute: AppRoutes.Home,
-      onGenerateRoute: RouteGenerator.generateRoute,
       title: 'Flutter Demo',
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
