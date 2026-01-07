@@ -1,52 +1,53 @@
 import 'package:flutter/material.dart';
 import 'app_fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextStyles {
   const AppTextStyles._();
-  static const TextStyle headingH1 = TextStyle(
-    fontSize: 42,
+  static TextStyle headingH1 = TextStyle(
+    fontSize: 42.sp,
     fontFamily: AppFonts.notoKufiArabic,
     fontWeight: FontWeight.normal,
     letterSpacing: 0,
   );
-  static const TextStyle headingH2 = TextStyle(
-    fontSize: 26,
+  static TextStyle headingH2 = TextStyle(
+    fontSize: 26.sp,
     fontFamily: AppFonts.notoKufiArabic,
     fontWeight: FontWeight.bold,
     letterSpacing: 0,
   );
-  static const TextStyle headingH3 = TextStyle(
-    fontSize: 22,
+  static TextStyle headingH3 = TextStyle(
+    fontSize: 22.sp,
     fontFamily: AppFonts.notoKufiArabic,
     fontWeight: FontWeight.normal,
     letterSpacing: 0,
   );
-  static const TextStyle title = TextStyle(
-    fontSize: 22,
+  static TextStyle title = TextStyle(
+    fontSize: 22.sp,
     fontFamily: AppFonts.notoKufiArabic,
     fontWeight: FontWeight.bold,
     letterSpacing: 0,
   );
-  static const TextStyle titles = TextStyle(
-    fontSize: 16,
+  static TextStyle titles = TextStyle(
+    fontSize: 16.sp,
     fontFamily: AppFonts.notoKufiArabic,
     fontWeight: FontWeight.normal,
     letterSpacing: 0,
   );
-  static const TextStyle text = TextStyle(
-    fontSize: 14,
+  static TextStyle text = TextStyle(
+    fontSize: 14.sp,
     fontFamily: AppFonts.notoKufiArabic,
     fontWeight: FontWeight.normal,
     letterSpacing: 0,
   );
-  static const TextStyle description = TextStyle(
-    fontSize: 12,
+  static TextStyle description = TextStyle(
+    fontSize: 12.sp,
     fontFamily: AppFonts.notoKufiArabic,
     fontWeight: FontWeight.normal,
     letterSpacing: 0,
   );
-  static const TextStyle button = TextStyle(
-    fontSize: 12,
+  static TextStyle button = TextStyle(
+    fontSize: 12.sp,
     fontFamily: AppFonts.notoKufiArabic,
     fontWeight: FontWeight.bold,
     letterSpacing: 0,
