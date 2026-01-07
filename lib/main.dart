@@ -3,6 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
 import 'core/constatns/ProfileSettingsHeaderWidget.dart';
+import 'core/constatns/post/post.dart';
+import 'core/constatns/post/post_content/post_content.dart';
+import 'core/constatns/post_service_provider_header/post_or_service_provider_header.dart';
 import 'core/constatns/profileHeaderWidget.dart';
 
 void main() {
@@ -20,18 +23,41 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
+        final headerData = PostHeaderData(
+          imageUrl: 'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+          username: 'Sarah Ahmed',
+          jobOrLocation: 'UI Designer • Cairo',
+          rate: 4.8,
+          postTitle: 'Looking for feedback',
+          date: '2h',
+          description:
+          'This is a sample post description to test expandable text behavior in the feed.',
+          isHighlighted: true,
+        );
+
+        final contentData = PostContentData(
+          mediaUrls: [
+            "https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4",
+            "https://sample-videos.com/video321/mp4/720/big_buck_bunny_720p_5mb.mp4"
+          ],
+          commenterAvatars: [
+            'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+            'https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg',
+          ],
+          commentsCountText: '12',
+        );
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: getLightTheme(),
           themeMode: ThemeMode.light,
             home: Scaffold(
                 body: SafeArea(
-                  child: ProfileSettingsHeaderWidget(
-                    isProfileSettings: true,
-                    name: 'محمود السعدي',
-                    username: 'username',
-                    isVerified: true,
-                    profileImage: const AssetImage('assets/images/profile.png'),
+                  child: Post(
+                    headerData: headerData,
+                    contentData: contentData,
+                    onCommentTap: () {},
+                    onShareTap: () {},
+                    onMoreTap: () {  },
                   ),
                 )
             )
