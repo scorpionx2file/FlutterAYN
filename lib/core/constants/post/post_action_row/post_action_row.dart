@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:traveller/core/constatns/post/post_action_row/action_button.dart';
+
 import 'package:traveller/core/theme/colors/app_colors.dart';
+
+import 'action_button.dart';
 
 class PostActionsRow extends StatelessWidget {
   final VoidCallback onCommentTap;

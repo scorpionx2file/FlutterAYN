@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:traveller/core/constatns/post_service_provider_header/post_or_service_provider_header.dart';
+import 'package:traveller/core/constants/post_service_provider_header/post_or_service_provider_header.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'header_actions.dart';
 import 'header_avatar.dart';

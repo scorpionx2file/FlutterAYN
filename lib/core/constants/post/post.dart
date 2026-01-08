@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:traveller/core/constatns/post/post_action_row/post_action_row.dart';
-import 'package:traveller/core/constatns/post_service_provider_header/post_or_service_provider_header.dart';
+import 'package:traveller/core/constants/post/post_action_row/post_action_row.dart';
 import '../../theme/colors/app_colors.dart';
+import '../post_service_provider_header/post_or_service_provider_header.dart';
 import 'post_content/post_content.dart';
 
 class Post extends StatelessWidget{

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:traveller/core/constatns/post/post_content/comments_preview_row.dart';
-import 'package:traveller/core/constatns/post/post_content/media_section.dart';
+
+import 'comments_preview_row.dart';
+import 'media_section.dart';
 
 class PostContentData {
   final List<String> mediaUrls;

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:traveller/core/constatns/post/post_content/avatars_stack.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
+
+import 'avatars_stack.dart';
 
 class CommentsPreviewRow extends StatelessWidget {
   final List<String> avatarUrls;
