@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
+import 'core/constants/chat_button/chat_button.dart';
 import 'core/constants/post/post.dart';
 import 'core/constants/post/post_content/post_content.dart';
 import 'core/constants/post_service_provider_header/post_or_service_provider_header.dart';
@@ -51,12 +52,13 @@ class MyApp extends StatelessWidget {
           themeMode: ThemeMode.light,
             home: Scaffold(
                 body: SafeArea(
-                  child: StoryItem(
+                  child: ChatButton(onTap: (){},)
+                 /* StoryItem(
                     imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
                     username: null,
                     isSeen: false,
                     onTap: () {},
-                  )/*Post(
+                  )*//*Post(
                     headerData: headerData,
                     contentData: contentData,
                     onCommentTap: () {},
