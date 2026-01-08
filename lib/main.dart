@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
 import 'core/constants/post/post.dart';
 import 'core/constants/post/post_content/post_content.dart';
 import 'core/constants/post_service_provider_header/post_or_service_provider_header.dart';
+import 'core/constants/story_item/story_item.dart';
 
 
 void main() {
@@ -51,13 +51,18 @@ class MyApp extends StatelessWidget {
           themeMode: ThemeMode.light,
             home: Scaffold(
                 body: SafeArea(
-                  child: Post(
+                  child: StoryItem(
+                    imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+                    username: null,
+                    isSeen: false,
+                    onTap: () {},
+                  )/*Post(
                     headerData: headerData,
                     contentData: contentData,
                     onCommentTap: () {},
                     onShareTap: () {},
                     onMoreTap: () {  },
-                  ),
+                  )*/,
                 )
             )
         );
