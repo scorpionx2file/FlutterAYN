@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
-import '../theme/colors/app_colors.dart';
+import '../../theme/colors/app_colors.dart';
 
-class UserProfileHeaderWidget extends StatelessWidget {
+class UserProfileHeader extends StatelessWidget {
   final bool isMyProfile;
   final bool isVerified;
 
@@ -15,15 +15,15 @@ class UserProfileHeaderWidget extends StatelessWidget {
   final String bio;
   final String location;
 
-  final int leftNumber;
-  final int middleNumber;
-  final int rightNumber;
+  final int thirdNumber;
+  final int secondNumber;
+  final int firstNumber;
 
   final String? jobTitle;
   final VoidCallback? onTwitterTap;
   final VoidCallback? onSnapchatTap;
 
-  const UserProfileHeaderWidget({
+  const UserProfileHeader({
     super.key,
     this.isVerified = true,
     this.isMyProfile = false,
@@ -32,9 +32,9 @@ class UserProfileHeaderWidget extends StatelessWidget {
     required this.username,
     required this.bio,
     required this.location,
-    required this.leftNumber,
-    required this.middleNumber,
-    required this.rightNumber,
+    required this.thirdNumber,
+    required this.secondNumber,
+    required this.firstNumber,
     this.jobTitle,
     this.onTwitterTap,
     this.onSnapchatTap,
@@ -240,19 +240,19 @@ class UserProfileHeaderWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               statNumberColumn(
-                leftNumber,
-                "النقاط",
-                "assets/images/icons/points.png",
+                firstNumber,
+                "يتابع",
+                "assets/images/icons/people.png",
               ),
               statNumberColumn(
-                middleNumber,
+                secondNumber,
                 "يتابعه",
                 "assets/images/icons/people.png",
               ),
               statNumberColumn(
-                rightNumber,
-                "يتابع",
-                "assets/images/icons/people.png",
+                thirdNumber,
+                "النقاط",
+                "assets/images/icons/points.png",
               ),
             ],
           ),
@@ -275,12 +275,12 @@ class UserProfileHeaderWidget extends StatelessWidget {
         ),
         Row(
           children: [
+            Image.asset(iconPath, width: 20.w, height: 20.h),
+            SizedBox(width: 6.w),
             Text(
               value.toString(),
               style: AppTextStyles.headingH3.copyWith(color: AppColors.black),
             ),
-            SizedBox(width: 6.w),
-            Image.asset(iconPath, width: 20.w, height: 20.h),
           ],
         ),
       ],

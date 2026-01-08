@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
-import '../theme/colors/app_colors.dart';
+import '../../theme/colors/app_colors.dart';
 
-class ProfileSettingsHeaderWidget extends StatelessWidget {
+class ProfileSettingsHeader extends StatelessWidget {
   final String name;
   final String username;
   final ImageProvider profileImage;
@@ -13,7 +13,7 @@ class ProfileSettingsHeaderWidget extends StatelessWidget {
   final VoidCallback? onEditPressed;
   final VoidCallback? onBackPressed;
 
-  const ProfileSettingsHeaderWidget({
+  const ProfileSettingsHeader({
     super.key,
     required this.name,
     required this.username,
