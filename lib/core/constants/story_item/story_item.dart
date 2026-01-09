@@ -3,6 +3,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../theme/colors/app_colors.dart';
 import '../../theme/fonts/app_text_styles.dart';
 
+class Story{
+  final String imageUrl;
+  final String? username;
+  final bool isSeen;
+
+  Story({
+    required this.imageUrl,
+    this.username,
+    required this.isSeen,
+  });
+}
+
 class StoryItem extends StatelessWidget{
   final String imageUrl;
   final String? username;
@@ -24,7 +36,7 @@ class StoryItem extends StatelessWidget{
       child: Column(
           children: [
             Container(
-              padding:  EdgeInsets.all(5.h),
+              padding:  EdgeInsets.all(2.h),
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: isSeen ?
@@ -32,7 +44,7 @@ class StoryItem extends StatelessWidget{
                   Border.all(color: AppColors.turnbullBlue,width: 3.w)
               ),
               child: CircleAvatar(
-                radius: 30.r,
+                radius: 27.r,
                 backgroundImage: NetworkImage(imageUrl),
               ),
             ),

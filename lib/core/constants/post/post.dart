@@ -5,6 +5,16 @@ import '../../theme/colors/app_colors.dart';
 import '../post_service_provider_header/post_or_service_provider_header.dart';
 import 'post_content/post_content.dart';
 
+class PostData{
+  final PostHeaderData headerData;
+  final PostContentData contentData;
+
+  const PostData({
+    required this.headerData,
+    required this.contentData,
+  });
+}
+
 class Post extends StatelessWidget{
   final PostHeaderData headerData;
   final PostContentData contentData;
