@@ -14,20 +14,15 @@ class AppTextFields extends StatelessWidget {
     this.onSubmitted,
     this.maxLines = 1,
     this.height = 56,
-
     this.icon,
     this.iconAtStart = true,
     this.iconColor,
-    this.onIconPressed, // <-- NEW
-
+    this.onIconPressed,
     this.borderRadius = 14,
     this.borderColor,
     this.focusedBorderColor,
     this.fillColor,
     this.contentPadding,
-    this.textStyle,
-    this.hintStyle,
-
     this.textAlign = TextAlign.right,
   });
 
@@ -55,9 +50,6 @@ class AppTextFields extends StatelessWidget {
   final Color? focusedBorderColor;
   final Color? fillColor;
   final EdgeInsets? contentPadding;
-  final TextStyle? textStyle;
-  final TextStyle? hintStyle;
-
   final TextAlign textAlign;
 
   @override
@@ -106,15 +98,10 @@ class AppTextFields extends StatelessWidget {
       onSubmitted: onSubmitted,
       maxLines: maxLines,
       textAlign: textAlign,
-      style: (theme.textTheme.bodyMedium ?? const TextStyle()).merge(textStyle),
+      style: theme.textTheme.bodyMedium,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle:
-            (theme.inputDecorationTheme.hintStyle ??
-                    theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.hintColor,
-                    ))
-                ?.merge(hintStyle),
+        hintStyle: theme.inputDecorationTheme.hintStyle,
         filled: true,
         fillColor: effectiveFillColor,
         contentPadding: effectiveContentPadding,

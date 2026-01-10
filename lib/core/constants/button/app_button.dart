@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({
@@ -32,12 +33,17 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeStyle = Theme.of(context).elevatedButtonTheme.style;
 
+    final h = height.h;
+    final w = width?.w;
+    final padX = horizontalPadding.w;
+    final r = borderRadius.r;
+
     final style = (themeStyle ?? const ButtonStyle()).merge(
       ElevatedButton.styleFrom(
-        minimumSize: Size(width ?? double.infinity, height),
-        padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+        minimumSize: Size(w ?? double.infinity, h),
+        padding: EdgeInsets.symmetric(horizontal: padX),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
+          borderRadius: BorderRadius.circular(r),
         ),
         elevation: elevation,
         backgroundColor: backgroundColor,
@@ -47,8 +53,8 @@ class AppButton extends StatelessWidget {
     );
 
     return SizedBox(
-      height: height,
-      width: width,
+      height: h,
+      width: w,
       child: ElevatedButton(
         onPressed: onPressed,
         style: style,
