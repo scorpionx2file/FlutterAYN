@@ -52,4 +52,10 @@ class AppTextStyles {
     fontWeight: FontWeight.bold,
     letterSpacing: 0,
   );
+  static TextStyle smallText = TextStyle(
+    fontSize: 10.sp,
+    fontFamily: AppFonts.notoKufiArabic,
+    fontWeight: FontWeight.normal,
+    letterSpacing: 0,
+  );
 }
