@@ -6,10 +6,12 @@ import '../../theme/fonts/app_text_styles.dart';
 
 class HeaderUserInfo extends StatelessWidget {
   final PostHeaderData data;
+  final bool isHighlighted;
 
   const HeaderUserInfo({
     super.key,
     required this.data,
+    required this.isHighlighted,
   });
 
   @override
@@ -19,7 +21,9 @@ class HeaderUserInfo extends StatelessWidget {
       children: [
         Text(
           data.username,
-          style: AppTextStyles.text,
+          style: AppTextStyles.text.copyWith(
+            color: isHighlighted ? AppColors.white : AppColors.black
+          ),
         ),
 
         SizedBox(height: 4.h),
@@ -29,7 +33,7 @@ class HeaderUserInfo extends StatelessWidget {
             Text(
               data.jobOrLocation,
               style: AppTextStyles.description.copyWith(
-                  color: AppColors.spanishGrey
+                  color: isHighlighted ? AppColors.white : AppColors.spanishGrey
               ),
             ),
 
@@ -39,7 +43,9 @@ class HeaderUserInfo extends StatelessWidget {
               SizedBox(width: 2.w),
               Text(
                 data.rate!.toString(),
-                style: AppTextStyles.description,
+                style: AppTextStyles.description.copyWith(
+                  color: AppColors.darkYellow
+                ),
               ),
             ],
           ],

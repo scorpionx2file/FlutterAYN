@@ -28,12 +28,16 @@ class HeaderTopRow extends StatelessWidget {
         SizedBox(width: 10.w),
 
         Expanded(
-          child: HeaderUserInfo(data: data),
+          child: HeaderUserInfo(
+              data: data,
+              isHighlighted: data.isHighlighted
+          ),
         ),
 
         HeaderActions(
           iconColor: iconColor,
           onMoreTap: onMoreTap,
+          isHighlighted: data.isHighlighted
         ),
       ],
     );

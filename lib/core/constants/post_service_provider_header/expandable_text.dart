@@ -7,10 +7,12 @@ import '../../theme/fonts/app_text_styles.dart';
 class ExpandableText extends StatefulWidget {
   final String text;
   final int trimLines;
+  final bool isHighlighted;
 
   const ExpandableText({
     super.key,
     required this.text,
+    required this.isHighlighted,
     this.trimLines = 3,
   });
 
@@ -49,7 +51,7 @@ class _ExpandableTextState extends State<ExpandableText> {
               overflow:
               _isExpanded ? TextOverflow.visible : TextOverflow.ellipsis,
               style: AppTextStyles.description.copyWith(
-                  color: AppColors.spanishGrey
+                  color: widget.isHighlighted ? AppColors.white : AppColors.spanishGrey
               ),
             ),
 

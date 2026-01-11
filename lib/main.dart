@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/constants/report/report_bottom_sheet.dart';
+import 'package:traveller/core/constants/service_provider/service_provider.dart';
+import 'package:traveller/core/constants/service_provider/service_provider_bottom.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
 import 'config/routes/router.dart';
 import 'core/constants/activity_card/activity_card.dart';
+import 'core/constants/followers_list/followers_list_tile.dart';
 import 'core/constants/post/post.dart';
 import 'core/constants/post/post_content/post_content.dart';
 import 'core/constants/post_service_provider_header/post_or_service_provider_header.dart';
@@ -52,13 +55,11 @@ class HomeRoot extends StatelessWidget {
       imageUrl:
       'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
       username: 'Sarah Ahmed',
-      jobOrLocation: 'UI Designer • Cairo',
+      jobOrLocation: 'UI Designer',
       rate: 4.8,
-      postTitle: 'Looking for feedback',
-      date: '2h',
       description:
       'This is a sample post description to test expandable text behavior in the feed.',
-      isHighlighted: true,
+      isHighlighted: false,
     );
 
         final contentData = PostContentData(
@@ -203,7 +204,10 @@ class HomeRoot extends StatelessWidget {
             //home:
     Scaffold(
                 body: SafeArea(
-                  child:
+                  child: /*ServiceProvider(
+                      data: headerData,
+                      location: "Cairo, Egypt",
+                      language: "English")*/
                   HomeScreen(
                     stories: stories,
                     postData: posts,
@@ -233,3 +237,17 @@ class HomeRoot extends StatelessWidget {
 // onTwitterTap: () {},
 // onSnapchatTap: () {},
 // ),
+
+/// FollowersListTile
+// FollowersListTile(
+// story: Story(
+// imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+// isSeen: false
+// ),
+// name: 'Adham Mohamed',
+// points: 535,
+// buttonText: 'Follow',
+// isFollowing: false,
+// onButtonPressed: () {},
+// onStoryTap: () {},
+// )

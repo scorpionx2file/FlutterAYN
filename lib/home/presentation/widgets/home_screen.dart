@@ -61,7 +61,6 @@ class HomeScreen extends StatelessWidget{
                   child: Post(
                       headerData: postData[index].headerData,
                       contentData: postData[index].contentData,
-                      onCommentTap: (){},
                       onShareTap: (){},
                       onMoreTap: (){
                         showModalBottomSheet(
