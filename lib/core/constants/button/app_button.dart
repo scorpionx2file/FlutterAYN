@@ -14,52 +14,69 @@ class AppButton extends StatelessWidget {
     this.foregroundColor,
     this.textStyle,
     this.borderRadius = 12,
+    this.borderSide,
   });
 
   final String text;
   final VoidCallback? onPressed;
-
   final double height;
   final double? width;
   final double horizontalPadding;
-
   final double? elevation;
   final Color? backgroundColor;
   final Color? foregroundColor;
   final TextStyle? textStyle;
   final double borderRadius;
+  final BorderSide? borderSide;
 
   @override
   Widget build(BuildContext context) {
-    final themeStyle = Theme.of(context).elevatedButtonTheme.style;
-
     final h = height.h;
     final w = width?.w;
     final padX = horizontalPadding.w;
     final r = borderRadius.r;
 
-    final style = (themeStyle ?? const ButtonStyle()).merge(
-      ElevatedButton.styleFrom(
-        minimumSize: Size(w ?? double.infinity, h),
-        padding: EdgeInsets.symmetric(horizontal: padX),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(r),
+    // OUTLINED STATE
+    if (borderSide != null) {
+      return SizedBox(
+        height: h,
+        width: w,
+        child: OutlinedButton(
+          onPressed: onPressed,
+          style: OutlinedButton.styleFrom(
+            side: borderSide,
+            foregroundColor: foregroundColor,
+            backgroundColor: backgroundColor,
+            padding: EdgeInsets.symmetric(horizontal: padX),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(r),
+            ),
+            textStyle: textStyle,
+          ),
+          child: Text(text),
         ),
-        elevation: elevation,
-        backgroundColor: backgroundColor,
-        foregroundColor: foregroundColor,
-        textStyle: textStyle,
-      ),
-    );
+      );
+    }
 
+    // FILLED STATE
     return SizedBox(
       height: h,
       width: w,
       child: ElevatedButton(
         onPressed: onPressed,
-        style: style,
-        child: Text(text, maxLines: 1, overflow: TextOverflow.ellipsis),
+        style: ElevatedButton.styleFrom(
+          elevation: elevation,
+          backgroundColor: backgroundColor,
+          foregroundColor: foregroundColor,
+          padding: EdgeInsets.symmetric(horizontal: padX),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(r),
+          ),
+          textStyle: textStyle,
+        ),
+        child: Text(text),
       ),
     );
   }
 }
+

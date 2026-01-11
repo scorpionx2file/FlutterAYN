@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/constants/report/report_bottom_sheet.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
 import 'core/constants/activity_card/activity_card.dart';
+import 'core/constants/followers_list/followers_list_tile.dart';
 import 'core/constants/post/post.dart';
 import 'core/constants/post/post_content/post_content.dart';
 import 'core/constants/post_service_provider_header/post_or_service_provider_header.dart';
@@ -199,8 +200,7 @@ class HomeRoot extends StatelessWidget {
           themeMode: ThemeMode.light,
             home: Scaffold(
                 body: SafeArea(
-                  child:
-                  HomeScreen(
+                  child: HomeScreen(
                     stories: stories,
                     postData: posts,
                     activities: activities
@@ -228,3 +228,17 @@ class HomeRoot extends StatelessWidget {
 // onTwitterTap: () {},
 // onSnapchatTap: () {},
 // ),
+
+/// FollowersListTile
+// FollowersListTile(
+// story: Story(
+// imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+// isSeen: false
+// ),
+// name: 'Adham Mohamed',
+// points: 535,
+// buttonText: 'Follow',
+// isFollowing: false,
+// onButtonPressed: () {},
+// onStoryTap: () {},
+// )
