@@ -5,6 +5,7 @@ import 'package:traveller/core/constants/story_item/story_item.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import '../../../core/constants/activity_card/activity_card.dart';
 import '../../../core/constants/activity_card/activity_carousel.dart';
+import '../../../core/constants/report/report_bottom_sheet.dart';
 import '../../../core/theme/fonts/app_text_styles.dart';
 
 class HomeScreen extends StatelessWidget{
@@ -62,7 +63,12 @@ class HomeScreen extends StatelessWidget{
                       contentData: postData[index].contentData,
                       onCommentTap: (){},
                       onShareTap: (){},
-                      onMoreTap: (){}
+                      onMoreTap: (){
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (context) => const ReportBottomSheet(),
+                        );
+                      }
                   ),
                 ),
               childCount: postData.length,

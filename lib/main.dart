@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/constants/report/report_bottom_sheet.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
+import 'config/routes/router.dart';
 import 'core/constants/activity_card/activity_card.dart';
 import 'core/constants/post/post.dart';
 import 'core/constants/post/post_content/post_content.dart';
@@ -25,15 +26,16 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
+        return MaterialApp.router(
+          routerConfig: router,
           debugShowCheckedModeBanner: false,
           theme: getLightTheme(),
           themeMode: ThemeMode.light,
-          home: child,
+//          home: child,
         );
       },
 
-      child: const HomeRoot(),
+      //child: const HomeRoot(),
     );
   }
 }
@@ -193,11 +195,13 @@ class HomeRoot extends StatelessWidget {
           ),
         ];
 
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: getLightTheme(),
-          themeMode: ThemeMode.light,
-            home: Scaffold(
+        return
+          // MaterialApp(
+          // debugShowCheckedModeBanner: false,
+          // theme: getLightTheme(),
+          // themeMode: ThemeMode.light,
+            //home:
+    Scaffold(
                 body: SafeArea(
                   child:
                   HomeScreen(
@@ -207,7 +211,8 @@ class HomeRoot extends StatelessWidget {
                   )
                 )
             )
-        );
+        //)
+        ;
   }
 }
 

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 
 import '../../theme/fonts/app_text_styles.dart';
+import 'package:go_router/go_router.dart';
 
 class ReportBottomSheet extends StatefulWidget {
   const ReportBottomSheet({super.key});
@@ -82,13 +83,23 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
               backgroundColor: AppColors.lebaneseRed,
             ),
             onPressed: () {
-              Navigator.pop(context);
+              context.pop();
             },
             child: Text(
               "Send",
               style: AppTextStyles.titles.copyWith(color: AppColors.white),
             ),
           ),
+
+          // AppButton(text: 'Send',
+          //   onPressed: (){
+          //     Navigator.pop(context);
+          //   },
+          //   width: double.infinity,
+          //   backgroundColor: AppColors.lebaneseRed,
+          //   textStyle: AppTextStyles.title,
+          //   foregroundColor: AppColors.white,
+          // )
         ],
       ),
     );
