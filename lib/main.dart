@@ -57,7 +57,7 @@ class HomeRoot extends StatelessWidget {
       rate: 4.8,
       description:
       'This is a sample post description to test expandable text behavior in the feed.',
-      isHighlighted: true,
+      isHighlighted: false,
     );
 
         final contentData = PostContentData(
@@ -200,15 +200,15 @@ class HomeRoot extends StatelessWidget {
           themeMode: ThemeMode.light,
             home: Scaffold(
                 body: SafeArea(
-                  child: ServiceProvider(
+                  child: /*ServiceProvider(
                       data: headerData,
                       location: "Cairo, Egypt",
-                      language: "English")
-                  /*HomeScreen(
+                      language: "English")*/
+                  HomeScreen(
                     stories: stories,
                     postData: posts,
                     activities: activities
-                  )*/
+                  )
                 )
             )
         );
