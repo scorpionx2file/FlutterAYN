@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:traveller/core/constants/post/post_action_row/post_action_row.dart';
+import '../../../config/routes/app_routes.dart';
 import '../../theme/colors/app_colors.dart';
 import '../../theme/fonts/app_text_styles.dart';
 import '../post_service_provider_header/post_or_service_provider_header.dart';
@@ -84,9 +86,23 @@ class _PostState extends State<Post> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            PostOrServiceProviderHeader(
-              data: widget.headerData,
-              onMoreTap: widget.onMoreTap,
+            GestureDetector(
+              onTap:(){
+                final location = GoRouterState.of(context).uri;
+
+                if(location.path != AppRoutes.Video){
+                  context.push(AppRoutes.Video,
+                      extra: PostData(
+                          headerData: widget.headerData,
+                          contentData: widget.contentData
+                      )
+                  );
+                }
+              },
+              child: PostOrServiceProviderHeader(
+                data: widget.headerData,
+                onMoreTap: widget.onMoreTap,
+              ),
             ),
 
             SizedBox(height: 12.h),

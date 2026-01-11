@@ -66,7 +66,6 @@ class _VideoAndArticlesScreenState extends State<VideoAndArticlesScreen>{
             child: Post(
               headerData: widget.postData.headerData,
               contentData: widget.postData.contentData,
-              onCommentTap: () {},
               onShareTap: () {},
               onMoreTap: () {
                 showModalBottomSheet(
