@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/constants/report/report_bottom_sheet.dart';
+import 'package:traveller/core/constants/service_provider/service_provider.dart';
+import 'package:traveller/core/constants/service_provider/service_provider_bottom.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
 import 'core/constants/activity_card/activity_card.dart';
 import 'core/constants/followers_list/followers_list_tile.dart';
@@ -51,10 +53,8 @@ class HomeRoot extends StatelessWidget {
       imageUrl:
       'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
       username: 'Sarah Ahmed',
-      jobOrLocation: 'UI Designer • Cairo',
+      jobOrLocation: 'UI Designer',
       rate: 4.8,
-      postTitle: 'Looking for feedback',
-      date: '2h',
       description:
       'This is a sample post description to test expandable text behavior in the feed.',
       isHighlighted: true,
@@ -200,11 +200,15 @@ class HomeRoot extends StatelessWidget {
           themeMode: ThemeMode.light,
             home: Scaffold(
                 body: SafeArea(
-                  child: HomeScreen(
+                  child: ServiceProvider(
+                      data: headerData,
+                      location: "Cairo, Egypt",
+                      language: "English")
+                  /*HomeScreen(
                     stories: stories,
                     postData: posts,
                     activities: activities
-                  )
+                  )*/
                 )
             )
         );

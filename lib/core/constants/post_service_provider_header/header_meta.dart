@@ -7,11 +7,13 @@ import '../../theme/fonts/app_text_styles.dart';
 class HeaderMeta extends StatelessWidget {
   final String? title;
   final String? date;
+  final bool isHighlighted;
 
   const HeaderMeta({
     super.key,
     this.title,
     this.date,
+    required this.isHighlighted,
   });
 
   @override
@@ -24,14 +26,16 @@ class HeaderMeta extends StatelessWidget {
           if (title != null)
             Text(
               title!,
-              style: AppTextStyles.button,
+              style: AppTextStyles.button.copyWith(
+                color: isHighlighted ? AppColors.white : AppColors.spanishGrey
+              ),
             ),
 
           if (date != null)
             Text(
               date!,
               style: AppTextStyles.description.copyWith(
-                  color: AppColors.spanishGrey
+                  color: isHighlighted ? AppColors.white : AppColors.spanishGrey
               ),
             ),
         ],

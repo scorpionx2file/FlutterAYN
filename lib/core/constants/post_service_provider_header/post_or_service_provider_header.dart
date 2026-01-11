@@ -53,11 +53,15 @@ class PostOrServiceProviderHeader extends StatelessWidget{
             HeaderMeta(
               title: data.postTitle,
               date: data.date,
+              isHighlighted: data.isHighlighted,
             ),
 
           SizedBox(height: 8.h),
 
-          ExpandableText(text: data.description),
+          ExpandableText(
+              text: data.description,
+              isHighlighted: data.isHighlighted
+          ),
         ]
       )
     );

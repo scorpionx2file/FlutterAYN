@@ -3,6 +3,7 @@ import 'dart:ui';
 class AppColors {
   const AppColors._();
   static const turnbullBlue = Color(0xff173557);
+  static const deepMarine = Color(0xff1F5796);
   static const lebaneseRed = Color(0xffD9251B);
   static const darkYellow = Color(0xffFFCC00);
   static const neonCoral = Color(0xffF85F43);
