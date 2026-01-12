@@ -66,7 +66,7 @@ class EventOptionsPosts extends StatelessWidget {
             SizedBox(width: 12.w,),
 
             Expanded(
-              child: PostInfo(
+              child: _PostInfo(
                 imageUrl: data.imageUrl,
                 username: data.username,
                 title: data.title,
@@ -123,13 +123,13 @@ class _UserInfo extends StatelessWidget {
   }
 }
 
-class PostInfo extends StatelessWidget{
+class _PostInfo extends StatelessWidget{
   final String imageUrl;
   final String username;
   final String title;
   final String date;
 
-  const PostInfo({
+  const _PostInfo({
     super.key,
     required this.imageUrl,
     required this.username,

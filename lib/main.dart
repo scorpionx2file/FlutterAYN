@@ -5,6 +5,7 @@ import 'package:traveller/core/constants/service_provider/service_provider.dart'
 import 'package:traveller/core/constants/service_provider/service_provider_bottom.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
 import 'core/constants/activity_card/activity_card.dart';
+import 'core/constants/event_options/event_options_activities/event_options_activities.dart';
 import 'core/constants/event_options/event_options_posts/event_options_posts.dart';
 import 'core/constants/followers_list/followers_list_tile.dart';
 import 'core/constants/post/post.dart';
@@ -210,7 +211,7 @@ class HomeRoot extends StatelessWidget {
                     postData: posts,
                     activities: activities
                   )*/
-                  EventOptionsPosts(
+                  /*EventOptionsPosts(
                     data: EventPostsData(
                       imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
                       username: "Habiba",
@@ -219,6 +220,14 @@ class HomeRoot extends StatelessWidget {
                       postImage: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
                       rate: 4.8,
                     )
+                  )*/
+                  EventOptionsActivities(
+                    data: EventActivitiesData(
+                      imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+                      title: "Morning Run",
+                      date: "Dec 2, 7AM",
+                      category: "Running",
+                    ),
                   )
                 )
             )
