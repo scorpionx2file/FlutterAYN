@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
+import '../../../user_profile/presentation/widgets/user_profile_pop-up.dart';
 import '../../theme/colors/app_colors.dart';
 
 class UserProfileHeader extends StatelessWidget {
@@ -82,7 +83,16 @@ class UserProfileHeader extends StatelessWidget {
               Positioned(
                 bottom: 16.h,
                 left: 8.w,
-                child: settingsIcon(Icons.info),
+                child: GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      barrierColor: AppColors.black.withOpacity(0.3),
+                      builder: (_) => const UserProfilePopup(),
+                    );
+                  },
+                  child: settingsIcon(Icons.info),
+                ),
               ),
 
             /// PROFILE IMAGE

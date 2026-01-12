@@ -13,6 +13,7 @@ import 'core/constants/post/post.dart';
 import 'core/constants/post/post_content/post_content.dart';
 import 'core/constants/post_service_provider_header/post_or_service_provider_header.dart';
 import 'core/constants/story_item/story_item.dart';
+import 'core/constants/user_profile/user_profile_header.dart';
 import 'home/presentation/widgets/home_screen.dart';
 
 
@@ -225,14 +226,33 @@ class HomeRoot extends StatelessWidget {
                       rate: 4.8,
                     )
                   )*/
-                  EventOptionsActivities(
-                    data: EventActivitiesData(
-                      imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-                      title: "Morning Run",
-                      date: "Dec 2, 7AM",
-                      category: "Running",
-                    ),
-                  )
+                  // EventOptionsActivities(
+                  //   data: EventActivitiesData(
+                  //     imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+                  //     title: "Morning Run",
+                  //     date: "Dec 2, 7AM",
+                  //     category: "Running",
+                  //   ),
+                  // )
+
+                  UserProfileHeader(
+                    isMyProfile: false,
+                    isVerified: true,
+                    coverImage: const AssetImage(
+                        'assets/images/profileCover.png'),
+                    profileImage: const AssetImage('assets/images/profile.png'),
+                    username: 'محمود السعدي',
+                    jobTitle: 'مقدم خدمة',
+                    bio:
+                    'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيُلهي القارئ',
+                    location: 'الغردقة، مصر',
+                    firstNumber: 1689,
+                    secondNumber: 31700,
+                    thirdNumber: 735,
+                    onTwitterTap: () {},
+                    onSnapchatTap: () {},
+                  ),
+
                 )
             )
         //)
@@ -240,20 +260,21 @@ class HomeRoot extends StatelessWidget {
   }
 }
 
-/// UserProfileHeaderWidget
-// UserProfileHeaderWidget(
-// isMyProfile: true,
+/// UserProfileHeader
+// UserProfileHeader(
+// isMyProfile: false,
 // isVerified: true,
-// coverImage: const AssetImage('assets/images/profileCover.png'),
+// coverImage: const AssetImage(
+// 'assets/images/profileCover.png'),
 // profileImage: const AssetImage('assets/images/profile.png'),
 // username: 'محمود السعدي',
 // jobTitle: 'مقدم خدمة',
 // bio:
 // 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيُلهي القارئ',
 // location: 'الغردقة، مصر',
-// leftNumber: 735,
-// middleNumber: 31700,
-// rightNumber: 1689,
+// firstNumber: 1689,
+// secondNumber: 31700,
+// thirdNumber: 735,
 // onTwitterTap: () {},
 // onSnapchatTap: () {},
 // ),
