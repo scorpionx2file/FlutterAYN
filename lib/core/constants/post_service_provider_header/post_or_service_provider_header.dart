@@ -6,6 +6,7 @@ import 'header_meta.dart';
 import 'header_top_row.dart';
 
 class PostHeaderData {
+  final String postId;
   final String imageUrl;
   final String username;
   final String jobOrLocation;
@@ -16,6 +17,7 @@ class PostHeaderData {
   final bool isHighlighted;
 
   const PostHeaderData({
+    required this.postId,
     required this.imageUrl,
     required this.username,
     required this.jobOrLocation,

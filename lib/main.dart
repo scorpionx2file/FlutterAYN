@@ -11,6 +11,7 @@ import 'core/constants/post/post.dart';
 import 'core/constants/post/post_content/post_content.dart';
 import 'core/constants/post_service_provider_header/post_or_service_provider_header.dart';
 import 'core/constants/story_item/story_item.dart';
+import 'core/utils/post_utils.dart';
 import 'home/presentation/widgets/home_screen.dart';
 
 
@@ -51,7 +52,56 @@ class HomeRoot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final headerData = PostHeaderData(
+    final headerData1 = PostHeaderData(
+      postId: '1',
+      imageUrl:
+      'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+      username: 'Sarah Ahmed',
+      jobOrLocation: 'UI Designer',
+      rate: 4.8,
+      description:
+      'This is a sample post description to test expandable text behavior in the feed.',
+      isHighlighted: false,
+    );
+
+    final headerData2 = PostHeaderData(
+      postId: '2',
+      imageUrl:
+      'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+      username: 'Sarah Ahmed',
+      jobOrLocation: 'UI Designer',
+      rate: 4.8,
+      description:
+      'This is a sample post description to test expandable text behavior in the feed.',
+      isHighlighted: false,
+    );
+
+    final headerData3 = PostHeaderData(
+      postId: '3',
+      imageUrl:
+      'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+      username: 'Sarah Ahmed',
+      jobOrLocation: 'UI Designer',
+      rate: 4.8,
+      description:
+      'This is a sample post description to test expandable text behavior in the feed.',
+      isHighlighted: false,
+    );
+
+    final headerData4 = PostHeaderData(
+      postId: '4',
+      imageUrl:
+      'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+      username: 'Sarah Ahmed',
+      jobOrLocation: 'UI Designer',
+      rate: 4.8,
+      description:
+      'This is a sample post description to test expandable text behavior in the feed.',
+      isHighlighted: false,
+    );
+
+    final headerData5 = PostHeaderData(
+      postId: '5',
       imageUrl:
       'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
       username: 'Sarah Ahmed',
@@ -173,42 +223,32 @@ class HomeRoot extends StatelessWidget {
           ),
         ];
 
-        final posts = [
+         posts = [
           PostData(
-            headerData: headerData,
+            headerData: headerData1,
             contentData: contentData,
           ),
           PostData(
-            headerData: headerData,
+            headerData: headerData2,
             contentData: contentData1,
           ),
           PostData(
-            headerData: headerData,
+            headerData: headerData3,
             contentData: contentData2,
           ),
           PostData(
-            headerData: headerData,
+            headerData: headerData4,
             contentData: contentData3,
           ),
           PostData(
-            headerData: headerData,
+            headerData: headerData5,
             contentData: contentData,
           ),
         ];
 
-        return
-          // MaterialApp(
-          // debugShowCheckedModeBanner: false,
-          // theme: getLightTheme(),
-          // themeMode: ThemeMode.light,
-            //home:
-    Scaffold(
+        return Scaffold(
                 body: SafeArea(
-                  child: /*ServiceProvider(
-                      data: headerData,
-                      location: "Cairo, Egypt",
-                      language: "English")*/
-                  HomeScreen(
+                  child: HomeScreen(
                     stories: stories,
                     postData: posts,
                     activities: activities

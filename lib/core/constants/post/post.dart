@@ -7,6 +7,7 @@ import '../../theme/colors/app_colors.dart';
 import '../../theme/fonts/app_text_styles.dart';
 import '../post_service_provider_header/post_or_service_provider_header.dart';
 import 'post_content/post_content.dart';
+import 'package:share_plus/share_plus.dart';
 
 class PostData{
   final PostHeaderData headerData;
@@ -69,6 +70,18 @@ class _PostState extends State<Post> {
     _closeComment();
   }
 
+  void _sharePost() {
+    final postId = widget.headerData.postId;
+    final shareLink = 'https://travellerapp.com/post/$postId';
+    const shareText = "Check out this post on Traveller ✈️";
+
+    Share.share(
+      '$shareText\n\n$shareLink',
+      subject: 'Traveller Post',
+      sharePositionOrigin: Rect.fromLTWH(0, 0, MediaQuery.of(context).size.width, 100),
+    );
+  }
+
   @override
   void dispose() {
     _focusNode.dispose();
@@ -112,7 +125,7 @@ class _PostState extends State<Post> {
             SizedBox(height: 12.h),
 
             PostActionsRow(
-              onShareTap: widget.onShareTap,
+              onShareTap: _sharePost,
               onCommentTap: _openComment,
             ),
 
