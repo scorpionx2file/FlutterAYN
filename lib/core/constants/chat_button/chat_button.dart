@@ -15,9 +15,9 @@ class ChatButton extends StatelessWidget{
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: BoxConstraints(
-          minWidth: 120.w,
+          minWidth: 122.w,
           maxWidth: 160.w,
-          minHeight: 47.h,
+          minHeight: 36.h,
           maxHeight: 47.h
       ),
       child: ElevatedButton(

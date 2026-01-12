@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:traveller/core/constants/button/app_button.dart';
+import 'package:traveller/core/constants/chat_button/chat_button.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
 import '../../../user_profile/presentation/widgets/user_profile_pop-up.dart';
@@ -267,6 +269,49 @@ class UserProfileHeader extends StatelessWidget {
             ],
           ),
         ),
+
+        /// CHAT & FOLLOW BUTTONS (USER PROFILE ONLY)
+        if (!isMyProfile) ...[
+          SizedBox(height: 16.h,),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 14.w),
+            child: Row(
+              children: [
+                Flexible(
+                  flex: 1, // Chat button gets 1 share
+                  child: ChatButton(onTap: () {}),
+                ),
+                SizedBox(width: 8.w),
+                Flexible(
+                  flex: 2, // Follow button gets 2 shares (wider)
+                  child: AppButton(
+                    text: "Follow",
+                    icon: Icon(Icons.person_add, size: 20),
+                    height: 30.h,
+                    onPressed: () {},
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+
+        /// EDIT MY INFORMATION BUTTON (MY PROFILE ONLY)
+        if (isMyProfile) ...[
+          SizedBox(height: 8.h,),
+          AppButton(
+            text: 'Edit My Information',
+            icon: Icon(Icons.edit_calendar_rounded),
+            height: 32.h,
+            width: 290.w,
+            backgroundColor: AppColors.white,
+            foregroundColor: AppColors.turnbullBlue,
+            borderSide: BorderSide(color: AppColors.turnbullBlue, width: 1.5.w),
+            onPressed: () {},
+          )
+        ]
+
+
       ],
     );
   }

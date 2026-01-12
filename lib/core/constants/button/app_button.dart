@@ -6,6 +6,8 @@ class AppButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.onPressed,
+    this.icon,
+    this.iconSpacing = 6,
     this.height = 52,
     this.width,
     this.horizontalPadding = 18,
@@ -19,6 +21,7 @@ class AppButton extends StatelessWidget {
 
   final String text;
   final VoidCallback? onPressed;
+  final Widget? icon;
   final double height;
   final double? width;
   final double horizontalPadding;
@@ -28,13 +31,39 @@ class AppButton extends StatelessWidget {
   final TextStyle? textStyle;
   final double borderRadius;
   final BorderSide? borderSide;
+  final double iconSpacing;
 
   @override
   Widget build(BuildContext context) {
+    // Apply ScreenUtil to all numeric values
     final h = height.h;
     final w = width?.w;
     final padX = horizontalPadding.w;
     final r = borderRadius.r;
+    final spacing = iconSpacing.w;
+
+    // Build child with optional icon
+    final child = icon != null
+        ? Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        icon!,
+        SizedBox(width: spacing),
+        Text(
+          text,
+          style: textStyle?.copyWith(
+            fontSize: textStyle?.fontSize?.sp,
+          ),
+        ),
+      ],
+    )
+        : Text(
+      text,
+      style: textStyle?.copyWith(
+        fontSize: textStyle?.fontSize?.sp,
+      ),
+    );
 
     // OUTLINED STATE
     if (borderSide != null) {
@@ -51,9 +80,11 @@ class AppButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(r),
             ),
-            textStyle: textStyle,
+            textStyle: textStyle?.copyWith(
+              fontSize: textStyle?.fontSize?.sp,
+            ),
           ),
-          child: Text(text),
+          child: child,
         ),
       );
     }
@@ -72,11 +103,12 @@ class AppButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(r),
           ),
-          textStyle: textStyle,
+          textStyle: textStyle?.copyWith(
+            fontSize: textStyle?.fontSize?.sp,
+          ),
         ),
-        child: Text(text),
+        child: child,
       ),
     );
   }
 }
-

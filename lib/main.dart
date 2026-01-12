@@ -236,8 +236,23 @@ class HomeRoot extends StatelessWidget {
                   //   ),
                   // )
 
-                  ContactMessageTextArea(),
-
+                  UserProfileHeader(
+                    isMyProfile: false,
+                    isVerified: true,
+                    coverImage: const AssetImage(
+                        'assets/images/profileCover.png'),
+                    profileImage: const AssetImage('assets/images/profile.png'),
+                    username: 'محمود السعدي',
+                    jobTitle: 'مقدم خدمة',
+                    bio:
+                    'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيُلهي القارئ',
+                    location: 'الغردقة، مصر',
+                    firstNumber: 1689,
+                    secondNumber: 31700,
+                    thirdNumber: 735,
+                    onTwitterTap: () {},
+                    onSnapchatTap: () {},
+                  ),
                 )
             )
         //)
@@ -277,3 +292,6 @@ class HomeRoot extends StatelessWidget {
 // onButtonPressed: () {},
 // onStoryTap: () {},
 // )
+
+/// ContactMessageTextArea
+//ContactMessageTextArea(),
