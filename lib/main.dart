@@ -4,6 +4,7 @@ import 'package:traveller/core/constants/report/report_bottom_sheet.dart';
 import 'package:traveller/core/constants/service_provider/service_provider.dart';
 import 'package:traveller/core/constants/service_provider/service_provider_bottom.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
+import 'package:traveller/settings_contact/presentation/widgets/contact_message_textarea.dart';
 import 'config/routes/router.dart';
 import 'core/constants/activity_card/activity_card.dart';
 import 'core/constants/event_options/event_options_activities/event_options_activities.dart';
@@ -235,23 +236,7 @@ class HomeRoot extends StatelessWidget {
                   //   ),
                   // )
 
-                  UserProfileHeader(
-                    isMyProfile: false,
-                    isVerified: true,
-                    coverImage: const AssetImage(
-                        'assets/images/profileCover.png'),
-                    profileImage: const AssetImage('assets/images/profile.png'),
-                    username: 'محمود السعدي',
-                    jobTitle: 'مقدم خدمة',
-                    bio:
-                    'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيُلهي القارئ',
-                    location: 'الغردقة، مصر',
-                    firstNumber: 1689,
-                    secondNumber: 31700,
-                    thirdNumber: 735,
-                    onTwitterTap: () {},
-                    onSnapchatTap: () {},
-                  ),
+                  ContactMessageTextArea(),
 
                 )
             )
