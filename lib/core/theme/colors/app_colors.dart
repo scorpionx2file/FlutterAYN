@@ -13,4 +13,5 @@ class AppColors {
   static const spanishGrey = Color(0xffA0A0A0);
   static const lightSilver = Color(0xffE0E0E0);
   static const white = Color(0xffFFFFFF);
+  static const lightGreen = Color(0xff81DB88);
 }
