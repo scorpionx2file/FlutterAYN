@@ -3,8 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/constants/report/report_bottom_sheet.dart';
 import 'package:traveller/core/constants/service_provider/service_provider.dart';
 import 'package:traveller/core/constants/service_provider/service_provider_bottom.dart';
+import 'package:traveller/core/constants/warning/warning.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
 import 'package:traveller/settings_contact/presentation/widgets/contact_message_textarea.dart';
+import 'package:traveller/stories/presentation/widgets/story_screen.dart';
 import 'config/routes/router.dart';
 import 'core/constants/activity_card/activity_card.dart';
 import 'core/constants/event_options/event_options_activities/event_options_activities.dart';
@@ -111,54 +113,40 @@ class HomeRoot extends StatelessWidget {
 
         final stories = [
           Story(
+              imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+              username: "Habiba",
+              isSeen: false,
+              data: "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg"
+          ),
+          Story(
             imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
             username: "Habiba",
-            isSeen: true
+            isSeen: true,
+            data: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
           ),
           Story(
             imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
             username: "Habiba",
-            isSeen: true
+            isSeen: true,
+            data: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg"
           ),
           Story(
               imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
               username: "Habiba",
-              isSeen: true
+              isSeen: true,
+            data: "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg"
           ),
           Story(
               imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
               username: "Habiba",
-              isSeen: false
+              isSeen: false,
+            data: "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg"
           ),
           Story(
               imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
               username: "Habiba",
-              isSeen: false
-          ),
-          Story(
-              imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-              username: "Habiba",
-              isSeen: false
-          ),
-          Story(
-              imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-              username: "Habiba",
-              isSeen: false
-          ),
-          Story(
-              imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-              username: "Habiba",
-              isSeen: false
-          ),
-          Story(
-              imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-              username: "Habiba",
-              isSeen: false
-          ),
-          Story(
-              imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-              username: "Habiba",
-              isSeen: false
+              isSeen: false,
+            data: "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg"
           ),
         ];
 
@@ -236,7 +224,7 @@ class HomeRoot extends StatelessWidget {
                   //   ),
                   // )
 
-                  UserProfileHeader(
+                  /*UserProfileHeader(
                     isMyProfile: false,
                     isVerified: true,
                     coverImage: const AssetImage(
@@ -252,7 +240,15 @@ class HomeRoot extends StatelessWidget {
                     thirdNumber: 735,
                     onTwitterTap: () {},
                     onSnapchatTap: () {},
-                  ),
+                  )*/
+                  /*Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Warning(
+                      warningTitle: "Warning",
+                      warningContent: "This is a sample warning message.",
+                    ),
+                  )*/
+                  StoryScreen(stories: stories),
                 )
             )
         //)

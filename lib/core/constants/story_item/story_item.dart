@@ -7,11 +7,13 @@ class Story{
   final String imageUrl;
   final String? username;
   final bool isSeen;
+  final String data;
 
   Story({
     required this.imageUrl,
     this.username,
     required this.isSeen,
+    required this.data,
   });
 }
 
