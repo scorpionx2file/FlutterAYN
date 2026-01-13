@@ -25,7 +25,7 @@ class Warning extends StatelessWidget{
             color: AppColors.lebaneseRed,
             width: 1.w,
           ),
-            borderRadius: BorderRadius.circular(12.r)
+            borderRadius: BorderRadius.circular(8.r)
         ),
         child: Row(
           children: [
