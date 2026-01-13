@@ -237,7 +237,7 @@ class HomeRoot extends StatelessWidget {
                   // )
 
                   UserProfileHeader(
-                    isMyProfile: false,
+                    isMyProfile: true,
                     isVerified: true,
                     coverImage: const AssetImage(
                         'assets/images/profileCover.png'),
