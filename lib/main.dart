@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/constants/report/report_bottom_sheet.dart';
 import 'package:traveller/core/constants/service_provider/service_provider.dart';
 import 'package:traveller/core/constants/service_provider/service_provider_bottom.dart';
+import 'package:traveller/core/constants/warning/warning.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
 import 'package:traveller/settings_contact/presentation/widgets/contact_message_textarea.dart';
 import 'config/routes/router.dart';
@@ -236,7 +237,7 @@ class HomeRoot extends StatelessWidget {
                   //   ),
                   // )
 
-                  UserProfileHeader(
+                  /*UserProfileHeader(
                     isMyProfile: false,
                     isVerified: true,
                     coverImage: const AssetImage(
@@ -252,6 +253,13 @@ class HomeRoot extends StatelessWidget {
                     thirdNumber: 735,
                     onTwitterTap: () {},
                     onSnapchatTap: () {},
+                  )*/
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Warning(
+                      warningTitle: "Warning",
+                      warningContent: "This is a sample warning message.",
+                    ),
                   ),
                 )
             )
