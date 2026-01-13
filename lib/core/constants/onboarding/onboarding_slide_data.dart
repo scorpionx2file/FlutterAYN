@@ -57,7 +57,7 @@ class OnboardingSlide extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: AppTextStyles.title.copyWith(color: titleColor, height: 1.2),
+            style: AppTextStyles.headingH2.copyWith(color: titleColor, height: 1.2),
           ),
           SizedBox(height: 20.h),
           Text(
@@ -65,7 +65,7 @@ class OnboardingSlide extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
-            style: AppTextStyles.description.copyWith(color: subtitleColor, height: 1.4),
+            style: AppTextStyles.text.copyWith(color: subtitleColor, height: 1.4),
           ),
         ],
       ),
