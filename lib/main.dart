@@ -4,6 +4,7 @@ import 'package:traveller/core/constants/report/report_bottom_sheet.dart';
 import 'package:traveller/core/constants/service_provider/service_provider.dart';
 import 'package:traveller/core/constants/service_provider/service_provider_bottom.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
+import 'package:traveller/event_option/presentation/widgets/content_section/content_section.dart';
 import 'package:traveller/settings_contact/presentation/widgets/contact_message_textarea.dart';
 import 'config/routes/router.dart';
 import 'core/constants/activity_card/activity_card.dart';
@@ -15,6 +16,7 @@ import 'core/constants/post/post_content/post_content.dart';
 import 'core/constants/post_service_provider_header/post_or_service_provider_header.dart';
 import 'core/constants/story_item/story_item.dart';
 import 'core/constants/user_profile/user_profile_header.dart';
+import 'event_option/presentation/widgets/place_details_screen.dart';
 import 'home/presentation/widgets/home_screen.dart';
 
 
@@ -38,11 +40,9 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: getLightTheme(),
           themeMode: ThemeMode.light,
-//          home: child,
         );
       },
 
-      //child: const HomeRoot(),
     );
   }
 }
@@ -200,15 +200,65 @@ class HomeRoot extends StatelessWidget {
           ),
         ];
 
-        return
-          // MaterialApp(
-          // debugShowCheckedModeBanner: false,
-          // theme: getLightTheme(),
-          // themeMode: ThemeMode.light,
-            //home:
-    Scaffold(
+        final placeCont = PlaceContent(
+            maxTemp: 25,
+            minTemp: 15,
+            numOfPosts: 200,
+            gateTitle: "Tourism to Egypt",
+            gateDesc: "It is a long-established fact that the readable content of a page will distract the reader from focusing.",
+            friendsImages: [
+              'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+              'https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg',
+            'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+             ],
+            numOfFriends: 200
+        );
+        final placeInfo = PlaceInfoModel(
+          gateName: "Egypt Gate",
+          placeContent: placeCont
+        );
+
+        final eventPosts = [
+          EventPostsData(
+            imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            username: "Habiba",
+            title: "Morning Run",
+            date: "Dec 2, 7AM",
+            postImage: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            rate: 4.8,
+          ),EventPostsData(
+            imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            username: "Habiba",
+            title: "Morning Run",
+            date: "Dec 2, 7AM",
+            postImage: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            rate: 4.8,
+          ),EventPostsData(
+            imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            username: "Habiba",
+            title: "Morning Run",
+            date: "Dec 2, 7AM",
+            postImage: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            rate: 4.8,
+          ),
+          EventPostsData(
+            imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            username: "Habiba",
+            title: "Morning Run",
+            date: "Dec 2, 7AM",
+            postImage: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            rate: 4.8,
+          )
+        ];
+
+        return Scaffold(
                 body: SafeArea(
-                  child: /*ServiceProvider(
+                  child:
+                  PlaceDetailsScreen(
+                    placeInfo: placeInfo,
+                    posts: eventPosts
+                  )
+                  /*ServiceProvider(
                       data: headerData,
                       location: "Cairo, Egypt",
                       language: "English")*/
@@ -227,16 +277,16 @@ class HomeRoot extends StatelessWidget {
                       rate: 4.8,
                     )
                   )*/
-                  // EventOptionsActivities(
-                  //   data: EventActivitiesData(
-                  //     imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-                  //     title: "Morning Run",
-                  //     date: "Dec 2, 7AM",
-                  //     category: "Running",
-                  //   ),
-                  // )
+                  /*EventOptionsActivities(
+                    data: EventActivitiesData(
+                      imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+                      title: "Morning Run",
+                      date: "Dec 2, 7AM",
+                      category: "Running",
+                    ),
+                  )*/
 
-                  UserProfileHeader(
+                  /*UserProfileHeader(
                     isMyProfile: false,
                     isVerified: true,
                     coverImage: const AssetImage(
@@ -252,7 +302,8 @@ class HomeRoot extends StatelessWidget {
                     thirdNumber: 735,
                     onTwitterTap: () {},
                     onSnapchatTap: () {},
-                  ),
+                  )*/
+                  ,
                 )
             )
         //)
