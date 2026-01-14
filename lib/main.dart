@@ -287,7 +287,7 @@ class HomeRoot extends StatelessWidget {
                   /*PlaceDetailsScreen(
                     placeInfo: placeInfo,
                     posts: eventPosts
-                  )
+                  )*/
                   /*ServiceProvider(
                       data: headerData,
                       location: "Cairo, Egypt",
@@ -342,11 +342,8 @@ class HomeRoot extends StatelessWidget {
                   )*/
                   /*StoryScreen(stories: stories),
                   )*/
-                  ,
                 )
-            )
-        //)
-        ;
+    );
   }
 }
 
