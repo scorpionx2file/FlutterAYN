@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:traveller/core/constants/report/report_bottom_sheet.dart';
 import 'package:traveller/core/constants/service_provider/service_provider.dart';
 import 'package:traveller/core/constants/service_provider/service_provider_bottom.dart';
 import 'package:traveller/core/constants/warning/warning.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
 import 'package:traveller/event_option/presentation/widgets/content_section/content_section.dart';
+import 'package:traveller/map/presenttion/widgets/map_screen.dart';
 import 'package:traveller/settings_contact/presentation/widgets/contact_message_textarea.dart';
 import 'package:traveller/stories/presentation/widgets/story_screen.dart';
 import 'config/routes/router.dart';
@@ -239,10 +241,50 @@ class HomeRoot extends StatelessWidget {
           )
         ];
 
-        return Scaffold(
+
+    final List<MapItem> items = [
+      MapItem(
+        location: LatLng(52.5200, 13.4050), // Germany
+        type: MarkerType.post,
+        imageUrl:"https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg"
+      ),
+      MapItem(
+        location: LatLng(48.8566, 2.3522), // France
+        type: MarkerType.service,
+        imageUrl:'https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg',
+      ),
+      MapItem(
+        location: LatLng(50.1109, 8.6821),
+        type: MarkerType.post,
+        imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg"
+      ),
+      MapItem(
+        location: LatLng(41.9028, 12.4964),
+        type: MarkerType.service,
+        imageUrl:'https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg',
+      ),
+
+      MapItem(
+          location: LatLng(55.1109, 8.6821),
+          type: MarkerType.post,
+          imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg"
+      ),
+      MapItem(
+        location: LatLng(45.9028, 10.4964),
+        type: MarkerType.service,
+        imageUrl:'https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg',
+      ),
+    ];
+
+
+    return Scaffold(
                 body: SafeArea(
                   child:
-                  PlaceDetailsScreen(
+                  MapScreen(
+                    items: items,
+                    onMarkerTab: () {}
+                  ),
+                  /*PlaceDetailsScreen(
                     placeInfo: placeInfo,
                     posts: eventPosts
                   )
