@@ -4,7 +4,7 @@ import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
 class ProfileSettingsTile extends StatelessWidget {
-  final IconData icon;
+  final Widget icon;
   final String title;
   final Widget? trailing; // toggle widget
   final VoidCallback? onTap;
@@ -31,7 +31,8 @@ class ProfileSettingsTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 /// MAIN ICON
-                Icon(icon, size: 28.sp, color: AppColors.spanishGrey),
+                icon,
+                //Icon(icon, size: 28.sp, color: AppColors.spanishGrey),
 
                 SizedBox(width: 12.w),
 

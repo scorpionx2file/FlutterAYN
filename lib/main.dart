@@ -7,8 +7,8 @@ import 'package:traveller/core/constants/service_provider/service_provider_botto
 import 'package:traveller/core/constants/warning/warning.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
 import 'package:traveller/event_option/presentation/widgets/content_section/content_section.dart';
-import 'package:traveller/followers_list_screen/presentation/widgets/followers_list_screen.dart';
 import 'package:traveller/map/presenttion/widgets/map_screen.dart';
+import 'package:traveller/profile_settings/presentation/widgets/profile_settings_screen.dart';
 import 'package:traveller/settings_contact/presentation/widgets/contact_message_textarea.dart';
 import 'package:traveller/stories/presentation/widgets/story_screen.dart';
 import 'package:traveller/user_profile/presentation/widgets/user_profile_screen.dart';
@@ -24,6 +24,7 @@ import 'core/constants/post_service_provider_header/post_or_service_provider_hea
 import 'core/constants/story_item/story_item.dart';
 import 'core/constants/user_profile/user_profile_header.dart';
 import 'event_option/presentation/widgets/place_details_screen.dart';
+import 'followers_list/presentation/widgets/followers_list_screen.dart';
 import 'home/presentation/widgets/home_screen.dart';
 
 void main() {
@@ -290,8 +291,9 @@ class HomeRoot extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: FollowersListScreen(following: following, followers: followers,),
+        child: ProfileSettingsScreen(),
 
+        /*FollowersListScreen(following: following, followers: followers,),*/
         /*UserProfileScreen(activities: activities, postData: posts,)*/
         /*MapScreen(
                     items: items,

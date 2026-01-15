@@ -27,7 +27,7 @@ class ProfileSettingsHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+      margin: EdgeInsets.symmetric(horizontal: 16.w),
       height: 130.h,
       width: double.infinity,
       decoration: BoxDecoration(
