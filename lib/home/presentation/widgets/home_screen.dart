@@ -57,7 +57,7 @@ class HomeScreen extends StatelessWidget{
         SliverList(
             delegate: SliverChildBuilderDelegate(
                 (context, index) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  padding: EdgeInsets.symmetric(vertical: 8.h),
                   child: Post(
                       headerData: postData[index].headerData,
                       contentData: postData[index].contentData,
@@ -72,7 +72,7 @@ class HomeScreen extends StatelessWidget{
                 ),
               childCount: postData.length,
             )
-        )
+        ),
       ]
     );
   }

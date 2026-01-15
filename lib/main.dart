@@ -10,6 +10,7 @@ import 'package:traveller/event_option/presentation/widgets/content_section/cont
 import 'package:traveller/map/presenttion/widgets/map_screen.dart';
 import 'package:traveller/settings_contact/presentation/widgets/contact_message_textarea.dart';
 import 'package:traveller/stories/presentation/widgets/story_screen.dart';
+import 'package:traveller/user_profile/presentation/widgets/user_profile_screen.dart';
 import 'config/routes/router.dart';
 import 'core/constants/activity_card/activity_card.dart';
 import 'core/constants/event_options/event_options_activities/event_options_activities.dart';
@@ -280,10 +281,13 @@ class HomeRoot extends StatelessWidget {
     return Scaffold(
                 body: SafeArea(
                   child:
-                  MapScreen(
+                    UserProfileScreen(activities: activities, postData: posts,)
+
+
+                  /*MapScreen(
                     items: items,
                     onMarkerTab: () {}
-                  ),
+                  ),*/
                   /*PlaceDetailsScreen(
                     placeInfo: placeInfo,
                     posts: eventPosts
@@ -346,25 +350,6 @@ class HomeRoot extends StatelessWidget {
     );
   }
 }
-
-/// UserProfileHeader
-// UserProfileHeader(
-// isMyProfile: false,
-// isVerified: true,
-// coverImage: const AssetImage(
-// 'assets/images/profileCover.png'),
-// profileImage: const AssetImage('assets/images/profile.png'),
-// username: 'محمود السعدي',
-// jobTitle: 'مقدم خدمة',
-// bio:
-// 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيُلهي القارئ',
-// location: 'الغردقة، مصر',
-// firstNumber: 1689,
-// secondNumber: 31700,
-// thirdNumber: 735,
-// onTwitterTap: () {},
-// onSnapchatTap: () {},
-// ),
 
 /// FollowersListTile
 // FollowersListTile(

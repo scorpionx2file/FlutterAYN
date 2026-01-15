@@ -13,7 +13,7 @@ class UserProfilePopup extends StatelessWidget {
       children: [
         Positioned(
           left: 8.w,
-          top: 150.h,
+          top: 110.h,
           child: Material(
             color: Colors.transparent,
             child: Container(
