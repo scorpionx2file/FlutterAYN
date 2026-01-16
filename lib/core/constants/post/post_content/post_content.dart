@@ -20,11 +20,13 @@ class PostContentData {
 class PostContentSection extends StatelessWidget {
   final PostContentData data;
   final bool isVideoScreen;
+  final VoidCallback onCommentsTap;
 
   const PostContentSection({
     super.key,
     required this.data,
     required this.isVideoScreen,
+    required this.onCommentsTap,
   });
 
   @override
@@ -42,6 +44,7 @@ class PostContentSection extends StatelessWidget {
         CommentsPreviewRow(
           avatarUrls: data.commenterAvatars,
           commentsCountText: data.commentsCountText,
+          onCommentsTap: onCommentsTap,
         ),
       ],
     );

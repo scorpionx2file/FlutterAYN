@@ -5,6 +5,9 @@ import 'package:traveller/core/constants/post/post_action_row/post_action_row.da
 import '../../../config/routes/app_routes.dart';
 import '../../theme/colors/app_colors.dart';
 import '../../theme/fonts/app_text_styles.dart';
+import '../comment/comment_item.dart';
+import '../comments_bottom_sheet/bottom_comment_input.dart';
+import '../comments_bottom_sheet/comments_bottom_sheet.dart';
 import '../post_service_provider_header/post_or_service_provider_header.dart';
 import 'post_content/post_content.dart';
 import 'package:share_plus/share_plus.dart';
@@ -72,6 +75,32 @@ class _PostState extends State<Post> {
     _closeComment();
   }
 
+  void _openCommentsBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: AppColors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20.r),
+        ),
+      ),
+      builder: (_) {
+        return DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.6,
+          maxChildSize: 0.9,
+          minChildSize: 0.4,
+          builder: (_, scrollController) {
+            return CommentsBottomSheet(
+              scrollController: scrollController,
+            );
+          },
+        );
+      },
+    );
+  }
+
   void _sharePost() {
     final postId = widget.headerData.postId;
     final shareLink = 'https://travellerapp.com/post/$postId';
@@ -123,8 +152,9 @@ class _PostState extends State<Post> {
             SizedBox(height: 12.h),
 
             PostContentSection(
-              data: widget.contentData,
-              isVideoScreen: widget.isVideoScreen,
+                data: widget.contentData,
+                isVideoScreen: widget.isVideoScreen,
+                onCommentsTap: () => _openCommentsBottomSheet(context)
             ),
 
             SizedBox(height: 12.h),
@@ -137,7 +167,7 @@ class _PostState extends State<Post> {
             if (_showCommentBox)
               GestureDetector(
                 onTap: () {},
-                child: _CommentInput(
+                child: BottomCommentInput(
                   controller: _controller,
                   focusNode: _focusNode,
                   onSend: _sendComment,

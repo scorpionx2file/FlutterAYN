@@ -60,7 +60,7 @@ class _ActivityCarouselState extends State<ActivityCarousel> {
             itemBuilder: (context, index) {
               final activity = widget.activities[index];
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
+                padding: EdgeInsets.symmetric(horizontal: 8.w),
                 child: ActivityCard(
                   imageUrl: activity.imageUrl,
                   activityTitle: activity.title,

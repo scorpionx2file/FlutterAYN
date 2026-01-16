@@ -29,7 +29,7 @@ class FollowersListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12.w),
+      padding: EdgeInsets.symmetric(horizontal: 8.w),
       child: Row(
         children: [
           // Story
@@ -42,23 +42,21 @@ class FollowersListTile extends StatelessWidget {
             ),
           ),
 
-          SizedBox(width: 12.w),
+          SizedBox(width: 8.w),
 
           // Name + Points
-          Flexible(
+          Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Name
                 Text(
                   name,
                   style: AppTextStyles.text,
-                  maxLines: 1, // keep on one line
-                  overflow: TextOverflow.ellipsis, // show ... if too long
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(height: 2.h),
-                // Points
                 Text(
                   '$points Points',
                   style: AppTextStyles.description.copyWith(
@@ -69,7 +67,7 @@ class FollowersListTile extends StatelessWidget {
             ),
           ),
 
-          SizedBox(width: 12.w),
+          SizedBox(width: 8.w,),
 
           // Follow Button
           AppButton(
@@ -87,9 +85,7 @@ class FollowersListTile extends StatelessWidget {
             onPressed: onButtonPressed,
           ),
         ],
-      )
-
+      ),
     );
   }
-
 }

@@ -7,11 +7,14 @@ import 'avatars_stack.dart';
 class CommentsPreviewRow extends StatelessWidget {
   final List<String> avatarUrls;
   final String commentsCountText;
+  final VoidCallback onCommentsTap;
+
 
   const CommentsPreviewRow({
     super.key,
     required this.avatarUrls,
-    required this.commentsCountText
+    required this.commentsCountText,
+    required this.onCommentsTap,
   });
 
   @override
@@ -24,12 +27,15 @@ class CommentsPreviewRow extends StatelessWidget {
 
           SizedBox(width: 8.w),
 
-          Text(
-              "$commentsCountText comments",
-              style: TextStyle(
-                fontSize: 12.sp,
-                color: AppColors.spanishGrey,
-              )
+          GestureDetector(
+            onTap: onCommentsTap,
+            child: Text(
+                "$commentsCountText comments",
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  color: AppColors.spanishGrey,
+                )
+            ),
           )
         ],
       ),
