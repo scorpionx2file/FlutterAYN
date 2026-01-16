@@ -442,8 +442,7 @@ class HomeRoot extends StatelessWidget {
                       warningContent: "This is a sample warning message.",
                     ),
                   )*/
-        /*StoryScreen(stories: stories),
-                  )*/
+        //StoryScreen(stories: stories),
 
         GatesScreen(gates: gates)
       ),

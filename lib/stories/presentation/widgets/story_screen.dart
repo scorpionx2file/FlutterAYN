@@ -80,6 +80,18 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
     _progressController.forward();
   }
 
+  void _pauseStory() {
+    _progressController.stop();
+    _videoController?.pause();
+  }
+
+  void _resumeStory() {
+    if (!_progressController.isAnimating) {
+      _progressController.forward();
+    }
+    _videoController?.play();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -150,30 +162,38 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
           ),
         ),
 
-        // Overlay taps
+        // Overlay taps + hold
         Positioned.fill(
-          child: Row(
-            children: [
-              // Left half → previous story
-              Expanded(
-                child: GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    if (currentIndex > 0) {
-                      setState(() => currentIndex--);
-                      _loadStory();
-                    }
-                  },
+          child: GestureDetector(
+            behavior: HitTestBehavior.translucent,
+
+            onLongPressStart: (_) => _pauseStory(),
+            onLongPressEnd: (_) => _resumeStory(),
+
+            child: Row(
+              children: [
+                // Left half → previous story
+                Expanded(
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      if (currentIndex > 0) {
+                        setState(() => currentIndex--);
+                        _loadStory();
+                      }
+                    },
+                  ),
                 ),
-              ),
-              // Right half → next story
-              Expanded(
-                child: GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: _nextStory,
+
+                // Right half → next story
+                Expanded(
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: _nextStory,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],
