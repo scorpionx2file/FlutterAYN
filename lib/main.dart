@@ -31,25 +31,25 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context, child) {
-        return MaterialApp.router(
-          routerConfig: router,
-          debugShowCheckedModeBanner: false,
-          theme: getLightTheme(),
-          themeMode: ThemeMode.light,
-        );
-      },
-
+      child: Builder(
+        builder: (context) {
+          return MaterialApp.router(
+            routerConfig: router,
+            debugShowCheckedModeBanner: false,
+            theme: getLightTheme(), // ✅ ScreenUtil ready
+          );
+        },
+      ),
     );
   }
 }
+
 
 
 
@@ -280,10 +280,10 @@ class HomeRoot extends StatelessWidget {
     return Scaffold(
                 body: SafeArea(
                   child:
-                  MapScreen(
+                  /*MapScreen(
                     items: items,
                     onMarkerTab: () {}
-                  ),
+                  ),*/
                   /*PlaceDetailsScreen(
                     placeInfo: placeInfo,
                     posts: eventPosts
@@ -292,11 +292,11 @@ class HomeRoot extends StatelessWidget {
                       data: headerData,
                       location: "Cairo, Egypt",
                       language: "English")*/
-                  /*HomeScreen(
+                  HomeScreen(
                     stories: stories,
                     postData: posts,
                     activities: activities
-                  )*/
+                  )
                   /*EventOptionsPosts(
                     data: EventPostsData(
                       imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
