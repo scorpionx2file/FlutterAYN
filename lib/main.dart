@@ -28,6 +28,7 @@ import 'event_option/presentation/widgets/place_details_screen.dart';
 import 'followers_list/presentation/widgets/followers_list_screen.dart';
 import 'home/presentation/widgets/home_screen.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
