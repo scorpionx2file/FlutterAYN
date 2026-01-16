@@ -67,7 +67,8 @@ class HomeScreen extends StatelessWidget{
                           context: context,
                           builder: (context) => const ReportBottomSheet(),
                         );
-                      }
+                      },
+                      isVideoScreen: false,
                   ),
                 ),
               childCount: postData.length,

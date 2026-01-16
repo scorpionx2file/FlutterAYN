@@ -29,7 +29,7 @@ class _VideoAndArticlesScreenState extends State<VideoAndArticlesScreen>{
         'https://i.pravatar.cc/150?img=1',
         'Ahmed',
         '2h',
-        const Icon(Icons.favorite,color: AppColors.spanishGrey,size: 18),
+        const Icon(Icons.shopping_bag_rounded, color: AppColors.spanishGrey, size: 18),
         'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
         false,
       ),
@@ -37,9 +37,9 @@ class _VideoAndArticlesScreenState extends State<VideoAndArticlesScreen>{
         'https://i.pravatar.cc/150?img=2',
         'Sara',
         '1h',
-        RatingWidget(rating: 3.6),
+        const Icon(Icons.shopping_bag_rounded, color: AppColors.spanishGrey, size: 18),
         'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
-        true
+        false
       ),
       CommentData(
         'https://i.pravatar.cc/150?img=3',
@@ -73,6 +73,7 @@ class _VideoAndArticlesScreenState extends State<VideoAndArticlesScreen>{
                   builder: (context) => const ReportBottomSheet(),
                 );
               },
+              isVideoScreen: true,
             ),
           ),
 

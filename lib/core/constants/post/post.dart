@@ -24,6 +24,7 @@ class Post extends StatefulWidget {
   final PostContentData contentData;
   final VoidCallback onShareTap;
   final VoidCallback onMoreTap;
+  final bool isVideoScreen;
 
   const Post({
     super.key,
@@ -31,6 +32,7 @@ class Post extends StatefulWidget {
     required this.contentData,
     required this.onShareTap,
     required this.onMoreTap,
+    required this.isVideoScreen,
   });
 
   @override
@@ -120,7 +122,10 @@ class _PostState extends State<Post> {
 
             SizedBox(height: 12.h),
 
-            PostContentSection(data: widget.contentData),
+            PostContentSection(
+              data: widget.contentData,
+              isVideoScreen: widget.isVideoScreen,
+            ),
 
             SizedBox(height: 12.h),
 
