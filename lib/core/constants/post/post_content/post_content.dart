@@ -18,10 +18,12 @@ class PostContentData {
 
 class PostContentSection extends StatelessWidget{
   final PostContentData data;
+  final VoidCallback onCommentsTap;
 
   const PostContentSection({
     super.key,
-    required this.data
+    required this.data,
+    required this.onCommentsTap,
   });
 
   @override
@@ -35,6 +37,7 @@ class PostContentSection extends StatelessWidget{
         CommentsPreviewRow(
           avatarUrls: data.commenterAvatars,
           commentsCountText: data.commentsCountText,
+          onCommentsTap: onCommentsTap,
         )
       ],
     );

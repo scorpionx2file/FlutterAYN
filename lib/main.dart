@@ -293,7 +293,7 @@ class HomeRoot extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: SettingsContactScreen(),
+        child: //SettingsContactScreen(),
 
         /*ProfileSettingsScreen(),*/
         /*FollowersListScreen(following: following, followers: followers,),*/
@@ -310,11 +310,11 @@ class HomeRoot extends StatelessWidget {
                       data: headerData,
                       location: "Cairo, Egypt",
                       language: "English")*/
-        /*HomeScreen(
+        HomeScreen(
                     stories: stories,
                     postData: posts,
                     activities: activities
-                  )*/
+                  )
         /*EventOptionsPosts(
                     data: EventPostsData(
                       imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
