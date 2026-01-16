@@ -23,7 +23,7 @@ class AppTextFields extends StatelessWidget {
     this.focusedBorderColor,
     this.fillColor,
     this.contentPadding,
-    this.textAlign = TextAlign.right,
+    this.textAlign = TextAlign.left,
   });
 
   final TextEditingController controller;
@@ -59,11 +59,11 @@ class AppTextFields extends StatelessWidget {
 
     final effectiveBorderColor =
         borderColor ??
-        (theme.inputDecorationTheme.enabledBorder is OutlineInputBorder
-            ? (theme.inputDecorationTheme.enabledBorder as OutlineInputBorder)
-                  .borderSide
-                  .color
-            : cs.outline);
+            (theme.inputDecorationTheme.enabledBorder is OutlineInputBorder
+                ? (theme.inputDecorationTheme.enabledBorder as OutlineInputBorder)
+                .borderSide
+                .color
+                : cs.outline);
 
     final effectiveFocusedBorderColor = focusedBorderColor ?? cs.primary;
 
@@ -72,8 +72,8 @@ class AppTextFields extends StatelessWidget {
 
     final effectiveContentPadding =
         contentPadding ??
-        theme.inputDecorationTheme.contentPadding ??
-        const EdgeInsets.symmetric(horizontal: 18, vertical: 16);
+            theme.inputDecorationTheme.contentPadding ??
+            const EdgeInsets.symmetric(horizontal: 18, vertical: 16);
 
     Widget? iconWidget;
     if (icon != null) {
@@ -81,47 +81,45 @@ class AppTextFields extends StatelessWidget {
 
       iconWidget = onIconPressed == null
           ? Padding(
-              padding: const EdgeInsetsDirectional.only(start: 12, end: 8),
-              child: iconCore,
-            )
+        padding: const EdgeInsetsDirectional.only(start: 12, end: 8),
+        child: iconCore,
+      )
           : IconButton(onPressed: onIconPressed, icon: iconCore);
     }
 
-    final field = TextField(
-      controller: controller,
-      keyboardType: keyboardType,
-      obscureText: obscureText,
-      enabled: enabled,
-      readOnly: readOnly || onTap != null,
-      onTap: onTap,
-      onChanged: onChanged,
-      onSubmitted: onSubmitted,
-      maxLines: maxLines,
-      textAlign: textAlign,
-      style: theme.textTheme.bodyMedium,
-      decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: theme.inputDecorationTheme.hintStyle,
-        filled: true,
-        fillColor: effectiveFillColor,
-        contentPadding: effectiveContentPadding,
-
-        prefixIcon: iconAtStart ? iconWidget : null,
-        suffixIcon: iconAtStart ? null : iconWidget,
-
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: BorderSide(color: effectiveBorderColor),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: BorderSide(color: effectiveBorderColor),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius),
-          borderSide: BorderSide(
-            color: effectiveFocusedBorderColor,
-            width: 1.2,
+    final field = Directionality(
+      textDirection: TextDirection.ltr,
+      child: TextField(
+        controller: controller,
+        keyboardType: keyboardType,
+        obscureText: obscureText,
+        enabled: enabled,
+        readOnly: readOnly || onTap != null,
+        onTap: onTap,
+        onChanged: onChanged,
+        onSubmitted: onSubmitted,
+        maxLines: maxLines,
+        textAlign: textAlign,
+        style: theme.textTheme.bodyMedium,
+        decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: theme.inputDecorationTheme.hintStyle,
+          filled: true,
+          fillColor: effectiveFillColor,
+          contentPadding: effectiveContentPadding,
+          prefixIcon: iconAtStart ? null : iconWidget,
+          suffixIcon: iconAtStart ? iconWidget : null,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+            borderSide: BorderSide(color: effectiveBorderColor),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+            borderSide: BorderSide(color: effectiveBorderColor),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
+            borderSide: BorderSide(color: effectiveFocusedBorderColor, width: 1.2),
           ),
         ),
       ),

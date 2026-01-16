@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:traveller/core/constants/report/report_bottom_sheet.dart';
 import 'package:traveller/core/constants/service_provider/service_provider.dart';
 import 'package:traveller/core/constants/service_provider/service_provider_bottom.dart';
+import 'package:traveller/core/constants/warning/warning.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
+import 'package:traveller/event_option/presentation/widgets/content_section/content_section.dart';
+import 'package:traveller/map/presenttion/widgets/map_screen.dart';
+import 'package:traveller/settings_contact/presentation/widgets/contact_message_textarea.dart';
+import 'package:traveller/stories/presentation/widgets/story_screen.dart';
 import 'config/routes/router.dart';
 import 'core/constants/activity_card/activity_card.dart';
+import 'core/constants/event_options/event_options_activities/event_options_activities.dart';
+import 'core/constants/event_options/event_options_posts/event_options_posts.dart';
 import 'core/constants/followers_list/followers_list_tile.dart';
 import 'core/constants/post/post.dart';
 import 'core/constants/post/post_content/post_content.dart';
 import 'core/constants/post_service_provider_header/post_or_service_provider_header.dart';
 import 'core/constants/story_item/story_item.dart';
 import 'core/utils/post_utils.dart';
+import 'core/constants/user_profile/user_profile_header.dart';
+import 'event_option/presentation/widgets/place_details_screen.dart';
 import 'home/presentation/widgets/home_screen.dart';
 
 
@@ -29,20 +39,19 @@ class MyApp extends StatelessWidget {
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context, child) {
-        return MaterialApp.router(
-          routerConfig: router,
-          debugShowCheckedModeBanner: false,
-          theme: getLightTheme(),
-          themeMode: ThemeMode.light,
-//          home: child,
-        );
-      },
-
-      //child: const HomeRoot(),
+      child: Builder(
+        builder: (context) {
+          return MaterialApp.router(
+            routerConfig: router,
+            debugShowCheckedModeBanner: false,
+            theme: getLightTheme(), // ✅ ScreenUtil ready
+          );
+        },
+      ),
     );
   }
 }
+
 
 
 
@@ -157,54 +166,40 @@ class HomeRoot extends StatelessWidget {
 
         final stories = [
           Story(
+              imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+              username: "Habiba",
+              isSeen: false,
+              data: "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg"
+          ),
+          Story(
             imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
             username: "Habiba",
-            isSeen: true
+            isSeen: true,
+            data: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
           ),
           Story(
             imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
             username: "Habiba",
-            isSeen: true
+            isSeen: true,
+            data: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg"
           ),
           Story(
               imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
               username: "Habiba",
-              isSeen: true
+              isSeen: true,
+            data: "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg"
           ),
           Story(
               imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
               username: "Habiba",
-              isSeen: false
+              isSeen: false,
+            data: "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg"
           ),
           Story(
               imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
               username: "Habiba",
-              isSeen: false
-          ),
-          Story(
-              imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-              username: "Habiba",
-              isSeen: false
-          ),
-          Story(
-              imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-              username: "Habiba",
-              isSeen: false
-          ),
-          Story(
-              imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-              username: "Habiba",
-              isSeen: false
-          ),
-          Story(
-              imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-              username: "Habiba",
-              isSeen: false
-          ),
-          Story(
-              imageUrl: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-              username: "Habiba",
-              isSeen: false
+              isSeen: false,
+            data: "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg"
           ),
         ];
 
@@ -246,34 +241,178 @@ class HomeRoot extends StatelessWidget {
           ),
         ];
 
-        return Scaffold(
+        final placeCont = PlaceContent(
+            maxTemp: 25,
+            minTemp: 15,
+            numOfPosts: 200,
+            gateTitle: "Tourism to Egypt",
+            gateDesc: "It is a long-established fact that the readable content of a page will distract the reader from focusing.",
+            friendsImages: [
+              'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+              'https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg',
+            'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+             ],
+            numOfFriends: 200
+        );
+        final placeInfo = PlaceInfoModel(
+          gateName: "Egypt Gate",
+          placeContent: placeCont
+        );
+
+        final eventPosts = [
+          EventPostsData(
+            imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            username: "Habiba",
+            title: "Morning Run",
+            date: "Dec 2, 7AM",
+            postImage: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            rate: 4.8,
+          ),EventPostsData(
+            imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            username: "Habiba",
+            title: "Morning Run",
+            date: "Dec 2, 7AM",
+            postImage: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            rate: 4.8,
+          ),EventPostsData(
+            imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            username: "Habiba",
+            title: "Morning Run",
+            date: "Dec 2, 7AM",
+            postImage: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            rate: 4.8,
+          ),
+          EventPostsData(
+            imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            username: "Habiba",
+            title: "Morning Run",
+            date: "Dec 2, 7AM",
+            postImage: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+            rate: 4.8,
+          )
+        ];
+
+
+    final List<MapItem> items = [
+      MapItem(
+        location: LatLng(52.5200, 13.4050), // Germany
+        type: MarkerType.post,
+        imageUrl:"https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg"
+      ),
+      MapItem(
+        location: LatLng(48.8566, 2.3522), // France
+        type: MarkerType.service,
+        imageUrl:'https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg',
+      ),
+      MapItem(
+        location: LatLng(50.1109, 8.6821),
+        type: MarkerType.post,
+        imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg"
+      ),
+      MapItem(
+        location: LatLng(41.9028, 12.4964),
+        type: MarkerType.service,
+        imageUrl:'https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg',
+      ),
+
+      MapItem(
+          location: LatLng(55.1109, 8.6821),
+          type: MarkerType.post,
+          imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg"
+      ),
+      MapItem(
+        location: LatLng(45.9028, 10.4964),
+        type: MarkerType.service,
+        imageUrl:'https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg',
+      ),
+    ];
+
+
+    return Scaffold(
                 body: SafeArea(
-                  child: HomeScreen(
+                  child:
+                  /*MapScreen(
+                    items: items,
+                    onMarkerTab: () {}
+                  ),*/
+                  /*PlaceDetailsScreen(
+                    placeInfo: placeInfo,
+                    posts: eventPosts
+                  )*/
+                  /*ServiceProvider(
+                      data: headerData,
+                      location: "Cairo, Egypt",
+                      language: "English")*/
+                  HomeScreen(
                     stories: stories,
                     postData: posts,
                     activities: activities
                   )
+                  /*EventOptionsPosts(
+                    data: EventPostsData(
+                      imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+                      username: "Habiba",
+                      title: "Morning Run",
+                      date: "Dec 2, 7AM",
+                      postImage: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+                      rate: 4.8,
+                    )
+                  )*/
+                  /*EventOptionsActivities(
+                    data: EventActivitiesData(
+                      imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+                      title: "Morning Run",
+                      date: "Dec 2, 7AM",
+                      category: "Running",
+                    ),
+                  )*/
+
+                  /*UserProfileHeader(
+                    isMyProfile: false,
+                    isVerified: true,
+                    coverImage: const AssetImage(
+                        'assets/images/profileCover.png'),
+                    profileImage: const AssetImage('assets/images/profile.png'),
+                    username: 'محمود السعدي',
+                    jobTitle: 'مقدم خدمة',
+                    bio:
+                    'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيُلهي القارئ',
+                    location: 'الغردقة، مصر',
+                    firstNumber: 1689,
+                    secondNumber: 31700,
+                    thirdNumber: 735,
+                    onTwitterTap: () {},
+                    onSnapchatTap: () {},
+                  )*/
+                  /*Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Warning(
+                      warningTitle: "Warning",
+                      warningContent: "This is a sample warning message.",
+                    ),
+                  )*/
+                  /*StoryScreen(stories: stories),
+                  )*/
                 )
-            )
-        //)
-        ;
+    );
   }
 }
 
-/// UserProfileHeaderWidget
-// UserProfileHeaderWidget(
-// isMyProfile: true,
+/// UserProfileHeader
+// UserProfileHeader(
+// isMyProfile: false,
 // isVerified: true,
-// coverImage: const AssetImage('assets/images/profileCover.png'),
+// coverImage: const AssetImage(
+// 'assets/images/profileCover.png'),
 // profileImage: const AssetImage('assets/images/profile.png'),
 // username: 'محمود السعدي',
 // jobTitle: 'مقدم خدمة',
 // bio:
 // 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيُلهي القارئ',
 // location: 'الغردقة، مصر',
-// leftNumber: 735,
-// middleNumber: 31700,
-// rightNumber: 1689,
+// firstNumber: 1689,
+// secondNumber: 31700,
+// thirdNumber: 735,
 // onTwitterTap: () {},
 // onSnapchatTap: () {},
 // ),
@@ -291,3 +430,6 @@ class HomeRoot extends StatelessWidget {
 // onButtonPressed: () {},
 // onStoryTap: () {},
 // )
+
+/// ContactMessageTextArea
+//ContactMessageTextArea(),

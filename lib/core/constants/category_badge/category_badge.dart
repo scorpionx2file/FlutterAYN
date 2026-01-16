@@ -23,7 +23,9 @@ class CategoryBadge extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: AppTextStyles.button,
+        style: AppTextStyles.button.copyWith(
+          color: isYellow ? AppColors.black : AppColors.white
+        ),
       ),
     );
   }
