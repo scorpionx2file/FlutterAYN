@@ -84,6 +84,7 @@ class UserProfileScreen extends StatelessWidget {
                     builder: (context) => const ReportBottomSheet(),
                   );
                 },
+                isVideoScreen: false,
               ),
             ),
             childCount: postData.length,
