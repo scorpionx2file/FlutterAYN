@@ -14,6 +14,8 @@ import 'package:traveller/stories/presentation/widgets/story_screen.dart';
 import 'package:traveller/user_profile/presentation/widgets/user_profile_screen.dart';
 
 import 'config/routes/router.dart';
+import 'core/constants/gate/app_gate_card.dart';
+import 'gates/presentation/widgets/gates_screen.dart';
 import 'settings_contact/presentation/widgets/settings_contact_screen.dart';
 import 'core/constants/activity_card/activity_card.dart';
 import 'core/constants/event_options/event_options_activities/event_options_activities.dart';
@@ -291,6 +293,88 @@ class HomeRoot extends StatelessWidget {
       ),
     ];
 
+    final badgeData = AppGateBadgeData(
+      icon: Icons.sunny,
+      primaryText: "25",
+      secondaryText: "18",
+    );
+
+    final gates =
+    [
+      GatesData(
+        image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+        title: "Tourism to Egypt",
+        badge: badgeData,
+        onTap: () {}
+      ),
+      GatesData(
+          image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          title: "Tourism to Egypt",
+          badge: badgeData,
+          onTap: () {}
+      ),
+      GatesData(
+          image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          title: "Tourism to Egypt",
+          badge: badgeData,
+          onTap: () {}
+      ),
+      GatesData(
+          image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          title: "Tourism to Egypt",
+          badge: badgeData,
+          onTap: () {}
+      ),
+      GatesData(
+          image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          title: "Tourism to Egypt",
+          badge: badgeData,
+          onTap: () {}
+      ),
+      GatesData(
+          image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          title: "Tourism to Egypt",
+          badge: badgeData,
+          onTap: () {}
+      ),
+      GatesData(
+          image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          title: "Tourism to Egypt",
+          badge: badgeData,
+          onTap: () {}
+      ),
+      GatesData(
+          image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          title: "Tourism to Egypt",
+          badge: badgeData,
+          onTap: () {}
+      ),
+      GatesData(
+          image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          title: "Tourism to Egypt",
+          badge: badgeData,
+          onTap: () {}
+      ),
+      GatesData(
+          image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          title: "Tourism to Egypt",
+          badge: badgeData,
+          onTap: () {}
+      ),
+      GatesData(
+          image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          title: "Tourism to Egypt",
+          badge: badgeData,
+          onTap: () {}
+      ),
+      GatesData(
+          image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          title: "Tourism to Egypt",
+          badge: badgeData,
+          onTap: () {}
+      ),
+    ];
+
     return Scaffold(
       body: SafeArea(
         child: //SettingsContactScreen(),
@@ -310,11 +394,11 @@ class HomeRoot extends StatelessWidget {
                       data: headerData,
                       location: "Cairo, Egypt",
                       language: "English")*/
-        HomeScreen(
+        /*HomeScreen(
                     stories: stories,
                     postData: posts,
                     activities: activities
-                  )
+                  )*/
         /*EventOptionsPosts(
                     data: EventPostsData(
                       imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
@@ -360,6 +444,8 @@ class HomeRoot extends StatelessWidget {
                   )*/
         /*StoryScreen(stories: stories),
                   )*/
+
+        GatesScreen(gates: gates)
       ),
     );
   }
