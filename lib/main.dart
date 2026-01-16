@@ -14,6 +14,7 @@ import 'package:traveller/stories/presentation/widgets/story_screen.dart';
 import 'package:traveller/user_profile/presentation/widgets/user_profile_screen.dart';
 
 import 'config/routes/router.dart';
+import 'settings_contact/presentation/widgets/settings_contact_screen.dart';
 import 'core/constants/activity_card/activity_card.dart';
 import 'core/constants/event_options/event_options_activities/event_options_activities.dart';
 import 'core/constants/event_options/event_options_posts/event_options_posts.dart';
@@ -291,8 +292,9 @@ class HomeRoot extends StatelessWidget {
 
     return Scaffold(
       body: SafeArea(
-        child: ProfileSettingsScreen(),
+        child: SettingsContactScreen(),
 
+        /*ProfileSettingsScreen(),*/
         /*FollowersListScreen(following: following, followers: followers,),*/
         /*UserProfileScreen(activities: activities, postData: posts,)*/
         /*MapScreen(

@@ -28,7 +28,7 @@ class ProfileSettingsHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.w),
-      height: 130.h,
+      height: 120.h,
       width: double.infinity,
       decoration: BoxDecoration(
         color: AppColors.turnbullBlue,
@@ -120,7 +120,7 @@ class ProfileSettingsHeader extends StatelessWidget {
           if (isProfileSettings)
             Positioned(
               left: 100.w,
-              bottom: 12.h,
+              bottom: 6.h,
               child: TextButton.icon(
                 onPressed: onEditPressed,
                 style: TextButton.styleFrom(

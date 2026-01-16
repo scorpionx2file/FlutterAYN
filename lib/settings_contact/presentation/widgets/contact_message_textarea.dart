@@ -9,7 +9,7 @@ class ContactMessageTextArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(24.w),
+      padding: EdgeInsets.symmetric(horizontal: 4.w),
       child: Container(
         width: double.infinity,
         height: 200.h,
@@ -23,8 +23,8 @@ class ContactMessageTextArea extends StatelessWidget {
           expands: true,
           textAlignVertical: TextAlignVertical.top,
           decoration: InputDecoration(
-            hintText: 'Write your message...',
-            hintStyle: AppTextStyles.description.copyWith(color: AppColors.spanishGrey),
+            hintText: 'Enter your message ...',
+            hintStyle: AppTextStyles.description.copyWith(color: AppColors.black),
             border: InputBorder.none,
             contentPadding: EdgeInsets.zero,
           ),
