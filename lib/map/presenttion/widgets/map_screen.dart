@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:latlong2/latlong.dart';
+import '../../../core/constants/comment/comment_item.dart';
+import '../../../core/constants/post/post_content/post_content.dart';
+import '../../../core/constants/post_service_provider_header/post_or_service_provider_header.dart';
 import '../../../core/theme/colors/app_colors.dart';
 import 'map_pin.dart';
 import 'map_search_bar.dart';
@@ -15,20 +18,37 @@ enum MarkerType { post, service }
 class MapItem {
   final LatLng location;
   final MarkerType type;
-  final String imageUrl; // user/profile image
+  final String imageUrl;
+  final List<CommentData> comments;
+
+  // Post
+  final PostHeaderData? postData;
+  final PostContentData? postContentData;
+
+  // Service provider
+  final PostHeaderData? serviceHeaderData;
+  final String? locationText;
+  final String? language;
 
   MapItem({
     required this.location,
     required this.type,
     required this.imageUrl,
+    required this.comments,
+    this.postData,
+    this.postContentData,
+    this.serviceHeaderData,
+    this.locationText,
+    this.language,
   });
 }
 
 
 
+
 class MapScreen extends StatelessWidget {
   final List<MapItem> items;
-  final VoidCallback onMarkerTab;
+  final void Function(MapItem item) onMarkerTab;
   const MapScreen({super.key, required this.items, required this.onMarkerTab,});
 
   @override
@@ -52,20 +72,19 @@ class MapScreen extends StatelessWidget {
               ),
 
               /// Custom markers
-              GestureDetector(
-                onTap: onMarkerTab,
-                child: MarkerLayer(
-                  markers: items.map((item) {
-                    return Marker(
-                      point: item.location,
-                      width: 40.w,
-                      height: 48.h,
-                      child: MapPin(
-                        item: item,
-                      ),
-                    );
-                  }).toList(),
-                ),
+              MarkerLayer(
+                markers: items.map((item) {
+                  return Marker(
+                    point: item.location,
+                    width: 40.w,
+                    height: 48.h,
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () => onMarkerTab(item),
+                      child: MapPin(item: item),
+                    ),
+                  );
+                }).toList(),
               ),
             ],
           ),
