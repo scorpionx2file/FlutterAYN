@@ -12,6 +12,8 @@ import 'package:traveller/settings_contact/presentation/widgets/contact_message_
 import 'package:traveller/stories/presentation/widgets/story_screen.dart';
 import 'config/routes/router.dart';
 import 'core/constants/activity_card/activity_card.dart';
+import 'core/constants/comment/comment_item.dart';
+import 'core/constants/comment/rating_widget.dart';
 import 'core/constants/event_options/event_options_activities/event_options_activities.dart';
 import 'core/constants/event_options/event_options_posts/event_options_posts.dart';
 import 'core/constants/followers_list/followers_list_tile.dart';
@@ -19,6 +21,8 @@ import 'core/constants/post/post.dart';
 import 'core/constants/post/post_content/post_content.dart';
 import 'core/constants/post_service_provider_header/post_or_service_provider_header.dart';
 import 'core/constants/story_item/story_item.dart';
+import 'core/theme/colors/app_colors.dart';
+import 'core/utils/map_bottom_sheet_util.dart';
 import 'core/utils/post_utils.dart';
 import 'core/constants/user_profile/user_profile_header.dart';
 import 'event_option/presentation/widgets/place_details_screen.dart';
@@ -294,37 +298,115 @@ class HomeRoot extends StatelessWidget {
         ];
 
 
+    final List<CommentData> postComments = [
+      CommentData(
+        'https://i.pravatar.cc/150?img=1',
+        'Ahmed',
+        '2h',
+        const Icon(Icons.shopping_bag_rounded, color: AppColors.spanishGrey, size: 18),
+        'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+        false,
+      ),
+      CommentData(
+          'https://i.pravatar.cc/150?img=2',
+          'Sara',
+          '1h',
+          const Icon(Icons.shopping_bag_rounded, color: AppColors.spanishGrey, size: 18),
+          'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+          false
+      ),
+      CommentData(
+          'https://i.pravatar.cc/150?img=3',
+          'Omar',
+          '10m',
+          const Icon(Icons.shopping_bag_rounded, color: AppColors.spanishGrey, size: 18),
+          'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+          false
+      ),
+    ];
+
+    final List<CommentData> serviceProviderComments = [
+      CommentData(
+        'https://i.pravatar.cc/150?img=1',
+        'Ahmed',
+        '2h',
+        RatingWidget(rating: 4.8),
+        'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+        true,
+      ),
+      CommentData(
+          'https://i.pravatar.cc/150?img=2',
+          'Sara',
+          '1h',
+          RatingWidget(rating: 4.8),
+          'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+          true
+      ),
+      CommentData(
+          'https://i.pravatar.cc/150?img=3',
+          'Omar',
+          '10m',
+          RatingWidget(rating: 2.2),
+          'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+          true
+      ),
+      CommentData(
+          'https://i.pravatar.cc/150?img=3',
+          'Omar',
+          '10m',
+          RatingWidget(rating: 2.2),
+          'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+          true
+      ),
+      CommentData(
+          'https://i.pravatar.cc/150?img=3',
+          'Omar',
+          '10m',
+          RatingWidget(rating: 2.2),
+          'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+          true
+      ),
+    ];
+
     final List<MapItem> items = [
+      /// 🟢 POST
       MapItem(
-        location: LatLng(52.5200, 13.4050), // Germany
+        location: LatLng(52.5200, 13.4050),
         type: MarkerType.post,
-        imageUrl:"https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg"
+        imageUrl: posts[0].headerData.imageUrl,
+        postData: posts[0].headerData,
+        postContentData: posts[0].contentData,
+        comments: postComments,
       ),
+
+      /// 🔵 SERVICE PROVIDER
       MapItem(
-        location: LatLng(48.8566, 2.3522), // France
+        location: LatLng(48.8566, 2.3522),
         type: MarkerType.service,
-        imageUrl:'https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg',
-      ),
-      MapItem(
-        location: LatLng(50.1109, 8.6821),
-        type: MarkerType.post,
-        imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg"
-      ),
-      MapItem(
-        location: LatLng(41.9028, 12.4964),
-        type: MarkerType.service,
-        imageUrl:'https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg',
+        imageUrl: headerData1.imageUrl,
+        serviceHeaderData: headerData1,
+        locationText: "Paris, France",
+        language: "English / French",
+        comments: serviceProviderComments,
       ),
 
       MapItem(
-          location: LatLng(55.1109, 8.6821),
-          type: MarkerType.post,
-          imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg"
+        location: LatLng(50.1109, 8.6821),
+        type: MarkerType.post,
+        imageUrl: posts[1].headerData.imageUrl,
+        postData: posts[1].headerData,
+        postContentData: posts[1].contentData,
+        comments: postComments,
       ),
+
       MapItem(
-        location: LatLng(45.9028, 10.4964),
+        location: LatLng(41.9028, 12.4964),
         type: MarkerType.service,
-        imageUrl:'https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg',
+        imageUrl: headerData2.imageUrl,
+        serviceHeaderData: headerData2,
+        locationText: "Rome, Italy",
+        language: "Italian / English",
+        comments: serviceProviderComments,
       ),
     ];
 
@@ -332,10 +414,12 @@ class HomeRoot extends StatelessWidget {
     return Scaffold(
                 body: SafeArea(
                   child:
-                  /*MapScreen(
+                  MapScreen(
                     items: items,
-                    onMarkerTab: () {}
-                  ),*/
+                    onMarkerTab: (item) {
+                      openMapItemBottomSheet(context, item);
+                    },
+                  ),
                   /*PlaceDetailsScreen(
                     placeInfo: placeInfo,
                     posts: eventPosts
@@ -344,11 +428,11 @@ class HomeRoot extends StatelessWidget {
                       data: headerData,
                       location: "Cairo, Egypt",
                       language: "English")*/
-                  HomeScreen(
+                 /* HomeScreen(
                     stories: stories,
                     postData: posts,
                     activities: activities
-                  )
+                  )*/
                   /*EventOptionsPosts(
                     data: EventPostsData(
                       imageUrl: "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
