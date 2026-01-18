@@ -358,6 +358,490 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Post not found'**
   String get postNotFound;
+
+  /// No description provided for @messages.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages'**
+  String get messages;
+
+  /// No description provided for @bags.
+  ///
+  /// In en, this message translates to:
+  /// **'Bags'**
+  String get bags;
+
+  /// No description provided for @followers.
+  ///
+  /// In en, this message translates to:
+  /// **'Followers'**
+
+  /// No description provided for @following.
+  ///
+  /// In en, this message translates to:
+  /// **'Following'**
+
+  /// No description provided for @points.
+  ///
+  /// In en, this message translates to:
+  /// **'Points'**
+
+  /// No description provided for @totalPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Total Points'**
+  String get totalPoints;
+
+  /// No description provided for @premiumFeatures.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium Package Features'**
+  String get premiumFeatures;
+
+  /// No description provided for @premiumFeatureExample.
+  ///
+  /// In en, this message translates to:
+  /// **'Explanation of one of the Premium package features'**
+  String get premiumFeatureExample;
+
+  /// No description provided for @follow.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow'**
+
+  /// No description provided for @editMyInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit My Information'**
+  String get editMyInfo;
+
+  /// No description provided for @reportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Report Content'**
+  String get reportTitle;
+
+  /// No description provided for @reportReasonMisleading.
+  ///
+  /// In en, this message translates to:
+  /// **'Misleading content'**
+  String get reportReasonMisleading;
+
+  /// No description provided for @reportReasonCopyright.
+  ///
+  /// In en, this message translates to:
+  /// **'Copyright violation'**
+  String get reportReasonCopyright;
+
+  /// No description provided for @reportReasonViolence.
+  ///
+  /// In en, this message translates to:
+  /// **'Contains violent content'**
+  String get reportReasonViolence;
+
+  /// No description provided for @send.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+
+  /// No description provided for @editAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Account'**
+  String get editAccount;
+
+  /// No description provided for @readMore.
+  ///
+  /// In en, this message translates to:
+  /// **'Read more'**
+  String get readMore;
+
+  /// No description provided for @less.
+  ///
+  /// In en, this message translates to:
+  /// **'Less'**
+  String get less;
+
+  /// No description provided for @forgetPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget Password?'**
+  String get forgetPasswordTitle;
+
+  /// No description provided for @forgetPasswordDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email address to receive a link to create a new password via email.'**
+  String get forgetPasswordDesc;
+
+  /// No description provided for @emailAddressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email Address'**
+  String get emailAddressLabel;
+
+  /// No description provided for @emailAddressHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email address'**
+  String get emailAddressHint;
+
+  /// No description provided for @registerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Our Community!'**
+  String get registerTitle;
+
+  /// No description provided for @registerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account to get started'**
+  String get registerSubtitle;
+
+  /// No description provided for @passwordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get passwordLabel;
+
+  /// No description provided for @passwordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get passwordHint;
+
+  /// No description provided for @forgetPasswordLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget password?'**
+  String get forgetPasswordLink;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
+
+  /// No description provided for @registerTerms.
+  ///
+  /// In en, this message translates to:
+  /// **'By signing up, you agree to our Terms & Conditions and Privacy Policy.'**
+  String get registerTerms;
+
+  /// No description provided for @signUpAccountInfoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Information'**
+  String get signUpAccountInfoTitle;
+
+  /// No description provided for @fullNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get fullNameLabel;
+
+  /// No description provided for @fullNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name'**
+  String get fullNameHint;
+
+  /// No description provided for @emailAddressHintExample.
+  ///
+  /// In en, this message translates to:
+  /// **'email@gmail.com'**
+  String get emailAddressHintExample;
+
+  /// No description provided for @signUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign Up'**
+  String get signUp;
+
+  /// No description provided for @alreadyHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? '**
+  String get alreadyHaveAccount;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get signIn;
+
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// No description provided for @getStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get getStarted;
+
+  /// No description provided for @onboardingTitle1.
+  ///
+  /// In en, this message translates to:
+  /// **'Share your journey with everyone'**
+  String get onboardingTitle1;
+
+  /// No description provided for @onboardingSubtitle1.
+  ///
+  /// In en, this message translates to:
+  /// **'Post your moments and let others follow your travel story.'**
+  String get onboardingSubtitle1;
+
+  /// No description provided for @onboardingTitle2.
+  ///
+  /// In en, this message translates to:
+  /// **'Find the nearest tourist places around you'**
+  String get onboardingTitle2;
+
+  /// No description provided for @onboardingSubtitle2.
+  ///
+  /// In en, this message translates to:
+  /// **'Discover top spots nearby with a simple and fast experience.'**
+  String get onboardingSubtitle2;
+
+  /// No description provided for @onboardingTitle3.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer your tourism services easily'**
+  String get onboardingTitle3;
+
+  /// No description provided for @onboardingSubtitle3.
+  ///
+  /// In en, this message translates to:
+  /// **'List and manage your services in a few quick steps.'**
+  String get onboardingSubtitle3;
+
+  /// No description provided for @onboardingTitle4.
+  ///
+  /// In en, this message translates to:
+  /// **'A market for all tourism activities'**
+  String get onboardingTitle4;
+
+  /// No description provided for @onboardingSubtitle4.
+  ///
+  /// In en, this message translates to:
+  /// **'Explore activities, attractions, and great experiences.'**
+  String get onboardingSubtitle4;
+
+  /// No description provided for @onboardingTitle5.
+  ///
+  /// In en, this message translates to:
+  /// **'Meet new friends near you'**
+  String get onboardingTitle5;
+
+  /// No description provided for @onboardingSubtitle5.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect with travelers and build new experiences together.'**
+  String get onboardingSubtitle5;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
+  /// No description provided for @profileSettingsSectionAppPerformance.
+  ///
+  /// In en, this message translates to:
+  /// **'Application Performance'**
+  String get profileSettingsSectionAppPerformance;
+
+  /// No description provided for @favouriteGates.
+  ///
+  /// In en, this message translates to:
+  /// **'Favourite Gates'**
+  String get favouriteGates;
+
+  /// No description provided for @notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notifications;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @english.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// No description provided for @arabic.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic'**
+  String get arabic;
+
+  /// No description provided for @status.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get status;
+
+  /// No description provided for @online.
+  ///
+  /// In en, this message translates to:
+  /// **'Online'**
+  String get online;
+
+  /// No description provided for @offline.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline'**
+  String get offline;
+
+  /// No description provided for @location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+
+  /// No description provided for @on.
+  ///
+  /// In en, this message translates to:
+  /// **'ON'**
+  String get on;
+
+  /// No description provided for @off.
+  ///
+  /// In en, this message translates to:
+  /// **'OFF'**
+  String get off;
+
+  /// No description provided for @accountInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Account Information'**
+  String get accountInformation;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'E-mail'**
+  String get email;
+
+  /// No description provided for @twitterAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Twitter Account'**
+  String get twitterAccount;
+
+  /// No description provided for @snapchatAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Snapchat Account'**
+  String get snapchatAccount;
+
+  /// No description provided for @mobileNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Mobile Number'**
+
+  /// No description provided for @paymentAndPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment & Points'**
+  String get paymentAndPoints;
+
+  /// No description provided for @pointsSystem.
+  ///
+  /// In en, this message translates to:
+  /// **'Points System'**
+  String get pointsSystem;
+
+  /// No description provided for @paymentMethods.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Methods'**
+  String get paymentMethods;
+
+  /// No description provided for @others.
+  ///
+  /// In en, this message translates to:
+  /// **'Others'**
+  String get others;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy & Policy'**
+  String get privacyPolicy;
+
+  /// No description provided for @contactUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact Us'**
+  String get contactUs;
+
+  /// No description provided for @aboutUs.
+  ///
+  /// In en, this message translates to:
+  /// **'About Us'**
+  String get aboutUs;
+
+  /// No description provided for @becomeServiceProvider.
+  ///
+  /// In en, this message translates to:
+  /// **'Become A Service Provider'**
+  String get becomeServiceProvider;
+
+  /// No description provided for @services.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+
+  /// No description provided for @available.
+  ///
+  /// In en, this message translates to:
+  /// **'Available'**
+  String get available;
+
+  /// No description provided for @notAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Available'**
+  String get notAvailable;
+
+  /// No description provided for @storySendMessageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a message...'**
+  String get storySendMessageHint;
+
+  /// No description provided for @shareProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Profile'**
+  String get shareProfile;
+
+  /// No description provided for @muteMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute Messages'**
+  String get muteMessages;
+
+  /// No description provided for @blockProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Block Profile'**
+  String get blockProfile;
+
+  /// No description provided for @memberSpecificEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'Member-Specific Events'**
+  String get memberSpecificEvents;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

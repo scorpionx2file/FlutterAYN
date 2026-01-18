@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:traveller/core/theme/colors/app_colors.dart';
-
-import '../../theme/fonts/app_text_styles.dart';
 import 'package:go_router/go_router.dart';
+import 'package:traveller/core/theme/colors/app_colors.dart';
+import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 class ReportBottomSheet extends StatefulWidget {
   const ReportBottomSheet({super.key});
@@ -15,14 +15,14 @@ class ReportBottomSheet extends StatefulWidget {
 class _ReportBottomSheetState extends State<ReportBottomSheet> {
   int selectedIndex = 0;
 
-  final List<String> reasons = [
-    'Misleading content',
-    'Copyright violation',
-    'Contains violent content',
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<String> reasons = [
+      context.l10n.reportReasonMisleading,
+      context.l10n.reportReasonCopyright,
+      context.l10n.reportReasonViolence,
+    ];
+
     return Padding(
       padding: EdgeInsets.fromLTRB(
         12.w,
@@ -30,7 +30,6 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
         12.w,
         MediaQuery.of(context).viewInsets.bottom + 12.h,
       ),
-
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,26 +38,26 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
             child: Container(
               width: 150.w,
               height: 4.h,
-              margin:  EdgeInsets.only(bottom: 16.h),
+              margin: EdgeInsets.only(bottom: 16.h),
               decoration: BoxDecoration(
                 color: AppColors.spanishGrey,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
           ),
-           Padding(
-             padding: const EdgeInsets.only(left: 18.0),
-             child: Text(
-              'Report Content',
+          Padding(
+            padding: const EdgeInsets.only(left: 18.0),
+            child: Text(
+              context.l10n.reportTitle,
               style: AppTextStyles.headingH3.copyWith(
                 color: AppColors.strongGrey,
               ),
+            ),
           ),
-           ),
           SizedBox(height: 16.h),
           ...List.generate(
             reasons.length,
-                (index) => RadioListTile(
+            (index) => RadioListTile(
               value: index,
               groupValue: selectedIndex,
               activeColor: AppColors.lebaneseRed,
@@ -86,7 +85,7 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
               context.pop();
             },
             child: Text(
-              "Send",
+              context.l10n.send,
               style: AppTextStyles.titles.copyWith(color: AppColors.white),
             ),
           ),

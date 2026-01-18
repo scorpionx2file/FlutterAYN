@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import '../../../core/constants/button/app_button.dart';
 import '../../../core/constants/onboarding/onboarding_slide_data.dart';
@@ -20,35 +21,35 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   late final PageController _controller;
   int _index = 0;
 
-  final List<OnboardingSlideData> _slides = const [
+  List<OnboardingSlideData> _slides(BuildContext context) => [
     OnboardingSlideData(
       imageAsset: 'assets/images/onboarding_one.png',
-      title: 'Share your journey with everyone',
-      subtitle: 'Post your moments and let others follow your travel story.',
+      title: context.l10n.onboardingTitle1,
+      subtitle: context.l10n.onboardingSubtitle1,
     ),
     OnboardingSlideData(
       imageAsset: 'assets/images/onboarding_two.png',
-      title: 'Find the nearest tourist places around you',
-      subtitle: 'Discover top spots nearby with a simple and fast experience.',
+      title: context.l10n.onboardingTitle2,
+      subtitle: context.l10n.onboardingSubtitle2,
     ),
     OnboardingSlideData(
       imageAsset: 'assets/images/onboarding_three.png',
-      title: 'Offer your tourism services easily',
-      subtitle: 'List and manage your services in a few quick steps.',
+      title: context.l10n.onboardingTitle3,
+      subtitle: context.l10n.onboardingSubtitle3,
     ),
     OnboardingSlideData(
       imageAsset: 'assets/images/onboarding_four.png',
-      title: 'A market for all tourism activities',
-      subtitle: 'Explore activities, attractions, and great experiences.',
+      title: context.l10n.onboardingTitle4,
+      subtitle: context.l10n.onboardingSubtitle4,
     ),
     OnboardingSlideData(
       imageAsset: 'assets/images/onboarding_five.png',
-      title: 'Meet new friends near you',
-      subtitle: 'Connect with travelers and build new experiences together.',
+      title: context.l10n.onboardingTitle5,
+      subtitle: context.l10n.onboardingSubtitle5,
     ),
   ];
 
-  bool get _isLast => _index == _slides.length - 1;
+  bool get _isLast => _index == 4; // 5 slides (0..4)
 
   @override
   void initState() {
@@ -63,7 +64,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _next() {
-    if (_isLast) context.go(AppRoutes.welcome);
+    if (_isLast) {
+      context.go(AppRoutes.welcome);
+      return;
+    }
     _controller.nextPage(
       duration: const Duration(milliseconds: 280),
       curve: Curves.easeOut,
@@ -72,7 +76,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final buttonText = _isLast ? 'Get Started' : 'Next';
+    final slides = _slides(context);
+    final buttonText = _isLast ? context.l10n.getStarted : context.l10n.next;
 
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -88,23 +93,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               fit: BoxFit.cover,
             ),
           ),
-
           SafeArea(
             child: Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 10.h,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                   child: Row(
                     children: [
                       InkWell(
-                        onTap: () {
-                          context.go(AppRoutes.welcome);
-                        },
+                        onTap: () => context.go(AppRoutes.welcome),
                         child: Text(
-                          'Skip',
+                          context.l10n.skip,
                           style: AppTextStyles.titles.copyWith(
                             color: AppColors.strongGrey,
                           ),
@@ -117,19 +116,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ],
                   ),
                 ),
-
                 Expanded(
                   child: PageView.builder(
                     controller: _controller,
-                    itemCount: _slides.length,
+                    itemCount: slides.length,
                     onPageChanged: (i) => setState(() => _index = i),
                     itemBuilder: (_, i) => OnboardingSlide(
-                      data: _slides[i],
+                      data: slides[i],
                       padding: EdgeInsets.symmetric(horizontal: 24.h),
                     ),
                   ),
                 ),
-
                 SizedBox(height: 10.h),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -139,11 +136,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     height: 36.h,
                   ),
                 ),
-
                 SizedBox(height: 18.h),
-
-                OnboardingDots(count: _slides.length, index: _index),
-
+                OnboardingDots(count: slides.length, index: _index),
                 SizedBox(height: 28.h),
               ],
             ),

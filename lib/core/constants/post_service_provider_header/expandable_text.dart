@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import '../../theme/fonts/app_text_styles.dart';
 
@@ -65,8 +66,7 @@ class _ExpandableTextState extends State<ExpandableText> {
                 child: Padding(
                   padding: EdgeInsets.only(top: 4.h),
                   child: Text(
-                    _isExpanded ? "less" : "read more",
-                    style: AppTextStyles.button.copyWith(
+                    _isExpanded ? context.l10n.less : context.l10n.readMore,                    style: AppTextStyles.button.copyWith(
                         color: AppColors.turnbullBlue
                     ),
                   ),

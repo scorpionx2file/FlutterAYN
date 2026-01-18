@@ -3,7 +3,6 @@ import 'package:latlong2/latlong.dart';
 import 'package:traveller/auth/presentation/screen/choose_gates_screen.dart';
 import 'package:traveller/auth/presentation/screen/forget_password_screen.dart';
 import 'package:traveller/auth/presentation/screen/sign_in_screen.dart';
-import 'package:traveller/auth/presentation/screen/sign_up_screen.dart';
 import 'package:traveller/auth/presentation/screen/welcome_auth_screen.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import 'package:traveller/event_option/presentation/widgets/place_details_screen.dart';
@@ -16,6 +15,7 @@ import 'package:traveller/splash_screen.dart';
 import 'package:traveller/stories/presentation/widgets/story_screen.dart';
 import 'package:traveller/user_profile/presentation/widgets/user_profile_screen.dart';
 import 'package:traveller/video/presentation/widgets/video&articles_screen.dart';
+import '../../auth/presentation/screen/sign_up_screen.dart';
 import '../../core/constants/activity_card/activity_card.dart';
 import '../../core/constants/comment/comment_item.dart';
 import '../../core/constants/comment/rating_widget.dart';
@@ -638,11 +638,11 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.signUp,
-      builder: (context, state) => const SignUpScreen(),
+      builder: (context, state) => const SignInScreen(),
     ),
     GoRoute(
       path: AppRoutes.signIn,
-      builder: (context, state) => const SignInScreen(),
+      builder: (context, state) => const SignUpScreen(),
     ),
     GoRoute(
       path: AppRoutes.forgetPassword,

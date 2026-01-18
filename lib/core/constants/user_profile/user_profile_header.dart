@@ -5,6 +5,7 @@ import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/constants/chat_button/chat_button.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import '../../../user_profile/presentation/widgets/user_profile_pop-up.dart';
 import '../../theme/colors/app_colors.dart';
@@ -86,9 +87,12 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
                   left: 16.w,
                   child: Row(
                     children: [
-                      topHeaderIcon(Icons.chat_bubble_outline, 'رسائل'),
+                      topHeaderIcon(
+                        Icons.chat_bubble_outline,
+                        context.l10n.messages,
+                      ),
                       SizedBox(width: 16.w),
-                      topHeaderIcon(Icons.work_outline, 'حقائب'),
+                      topHeaderIcon(Icons.work_outline, context.l10n.bags),
                     ],
                   ),
                 ),
@@ -278,7 +282,7 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
                     },
                     child: statNumberColumn(
                       widget.firstNumber,
-                      "يتابع",
+                      context.l10n.followers,
                       "assets/images/icons/people.png",
                     ),
                   ),
@@ -288,7 +292,7 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
                     },
                     child: statNumberColumn(
                       widget.secondNumber,
-                      "يتابعه",
+                      context.l10n.following,
                       "assets/images/icons/people.png",
                     ),
                   ),
@@ -304,7 +308,7 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
                         : null,
                     child: statNumberColumn(
                       widget.thirdNumber,
-                      "النقاط",
+                      context.l10n.points,
                       "assets/images/icons/points.png",
                     ),
                   ),
@@ -317,7 +321,8 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
                 curve: Curves.easeInOut,
                 child: isPointsExpanded && widget.isMyProfile
                     ? Container(
-                        width: double.infinity, // Full width
+                        width: double.infinity,
+                        // Full width
                         padding: EdgeInsets.all(16.w),
                         decoration: BoxDecoration(
                           color: AppColors.neonCoral,
@@ -333,7 +338,7 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
                             Row(
                               children: [
                                 Text(
-                                  "Total Points",
+                                  context.l10n.totalPoints,
                                   style: AppTextStyles.titles.copyWith(
                                     color: AppColors.white,
                                     fontWeight: FontWeight.bold,
@@ -359,7 +364,7 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
 
                             /// FEATURES
                             Text(
-                              "Premium Package Features",
+                              context.l10n.premiumFeatures,
                               style: AppTextStyles.titles.copyWith(
                                 color: AppColors.white,
                                 fontWeight: FontWeight.bold,
@@ -400,7 +405,7 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
                   Flexible(
                     flex: 2, // Follow button gets 2 shares (wider)
                     child: AppButton(
-                      text: "Follow",
+                      text:  context.l10n.follow,
                       icon: Icon(Icons.person_add, size: 20),
                       height: 30.h,
                       onPressed: () {},
@@ -415,7 +420,7 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
           if (widget.isMyProfile) ...[
             SizedBox(height: 8.h),
             AppButton(
-              text: 'Edit My Information',
+              text: context.l10n.editMyInfo,
               icon: Icon(Icons.edit_calendar_rounded),
               height: 32.h,
               width: 290.w,
@@ -425,7 +430,9 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
                 color: AppColors.turnbullBlue,
                 width: 1.5.w,
               ),
-              onPressed: () {context.push(AppRoutes.profileSettings);},
+              onPressed: () {
+                context.push(AppRoutes.profileSettings);
+              },
             ),
           ],
         ],
@@ -549,7 +556,8 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
               ),
             ),
 
-            SizedBox(height: 4.h), // space between bar and dots
+            SizedBox(height: 4.h),
+            // space between bar and dots
 
             /// Dots + Crown + Numbers
             Row(
