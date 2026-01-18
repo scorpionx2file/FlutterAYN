@@ -1,0 +1,8 @@
+{
+  "@@locale": "en",
+  "appTitle": "Traveller",
+  "next": "Next",
+  "chooseGatesTitle": "Choose Your Favorite Gates",
+  "chooseGatesSubtitle": "Pick at least 3 gates to tailor your experience.",
+  "chooseGatesMin3Snack": "Please select at least 3 gates."
+}
