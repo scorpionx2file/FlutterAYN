@@ -1,0 +1,8 @@
+{
+  "@@locale": "ar",
+  "appTitle": "Traveller",
+  "next": "التالي",
+  "chooseGatesTitle": "اختر البوابات المفضلة",
+  "chooseGatesSubtitle": "اختر 3 بوابات على الأقل لتخصيص تجربتك.",
+  "chooseGatesMin3Snack": "من فضلك اختر 3 بوابات على الأقل."
+}
