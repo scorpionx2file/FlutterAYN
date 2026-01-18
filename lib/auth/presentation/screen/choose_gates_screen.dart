@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:traveller/auth/presentation/screen/sign_in_screen.dart';
 import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
-
-import '../../../l10n/app_localizations.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../widgets/selectable_gate_card.dart';
 import '../widgets/sign_in_progress_bar.dart';
 
@@ -52,10 +50,10 @@ class _ChooseGatesScreenState extends State<ChooseGatesScreen> {
     });
   }
 
-  void _next(AppLocalizations l10n) {
+  void _next() {
     if (_selected.length < 3) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.chooseGatesMin3Snack)),
+        SnackBar(content: Text(context.l10n.chooseGatesMin3Snack)),
       );
       return;
     }
@@ -65,7 +63,6 @@ class _ChooseGatesScreenState extends State<ChooseGatesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
     final progress = _selected.isEmpty ? 0.0 : (1 / 3);
 
     return Scaffold(
@@ -77,8 +74,8 @@ class _ChooseGatesScreenState extends State<ChooseGatesScreen> {
           child: SizedBox(
             width: double.infinity,
             child: AppButton(
-              text: l10n.next,
-              onPressed: () => _next(l10n),
+              text: context.l10n.next,
+              onPressed: () => _next(),
               height: 36.h,
             ),
           ),
@@ -102,12 +99,12 @@ class _ChooseGatesScreenState extends State<ChooseGatesScreen> {
                   children: [
                     SizedBox(height: 14.h),
                     Text(
-                      l10n.chooseGatesTitle,
+                      context.l10n.chooseGatesTitle,
                       style: AppTextStyles.title.copyWith(color: AppColors.black),
                     ),
                     SizedBox(height: 6.h),
                     Text(
-                      l10n.chooseGatesSubtitle,
+                      context.l10n.chooseGatesSubtitle,
                       style: AppTextStyles.description.copyWith(color: AppColors.spanishGrey),
                     ),
                     SizedBox(height: 18.h),
