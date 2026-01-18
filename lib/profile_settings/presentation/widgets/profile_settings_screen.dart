@@ -5,6 +5,7 @@ import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/constants/profile_settings/profile_settings_header.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import '../../../core/constants/profile_settings/profile_settings_tile.dart';
 import '../../../core/constants/profile_settings/profile_settings_tile_segmented_toggle.dart';
@@ -21,23 +22,31 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
   int statusIndex = 0;
   int locationIndex = 0;
   int servicesIndex = 0;
+
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Scaffold(
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.w),
                 child: Align(
                   alignment: Alignment.centerRight,
-                    child: TextButton(
-                        onPressed: () {},
-                        child: Text("Logout",style: AppTextStyles.text.copyWith(color: AppColors.lebaneseRed,fontWeight: FontWeight.bold),)
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      l10n.logout,
+                      style: AppTextStyles.text.copyWith(
+                        color: AppColors.lebaneseRed,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
+                ),
               ),
             ),
 
@@ -45,7 +54,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               child: ProfileSettingsHeader(
                 name: "Adham Mohamed",
                 username: "adhambiko",
-                profileImage: AssetImage("assets/images/profile.png"),
+                profileImage: const AssetImage("assets/images/profile.png"),
                 isProfileSettings: true,
                 isVerified: true,
                 onBackPressed: () {},
@@ -53,13 +62,13 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               ),
             ),
 
-            SliverToBoxAdapter(child: SizedBox(height: 12.h,),),
+            SliverToBoxAdapter(child: SizedBox(height: 12.h)),
 
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Text(
-                  "Application Performance",
+                  l10n.profileSettingsSectionAppPerformance,
                   style: AppTextStyles.titles.copyWith(
                     color: AppColors.turnbullBlue,
                     fontWeight: FontWeight.bold,
@@ -70,32 +79,30 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
 
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.place,size: 24.r,color: AppColors.strongGrey,),
-                title: "Favourite Gates",
+                icon: Icon(Icons.place, size: 24.r, color: AppColors.strongGrey),
+                title: l10n.favouriteGates,
                 hasPermission: false,
                 onTap: () {},
               ),
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.notifications,size: 24.r,color: AppColors.strongGrey,),
-                title: "Notifications",
+                icon: Icon(Icons.notifications, size: 24.r, color: AppColors.strongGrey),
+                title: l10n.notifications,
                 hasPermission: false,
                 onTap: () {},
               ),
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.language,size: 24.r,color: AppColors.strongGrey,),
-                title: "Language",
+                icon: Icon(Icons.language, size: 24.r, color: AppColors.strongGrey),
+                title: l10n.language,
                 hasPermission: true,
                 trailing: ProfileSettingsTileSegmentedToggle(
-                  options: ["English","العربيه"],
+                  options: [l10n.english, l10n.arabic],
                   selectedIndex: languageIndex,
                   onChanged: (int value) {
-                    setState(() {
-                      languageIndex = value;
-                    });
+                    setState(() => languageIndex = value);
                   },
                 ),
                 onTap: () {},
@@ -103,16 +110,14 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.remove_red_eye,size: 24.r,color: AppColors.strongGrey,),
-                title: "Status",
+                icon: Icon(Icons.remove_red_eye, size: 24.r, color: AppColors.strongGrey),
+                title: l10n.status,
                 hasPermission: true,
                 trailing: ProfileSettingsTileSegmentedToggle(
-                  options: ["Online","Offline"],
+                  options: [l10n.online, l10n.offline],
                   selectedIndex: statusIndex,
                   onChanged: (int value) {
-                    setState(() {
-                      statusIndex = value;
-                    });
+                    setState(() => statusIndex = value);
                   },
                 ),
                 onTap: () {},
@@ -120,29 +125,27 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.my_location_sharp,size: 24.r,color: AppColors.strongGrey,),
-                title: "Location",
+                icon: Icon(Icons.my_location_sharp, size: 24.r, color: AppColors.strongGrey),
+                title: l10n.location,
                 hasPermission: true,
                 trailing: ProfileSettingsTileSegmentedToggle(
-                  options: ["ON","OFF"],
+                  options: [l10n.on, l10n.off],
                   selectedIndex: locationIndex,
                   onChanged: (int value) {
-                    setState(() {
-                      locationIndex = value;
-                    });
+                    setState(() => locationIndex = value);
                   },
                 ),
                 onTap: () {},
               ),
             ),
 
-            SliverToBoxAdapter(child: SizedBox(height: 12.h,),),
+            SliverToBoxAdapter(child: SizedBox(height: 12.h)),
 
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Text(
-                  "Account Information",
+                  l10n.accountInformation,
                   style: AppTextStyles.titles.copyWith(
                     color: AppColors.turnbullBlue,
                     fontWeight: FontWeight.bold,
@@ -153,44 +156,54 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
 
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.email,size: 24.r,color: AppColors.strongGrey,),
-                title: "E-mail",
+                icon: Icon(Icons.email, size: 24.r, color: AppColors.strongGrey),
+                title: l10n.email,
                 hasPermission: false,
                 onTap: () {},
               ),
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Image.asset("assets/images/icons/twitter.png",width: 24.w,height: 24.h,color: AppColors.strongGrey,),
-                title: "Twitter Account",
+                icon: Image.asset(
+                  "assets/images/icons/twitter.png",
+                  width: 24.w,
+                  height: 24.h,
+                  color: AppColors.strongGrey,
+                ),
+                title: l10n.twitterAccount,
                 hasPermission: false,
                 onTap: () {},
               ),
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Image.asset("assets/images/icons/snapchat.png",width: 24.w,height: 24.h,color: AppColors.strongGrey,),
-                title: "Snapchat Account",
+                icon: Image.asset(
+                  "assets/images/icons/snapchat.png",
+                  width: 24.w,
+                  height: 24.h,
+                  color: AppColors.strongGrey,
+                ),
+                title: l10n.snapchatAccount,
                 hasPermission: false,
                 onTap: () {},
               ),
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.phone_iphone,size: 24.r,color: AppColors.strongGrey,),
-                title: "Mobile Number",
+                icon: Icon(Icons.phone_iphone, size: 24.r, color: AppColors.strongGrey),
+                title: l10n.mobileNumber,
                 hasPermission: false,
                 onTap: () {},
               ),
             ),
 
-            SliverToBoxAdapter(child: SizedBox(height: 12.h,),),
+            SliverToBoxAdapter(child: SizedBox(height: 12.h)),
 
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Text(
-                  "Payment & Points",
+                  l10n.paymentAndPoints,
                   style: AppTextStyles.titles.copyWith(
                     color: AppColors.turnbullBlue,
                     fontWeight: FontWeight.bold,
@@ -201,28 +214,28 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
 
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.info,size: 24.r,color: AppColors.strongGrey,),
-                title: "Points System",
+                icon: Icon(Icons.info, size: 24.r, color: AppColors.strongGrey),
+                title: l10n.pointsSystem,
                 hasPermission: false,
                 onTap: () {},
               ),
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.payment,size: 24.r,color: AppColors.strongGrey,),
-                title: "Payment Methods",
+                icon: Icon(Icons.payment, size: 24.r, color: AppColors.strongGrey),
+                title: l10n.paymentMethods,
                 hasPermission: false,
                 onTap: () {},
               ),
             ),
 
-            SliverToBoxAdapter(child: SizedBox(height: 12.h,),),
+            SliverToBoxAdapter(child: SizedBox(height: 12.h)),
 
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Text(
-                  "Others",
+                  l10n.others,
                   style: AppTextStyles.titles.copyWith(
                     color: AppColors.turnbullBlue,
                     fontWeight: FontWeight.bold,
@@ -233,30 +246,32 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
 
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.privacy_tip,size: 24.r,color: AppColors.strongGrey,),
-                title: "Privacy & Policy",
+                icon: Icon(Icons.privacy_tip, size: 24.r, color: AppColors.strongGrey),
+                title: l10n.privacyPolicy,
                 hasPermission: false,
                 onTap: () {},
               ),
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.phone,size: 24.r,color: AppColors.strongGrey,),
-                title: "Contact Us",
+                icon: Icon(Icons.phone, size: 24.r, color: AppColors.strongGrey),
+                title: l10n.contactUs,
                 hasPermission: false,
-                onTap: () {context.push(AppRoutes.settingsContact);},
+                onTap: () {
+                  context.push(AppRoutes.settingsContact);
+                },
               ),
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.question_mark,size: 24.r,color: AppColors.strongGrey,),
-                title: "About Us",
+                icon: Icon(Icons.question_mark, size: 24.r, color: AppColors.strongGrey),
+                title: l10n.aboutUs,
                 hasPermission: false,
                 onTap: () {},
               ),
             ),
 
-            SliverToBoxAdapter(child: SizedBox(height: 18.h,),),
+            SliverToBoxAdapter(child: SizedBox(height: 18.h)),
 
             SliverToBoxAdapter(
               child: Padding(
@@ -272,7 +287,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                       borderRadius: BorderRadius.circular(30.r),
                     ),
                     child: Text(
-                      "Become A Service Provider",
+                      l10n.becomeServiceProvider,
                       style: AppTextStyles.text.copyWith(
                         color: AppColors.white,
                         fontWeight: FontWeight.bold,
@@ -282,18 +297,17 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 ),
               ),
             ),
+
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.language,size: 24.r,color: AppColors.strongGrey,),
-                title: "Services",
+                icon: Icon(Icons.language, size: 24.r, color: AppColors.strongGrey),
+                title: l10n.services,
                 hasPermission: true,
                 trailing: ProfileSettingsTileSegmentedToggle(
-                  options: ["Available","Not Available"],
+                  options: [l10n.available, l10n.notAvailable],
                   selectedIndex: servicesIndex,
                   onChanged: (int value) {
-                    setState(() {
-                      servicesIndex = value;
-                    });
+                    setState(() => servicesIndex = value);
                   },
                 ),
                 onTap: () {},

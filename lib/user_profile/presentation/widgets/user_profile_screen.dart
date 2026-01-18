@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import '../../../core/constants/activity_card/activity_card.dart';
 import '../../../core/constants/activity_card/activity_carousel.dart';
@@ -41,9 +42,8 @@ class UserProfileScreen extends StatelessWidget {
               onSnapchatTap: () {},
             ),
           ),
-      
+
           SliverToBoxAdapter(child: SizedBox(height: 14.h)),
-      
           SliverToBoxAdapter(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 8.w),
@@ -53,7 +53,7 @@ class UserProfileScreen extends StatelessWidget {
                   Icon(Icons.calendar_today, size: 22.r),
                   SizedBox(width: 6.w),
                   Text(
-                    "Member-Specific Events",
+                    context.l10n.memberSpecificEvents,
                     style: AppTextStyles.titles.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
@@ -62,15 +62,15 @@ class UserProfileScreen extends StatelessWidget {
               ),
             ),
           ),
-      
+
           SliverToBoxAdapter(child: SizedBox(height: 8.h)),
-      
+
           SliverToBoxAdapter(
             child: ActivityCarousel(activities: activities, isYellow: true),
           ),
-      
+
           SliverToBoxAdapter(child: SizedBox(height: 8.h)),
-      
+
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) => Padding(

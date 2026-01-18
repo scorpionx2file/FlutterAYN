@@ -22,4 +22,250 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get chooseGatesMin3Snack => 'من فضلك اختر 3 بوابات على الأقل.';
+
+  @override
+  String get messages => 'رسائل';
+
+  @override
+  String get bags => 'حقائب';
+
+  @override
+  String get followers => 'يتابع';
+
+  @override
+  String get following => 'يتابعه';
+
+  @override
+  String get points => 'النقاط';
+
+  @override
+  String get totalPoints => 'إجمالي النقاط';
+
+  @override
+  String get premiumFeatures => 'مميزات الباقة المميزة';
+
+  @override
+  String get premiumFeatureExample => 'شرح لإحدى مميزات الباقة المميزة';
+
+  @override
+  String get follow => 'متابعة';
+
+  @override
+  String get editMyInfo => 'تعديل بياناتي';
+
+  @override
+  String get reportTitle => 'الإبلاغ عن المحتوى';
+
+  @override
+  String get reportReasonMisleading => 'محتوى مضلل';
+
+  @override
+  String get reportReasonCopyright => 'انتهاك حقوق النشر';
+
+  @override
+  String get reportReasonViolence => 'يحتوي على محتوى عنيف';
+
+  @override
+  String get send => 'إرسال';
+
+  @override
+  String get editAccount => 'تعديل الحساب';
+
+  @override
+  String get readMore => 'قراءة المزيد';
+
+  @override
+  String get less => 'أقل';
+
+  @override
+  String get forgetPasswordTitle => 'نسيت كلمة المرور؟';
+
+  @override
+  String get forgetPasswordDesc => 'من فضلك أدخل بريدك الإلكتروني لاستلام رابط إنشاء كلمة مرور جديدة عبر البريد.';
+
+  @override
+  String get emailAddressLabel => 'البريد الإلكتروني';
+
+  @override
+  String get emailAddressHint => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get registerTitle => 'مرحبًا بك في مجتمعنا!';
+
+  @override
+  String get registerSubtitle => 'أنشئ حسابًا للبدء';
+
+  @override
+  String get passwordLabel => 'كلمة المرور';
+
+  @override
+  String get passwordHint => 'أدخل كلمة المرور';
+
+  @override
+  String get forgetPasswordLink => 'نسيت كلمة المرور؟';
+
+  @override
+  String get login => 'تسجيل الدخول';
+
+  @override
+  String get registerTerms => 'بالتسجيل، أنت توافق على الشروط والأحكام وسياسة الخصوصية.';
+
+  @override
+  String get signUpAccountInfoTitle => 'معلومات الحساب';
+
+  @override
+  String get fullNameLabel => 'الاسم الكامل';
+
+  @override
+  String get fullNameHint => 'أدخل اسمك';
+
+  @override
+  String get emailAddressHintExample => 'email@gmail.com';
+
+  @override
+  String get signUp => 'إنشاء حساب';
+
+  @override
+  String get alreadyHaveAccount => 'لديك حساب بالفعل؟ ';
+
+  @override
+  String get signIn => 'تسجيل الدخول';
+
+  @override
+  String get skip => 'تخطي';
+
+  @override
+  String get getStarted => 'ابدأ الآن';
+
+  @override
+  String get onboardingTitle1 => 'شارك رحلتك مع الجميع';
+
+  @override
+  String get onboardingSubtitle1 => 'انشر لحظاتك ودع الآخرين يتابعون قصتك في السفر.';
+
+  @override
+  String get onboardingTitle2 => 'اعثر على أقرب الأماكن السياحية حولك';
+
+  @override
+  String get onboardingSubtitle2 => 'اكتشف أفضل الأماكن القريبة بتجربة بسيطة وسريعة.';
+
+  @override
+  String get onboardingTitle3 => 'قدّم خدماتك السياحية بسهولة';
+
+  @override
+  String get onboardingSubtitle3 => 'اعرض خدماتك وأدرها بخطوات سريعة.';
+
+  @override
+  String get onboardingTitle4 => 'سوق لجميع الأنشطة السياحية';
+
+  @override
+  String get onboardingSubtitle4 => 'استكشف الأنشطة والمعالم وتجارب رائعة.';
+
+  @override
+  String get onboardingTitle5 => 'تعرّف على أصدقاء جدد بالقرب منك';
+
+  @override
+  String get onboardingSubtitle5 => 'تواصل مع المسافرين وابنِ تجارب جديدة معًا.';
+
+  @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
+  String get profileSettingsSectionAppPerformance => 'أداء التطبيق';
+
+  @override
+  String get favouriteGates => 'البوابات المفضلة';
+
+  @override
+  String get notifications => 'الإشعارات';
+
+  @override
+  String get language => 'اللغة';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get arabic => 'العربية';
+
+  @override
+  String get status => 'الحالة';
+
+  @override
+  String get online => 'متصل';
+
+  @override
+  String get offline => 'غير متصل';
+
+  @override
+  String get location => 'الموقع';
+
+  @override
+  String get on => 'تشغيل';
+
+  @override
+  String get off => 'إيقاف';
+
+  @override
+  String get accountInformation => 'معلومات الحساب';
+
+  @override
+  String get email => 'البريد الإلكتروني';
+
+  @override
+  String get twitterAccount => 'حساب تويتر';
+
+  @override
+  String get snapchatAccount => 'حساب سناب شات';
+
+  @override
+  String get mobileNumber => 'رقم الهاتف';
+
+  @override
+  String get paymentAndPoints => 'الدفع والنقاط';
+
+  @override
+  String get pointsSystem => 'نظام النقاط';
+
+  @override
+  String get paymentMethods => 'طرق الدفع';
+
+  @override
+  String get others => 'أخرى';
+
+  @override
+  String get privacyPolicy => 'الخصوصية والسياسة';
+
+  @override
+  String get contactUs => 'تواصل معنا';
+
+  @override
+  String get aboutUs => 'من نحن';
+
+  @override
+  String get becomeServiceProvider => 'كن مقدم خدمة';
+
+  @override
+  String get services => 'الخدمات';
+
+  @override
+  String get available => 'متاح';
+
+  @override
+  String get notAvailable => 'غير متاح';
+
+  @override
+  String get storySendMessageHint => 'أرسل رسالة...';
+
+  @override
+  String get shareProfile => 'مشاركة الملف الشخصي';
+
+  @override
+  String get muteMessages => 'كتم الرسائل';
+
+  @override
+  String get blockProfile => 'حظر الملف الشخصي';
+
+  @override
+  String get memberSpecificEvents => 'فعاليات خاصة بالأعضاء';
 }

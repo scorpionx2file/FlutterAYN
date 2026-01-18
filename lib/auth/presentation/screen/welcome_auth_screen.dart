@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:traveller/auth/presentation/screen/choose_gates_screen.dart';
-import 'package:traveller/auth/presentation/widgets/social_icon_button.dart';
 import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/constants/auth/auth_screen_bg.dart';
 import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
+import 'package:traveller/auth/presentation/widgets/social_icon_button.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
+
 class WelcomeAuthScreen extends StatelessWidget {
   const WelcomeAuthScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return AuthScreenBg(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -21,7 +24,7 @@ class WelcomeAuthScreen extends StatelessWidget {
           SizedBox(height: 26.h),
 
           Text(
-            "Welcome to our community!",
+            l10n.registerTitle, // "Welcome to Our Community!"
             textAlign: TextAlign.center,
             style: AppTextStyles.title.copyWith(color: AppColors.black),
           ),
@@ -31,8 +34,8 @@ class WelcomeAuthScreen extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: AppButton(
-              text: "Sign Up",
-              onPressed: () {context.go(AppRoutes.chooseGates);},
+              text: l10n.signUp,
+              onPressed: () => context.go(AppRoutes.chooseGates),
               height: 36.h,
               backgroundColor: AppColors.turnbullBlue,
             ),
@@ -70,17 +73,13 @@ class WelcomeAuthScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Already have an account? ",
-                style: AppTextStyles.description.copyWith(
-                  color: AppColors.spanishGrey,
-                ),
+                l10n.alreadyHaveAccount,
+                style: AppTextStyles.description.copyWith(color: AppColors.spanishGrey),
               ),
               GestureDetector(
-                onTap: () {
-                  context.go(AppRoutes.signUp);
-                },
+                onTap: () => context.go(AppRoutes.signUp),
                 child: Text(
-                  "Sign in",
+                  l10n.signIn,
                   style: AppTextStyles.description.copyWith(
                     color: AppColors.spanishGrey,
                     decoration: TextDecoration.underline,
@@ -93,7 +92,7 @@ class WelcomeAuthScreen extends StatelessWidget {
           SizedBox(height: 120.h),
 
           Text(
-            "By continuing, you agree to our Terms & Conditions and Privacy Policy.",
+            l10n.registerTerms,
             textAlign: TextAlign.center,
             style: AppTextStyles.description.copyWith(
               color: AppColors.spanishGrey,

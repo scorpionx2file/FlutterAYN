@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import '../../theme/colors/app_colors.dart';
 
@@ -135,7 +136,7 @@ class ProfileSettingsHeader extends StatelessWidget {
                 ),
                 icon: Icon(Icons.edit, color: AppColors.white, size: 16.sp),
                 label: Text(
-                  "تعديل الحساب",
+                  context.l10n.editAccount,
                   style: AppTextStyles.description.copyWith(
                     color: AppColors.white,
                   ),
