@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:traveller/auth/presentation/screen/choose_gates_screen.dart';
 import 'package:traveller/auth/presentation/widgets/social_icon_button.dart';
+import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/constants/auth/auth_screen_bg.dart';
 import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
@@ -29,8 +31,8 @@ class WelcomeAuthScreen extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: AppButton(
-              text: "Continue with Mobile Number",
-              onPressed: () {},
+              text: "Sign Up",
+              onPressed: () {context.go(AppRoutes.chooseGates);},
               height: 36.h,
               backgroundColor: AppColors.turnbullBlue,
             ),
@@ -75,9 +77,7 @@ class WelcomeAuthScreen extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const ChooseGatesScreen()),
-                  );
+                  context.go(AppRoutes.signUp);
                 },
                 child: Text(
                   "Sign in",

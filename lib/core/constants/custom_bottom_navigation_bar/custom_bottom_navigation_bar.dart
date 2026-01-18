@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import '../../../config/routes/app_routes.dart';
 import '../../theme/colors/app_colors.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
@@ -17,7 +19,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 80.h,
+      height: 60.h,
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
@@ -75,6 +77,20 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         setState(() {
           selectedIndex = index;
         });
+        switch(index){
+          case 0:
+            context.go(AppRoutes.home);
+            break;
+          case 1:
+            context.go(AppRoutes.map);
+            break;
+          case 2:
+            context.go(AppRoutes.gates);
+            break;
+          case 3:
+            context.go(AppRoutes.profile);
+            break;
+        }
       },
       child: SizedBox(
         width: 40.w, // fixed width to align indicator

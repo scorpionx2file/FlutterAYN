@@ -17,6 +17,7 @@ import 'config/routes/router.dart';
 import 'core/constants/custom_bottom_navigation_bar/custom_bottom_navigation_bar.dart';
 import 'core/constants/gate/app_gate_card.dart';
 import 'gates/presentation/widgets/gates_screen.dart';
+import 'l10n/app_localizations.dart';
 import 'onboarding/presentation/screen/onboarding_screen.dart';
 import 'settings_contact/presentation/widgets/settings_contact_screen.dart';
 import 'core/constants/activity_card/activity_card.dart';
@@ -36,6 +37,7 @@ import 'core/constants/user_profile/user_profile_header.dart';
 import 'event_option/presentation/widgets/place_details_screen.dart';
 import 'followers_list/presentation/widgets/followers_list_screen.dart';
 import 'home/presentation/widgets/home_screen.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 
 void main() {
@@ -58,6 +60,13 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: getLightTheme(),
           themeMode: ThemeMode.light,
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: AppLocalizations.supportedLocales,
         );
       },
     );
@@ -171,57 +180,6 @@ class HomeRoot extends StatelessWidget {
       commentsCountText: '12',
     );
 
-    final stories = [
-      Story(
-        imageUrl:
-            'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-        username: "Habiba",
-        isSeen: false,
-        data:
-            "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
-      ),
-      Story(
-        imageUrl:
-            'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-        username: "Habiba",
-        isSeen: true,
-        data:
-            "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-      ),
-      Story(
-        imageUrl:
-            'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-        username: "Habiba",
-        isSeen: true,
-        data:
-            "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-      ),
-      Story(
-        imageUrl:
-            'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-        username: "Habiba",
-        isSeen: true,
-        data:
-            "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
-      ),
-      Story(
-        imageUrl:
-            'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-        username: "Habiba",
-        isSeen: false,
-        data:
-            "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
-      ),
-      Story(
-        imageUrl:
-            'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-        username: "Habiba",
-        isSeen: false,
-        data:
-            "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
-      ),
-    ];
-
     final activities = [
       Activity(
         imageUrl:
@@ -261,180 +219,6 @@ class HomeRoot extends StatelessWidget {
             contentData: contentData,
           ),
         ];
-
-    final placeCont = PlaceContent(
-      maxTemp: 25,
-      minTemp: 15,
-      numOfPosts: 200,
-      gateTitle: "Tourism to Egypt",
-      gateDesc:
-          "It is a long-established fact that the readable content of a page will distract the reader from focusing.",
-      friendsImages: [
-        'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
-        'https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg',
-        'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
-      ],
-      numOfFriends: 200,
-    );
-    final placeInfo = PlaceInfoModel(
-      gateName: "Egypt Gate",
-      placeContent: placeCont,
-    );
-
-    final eventPosts = [
-      EventPostsData(
-        imageUrl:
-            "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-        username: "Habiba",
-        title: "Morning Run",
-        date: "Dec 2, 7AM",
-        postImage:
-            "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-        rate: 4.8,
-      ),
-      EventPostsData(
-        imageUrl:
-            "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-        username: "Habiba",
-        title: "Morning Run",
-        date: "Dec 2, 7AM",
-        postImage:
-            "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-        rate: 4.8,
-      ),
-      EventPostsData(
-        imageUrl:
-            "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-        username: "Habiba",
-        title: "Morning Run",
-        date: "Dec 2, 7AM",
-        postImage:
-            "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-        rate: 4.8,
-      ),
-      EventPostsData(
-        imageUrl:
-            "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-        username: "Habiba",
-        title: "Morning Run",
-        date: "Dec 2, 7AM",
-        postImage:
-            "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-        rate: 4.8,
-      ),
-    ];
-
-    final List<CommentData> postComments = [
-      CommentData(
-        'https://i.pravatar.cc/150?img=1',
-        'Ahmed',
-        '2h',
-        const Icon(Icons.shopping_bag_rounded, color: AppColors.spanishGrey, size: 18),
-        'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
-        false,
-      ),
-      CommentData(
-          'https://i.pravatar.cc/150?img=2',
-          'Sara',
-          '1h',
-          const Icon(Icons.shopping_bag_rounded, color: AppColors.spanishGrey, size: 18),
-          'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
-          false
-      ),
-      CommentData(
-          'https://i.pravatar.cc/150?img=3',
-          'Omar',
-          '10m',
-          const Icon(Icons.shopping_bag_rounded, color: AppColors.spanishGrey, size: 18),
-          'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
-          false
-      ),
-    ];
-
-    final List<CommentData> serviceProviderComments = [
-      CommentData(
-        'https://i.pravatar.cc/150?img=1',
-        'Ahmed',
-        '2h',
-        RatingWidget(rating: 4.8),
-        'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
-        true,
-      ),
-      CommentData(
-          'https://i.pravatar.cc/150?img=2',
-          'Sara',
-          '1h',
-          RatingWidget(rating: 4.8),
-          'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
-          true
-      ),
-      CommentData(
-          'https://i.pravatar.cc/150?img=3',
-          'Omar',
-          '10m',
-          RatingWidget(rating: 2.2),
-          'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
-          true
-      ),
-      CommentData(
-          'https://i.pravatar.cc/150?img=3',
-          'Omar',
-          '10m',
-          RatingWidget(rating: 2.2),
-          'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
-          true
-      ),
-      CommentData(
-          'https://i.pravatar.cc/150?img=3',
-          'Omar',
-          '10m',
-          RatingWidget(rating: 2.2),
-          'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
-          true
-      ),
-    ];
-
-    final List<MapItem> items = [
-      /// 🟢 POST
-      MapItem(
-        location: LatLng(52.5200, 13.4050),
-        type: MarkerType.post,
-        imageUrl: posts[0].headerData.imageUrl,
-        postData: posts[0].headerData,
-        postContentData: posts[0].contentData,
-        comments: postComments,
-      ),
-
-      /// 🔵 SERVICE PROVIDER
-      MapItem(
-        location: LatLng(48.8566, 2.3522),
-        type: MarkerType.service,
-        imageUrl: headerData1.imageUrl,
-        serviceHeaderData: headerData1,
-        locationText: "Paris, France",
-        language: "English / French",
-        comments: serviceProviderComments,
-      ),
-      MapItem(
-        location: LatLng(50.1109, 8.6821),
-        type: MarkerType.post,
-        imageUrl: posts[1].headerData.imageUrl,
-        postData: posts[1].headerData,
-        postContentData: posts[1].contentData,
-        comments: postComments,
-      ),
-      MapItem(
-        location: LatLng(41.9028, 12.4964),
-        type: MarkerType.service,
-        imageUrl: headerData2.imageUrl,
-        serviceHeaderData: headerData2,
-        locationText: "Rome, Italy",
-        language: "Italian / English",
-        comments: serviceProviderComments,
-      ),
-    ];
-
-
 
     return Scaffold(
                 bottomNavigationBar: CustomBottomNavigationBar(),
@@ -518,155 +302,3 @@ class HomeRoot extends StatelessWidget {
     );
   }
 }
-
-class FollowerModel {
-  final String name;
-  final int points;
-  final bool isFollowing;
-  final Story story;
-
-  FollowerModel({
-    required this.name,
-    required this.points,
-    required this.isFollowing,
-    required this.story,
-  });
-}
-
-final List<FollowerModel> following = [
-  FollowerModel(
-    name: 'Adham Mohamed',
-    points: 100,
-    isFollowing: false,
-    story: Story(
-      imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      isSeen: false,
-      data: '',
-    ),
-  ),
-  FollowerModel(
-    name: 'Habiba Elhadi',
-    points: 200,
-    isFollowing: true,
-    story: Story(
-      imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      isSeen: false,
-      data: '',
-    ),
-  ),
-  FollowerModel(
-    name: 'Nourhan Essam',
-    points: 300,
-    isFollowing: false,
-    story: Story(
-      imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      isSeen: false,
-      data: '',
-    ),
-  ),
-  FollowerModel(
-    name: 'Nour Agami',
-    points: 400,
-    isFollowing: true,
-    story: Story(
-      imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      isSeen: false,
-      data: '',
-    ),
-  ),
-];
-
-final List<FollowerModel> followers = [
-  FollowerModel(
-    name: 'Bahaa Mahmoud Elsady',
-    points: 535,
-    isFollowing: false,
-    story: Story(
-      imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      isSeen: false,
-      data: '',
-    ),
-  ),
-  FollowerModel(
-    name: 'Ahmed Mohamed',
-    points: 320,
-    isFollowing: true,
-    story: Story(
-      imageUrl:
-          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      isSeen: true,
-      data: '',
-    ),
-  ),
-  FollowerModel(
-    name: 'Lina Adel',
-    points: 150,
-    isFollowing: false,
-    story: Story(
-      imageUrl:
-          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      isSeen: true,
-      data: '',
-    ),
-  ),
-  FollowerModel(
-    name: 'Dana Saeed',
-    points: 200,
-    isFollowing: true,
-    story: Story(
-      imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      isSeen: true,
-      data: '',
-    ),
-  ),
-  FollowerModel(
-    name: 'Basem Hany',
-    points: 50,
-    isFollowing: false,
-    story: Story(
-      imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      isSeen: true,
-      data: '',
-    ),
-  ),
-  FollowerModel(
-    name: 'Mira Hany',
-    points: 200,
-    isFollowing: true,
-    story: Story(
-      imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      isSeen: true,
-      data: '',
-    ),
-  ),
-  FollowerModel(
-    name: 'Hamad Yassin',
-    points: 250,
-    isFollowing: false,
-    story: Story(
-      imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      isSeen: true,
-      data: '',
-    ),
-  ),
-  FollowerModel(
-    name: 'Hamad Minshawy',
-    points: 300,
-    isFollowing: true,
-    story: Story(
-      imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      isSeen: true,
-      data: '',
-    ),
-  ),
-];

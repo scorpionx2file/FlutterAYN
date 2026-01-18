@@ -1,22 +1,38 @@
 import 'package:go_router/go_router.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:traveller/auth/presentation/screen/choose_gates_screen.dart';
 import 'package:traveller/auth/presentation/screen/forget_password_screen.dart';
 import 'package:traveller/auth/presentation/screen/sign_in_screen.dart';
 import 'package:traveller/auth/presentation/screen/sign_up_screen.dart';
+import 'package:traveller/auth/presentation/screen/welcome_auth_screen.dart';
+import 'package:traveller/event_option/presentation/widgets/place_details_screen.dart';
+import 'package:traveller/followers_list/presentation/widgets/followers_list_screen.dart';
 import 'package:traveller/gates/presentation/widgets/gates_screen.dart';
 import 'package:traveller/home/presentation/widgets/home_screen.dart';
 import 'package:traveller/onboarding/presentation/screen/onboarding_screen.dart';
 import 'package:traveller/otp/presentation/screen/otp_screen.dart';
+import 'package:traveller/profile_settings/presentation/widgets/profile_settings_screen.dart';
+import 'package:traveller/settings_contact/presentation/widgets/settings_contact_screen.dart';
 import 'package:traveller/splash_screen.dart';
+import 'package:traveller/stories/presentation/widgets/story_screen.dart';
+import 'package:traveller/user_profile/presentation/widgets/user_profile_screen.dart';
 import 'package:traveller/video/presentation/widgets/video&articles_screen.dart';
 import '../../core/constants/activity_card/activity_card.dart';
+import '../../core/constants/comment/comment_item.dart';
+import '../../core/constants/comment/rating_widget.dart';
+import '../../core/constants/custom_bottom_navigation_bar/custom_bottom_navigation_bar.dart';
+import '../../core/constants/event_options/event_options_posts/event_options_posts.dart';
 import '../../core/constants/gate/app_gate_card.dart';
 import '../../core/constants/post/post.dart';
 import '../../core/constants/post/post_content/post_content.dart';
 import '../../core/constants/post_service_provider_header/post_or_service_provider_header.dart';
 import '../../core/constants/story_item/story_item.dart';
+import '../../core/theme/colors/app_colors.dart';
+import '../../core/utils/map_bottom_sheet_util.dart';
 import '../../core/utils/post_utils.dart';
+import '../../event_option/presentation/widgets/content_section/content_section.dart';
 import '../../main.dart';
+import '../../map/presenttion/widgets/map_screen.dart';
 import 'app_routes.dart';
 import 'package:flutter/material.dart';
 
@@ -283,6 +299,328 @@ contentData: contentData,
 ),
 ];
 
+final List<MapItem> items = [
+  /// 🟢 POST
+  MapItem(
+    location: LatLng(52.5200, 13.4050),
+    type: MarkerType.post,
+    imageUrl: postData[0].headerData.imageUrl,
+    postData: postData[0].headerData,
+    postContentData: postData[0].contentData,
+    comments: postComments,
+  ),
+
+  /// 🔵 SERVICE PROVIDER
+  MapItem(
+    location: LatLng(48.8566, 2.3522),
+    type: MarkerType.service,
+    imageUrl: headerData1.imageUrl,
+    serviceHeaderData: headerData1,
+    locationText: "Paris, France",
+    language: "English / French",
+    comments: serviceProviderComments,
+  ),
+  MapItem(
+    location: LatLng(50.1109, 8.6821),
+    type: MarkerType.post,
+    imageUrl: postData[1].headerData.imageUrl,
+    postData: postData[1].headerData,
+    postContentData: postData[1].contentData,
+    comments: postComments,
+  ),
+  MapItem(
+    location: LatLng(41.9028, 12.4964),
+    type: MarkerType.service,
+    imageUrl: headerData2.imageUrl,
+    serviceHeaderData: headerData2,
+    locationText: "Rome, Italy",
+    language: "Italian / English",
+    comments: serviceProviderComments,
+  ),
+];
+final List<CommentData> postComments = [
+  CommentData(
+    'https://i.pravatar.cc/150?img=1',
+    'Ahmed',
+    '2h',
+    const Icon(Icons.shopping_bag_rounded, color: AppColors.spanishGrey, size: 18),
+    'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+    false,
+  ),
+  CommentData(
+      'https://i.pravatar.cc/150?img=2',
+      'Sara',
+      '1h',
+      const Icon(Icons.shopping_bag_rounded, color: AppColors.spanishGrey, size: 18),
+      'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+      false
+  ),
+  CommentData(
+      'https://i.pravatar.cc/150?img=3',
+      'Omar',
+      '10m',
+      const Icon(Icons.shopping_bag_rounded, color: AppColors.spanishGrey, size: 18),
+      'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+      false
+  ),
+];
+final List<CommentData> serviceProviderComments = [
+  CommentData(
+    'https://i.pravatar.cc/150?img=1',
+    'Ahmed',
+    '2h',
+    RatingWidget(rating: 4.8),
+    'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+    true,
+  ),
+  CommentData(
+      'https://i.pravatar.cc/150?img=2',
+      'Sara',
+      '1h',
+      RatingWidget(rating: 4.8),
+      'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+      true
+  ),
+  CommentData(
+      'https://i.pravatar.cc/150?img=3',
+      'Omar',
+      '10m',
+      RatingWidget(rating: 2.2),
+      'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+      true
+  ),
+  CommentData(
+      'https://i.pravatar.cc/150?img=3',
+      'Omar',
+      '10m',
+      RatingWidget(rating: 2.2),
+      'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+      true
+  ),
+  CommentData(
+      'https://i.pravatar.cc/150?img=3',
+      'Omar',
+      '10m',
+      RatingWidget(rating: 2.2),
+      'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+      true
+  ),
+];
+
+final placeCont = PlaceContent(
+  maxTemp: 25,
+  minTemp: 15,
+  numOfPosts: 200,
+  gateTitle: "Tourism to Egypt",
+  gateDesc:
+  "It is a long-established fact that the readable content of a page will distract the reader from focusing.",
+  friendsImages: [
+    'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+    'https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg',
+    'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+  ],
+  numOfFriends: 200,
+);
+final placeInfo = PlaceInfoModel(
+  gateName: "Egypt Gate",
+  placeContent: placeCont,
+);
+final eventPosts = [
+  EventPostsData(
+    imageUrl:
+    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+    username: "Habiba",
+    title: "Morning Run",
+    date: "Dec 2, 7AM",
+    postImage:
+    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+    rate: 4.8,
+  ),
+  EventPostsData(
+    imageUrl:
+    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+    username: "Habiba",
+    title: "Morning Run",
+    date: "Dec 2, 7AM",
+    postImage:
+    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+    rate: 4.8,
+  ),
+  EventPostsData(
+    imageUrl:
+    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+    username: "Habiba",
+    title: "Morning Run",
+    date: "Dec 2, 7AM",
+    postImage:
+    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+    rate: 4.8,
+  ),
+  EventPostsData(
+    imageUrl:
+    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+    username: "Habiba",
+    title: "Morning Run",
+    date: "Dec 2, 7AM",
+    postImage:
+    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+    rate: 4.8,
+  ),
+];
+
+
+class FollowerModel {
+  final String name;
+  final int points;
+  final bool isFollowing;
+  final Story story;
+
+  FollowerModel({
+    required this.name,
+    required this.points,
+    required this.isFollowing,
+    required this.story,
+  });
+}
+
+final List<FollowerModel> following = [
+  FollowerModel(
+    name: 'Adham Mohamed',
+    points: 100,
+    isFollowing: false,
+    story: Story(
+      imageUrl:
+      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+      isSeen: false,
+      data: '',
+    ),
+  ),
+  FollowerModel(
+    name: 'Habiba Elhadi',
+    points: 200,
+    isFollowing: true,
+    story: Story(
+      imageUrl:
+      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+      isSeen: false,
+      data: '',
+    ),
+  ),
+  FollowerModel(
+    name: 'Nourhan Essam',
+    points: 300,
+    isFollowing: false,
+    story: Story(
+      imageUrl:
+      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+      isSeen: false,
+      data: '',
+    ),
+  ),
+  FollowerModel(
+    name: 'Nour Agami',
+    points: 400,
+    isFollowing: true,
+    story: Story(
+      imageUrl:
+      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+      isSeen: false,
+      data: '',
+    ),
+  ),
+];
+
+final List<FollowerModel> followers = [
+  FollowerModel(
+    name: 'Bahaa Mahmoud Elsady',
+    points: 535,
+    isFollowing: false,
+    story: Story(
+      imageUrl:
+      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+      isSeen: false,
+      data: '',
+    ),
+  ),
+  FollowerModel(
+    name: 'Ahmed Mohamed',
+    points: 320,
+    isFollowing: true,
+    story: Story(
+      imageUrl:
+      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+      isSeen: true,
+      data: '',
+    ),
+  ),
+  FollowerModel(
+    name: 'Lina Adel',
+    points: 150,
+    isFollowing: false,
+    story: Story(
+      imageUrl:
+      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+      isSeen: true,
+      data: '',
+    ),
+  ),
+  FollowerModel(
+    name: 'Dana Saeed',
+    points: 200,
+    isFollowing: true,
+    story: Story(
+      imageUrl:
+      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+      isSeen: true,
+      data: '',
+    ),
+  ),
+  FollowerModel(
+    name: 'Basem Hany',
+    points: 50,
+    isFollowing: false,
+    story: Story(
+      imageUrl:
+      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+      isSeen: true,
+      data: '',
+    ),
+  ),
+  FollowerModel(
+    name: 'Mira Hany',
+    points: 200,
+    isFollowing: true,
+    story: Story(
+      imageUrl:
+      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+      isSeen: true,
+      data: '',
+    ),
+  ),
+  FollowerModel(
+    name: 'Hamad Yassin',
+    points: 250,
+    isFollowing: false,
+    story: Story(
+      imageUrl:
+      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+      isSeen: true,
+      data: '',
+    ),
+  ),
+  FollowerModel(
+    name: 'Hamad Minshawy',
+    points: 300,
+    isFollowing: true,
+    story: Story(
+      imageUrl:
+      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+      isSeen: true,
+      data: '',
+    ),
+  ),
+];
+
 final GoRouter router = GoRouter(
   initialLocation: AppRoutes.splash,
   routes: [
@@ -293,6 +631,14 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.onboarding,
       builder: (context, state) => const OnboardingScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.welcome,
+      builder: (context, state) => const WelcomeAuthScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.signUp,
+      builder: (context, state) => const SignUpScreen(),
     ),
     GoRoute(
       path: AppRoutes.signIn,
@@ -308,11 +654,11 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.chooseGates,
-      builder: (context, state) => ChooseGatesScreen(),
+      builder: (context, state) => const ChooseGatesScreen(),
     ),
     GoRoute(
-      path: AppRoutes.home,
-      builder: (context, state) => HomeScreen(stories: stories, postData: postData, activities: activities),
+      path: AppRoutes.story,
+      builder: (context, state) => StoryScreen(stories: stories),
     ),
     GoRoute(
       path: AppRoutes.video,
@@ -320,6 +666,22 @@ final GoRouter router = GoRouter(
         final postData = state.extra as PostData;
         return VideoAndArticlesScreen(postData: postData);
       },
+    ),
+    GoRoute(
+      path: AppRoutes.gateDetails,
+      builder: (context, state) => PlaceDetailsScreen(placeInfo: placeInfo,posts: eventPosts,),
+    ),
+    GoRoute(
+      path: AppRoutes.followersList,
+      builder: (context, state) => FollowersListScreen(following: following, followers: followers),
+    ),
+    GoRoute(
+      path: AppRoutes.profileSettings,
+      builder: (context, state) => ProfileSettingsScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.settingsContact,
+      builder: (context, state) => SettingsContactScreen(),
     ),
     GoRoute(
       path: '/post/:id', // <-- deep link route
@@ -335,6 +697,40 @@ final GoRouter router = GoRouter(
 
         return VideoAndArticlesScreen(postData: post);
       },
+    ),
+
+    // ShellRoute for main screens with bottom nav
+    ShellRoute(
+      builder: (context, state, child) {
+        return Scaffold(
+          body: child, // display the selected tab screen
+          bottomNavigationBar: const CustomBottomNavigationBar(),
+        );
+      },
+      routes: [
+        GoRoute(
+          path: AppRoutes.home,
+          builder: (context, state) =>
+              HomeScreen(stories: stories, postData: postData, activities: activities),
+        ),
+        GoRoute(
+          path: AppRoutes.map, // you can define a route for your map screen
+          builder: (context, state) => MapScreen(
+            items: items,
+            onMarkerTab: (item) {
+              openMapItemBottomSheet(context, item);
+            },
+          ),
+        ),
+        GoRoute(
+          path: AppRoutes.gates,
+          builder: (context, state) => GatesScreen(gates: gates),
+        ),
+        GoRoute(
+          path: AppRoutes.profile, // route for profile
+          builder: (context, state) => UserProfileScreen(activities: activities, postData: postData),
+        ),
+      ],
     ),
   ],
 );

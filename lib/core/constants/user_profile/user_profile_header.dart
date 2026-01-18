@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/constants/chat_button/chat_button.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
@@ -270,15 +272,25 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  statNumberColumn(
-                    widget.firstNumber,
-                    "يتابع",
-                    "assets/images/icons/people.png",
+                  GestureDetector(
+                    onTap: () {
+                      context.push(AppRoutes.followersList);
+                    },
+                    child: statNumberColumn(
+                      widget.firstNumber,
+                      "يتابع",
+                      "assets/images/icons/people.png",
+                    ),
                   ),
-                  statNumberColumn(
-                    widget.secondNumber,
-                    "يتابعه",
-                    "assets/images/icons/people.png",
+                  GestureDetector(
+                    onTap: () {
+                      context.push(AppRoutes.followersList);
+                    },
+                    child: statNumberColumn(
+                      widget.secondNumber,
+                      "يتابعه",
+                      "assets/images/icons/people.png",
+                    ),
                   ),
 
                   /// ===== POINTS (EXPANDABLE FOR MY PROFILE) =====
@@ -413,7 +425,7 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
                 color: AppColors.turnbullBlue,
                 width: 1.5.w,
               ),
-              onPressed: () {},
+              onPressed: () {context.push(AppRoutes.profileSettings);},
             ),
           ],
         ],

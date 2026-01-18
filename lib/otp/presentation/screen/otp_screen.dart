@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
@@ -46,7 +48,7 @@ class OtpScreen extends StatelessWidget {
 
           AppButton(
             text: 'Verify',
-            onPressed: () {},
+            onPressed: () {context.go(AppRoutes.home);},
             backgroundColor: AppColors.lightGreen,
             height: 36.h,
 

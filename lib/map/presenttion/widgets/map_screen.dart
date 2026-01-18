@@ -43,9 +43,6 @@ class MapItem {
   });
 }
 
-
-
-
 class MapScreen extends StatelessWidget {
   final List<MapItem> items;
   final void Function(MapItem item) onMarkerTab;

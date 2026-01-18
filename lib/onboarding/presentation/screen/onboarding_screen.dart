@@ -63,7 +63,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _next() {
-    if (_isLast) context.go(AppRoutes.chooseGates);
+    if (_isLast) context.go(AppRoutes.welcome);
     _controller.nextPage(
       duration: const Duration(milliseconds: 280),
       curve: Curves.easeOut,
@@ -101,7 +101,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     children: [
                       InkWell(
                         onTap: () {
-                          context.go(AppRoutes.chooseGates);
+                          context.go(AppRoutes.welcome);
                         },
                         child: Text(
                           'Skip',

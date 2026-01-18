@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/constants/post/post.dart';
 import 'package:traveller/core/constants/story_item/story_item.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
@@ -151,7 +153,7 @@ class _StoryList extends StatelessWidget{
               imageUrl: story.imageUrl,
               username: story.username,
               isSeen: story.isSeen,
-              onTap: () {  },
+              onTap: () { context.push(AppRoutes.story); },
             ),
           );
         }

@@ -123,80 +123,82 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
     final isVideo = _isVideo(widget.stories[currentIndex].data);
     final image = isVideo ? null : widget.stories[currentIndex].data;
 
-    return Stack(
-      children: [
-        Positioned.fill(
-          child: _buildBackground(
-            key: ValueKey(_videoController),
-            data: image,
-            controller: _videoController,
+    return Scaffold(
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: _buildBackground(
+              key: ValueKey(_videoController),
+              data: image,
+              controller: _videoController,
+            ),
           ),
-        ),
-        Positioned.fill(
-          child: Container(
-            color: AppColors.black.withOpacity(0.3),
+          Positioned.fill(
+            child: Container(
+              color: AppColors.black.withOpacity(0.3),
+            ),
           ),
-        ),
-        SafeArea(
-          child: Column(
-            children: [
-              StoryHeader(
-                imageUrl: widget.stories[currentIndex].imageUrl,
-                username: widget.stories[currentIndex].username!,
-                location: "Cairo, Egypt",
-              ),
-              StoryDivider(
-                storyNumbers: widget.stories.length,
-                currentIndex: currentIndex,
-                progress: _progress.value,
-              ),
-              const Spacer(),
-              Column(
-                children: [
-                  Image.asset("assets/images/icons/logo.png"),
-                  SizedBox(height: 10.h),
-                  StoryBottomBar(),
-                ],
-              ),
-            ],
-          ),
-        ),
-
-        // Overlay taps + hold
-        Positioned.fill(
-          child: GestureDetector(
-            behavior: HitTestBehavior.translucent,
-
-            onLongPressStart: (_) => _pauseStory(),
-            onLongPressEnd: (_) => _resumeStory(),
-
-            child: Row(
+          SafeArea(
+            child: Column(
               children: [
-                // Left half → previous story
-                Expanded(
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: () {
-                      if (currentIndex > 0) {
-                        setState(() => currentIndex--);
-                        _loadStory();
-                      }
-                    },
-                  ),
+                StoryHeader(
+                  imageUrl: widget.stories[currentIndex].imageUrl,
+                  username: widget.stories[currentIndex].username!,
+                  location: "Cairo, Egypt",
                 ),
-
-                // Right half → next story
-                Expanded(
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: _nextStory,
-                  ),
+                StoryDivider(
+                  storyNumbers: widget.stories.length,
+                  currentIndex: currentIndex,
+                  progress: _progress.value,
+                ),
+                const Spacer(),
+                Column(
+                  children: [
+                    Image.asset("assets/images/icons/logo.png"),
+                    SizedBox(height: 10.h),
+                    StoryBottomBar(),
+                  ],
                 ),
               ],
             ),
           ),
-        ),
-      ],
+      
+          // Overlay taps + hold
+          Positioned.fill(
+            child: GestureDetector(
+              behavior: HitTestBehavior.translucent,
+      
+              onLongPressStart: (_) => _pauseStory(),
+              onLongPressEnd: (_) => _resumeStory(),
+      
+              child: Row(
+                children: [
+                  // Left half → previous story
+                  Expanded(
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: () {
+                        if (currentIndex > 0) {
+                          setState(() => currentIndex--);
+                          _loadStory();
+                        }
+                      },
+                    ),
+                  ),
+      
+                  // Right half → next story
+                  Expanded(
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: _nextStory,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -17,41 +17,45 @@ class FollowersListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Column(
-        children: [
-          // ===== Tabs =====
-          Container(
-            padding: EdgeInsets.all(12.r),
-            child: TabBar(
-              indicator: UnderlineTabIndicator(
-                borderSide: BorderSide(
-                  color: AppColors.turnbullBlue,
-                  width: 3.h,
+    return Scaffold(
+      body: SafeArea(
+        child: DefaultTabController(
+          length: 2,
+          child: Column(
+            children: [
+              // ===== Tabs =====
+              Container(
+                padding: EdgeInsets.all(12.r),
+                child: TabBar(
+                  indicator: UnderlineTabIndicator(
+                    borderSide: BorderSide(
+                      color: AppColors.turnbullBlue,
+                      width: 3.h,
+                    ),
+                  ),
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  labelColor: AppColors.turnbullBlue,
+                  unselectedLabelColor: Colors.grey,
+                  labelStyle: AppTextStyles.title.copyWith(fontSize: 16.sp),
+                  tabs: const [
+                    Tab(text: 'Following'),
+                    Tab(text: 'Followers'),
+                  ],
                 ),
               ),
-              indicatorSize: TabBarIndicatorSize.tab,
-              labelColor: AppColors.turnbullBlue,
-              unselectedLabelColor: Colors.grey,
-              labelStyle: AppTextStyles.title.copyWith(fontSize: 16.sp),
-              tabs: const [
-                Tab(text: 'Following'),
-                Tab(text: 'Followers'),
-              ],
-            ),
-          ),
 
-          // ===== Expandable Tab Views =====
-          Expanded(
-            child: TabBarView(
-              children: [
-                scrollableSearchAndFollowersList(following),
-                scrollableSearchAndFollowersList(followers),
-              ],
-            ),
+              // ===== Expandable Tab Views =====
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    scrollableSearchAndFollowersList(following),
+                    scrollableSearchAndFollowersList(followers),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

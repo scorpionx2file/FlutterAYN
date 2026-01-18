@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/constants/auth/auth_screen_bg.dart';
 import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/constants/text_feild/app_text_feild.dart';
@@ -69,14 +71,29 @@ class SignUpScreen extends StatelessWidget {
               keyboardType: TextInputType.visiblePassword,
               obscureText: true,
             ),
-
+            SizedBox(height: 2.h,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    context.go(AppRoutes.forgetPassword);
+                  },
+                  child: Text(
+                    "Forget password ?",
+                    style: AppTextStyles.description.copyWith(
+                      color: AppColors.strongGrey,
+                    ),
+                  ),
+                ),
+              ],
+            ),
             SizedBox(height: 38.h),
-
             SizedBox(
               width: double.infinity,
               child: AppButton(
-                text: "Sign Up",
-                onPressed: () {},
+                text: "Login",
+                onPressed: () {context.go(AppRoutes.home);},
                 height: 36.h,
                 backgroundColor: AppColors.turnbullBlue,
               ),

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/constants/auth/auth_screen_bg.dart';
 import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/constants/text_feild/app_text_feild.dart';
@@ -22,7 +24,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
     return AuthScreenBg(
       bottom: SizedBox(
         width: double.infinity,
-        child: AppButton(text: "Send", onPressed: () {}, height: 36.h),
+        child: AppButton(text: "Send", onPressed: () {context.go(AppRoutes.otp);}, height: 36.h),
       ),
       child: Align(
         alignment: Alignment.centerLeft,
