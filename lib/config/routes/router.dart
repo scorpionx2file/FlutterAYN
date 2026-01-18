@@ -5,10 +5,9 @@ import 'package:traveller/auth/presentation/screen/forget_password_screen.dart';
 import 'package:traveller/auth/presentation/screen/sign_in_screen.dart';
 import 'package:traveller/auth/presentation/screen/sign_up_screen.dart';
 import 'package:traveller/auth/presentation/screen/welcome_auth_screen.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import 'package:traveller/event_option/presentation/widgets/place_details_screen.dart';
 import 'package:traveller/followers_list/presentation/widgets/followers_list_screen.dart';
-import 'package:traveller/gates/presentation/widgets/gates_screen.dart';
-import 'package:traveller/home/presentation/widgets/home_screen.dart';
 import 'package:traveller/onboarding/presentation/screen/onboarding_screen.dart';
 import 'package:traveller/otp/presentation/screen/otp_screen.dart';
 import 'package:traveller/profile_settings/presentation/widgets/profile_settings_screen.dart';
@@ -31,7 +30,8 @@ import '../../core/theme/colors/app_colors.dart';
 import '../../core/utils/map_bottom_sheet_util.dart';
 import '../../core/utils/post_utils.dart';
 import '../../event_option/presentation/widgets/content_section/content_section.dart';
-import '../../main.dart';
+import '../../gates/presentation/screens/gates_screen.dart';
+import '../../home/presentation/screens/home_screen.dart';
 import '../../map/presenttion/widgets/map_screen.dart';
 import 'app_routes.dart';
 import 'package:flutter/material.dart';
@@ -690,8 +690,8 @@ final GoRouter router = GoRouter(
         final post = findPostById(postId);
 
         if (post == null) {
-          return const Scaffold(
-            body: Center(child: Text('Post not found')),
+          return Scaffold(
+            body: Center(child: Text(context.l10n.postNotFound)),
           );
         }
 

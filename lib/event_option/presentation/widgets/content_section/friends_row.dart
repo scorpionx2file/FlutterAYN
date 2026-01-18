@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import '../../../../core/constants/post/post_content/avatars_stack.dart';
 import '../../../../core/theme/colors/app_colors.dart';
@@ -23,7 +24,7 @@ class FriendsRow extends StatelessWidget{
         SizedBox(width: 8.w),
 
         Text(
-            "Friend $friendsNum ",
+            "${context.l10n.friend} $friendsNum ",
             style: AppTextStyles.description.copyWith(
               color: AppColors.white,
             )

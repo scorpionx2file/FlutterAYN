@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import '../story_item/story_item.dart';
 
@@ -58,7 +59,7 @@ class FollowersListTile extends StatelessWidget {
                 ),
                 SizedBox(height: 2.h),
                 Text(
-                  '$points Points',
+                  '$points ${context.l10n.points}',
                   style: AppTextStyles.description.copyWith(
                     color: AppColors.strongGrey,
                   ),

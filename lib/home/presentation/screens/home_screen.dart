@@ -5,6 +5,7 @@ import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/constants/post/post.dart';
 import 'package:traveller/core/constants/story_item/story_item.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../../core/constants/activity_card/activity_card.dart';
 import '../../../core/constants/activity_card/activity_carousel.dart';
 import '../../../core/constants/report/report_bottom_sheet.dart';
@@ -37,8 +38,8 @@ class HomeScreen extends StatelessWidget{
       
           SliverToBoxAdapter(
             child: _SectionHeader(
-                title: "Activities",
-                actionText: "See all",
+                title: context.l10n.activities,
+                actionText: context.l10n.seeAll,
                 isPostTitle: false
             ),
           ),
@@ -52,8 +53,8 @@ class HomeScreen extends StatelessWidget{
       
           SliverToBoxAdapter(
             child: _SectionHeader(
-                title: "Recent Posts",
-                actionText: "Location"
+                title: context.l10n.recentPosts,
+                actionText: context.l10n.location
             ),
           ),
       

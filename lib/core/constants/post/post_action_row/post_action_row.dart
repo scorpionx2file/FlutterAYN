@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:traveller/core/theme/colors/app_colors.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import 'action_button.dart';
 
@@ -25,7 +26,7 @@ class PostActionsRow extends StatelessWidget {
             Expanded(
               child: ActionButton(
                 icon: 'assets/images/icons/share.png',
-                label: 'Share',
+                label: context.l10n.share,
                 onTap: onShareTap,
               ),
             ),
@@ -39,7 +40,7 @@ class PostActionsRow extends StatelessWidget {
             Expanded(
               child: ActionButton(
                 icon: 'assets/images/icons/comment.png',
-                label: 'Comment',
+                label: context.l10n.comment,
                 onTap: onCommentTap,
               ),
             ),

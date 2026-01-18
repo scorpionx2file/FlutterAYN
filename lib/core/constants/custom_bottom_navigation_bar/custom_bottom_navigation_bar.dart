@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../theme/colors/app_colors.dart';
 
@@ -32,11 +33,11 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                bottomNavigationItem(0, Icons.home, "Home"),
-                bottomNavigationItem(1, Icons.public, "Map"),
+                bottomNavigationItem(0, Icons.home, context.l10n.home),
+                bottomNavigationItem(1, Icons.public, context.l10n.map),
                 SizedBox(width: 40.w),
-                bottomNavigationItem(2, Icons.storefront, "Gates"),
-                bottomNavigationItem(3, Icons.person, "Profile"),
+                bottomNavigationItem(2, Icons.storefront, context.l10n.gates),
+                bottomNavigationItem(3, Icons.person, context.l10n.profile),
               ],
             ),
           ),
@@ -55,7 +56,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   child: Icon(Icons.add, color: Colors.white, size: 26.r),
                 ),
                 Text(
-                  "Add",
+                  context.l10n.add,
                   style: AppTextStyles.smallText.copyWith(
                     color: AppColors.turnbullBlue,
                     fontWeight: FontWeight.bold,

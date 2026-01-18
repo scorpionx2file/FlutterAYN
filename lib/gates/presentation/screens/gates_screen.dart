@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import '../../../core/constants/gate/app_gate_card.dart';
 import '../../../core/constants/text_feild/app_text_feild.dart';
@@ -41,7 +42,7 @@ class GatesScreen extends StatelessWidget{
             padding: const EdgeInsets.all(8),
             child: AppTextFields(
              controller: controller,
-             hintText: "Search a gate...",
+             hintText: context.l10n.searchGateHint,
              icon: Icons.search,
              iconColor: AppColors.black,
             ),
@@ -76,7 +77,7 @@ class _GatesHeader extends StatelessWidget{
         Expanded(
             child: Center(
               child: Text(
-                "Gates",
+                context.l10n.gates,
                 style: AppTextStyles.text.copyWith(
                   fontWeight: FontWeight.bold,
                 )

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import '../../../../core/theme/fonts/app_text_styles.dart';
 
@@ -15,15 +16,13 @@ class _BottomSectionTabsState extends State<BottomSectionTabs> {
   int selectedIndex = 0;
   final double startOffset = 5;
 
-
-  final List<String> tabs = [
-    "Posts",
-    "Activities",
-    "Services ",
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<String> tabs = [
+      context.l10n.posts,
+      context.l10n.activities,
+      context.l10n.services,
+    ];
     return Column(
       children: [
         // ===== TABS =====

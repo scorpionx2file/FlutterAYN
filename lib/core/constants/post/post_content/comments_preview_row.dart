@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import 'avatars_stack.dart';
 
@@ -30,7 +31,7 @@ class CommentsPreviewRow extends StatelessWidget {
           GestureDetector(
             onTap: onCommentsTap,
             child: Text(
-                "$commentsCountText comments",
+                "$commentsCountText ${context.l10n.comments}",
                 style: TextStyle(
                   fontSize: 12.sp,
                   color: AppColors.spanishGrey,

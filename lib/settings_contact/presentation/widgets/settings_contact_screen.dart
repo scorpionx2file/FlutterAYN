@@ -5,6 +5,7 @@ import 'package:traveller/core/constants/profile_settings/profile_settings_heade
 import 'package:traveller/core/constants/text_feild/app_text_feild.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import 'contact_message_textarea.dart';
 
@@ -30,7 +31,7 @@ class SettingsContactScreen extends StatelessWidget {
                   ),
                   SizedBox(width: 6.w),
                   Text(
-                    "Contact Technical Support",
+                    context.l10n.contactTechnicalSupport,
                     style: AppTextStyles.titles.copyWith(
                       color: AppColors.turnbullBlue,
                       fontWeight: FontWeight.bold,
@@ -54,7 +55,7 @@ class SettingsContactScreen extends StatelessWidget {
               SizedBox(height: 16.h),
 
               Text(
-                "Mobile Number",
+                context.l10n.mobileNumber,
                 style: AppTextStyles.titles.copyWith(
                   color: AppColors.turnbullBlue,
                   fontWeight: FontWeight.bold,
@@ -68,7 +69,7 @@ class SettingsContactScreen extends StatelessWidget {
               SizedBox(height: 8.h),
 
               Text(
-                "Your Message",
+                context.l10n.yourMessage,
                 style: AppTextStyles.titles.copyWith(
                   color: AppColors.turnbullBlue,
                   fontWeight: FontWeight.bold,
@@ -82,7 +83,7 @@ class SettingsContactScreen extends StatelessWidget {
               SizedBox(height: 24.h),
 
               AppButton(
-                text: "Send",
+                text: context.l10n.send,
                 onPressed: () {},
                 height: 32.h,
                 width: 290.w,

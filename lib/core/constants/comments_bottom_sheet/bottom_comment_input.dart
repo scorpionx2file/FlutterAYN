@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../theme/colors/app_colors.dart';
 import '../../theme/fonts/app_text_styles.dart';
 
@@ -27,7 +27,7 @@ class BottomCommentInput extends StatelessWidget {
               focusNode: focusNode,
               maxLines: null,
               decoration: InputDecoration(
-                hintText: "Write a comment...",
+                hintText: context.l10n.writeCommentHint,
                 filled: true,
                 fillColor: AppColors.white,
                 border: OutlineInputBorder(

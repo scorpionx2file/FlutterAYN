@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../theme/colors/app_colors.dart';
 import '../../theme/fonts/app_text_styles.dart';
 import '../comment/comment_item.dart';
@@ -64,7 +64,7 @@ class CommentsBottomSheetState extends State<CommentsBottomSheet> {
             SizedBox(height: 12.h),
 
             Text(
-              "Comments",
+              context.l10n.comments,
               style: AppTextStyles.title,
             ),
 

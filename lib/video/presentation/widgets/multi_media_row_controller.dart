@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import '../../../core/constants/category_badge/category_badge.dart';
 import '../../../core/theme/colors/app_colors.dart';
@@ -31,7 +32,7 @@ class MultiMediaRowController extends StatelessWidget {
         const Spacer(),
 
         _navTextButton(
-          label: 'Previous',
+          label: context.l10n.previous,
           icon: Icons.arrow_back,
           onTap: onPrevious,
         ),
@@ -48,7 +49,7 @@ class MultiMediaRowController extends StatelessWidget {
         SizedBox(width: 4.w),
 
         _navTextButton(
-          label: 'next',
+          label: context.l10n.next,
           icon: Icons.arrow_forward,
           isForward: true,
           onTap: onNext,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import '../../../core/theme/colors/app_colors.dart';
 import '../../../core/theme/fonts/app_text_styles.dart';
@@ -19,7 +20,7 @@ class _MapSearchBarState extends State<MapSearchBar> {
       borderRadius: BorderRadius.circular(12.r),
       child: TextField(
         decoration: InputDecoration(
-          hintText: 'Search location...',
+          hintText: context.l10n.searchLocationHint,
           hintStyle: AppTextStyles.description.copyWith(
             color: AppColors.strongGrey,
           ),

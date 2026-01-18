@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../theme/fonts/app_text_styles.dart';
 
 class ChatButton extends StatelessWidget{
@@ -43,7 +44,7 @@ class ChatButton extends StatelessWidget{
                 ),
                 SizedBox(width: 5.w),
                 Text(
-                    "Chat",
+                    context.l10n.chat,
                   style: AppTextStyles.button,
                 )
               ],
