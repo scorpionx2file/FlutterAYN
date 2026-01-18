@@ -134,8 +134,8 @@ class _PostState extends State<Post> {
               onTap:(){
                 final location = GoRouterState.of(context).uri;
 
-                if(location.path != AppRoutes.Video){
-                  context.push(AppRoutes.Video,
+                if(location.path != AppRoutes.video){
+                  context.push(AppRoutes.video,
                       extra: PostData(
                           headerData: widget.headerData,
                           contentData: widget.contentData

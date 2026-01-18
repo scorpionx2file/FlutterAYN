@@ -22,59 +22,61 @@ class HomeScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: _HomeTopBar(),
-        ),
-
-        SliverToBoxAdapter(
-          child: _StoryList(stories: stories),
-        ),
-
-        SliverToBoxAdapter(
-          child: _SectionHeader(
-              title: "Activities",
-              actionText: "See all",
-              isPostTitle: false
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: _HomeTopBar(),
           ),
-        ),
-
-        SliverToBoxAdapter(
-          child: ActivityCarousel(
-            activities: activities,
-            isYellow: true,
+      
+          SliverToBoxAdapter(
+            child: _StoryList(stories: stories),
           ),
-        ),
-
-        SliverToBoxAdapter(
-          child: _SectionHeader(
-              title: "Recent Posts",
-              actionText: "Location"
+      
+          SliverToBoxAdapter(
+            child: _SectionHeader(
+                title: "Activities",
+                actionText: "See all",
+                isPostTitle: false
+            ),
           ),
-        ),
-
-        SliverList(
-            delegate: SliverChildBuilderDelegate(
-                (context, index) => Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.h),
-                  child: Post(
-                      headerData: postData[index].headerData,
-                      contentData: postData[index].contentData,
-                      onShareTap: (){},
-                      onMoreTap: (){
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) => const ReportBottomSheet(),
-                        );
-                      },
-                      isVideoScreen: false,
+      
+          SliverToBoxAdapter(
+            child: ActivityCarousel(
+              activities: activities,
+              isYellow: true,
+            ),
+          ),
+      
+          SliverToBoxAdapter(
+            child: _SectionHeader(
+                title: "Recent Posts",
+                actionText: "Location"
+            ),
+          ),
+      
+          SliverList(
+              delegate: SliverChildBuilderDelegate(
+                  (context, index) => Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8.h),
+                    child: Post(
+                        headerData: postData[index].headerData,
+                        contentData: postData[index].contentData,
+                        onShareTap: (){},
+                        onMoreTap: (){
+                          showModalBottomSheet(
+                            context: context,
+                            builder: (context) => const ReportBottomSheet(),
+                          );
+                        },
+                        isVideoScreen: false,
+                    ),
                   ),
-                ),
-              childCount: postData.length,
-            )
-        ),
-      ]
+                childCount: postData.length,
+              )
+          ),
+        ]
+      ),
     );
   }
 }

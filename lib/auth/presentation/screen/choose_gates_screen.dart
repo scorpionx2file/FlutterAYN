@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:traveller/auth/presentation/screen/sign_in_screen.dart';
+import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
@@ -85,9 +87,7 @@ class _ChooseGatesScreenState extends State<ChooseGatesScreen> {
       return;
     }
 
-    Navigator.of(
-      context,
-    ).push(MaterialPageRoute(builder: (_) => const SignInScreen()));
+    context.push(AppRoutes.signIn);
   }
 
   @override

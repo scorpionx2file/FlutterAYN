@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
@@ -61,7 +63,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _next() {
-    if (_isLast) return;
+    if (_isLast) context.go(AppRoutes.chooseGates);
     _controller.nextPage(
       duration: const Duration(milliseconds: 280),
       curve: Curves.easeOut,
@@ -98,7 +100,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: Row(
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          context.go(AppRoutes.chooseGates);
+                        },
                         child: Text(
                           'Skip',
                           style: AppTextStyles.titles.copyWith(

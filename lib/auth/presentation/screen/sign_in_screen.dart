@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/constants/text_feild/app_text_feild.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
@@ -23,7 +25,7 @@ class SignInScreen extends StatelessWidget {
           padding: EdgeInsets.fromLTRB(18.w, 10.h, 18.w, 12.h),
           child: SizedBox(
             width: double.infinity,
-            child: AppButton(text: "Next", onPressed: () {}, height: 38.h),
+            child: AppButton(text: "Next", onPressed: () {context.go(AppRoutes.home);}, height: 38.h),
           ),
         ),
       ),
