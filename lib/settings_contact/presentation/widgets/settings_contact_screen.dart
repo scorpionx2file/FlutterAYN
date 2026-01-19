@@ -15,8 +15,14 @@ class SettingsContactScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          context.l10n.settings,
+          style: AppTextStyles.titles.copyWith(fontWeight: FontWeight.bold),
+        ),
+      ),
+      body: Padding(
           padding: EdgeInsetsGeometry.symmetric(horizontal: 16.w,vertical: 8.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,7 +99,6 @@ class SettingsContactScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }

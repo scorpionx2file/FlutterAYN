@@ -28,28 +28,28 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
     final l10n = context.l10n;
 
     return Scaffold(
-      body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.w),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      l10n.logout,
-                      style: AppTextStyles.text.copyWith(
-                        color: AppColors.lebaneseRed,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+      appBar: AppBar(
+      centerTitle: true,
+      title: Text(
+        context.l10n.settings,
+        style: AppTextStyles.titles.copyWith(fontWeight: FontWeight.bold),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {},
+          child: Text(
+            l10n.logout,
+            style: AppTextStyles.text.copyWith(
+              color: AppColors.lebaneseRed,
+              fontWeight: FontWeight.bold,
             ),
-
+          ),
+        ),
+        SizedBox(width: 8.w),
+      ],
+    ),
+    body: CustomScrollView(
+          slivers: [
             SliverToBoxAdapter(
               child: ProfileSettingsHeader(
                 name: "Adham Mohamed",
@@ -79,7 +79,11 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
 
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.place, size: 24.r, color: AppColors.strongGrey),
+                icon: Icon(
+                  Icons.place,
+                  size: 24.r,
+                  color: AppColors.strongGrey,
+                ),
                 title: l10n.favouriteGates,
                 hasPermission: false,
                 onTap: () {},
@@ -87,7 +91,11 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.notifications, size: 24.r, color: AppColors.strongGrey),
+                icon: Icon(
+                  Icons.notifications,
+                  size: 24.r,
+                  color: AppColors.strongGrey,
+                ),
                 title: l10n.notifications,
                 hasPermission: false,
                 onTap: () {},
@@ -95,7 +103,11 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.language, size: 24.r, color: AppColors.strongGrey),
+                icon: Icon(
+                  Icons.language,
+                  size: 24.r,
+                  color: AppColors.strongGrey,
+                ),
                 title: l10n.language,
                 hasPermission: true,
                 trailing: ProfileSettingsTileSegmentedToggle(
@@ -110,7 +122,11 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.remove_red_eye, size: 24.r, color: AppColors.strongGrey),
+                icon: Icon(
+                  Icons.remove_red_eye,
+                  size: 24.r,
+                  color: AppColors.strongGrey,
+                ),
                 title: l10n.status,
                 hasPermission: true,
                 trailing: ProfileSettingsTileSegmentedToggle(
@@ -125,7 +141,11 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.my_location_sharp, size: 24.r, color: AppColors.strongGrey),
+                icon: Icon(
+                  Icons.my_location_sharp,
+                  size: 24.r,
+                  color: AppColors.strongGrey,
+                ),
                 title: l10n.location,
                 hasPermission: true,
                 trailing: ProfileSettingsTileSegmentedToggle(
@@ -156,7 +176,11 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
 
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.email, size: 24.r, color: AppColors.strongGrey),
+                icon: Icon(
+                  Icons.email,
+                  size: 24.r,
+                  color: AppColors.strongGrey,
+                ),
                 title: l10n.email,
                 hasPermission: false,
                 onTap: () {},
@@ -190,7 +214,11 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.phone_iphone, size: 24.r, color: AppColors.strongGrey),
+                icon: Icon(
+                  Icons.phone_iphone,
+                  size: 24.r,
+                  color: AppColors.strongGrey,
+                ),
                 title: l10n.mobileNumber,
                 hasPermission: false,
                 onTap: () {},
@@ -222,7 +250,11 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.payment, size: 24.r, color: AppColors.strongGrey),
+                icon: Icon(
+                  Icons.payment,
+                  size: 24.r,
+                  color: AppColors.strongGrey,
+                ),
                 title: l10n.paymentMethods,
                 hasPermission: false,
                 onTap: () {},
@@ -246,7 +278,11 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
 
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.privacy_tip, size: 24.r, color: AppColors.strongGrey),
+                icon: Icon(
+                  Icons.privacy_tip,
+                  size: 24.r,
+                  color: AppColors.strongGrey,
+                ),
                 title: l10n.privacyPolicy,
                 hasPermission: false,
                 onTap: () {},
@@ -254,7 +290,11 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.phone, size: 24.r, color: AppColors.strongGrey),
+                icon: Icon(
+                  Icons.phone,
+                  size: 24.r,
+                  color: AppColors.strongGrey,
+                ),
                 title: l10n.contactUs,
                 hasPermission: false,
                 onTap: () {
@@ -264,7 +304,11 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.question_mark, size: 24.r, color: AppColors.strongGrey),
+                icon: Icon(
+                  Icons.question_mark,
+                  size: 24.r,
+                  color: AppColors.strongGrey,
+                ),
                 title: l10n.aboutUs,
                 hasPermission: false,
                 onTap: () {},
@@ -300,7 +344,11 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
 
             SliverToBoxAdapter(
               child: ProfileSettingsTile(
-                icon: Icon(Icons.language, size: 24.r, color: AppColors.strongGrey),
+                icon: Icon(
+                  Icons.language,
+                  size: 24.r,
+                  color: AppColors.strongGrey,
+                ),
                 title: l10n.services,
                 hasPermission: true,
                 trailing: ProfileSettingsTileSegmentedToggle(
@@ -315,7 +363,6 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
           ],
         ),
-      ),
     );
   }
 }

@@ -80,11 +80,24 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
                 ),
               ),
 
+              PositionedDirectional(
+                top: 24.h,
+                start: 8.w, // start = left in LTR, right in RTL
+                child: IconButton(
+                  onPressed: () => context.pop(),
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: AppColors.white,
+                    size: 22.r,
+                  ),
+                ),
+              ),
+
               /// ===== TOP ACTIONS (MY PROFILE ONLY) =====
               if (widget.isMyProfile)
-                Positioned(
+                PositionedDirectional(
                   top: 28.h,
-                  left: 16.w,
+                  end: 16.w, // right in LTR, left in RTL
                   child: Row(
                     children: [
                       topHeaderIcon(
@@ -282,7 +295,7 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
                     },
                     child: statNumberColumn(
                       widget.firstNumber,
-                      context.l10n.followers,
+                      context.l10n.following,
                       "assets/images/icons/people.png",
                     ),
                   ),
@@ -292,7 +305,7 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
                     },
                     child: statNumberColumn(
                       widget.secondNumber,
-                      context.l10n.following,
+                      context.l10n.followers,
                       "assets/images/icons/people.png",
                     ),
                   ),

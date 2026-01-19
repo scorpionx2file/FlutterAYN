@@ -367,4 +367,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get memberSpecificEvents => 'فعاليات خاصة بالأعضاء';
+
+  @override
+  String get settings => 'الاعدادات';
 }

@@ -57,6 +57,7 @@ class ProfileSettingsHeader extends StatelessWidget {
                           _verificationIcon(),
                         ],
                         SizedBox(width: 6.w),
+
                         /// NAME
                         Text(
                           name,
@@ -97,8 +98,8 @@ class ProfileSettingsHeader extends StatelessWidget {
 
           /// ARROW
           if (isProfileSettings)
-            Positioned(
-              left: 8.w,
+            PositionedDirectional(
+              start: 8.w, // instead of left
               top: 0.h,
               bottom: 0.h,
               child: Center(

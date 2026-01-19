@@ -364,4 +364,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get memberSpecificEvents => 'Member-Specific Events';
+
+  @override
+  String get settings => 'Settings';
 }
