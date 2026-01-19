@@ -35,7 +35,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               children: [
                 bottomNavigationItem(0, Icons.home, context.l10n.home),
                 bottomNavigationItem(1, Icons.public, context.l10n.map),
-                SizedBox(width: 40.w),
+                SizedBox(width: 60.w),
                 bottomNavigationItem(2, Icons.storefront, context.l10n.gates),
                 bottomNavigationItem(3, Icons.person, context.l10n.profile),
               ],
@@ -73,28 +73,27 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   Widget bottomNavigationItem(int index, IconData icon, String title) {
     final bool isSelected = selectedIndex == index;
 
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          selectedIndex = index;
-        });
-        switch(index){
-          case 0:
-            context.go(AppRoutes.home);
-            break;
-          case 1:
-            context.go(AppRoutes.map);
-            break;
-          case 2:
-            context.go(AppRoutes.gates);
-            break;
-          case 3:
-            context.go(AppRoutes.profile);
-            break;
-        }
-      },
-      child: SizedBox(
-        width: 40.w, // fixed width to align indicator
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            selectedIndex = index;
+          });
+          switch(index){
+            case 0:
+              context.go(AppRoutes.home);
+              break;
+            case 1:
+              context.go(AppRoutes.map);
+              break;
+            case 2:
+              context.go(AppRoutes.gates);
+              break;
+            case 3:
+              context.go(AppRoutes.profile);
+              break;
+          }
+        },
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -130,6 +129,9 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   SizedBox(height: 4.h),
                   Text(
                     title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
                     style: AppTextStyles.smallText.copyWith(
                       color: isSelected
                           ? AppColors.turnbullBlue
@@ -146,6 +148,3 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     );
   }
 }
-
-
-
