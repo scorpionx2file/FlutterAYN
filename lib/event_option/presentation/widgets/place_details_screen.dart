@@ -61,14 +61,11 @@ class PlaceDetailsScreen extends StatelessWidget {
           // ===== HEADER =====
           Positioned(
             top: 30.h,
-            right: 15.w,
             child: HeaderSection(gateName: placeInfo.gateName),
           ),
 
           // ===== CONTENT OVER IMAGE =====
           Positioned(
-            left: 0,
-            right: 0,
             top: 150.h,
             child: ContentSection(placeContent: placeInfo.placeContent),
           ),
