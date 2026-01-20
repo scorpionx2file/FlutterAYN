@@ -166,6 +166,30 @@ final stories = [
     "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
   ),
 ];
+final stories2 = [
+  Story(
+    imageUrl:
+    'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+    username: "Jojo",
+    isSeen: false,
+    data:
+    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+  ),
+  Story(
+    imageUrl:
+    'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+    username: "Jojo",
+    isSeen: true,
+    data:
+    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+  ),
+];
+
+final allStories = [
+  stories,
+  stories2
+];
+
 final activities = [
   Activity(
     imageUrl:
@@ -658,7 +682,17 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.story,
-      builder: (context, state) => StoryScreen(stories: stories),
+      builder: (context, state) {
+        final extra = state.extra as Map<String, int>? ?? {};
+        final personIndex = extra["personIndex"] ?? 0;
+        final startStoryIndex = extra["startStoryIndex"] ?? 0;
+
+        return StoryScreen(
+          allStories: allStories,
+          personIndex: personIndex,
+          startStoryIndex: startStoryIndex,
+        );
+      },
     ),
     GoRoute(
       path: AppRoutes.video,

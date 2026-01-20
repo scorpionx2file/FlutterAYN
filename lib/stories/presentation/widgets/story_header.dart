@@ -7,12 +7,14 @@ class StoryHeader extends StatelessWidget{
   final String imageUrl;
   final String username;
   final String location;
+  final VoidCallback onTap;
 
   const StoryHeader({
     super.key,
     required this.imageUrl,
     required this.username,
     required this.location,
+    required this.onTap
   });
 
   @override
@@ -64,15 +66,18 @@ class StoryHeader extends StatelessWidget{
             size: 20.sp,
           ),
           SizedBox(width: 10.w),
-          Container(
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              Icons.close,
-              color: AppColors.black,
-              size: 20.sp,
+          GestureDetector(
+            onTap: onTap,
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.close,
+                color: AppColors.black,
+                size: 20.sp,
+              ),
             ),
           )
         ],

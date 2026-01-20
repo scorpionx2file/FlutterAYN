@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/stories/presentation/widgets/story_bottom_bar.dart';
 import 'package:traveller/stories/presentation/widgets/story_divider.dart';
 import 'package:traveller/stories/presentation/widgets/story_header.dart';
 import 'package:video_player/video_player.dart';
+import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/story_item/story_item.dart';
 
-
 class StoryScreen extends StatefulWidget {
-  final List<Story> stories;
+  final List<List<Story>> allStories;
+  final int personIndex;
+  final int startStoryIndex;
 
   const StoryScreen({
     super.key,
-    required this.stories,
+    required this.allStories,
+    required this.personIndex,
+    this.startStoryIndex = 0,
   });
 
   @override
@@ -22,9 +27,14 @@ class StoryScreen extends StatefulWidget {
 
 class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStateMixin{
   int currentIndex = 0;
+  late List<Story> stories;
+  final GlobalKey _headerKey = GlobalKey();
   late AnimationController _progressController;
   late Animation<double> _progress;
+  late int currentPersonIndex;
   VideoPlayerController? _videoController;
+  bool _isNavigating = false;
+  late final AnimationStatusListener _onAnimationComplete;
 
   bool _isVideo(String url) {
     return url.toLowerCase().endsWith('.mp4') ||
@@ -32,25 +42,35 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
         url.toLowerCase().endsWith('.webm');
   }
 
+  double get _headerHeight {
+    final box = _headerKey.currentContext?.findRenderObject() as RenderBox?;
+    return box?.size.height ?? 100.h;
+  }
+
   void _nextStory() {
-    if (currentIndex < widget.stories.length - 1) {
+    if (_isNavigating) return;
+
+    if (currentIndex < stories.length - 1) {
       setState(() => currentIndex++);
       _loadStory();
     } else {
-      Navigator.pop(context);
+      _nextPersonInternal();
     }
   }
 
-  Duration get _storyDuration {
-    final story = widget.stories[currentIndex];
-    if (_isVideo(story.data)) {
-      return _videoController?.value.duration ?? const Duration(seconds: 10);
+  void _goToPreviousStory() {
+    if (_isNavigating) return;
+
+    if (currentIndex > 0) {
+      setState(() => currentIndex--);
+      _loadStory();
+    } else {
+      _previousPersonInternal();
     }
-    return const Duration(seconds: 15);
   }
 
   Future<void> _loadStory() async {
-    final story = widget.stories[currentIndex];
+    final story = stories[currentIndex];
 
     _progressController.stop();
     _progressController.reset();
@@ -63,17 +83,17 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
 
     if (_isVideo(story.data)) {
       _videoController = VideoPlayerController.networkUrl(Uri.parse(story.data));
-
       await _videoController!.initialize();
 
       if (!mounted) return;
 
-      setState(() {});
+      final duration = _videoController!.value.duration;
+      _progressController.duration =
+      (duration.inMilliseconds > 0) ? duration : const Duration(seconds: 10);
 
+      setState(() {});
       await _videoController!.play();
-      _progressController.duration = _videoController!.value.duration;
-    }
-    else {
+    } else {
       _progressController.duration = const Duration(seconds: 15);
     }
 
@@ -92,20 +112,56 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
     _videoController?.play();
   }
 
+  void _nextPersonInternal() {
+    if (currentPersonIndex < widget.allStories.length - 1) {
+      setState(() {
+        currentPersonIndex++;
+        stories = widget.allStories[currentPersonIndex];
+        currentIndex = 0;
+        _isNavigating = false;
+      });
+      _loadStory();
+    } else {
+      context.go(AppRoutes.home);
+    }
+  }
+
+  void _previousPersonInternal() {
+    if (currentPersonIndex > 0) {
+      setState(() {
+        currentPersonIndex--;
+        stories = widget.allStories[currentPersonIndex];
+        currentIndex = stories.length - 1;
+        _isNavigating = false;
+      });
+      _loadStory();
+    } else {
+      context.go(AppRoutes.home);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
 
+    _isNavigating = false;
+    currentPersonIndex = widget.personIndex;
+    stories = widget.allStories[currentPersonIndex];
+    currentIndex = widget.startStoryIndex;
+
     _progressController = AnimationController(vsync: this);
+
+    _onAnimationComplete = (status) {
+      if (status == AnimationStatus.completed) {
+        _nextStory();
+      }
+    };
+
     _progress = Tween<double>(begin: 0, end: 1).animate(_progressController)
       ..addListener(() {
         if (mounted) setState(() {});
       })
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          _nextStory();
-        }
-      });
+      ..addStatusListener(_onAnimationComplete);
 
     _loadStory();
   }
@@ -120,12 +176,13 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
   @override
   Widget build(BuildContext context) {
 
-    final isVideo = _isVideo(widget.stories[currentIndex].data);
-    final image = isVideo ? null : widget.stories[currentIndex].data;
+    final isVideo = _isVideo(stories[currentIndex].data);
+    final image = isVideo ? null : stories[currentIndex].data;
 
     return Scaffold(
       body: Stack(
         children: [
+
           Positioned.fill(
             child: _buildBackground(
               key: ValueKey(_videoController),
@@ -133,21 +190,25 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
               controller: _videoController,
             ),
           ),
+
           Positioned.fill(
             child: Container(
               color: AppColors.black.withOpacity(0.3),
             ),
           ),
+
           SafeArea(
             child: Column(
               children: [
                 StoryHeader(
-                  imageUrl: widget.stories[currentIndex].imageUrl,
-                  username: widget.stories[currentIndex].username!,
+                  key: _headerKey,
+                  imageUrl: stories[currentIndex].imageUrl,
+                  username: stories[currentIndex].username!,
                   location: "Cairo, Egypt",
+                  onTap: () => context.go(AppRoutes.home),
                 ),
                 StoryDivider(
-                  storyNumbers: widget.stories.length,
+                  storyNumbers: stories.length,
                   currentIndex: currentIndex,
                   progress: _progress.value,
                 ),
@@ -162,31 +223,26 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
               ],
             ),
           ),
-      
-          // Overlay taps + hold
+
           Positioned.fill(
+            top: _headerHeight,
+            left: 0,
+            right: 0,
+            bottom: 0,
             child: GestureDetector(
               behavior: HitTestBehavior.translucent,
-      
+
               onLongPressStart: (_) => _pauseStory(),
               onLongPressEnd: (_) => _resumeStory(),
-      
+
               child: Row(
                 children: [
-                  // Left half → previous story
                   Expanded(
                     child: GestureDetector(
                       behavior: HitTestBehavior.translucent,
-                      onTap: () {
-                        if (currentIndex > 0) {
-                          setState(() => currentIndex--);
-                          _loadStory();
-                        }
-                      },
+                      onTap: _goToPreviousStory,
                     ),
                   ),
-      
-                  // Right half → next story
                   Expanded(
                     child: GestureDetector(
                       behavior: HitTestBehavior.translucent,
