@@ -29,7 +29,7 @@ class EventOptionsActivities extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 95.h,
+      height: 99.h,
       child: Container(
         padding: EdgeInsets.all(12.w),
         decoration: BoxDecoration(

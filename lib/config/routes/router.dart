@@ -5,6 +5,7 @@ import 'package:traveller/auth/presentation/screen/forget_password_screen.dart';
 import 'package:traveller/auth/presentation/screen/sign_in_screen.dart';
 import 'package:traveller/auth/presentation/screen/welcome_auth_screen.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
+import 'package:traveller/event_option/presentation/widgets/bottom_section/event_list.dart';
 import 'package:traveller/event_option/presentation/widgets/place_details_screen.dart';
 import 'package:traveller/followers_list/presentation/widgets/followers_list_screen.dart';
 import 'package:traveller/onboarding/presentation/screen/onboarding_screen.dart';
@@ -20,6 +21,7 @@ import '../../core/constants/activity_card/activity_card.dart';
 import '../../core/constants/comment/comment_item.dart';
 import '../../core/constants/comment/rating_widget.dart';
 import '../../core/constants/custom_bottom_navigation_bar/custom_bottom_navigation_bar.dart';
+import '../../core/constants/event_options/event_options_activities/event_options_activities.dart';
 import '../../core/constants/event_options/event_options_posts/event_options_posts.dart';
 import '../../core/constants/gate/app_gate_card.dart';
 import '../../core/constants/post/post.dart';
@@ -491,6 +493,65 @@ final eventPosts = [
     rate: 4.8,
   ),
 ];
+final eventActivities = [
+  EventActivitiesData(
+      imageUrl:"https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+      title: 'French International Tour',
+      date: '4 April',
+      category: 'Sport'
+  ),
+  EventActivitiesData(
+      imageUrl:"https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+      title: 'French International Tour',
+      date: '4 April',
+      category: 'Sport'
+  ),
+  EventActivitiesData(
+      imageUrl:"https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+      title: 'French International Tour',
+      date: '4 April',
+      category: 'Sport'
+  ),
+  EventActivitiesData(
+      imageUrl:"https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+      title: 'French International Tour',
+      date: '4 April',
+      category: 'Sport'
+  ),
+  EventActivitiesData(
+      imageUrl:"https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+      title: '',
+      date: '4 April',
+      category: 'Sport'
+  ),
+];
+final eventServiceProviders= [
+  ServiceProviderData(
+      data: headerData1,
+      location: 'Egypt',
+      language: 'English'
+  ),
+  ServiceProviderData(
+      data: headerData2,
+      location: 'Egypt',
+      language: 'English'
+  ),
+  ServiceProviderData(
+      data: headerData3,
+      location: 'Egypt',
+      language: 'English'
+  ),
+  ServiceProviderData(
+      data: headerData4,
+      location: 'Egypt',
+      language: 'English'
+  ),
+  ServiceProviderData(
+      data: headerData5,
+      location: 'Egypt',
+      language: 'English'
+  )
+];
 
 
 class FollowerModel {
@@ -506,7 +567,6 @@ class FollowerModel {
     required this.story,
   });
 }
-
 final List<FollowerModel> following = [
   FollowerModel(
     name: 'Adham Mohamed',
@@ -553,7 +613,6 @@ final List<FollowerModel> following = [
     ),
   ),
 ];
-
 final List<FollowerModel> followers = [
   FollowerModel(
     name: 'Bahaa Mahmoud Elsady',
@@ -703,7 +762,7 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.gateDetails,
-      builder: (context, state) => PlaceDetailsScreen(placeInfo: placeInfo,posts: eventPosts,),
+      builder: (context, state) => PlaceDetailsScreen(placeInfo: placeInfo,posts: eventPosts,activities: eventActivities,services: eventServiceProviders,),
     ),
     GoRoute(
       path: AppRoutes.followersList,

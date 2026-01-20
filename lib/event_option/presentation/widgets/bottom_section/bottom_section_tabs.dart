@@ -6,7 +6,9 @@ import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../../../core/theme/fonts/app_text_styles.dart';
 
 class BottomSectionTabs extends StatefulWidget {
-  const BottomSectionTabs({super.key});
+  final ValueChanged<int> onTabChanged;
+
+  const BottomSectionTabs({super.key, required this.onTabChanged});
 
   @override
   State<BottomSectionTabs> createState() => _BottomSectionTabsState();
@@ -15,6 +17,7 @@ class BottomSectionTabs extends StatefulWidget {
 class _BottomSectionTabsState extends State<BottomSectionTabs> {
   int selectedIndex = 0;
   final double startOffset = 5;
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +39,7 @@ class _BottomSectionTabsState extends State<BottomSectionTabs> {
                 setState(() {
                   selectedIndex = index;
                 });
+                widget.onTabChanged(index);
               },
               child: Text(
                 tabs[index],

@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:traveller/core/constants/event_options/event_options_activities/event_options_activities.dart';
 import 'package:traveller/event_option/presentation/widgets/bottom_section/bottom_section_tabs.dart';
 import 'package:traveller/event_option/presentation/widgets/bottom_section/event_list.dart';
 import 'package:traveller/event_option/presentation/widgets/content_section/content_section.dart';
@@ -19,13 +20,23 @@ class PlaceInfoModel{
   });
 }
 
-class PlaceDetailsScreen extends StatelessWidget {
+class PlaceDetailsScreen extends StatefulWidget {
   final PlaceInfoModel placeInfo;
   final List<EventPostsData> posts;
+  final List<EventActivitiesData> activities;
+  final List<ServiceProviderData> services;
+
 
   const PlaceDetailsScreen({
-    super.key, required this.placeInfo, required this.posts,
+    super.key, required this.placeInfo, required this.posts, required this.activities, required this.services,
   });
+  @override
+  State<PlaceDetailsScreen> createState() => _PlaceDetailsScreenState();
+
+}
+
+class _PlaceDetailsScreenState extends State<PlaceDetailsScreen> {
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +46,7 @@ class PlaceDetailsScreen extends StatelessWidget {
 
           // ===== IMAGE BACKGROUND =====
           SizedBox(
-            height: 1.sh,   // 👈 screen height
-            width: 1.sw,   // 👈 screen width
+            height: 1.sh,
             child: Image.network(
               "https://cdn.britannica.com/99/116199-050-FC94F813/Temple-of-Seti-I-Abydos-Egypt.jpg",
               fit: BoxFit.fill,
@@ -61,13 +71,13 @@ class PlaceDetailsScreen extends StatelessWidget {
           // ===== HEADER =====
           Positioned(
             top: 30.h,
-            child: HeaderSection(gateName: placeInfo.gateName),
+            child: HeaderSection(gateName: widget.placeInfo.gateName),
           ),
 
           // ===== CONTENT OVER IMAGE =====
           Positioned(
             top: 150.h,
-            child: ContentSection(placeContent: placeInfo.placeContent),
+            child: ContentSection(placeContent: widget.placeInfo.placeContent),
           ),
 
           // ===== WHITE SECTION OVER IMAGE =====
@@ -86,13 +96,21 @@ class PlaceDetailsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: 16.h),
-                  BottomSectionTabs(),
+                  BottomSectionTabs(
+                    onTabChanged: (index) {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                      debugPrint(selectedIndex.toString());
+                    },
+                  ),
                   SizedBox(height: 20.h),
                   Expanded(
                     child: SingleChildScrollView(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20.w),
-                        child: EventList(posts: posts),
+                        child: EventList(posts: widget.posts, activities: widget.activities,services: widget.services, selectedIndex: selectedIndex,
+                        ),
                       ),
                     ),
                   ),
@@ -104,8 +122,6 @@ class PlaceDetailsScreen extends StatelessWidget {
       ),
     );
   }
-
-
 }
 
 
