@@ -7,6 +7,7 @@ class AppColors {
   static const lebaneseRed = Color(0xffD9251B);
   static const pink = Color(0xffFFEAEA);
   static const darkYellow = Color(0xffFFCC00);
+  static const yellow = Color(0xfff8ab43);
   static const neonCoral = Color(0xffF85F43);
   static const violet = Color(0xffC42AF2);
   static const black = Color(0xff000000);

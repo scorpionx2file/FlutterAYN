@@ -796,8 +796,21 @@ final GoRouter router = GoRouter(
     ShellRoute(
       builder: (context, state, child) {
         return Scaffold(
-          body: child, // display the selected tab screen
-          bottomNavigationBar: const CustomBottomNavigationBar(),
+          extendBody: true,
+          body: Stack(
+            children: [
+              /// Main Screen
+              Positioned.fill(child: child),
+
+              /// Bottom Nav + FAB Menu (ON TOP)
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: const CustomBottomNavigationBar(),
+              ),
+            ],
+          ),
         );
       },
       routes: [
