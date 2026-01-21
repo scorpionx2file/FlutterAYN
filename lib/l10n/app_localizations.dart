@@ -173,12 +173,6 @@ abstract class AppLocalizations {
   /// **'Add'**
   String get add;
 
-  /// No description provided for @points.
-  ///
-  /// In en, this message translates to:
-  /// **'Points'**
-  String get points;
-
   /// No description provided for @share.
   ///
   /// In en, this message translates to:
@@ -359,6 +353,18 @@ abstract class AppLocalizations {
   /// **'Post not found'**
   String get postNotFound;
 
+  /// No description provided for @settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// No description provided for @otpRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the 4-digit code.'**
+  String get otpRequired;
+
   /// No description provided for @messages.
   ///
   /// In en, this message translates to:
@@ -371,20 +377,11 @@ abstract class AppLocalizations {
   /// **'Bags'**
   String get bags;
 
-  /// No description provided for @followers.
-  ///
-  /// In en, this message translates to:
-  /// **'Followers'**
-
-  /// No description provided for @following.
-  ///
-  /// In en, this message translates to:
-  /// **'Following'**
-
   /// No description provided for @points.
   ///
   /// In en, this message translates to:
   /// **'Points'**
+  String get points;
 
   /// No description provided for @totalPoints.
   ///
@@ -403,11 +400,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Explanation of one of the Premium package features'**
   String get premiumFeatureExample;
-
-  /// No description provided for @follow.
-  ///
-  /// In en, this message translates to:
-  /// **'Follow'**
 
   /// No description provided for @editMyInfo.
   ///
@@ -438,11 +430,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contains violent content'**
   String get reportReasonViolence;
-
-  /// No description provided for @send.
-  ///
-  /// In en, this message translates to:
-  /// **'Send'**
 
   /// No description provided for @editAccount.
   ///
@@ -702,11 +689,6 @@ abstract class AppLocalizations {
   /// **'Offline'**
   String get offline;
 
-  /// No description provided for @location.
-  ///
-  /// In en, this message translates to:
-  /// **'Location'**
-
   /// No description provided for @on.
   ///
   /// In en, this message translates to:
@@ -742,11 +724,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Snapchat Account'**
   String get snapchatAccount;
-
-  /// No description provided for @mobileNumber.
-  ///
-  /// In en, this message translates to:
-  /// **'Mobile Number'**
 
   /// No description provided for @paymentAndPoints.
   ///
@@ -796,11 +773,6 @@ abstract class AppLocalizations {
   /// **'Become A Service Provider'**
   String get becomeServiceProvider;
 
-  /// No description provided for @services.
-  ///
-  /// In en, this message translates to:
-  /// **'Services'**
-
   /// No description provided for @available.
   ///
   /// In en, this message translates to:
@@ -843,11 +815,41 @@ abstract class AppLocalizations {
   /// **'Member-Specific Events'**
   String get memberSpecificEvents;
 
-  /// No description provided for @settings.
+  /// No description provided for @nameRequired.
   ///
   /// In en, this message translates to:
-  /// **'Settings'**
-  String get settings;
+  /// **'Name is required'**
+  String get nameRequired;
+
+  /// No description provided for @nameMin.
+  ///
+  /// In en, this message translates to:
+  /// **'Name must be at least {minLen} characters'**
+  String nameMin(int minLen);
+
+  /// No description provided for @emailRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Email is required'**
+  String get emailRequired;
+
+  /// No description provided for @emailInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email'**
+  String get emailInvalid;
+
+  /// No description provided for @passwordRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Password is required'**
+  String get passwordRequired;
+
+  /// No description provided for @passwordMin.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least {minLen} characters'**
+  String passwordMin(int minLen);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

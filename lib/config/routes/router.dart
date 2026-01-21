@@ -720,11 +720,11 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const WelcomeAuthScreen(),
     ),
     GoRoute(
-      path: AppRoutes.signUp,
+      path: AppRoutes.login,
       builder: (context, state) => const SignInScreen(),
     ),
     GoRoute(
-      path: AppRoutes.signIn,
+      path: AppRoutes.register,
       builder: (context, state) => const SignUpScreen(),
     ),
     GoRoute(

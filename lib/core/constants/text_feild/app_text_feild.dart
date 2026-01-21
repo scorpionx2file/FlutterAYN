@@ -24,6 +24,12 @@ class AppTextFields extends StatelessWidget {
     this.fillColor,
     this.contentPadding,
     this.textAlign = TextAlign.left,
+    this.validator,
+    this.autovalidateMode,
+    this.errorText,
+    this.textInputAction,
+    this.focusNode,
+    this.onEditingComplete,
   });
 
   final TextEditingController controller;
@@ -52,6 +58,14 @@ class AppTextFields extends StatelessWidget {
   final EdgeInsets? contentPadding;
   final TextAlign textAlign;
 
+  final String? Function(String?)? validator;
+  final AutovalidateMode? autovalidateMode;
+  final String? errorText;
+
+  final TextInputAction? textInputAction;
+  final FocusNode? focusNode;
+  final VoidCallback? onEditingComplete;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -78,7 +92,6 @@ class AppTextFields extends StatelessWidget {
     Widget? iconWidget;
     if (icon != null) {
       final iconCore = Icon(icon, color: iconColor ?? theme.iconTheme.color);
-
       iconWidget = onIconPressed == null
           ? Padding(
         padding: const EdgeInsetsDirectional.only(start: 12, end: 8),
@@ -89,7 +102,7 @@ class AppTextFields extends StatelessWidget {
 
     final field = Directionality(
       textDirection: TextDirection.ltr,
-      child: TextField(
+      child: TextFormField(
         controller: controller,
         keyboardType: keyboardType,
         obscureText: obscureText,
@@ -97,10 +110,15 @@ class AppTextFields extends StatelessWidget {
         readOnly: readOnly || onTap != null,
         onTap: onTap,
         onChanged: onChanged,
-        onSubmitted: onSubmitted,
+        onFieldSubmitted: onSubmitted,
         maxLines: maxLines,
         textAlign: textAlign,
         style: theme.textTheme.bodyMedium,
+        validator: validator,
+        autovalidateMode: autovalidateMode,
+        textInputAction: textInputAction,
+        focusNode: focusNode,
+        onEditingComplete: onEditingComplete,
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: theme.inputDecorationTheme.hintStyle,
@@ -109,6 +127,9 @@ class AppTextFields extends StatelessWidget {
           contentPadding: effectiveContentPadding,
           prefixIcon: iconAtStart ? null : iconWidget,
           suffixIcon: iconAtStart ? iconWidget : null,
+
+          errorText: errorText,
+
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius),
             borderSide: BorderSide(color: effectiveBorderColor),
@@ -119,7 +140,8 @@ class AppTextFields extends StatelessWidget {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius),
-            borderSide: BorderSide(color: effectiveFocusedBorderColor, width: 1.2),
+            borderSide:
+            BorderSide(color: effectiveFocusedBorderColor, width: 1.2),
           ),
         ),
       ),

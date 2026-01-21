@@ -14,6 +14,7 @@ class OtpPinField extends StatefulWidget {
     this.textColor = AppColors.black,
     this.onChanged,
     this.onCompleted,
+    this.errorText,
   });
 
   final int length;
@@ -25,6 +26,8 @@ class OtpPinField extends StatefulWidget {
 
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onCompleted;
+
+  final String? errorText;
 
   @override
   State<OtpPinField> createState() => _OtpPinFieldState();
@@ -58,7 +61,8 @@ class _OtpPinFieldState extends State<OtpPinField> {
     final code = _collect();
     widget.onChanged?.call(code);
 
-    final complete = code.length == widget.length && !_controllers.any((c) => c.text.isEmpty);
+    final complete =
+        code.length == widget.length && !_controllers.any((c) => c.text.isEmpty);
     if (complete) widget.onCompleted?.call(code);
   }
 
@@ -80,76 +84,95 @@ class _OtpPinFieldState extends State<OtpPinField> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: List.generate(widget.length, (i) {
-        final controller = _controllers[i];
-        final node = _nodes[i];
+    final hasError = (widget.errorText ?? '').isNotEmpty;
 
-        return Padding(
-          padding: EdgeInsets.symmetric(horizontal: (widget.spacing / 2).w),
-          child: SizedBox(
-            width: 34.w,
-            child: Focus(
-              onKeyEvent: (_, event) {
-                if (event is KeyDownEvent &&
-                    event.logicalKey == LogicalKeyboardKey.backspace) {
-                  if (controller.text.isEmpty) {
-                    _focusPrev(i);
-                    return KeyEventResult.handled;
-                  }
-                }
-                return KeyEventResult.ignored;
-              },
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextField(
-                    controller: controller,
-                    focusNode: node,
-                    keyboardType: TextInputType.number,
-                    textAlign: TextAlign.center,
-                    style: AppTextStyles.headingH3.copyWith(
-                      color: widget.textColor,
-                      height: 1.0,
-                    ),
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(1),
-                    ],
-                    onChanged: (v) {
-                      if (v.isNotEmpty) {
-                        _focusNext(i);
-                      } else {
-                        _notify();
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(widget.length, (i) {
+            final controller = _controllers[i];
+            final node = _nodes[i];
+
+            return Padding(
+              padding: EdgeInsets.symmetric(horizontal: (widget.spacing / 2).w),
+              child: SizedBox(
+                width: 34.w,
+                child: Focus(
+                  onKeyEvent: (_, event) {
+                    if (event is KeyDownEvent &&
+                        event.logicalKey == LogicalKeyboardKey.backspace) {
+                      if (controller.text.isEmpty) {
+                        _focusPrev(i);
+                        return KeyEventResult.handled;
                       }
-                      setState(() {});
-                    },
-                    decoration: InputDecoration(
-                      isDense: true,
-                      border: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      contentPadding: EdgeInsets.only(bottom: 10.h),
-                    ),
+                    }
+                    return KeyEventResult.ignored;
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextField(
+                        controller: controller,
+                        focusNode: node,
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        style: AppTextStyles.headingH3.copyWith(
+                          color: widget.textColor,
+                          height: 1.0,
+                        ),
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          LengthLimitingTextInputFormatter(1),
+                        ],
+                        onChanged: (v) {
+                          if (v.isNotEmpty) {
+                            _focusNext(i);
+                          } else {
+                            _notify();
+                          }
+                          setState(() {});
+                        },
+                        decoration: InputDecoration(
+                          isDense: true,
+                          border: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          contentPadding: EdgeInsets.only(bottom: 10.h),
+                        ),
+                      ),
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 180),
+                        height: 3.h,
+                        width: 26.w,
+                        decoration: BoxDecoration(
+                          color: hasError
+                              ? AppColors.lebaneseRed
+                              : (_isActiveIndex(i)
+                              ? widget.activeUnderlineColor
+                              : widget.inactiveUnderlineColor),
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                      ),
+                    ],
                   ),
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 180),
-                    height: 3.h,
-                    width: 26.w,
-                    decoration: BoxDecoration(
-                      color: _isActiveIndex(i)
-                          ? widget.activeUnderlineColor
-                          : widget.inactiveUnderlineColor,
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                  ),
-                ],
+                ),
               ),
+            );
+          }),
+        ),
+
+        if (hasError) ...[
+          SizedBox(height: 10.h),
+          Text(
+            widget.errorText!,
+            style: AppTextStyles.description.copyWith(
+              color: AppColors.lebaneseRed,
             ),
           ),
-        );
-      }),
+        ],
+      ],
     );
   }
 }

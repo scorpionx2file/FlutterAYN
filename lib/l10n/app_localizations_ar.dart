@@ -48,9 +48,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get add => 'إضافة';
 
   @override
-  String get points => 'النقاط';
-
-  @override
   String get share => 'مشاركة';
 
   @override
@@ -75,10 +72,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get services => 'الخدمات';
 
   @override
-  String get following => 'المتابَعون';
+  String get following => 'يتابعه';
 
   @override
-  String get followers => 'المتابِعون';
+  String get followers => 'يتابع';
 
   @override
   String get searchHint => 'ابحث …';
@@ -141,11 +138,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get postNotFound => 'المنشور غير موجود';
 
   @override
+  String get settings => 'الإعدادات';
+
+  @override
+  String get otpRequired => 'من فضلك أدخل رمز التحقق المكون من 4 أرقام.';
+
+  @override
   String get messages => 'رسائل';
 
   @override
   String get bags => 'حقائب';
 
+  @override
+  String get points => 'النقاط';
 
   @override
   String get totalPoints => 'إجمالي النقاط';
@@ -155,8 +160,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get premiumFeatureExample => 'شرح لإحدى مميزات الباقة المميزة';
-
-
 
   @override
   String get editMyInfo => 'تعديل بياناتي';
@@ -172,7 +175,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get reportReasonViolence => 'يحتوي على محتوى عنيف';
-
 
   @override
   String get editAccount => 'تعديل الحساب';
@@ -303,7 +305,6 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get offline => 'غير متصل';
 
-
   @override
   String get on => 'تشغيل';
 
@@ -321,7 +322,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get snapchatAccount => 'حساب سناب شات';
-
 
   @override
   String get paymentAndPoints => 'الدفع والنقاط';
@@ -369,5 +369,24 @@ class AppLocalizationsAr extends AppLocalizations {
   String get memberSpecificEvents => 'فعاليات خاصة بالأعضاء';
 
   @override
-  String get settings => 'الاعدادات';
+  String get nameRequired => 'الاسم مطلوب';
+
+  @override
+  String nameMin(int minLen) {
+    return 'يجب أن يكون الاسم $minLen أحرف على الأقل';
+  }
+
+  @override
+  String get emailRequired => 'البريد الإلكتروني مطلوب';
+
+  @override
+  String get emailInvalid => 'أدخل بريدًا إلكترونيًا صحيحًا';
+
+  @override
+  String get passwordRequired => 'كلمة المرور مطلوبة';
+
+  @override
+  String passwordMin(int minLen) {
+    return 'يجب أن تكون كلمة المرور $minLen أحرف على الأقل';
+  }
 }

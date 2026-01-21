@@ -42,8 +42,10 @@
     "send": "Send",
     "enterYourMessageHint": "Enter your message ...",
     "previous": "Previous",
-    "postNotFound": "Post not found"
+    "postNotFound": "Post not found",
+    "settings": "Settings",
   "chooseGatesMin3Snack": "Please select at least 3 gates.",
+  "otpRequired": "Please enter the 4-digit code.",
   "messages": "Messages",
     "bags": "Bags",
     "followers": "Followers",
@@ -136,5 +138,15 @@
                      "shareProfile": "Share Profile",
                       "muteMessages": "Mute Messages",
                       "blockProfile": "Block Profile",
-                      "memberSpecificEvents": "Member-Specific Events"
+                      "memberSpecificEvents": "Member-Specific Events",
+                      "nameRequired": "Name is required",
+                        "nameMin": "Name must be at least {minLen} characters",
+                        "@nameMin": { "placeholders": { "minLen": { "type": "int" } } },
+
+                        "emailRequired": "Email is required",
+                        "emailInvalid": "Enter a valid email",
+
+                        "passwordRequired": "Password is required",
+                        "passwordMin": "Password must be at least {minLen} characters",
+                        "@passwordMin": { "placeholders": { "minLen": { "type": "int" } } }
 }

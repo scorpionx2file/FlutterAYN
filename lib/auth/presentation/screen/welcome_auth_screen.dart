@@ -24,7 +24,7 @@ class WelcomeAuthScreen extends StatelessWidget {
           SizedBox(height: 26.h),
 
           Text(
-            l10n.registerTitle, // "Welcome to Our Community!"
+            l10n.registerTitle,
             textAlign: TextAlign.center,
             style: AppTextStyles.title.copyWith(color: AppColors.black),
           ),
@@ -77,7 +77,7 @@ class WelcomeAuthScreen extends StatelessWidget {
                 style: AppTextStyles.description.copyWith(color: AppColors.spanishGrey),
               ),
               GestureDetector(
-                onTap: () => context.go(AppRoutes.signUp),
+                onTap: () => context.go(AppRoutes.login),
                 child: Text(
                   l10n.signIn,
                   style: AppTextStyles.description.copyWith(

@@ -58,7 +58,7 @@ class _ChooseGatesScreenState extends State<ChooseGatesScreen> {
       return;
     }
 
-    context.push(AppRoutes.signIn);
+    context.push(AppRoutes.register);
   }
 
   @override

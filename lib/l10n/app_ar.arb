@@ -43,7 +43,7 @@
     "send": "إرسال",
     "enterYourMessageHint": "اكتب رسالتك ...",
     "previous": "السابق",
-    "postNotFound": "المنشور غير موجود"
+    "postNotFound": "المنشور غير موجود",
   "chooseGatesMin3Snack": "من فضلك اختر 3 بوابات على الأقل.",
   "messages": "رسائل",
     "bags": "حقائب",
@@ -101,6 +101,7 @@
 
                    "onboardingTitle5": "تعرّف على أصدقاء جدد بالقرب منك",
                    "onboardingSubtitle5": "تواصل مع المسافرين وابنِ تجارب جديدة معًا.",
+                   "settings": "الإعدادات",
                    "logout": "تسجيل الخروج",
                      "profileSettingsSectionAppPerformance": "أداء التطبيق",
                      "favouriteGates": "البوابات المفضلة",
@@ -138,7 +139,17 @@
                        "shareProfile": "مشاركة الملف الشخصي",
                         "muteMessages": "كتم الرسائل",
                         "blockProfile": "حظر الملف الشخصي",
-                        "memberSpecificEvents": "فعاليات خاصة بالأعضاء"
+                        "memberSpecificEvents": "فعاليات خاصة بالأعضاء",
+                        "nameRequired": "الاسم مطلوب",
+                          "nameMin": "يجب أن يكون الاسم {minLen} أحرف على الأقل",
+                          "@nameMin": { "placeholders": { "minLen": { "type": "int" } } },
+                           "otpRequired": "من فضلك أدخل رمز التحقق المكون من 4 أرقام.",
+                          "emailRequired": "البريد الإلكتروني مطلوب",
+                          "emailInvalid": "أدخل بريدًا إلكترونيًا صحيحًا",
+
+                          "passwordRequired": "كلمة المرور مطلوبة",
+                          "passwordMin": "يجب أن تكون كلمة المرور {minLen} أحرف على الأقل",
+                          "@passwordMin": { "placeholders": { "minLen": { "type": "int" } } }
 
 
 }

@@ -10,8 +10,30 @@ import '../../../core/constants/auth/auth_screen_bg.dart';
 import '../../../core/constants/button/app_button.dart';
 import '../widgets/otp_pin_field.dart';
 
-class OtpScreen extends StatelessWidget {
+class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});
+
+  @override
+  State<OtpScreen> createState() => _OtpScreenState();
+}
+
+class _OtpScreenState extends State<OtpScreen> {
+  String _code = '';
+  String? _error;
+  bool _submitted = false;
+
+  void _validateAndGo() {
+    setState(() => _submitted = true);
+    FocusScope.of(context).unfocus();
+
+    if (_code.trim().length != 4) {
+      setState(() => _error = context.l10n.otpRequired);
+      return;
+    }
+
+    setState(() => _error = null);
+    context.go(AppRoutes.home);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,23 +58,36 @@ class OtpScreen extends StatelessWidget {
               height: 1.4,
             ),
           ),
-
           SizedBox(height: 46.h),
 
-          const OtpPinField(
+          OtpPinField(
             length: 4,
             activeUnderlineColor: AppColors.turnbullBlue,
             inactiveUnderlineColor: AppColors.lightSilver,
+            errorText: _submitted ? _error : null,
+            onChanged: (v) {
+              setState(() {
+                _code = v;
+                if (_submitted) {
+                  _error = (v.trim().length == 4) ? null : context.l10n.otpRequired;
+                }
+              });
+            },
+            onCompleted: (v) {
+              setState(() {
+                _code = v;
+                _error = null;
+              });
+            },
           ),
 
           SizedBox(height: 120.h),
 
           AppButton(
             text: context.l10n.verify,
-            onPressed: () {context.go(AppRoutes.home);},
+            onPressed: _validateAndGo,
             backgroundColor: AppColors.lightGreen,
             height: 36.h,
-
           ),
 
           SizedBox(height: 38.h),

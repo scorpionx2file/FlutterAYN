@@ -48,9 +48,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get add => 'Add';
 
   @override
-  String get points => 'Points';
-
-  @override
   String get share => 'Share';
 
   @override
@@ -141,11 +138,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get postNotFound => 'Post not found';
 
   @override
+  String get settings => 'Settings';
+
+  @override
+  String get otpRequired => 'Please enter the 4-digit code.';
+
+  @override
   String get messages => 'Messages';
 
   @override
   String get bags => 'Bags';
 
+  @override
+  String get points => 'Points';
 
   @override
   String get totalPoints => 'Total Points';
@@ -170,7 +175,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reportReasonViolence => 'Contains violent content';
-
 
   @override
   String get editAccount => 'Edit Account';
@@ -319,7 +323,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get snapchatAccount => 'Snapchat Account';
 
-
   @override
   String get paymentAndPoints => 'Payment & Points';
 
@@ -366,5 +369,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get memberSpecificEvents => 'Member-Specific Events';
 
   @override
-  String get settings => 'Settings';
+  String get nameRequired => 'Name is required';
+
+  @override
+  String nameMin(int minLen) {
+    return 'Name must be at least $minLen characters';
+  }
+
+  @override
+  String get emailRequired => 'Email is required';
+
+  @override
+  String get emailInvalid => 'Enter a valid email';
+
+  @override
+  String get passwordRequired => 'Password is required';
+
+  @override
+  String passwordMin(int minLen) {
+    return 'Password must be at least $minLen characters';
+  }
 }
