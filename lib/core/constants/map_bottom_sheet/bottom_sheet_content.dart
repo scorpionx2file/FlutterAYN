@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../map/presenttion/widgets/map_screen.dart';
 import '../comment/comment_item.dart';
 import '../post/post.dart';
+import '../report/report_bottom_sheet.dart';
 import '../service_provider/service_provider.dart';
 
 class BottomSheetContent extends StatelessWidget {
@@ -19,7 +20,13 @@ class BottomSheetContent extends StatelessWidget {
             headerData: item.postData!,
             contentData: item.postContentData!,
             onShareTap: () {},
-            onMoreTap: () {},
+            onMoreTap: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) => const ReportBottomSheet(),
+              );
+            },
             isVideoScreen: false,
           )
         else
