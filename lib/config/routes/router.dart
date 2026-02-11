@@ -35,6 +35,7 @@ import '../../event_option/presentation/widgets/content_section/content_section.
 import '../../gates/presentation/screens/gates_screen.dart';
 import '../../home/presentation/screens/home_screen.dart';
 import '../../map/presenttion/widgets/map_screen.dart';
+import '../../see_all_activities/presentation/screen/see_all_activities.dart';
 import 'app_routes.dart';
 import 'package:flutter/material.dart';
 
@@ -846,6 +847,13 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: AppRoutes.profile, // route for profile
           builder: (context, state) => UserProfileScreen(activities: activities, postData: postData),
+        ),
+        GoRoute(
+          path: AppRoutes.seeAllActivities,
+          builder: (context, state) {
+            final activities = state.extra as List<Activity>;
+            return SeeAllActivities(activities: activities);
+          },
         ),
       ],
     ),

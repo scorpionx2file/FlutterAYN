@@ -40,7 +40,13 @@ class HomeScreen extends StatelessWidget{
             child: _SectionHeader(
                 title: context.l10n.activities,
                 actionText: context.l10n.seeAll,
-                isPostTitle: false
+                isPostTitle: false,
+                onTap: (){
+                  context.push(
+                      AppRoutes.seeAllActivities,
+                      extra: activities
+                  );
+                }
             ),
           ),
       
@@ -54,7 +60,8 @@ class HomeScreen extends StatelessWidget{
           SliverToBoxAdapter(
             child: _SectionHeader(
                 title: context.l10n.recentPosts,
-                actionText: context.l10n.location
+                actionText: context.l10n.location,
+                onTap: (){}
             ),
           ),
       
@@ -167,12 +174,14 @@ class _SectionHeader extends StatelessWidget{
   final String title;
   final String actionText;
   final bool isPostTitle;
+  final VoidCallback? onTap;
 
   const _SectionHeader({
     super.key,
     required this.title,
     required this.actionText,
     this.isPostTitle = true,
+    required this.onTap,
   });
 
   @override
@@ -198,10 +207,13 @@ class _SectionHeader extends StatelessWidget{
                   size: 10.w,
                 ),
               SizedBox(width: 5.w),
-              Text(
-                actionText,
-                style: AppTextStyles.button.copyWith(
-                  color: isPostTitle ? AppColors.turnbullBlue : AppColors.strongGrey
+              GestureDetector(
+                onTap: onTap,
+                child: Text(
+                  actionText,
+                  style: AppTextStyles.button.copyWith(
+                    color: isPostTitle ? AppColors.turnbullBlue : AppColors.strongGrey
+                  ),
                 ),
               )
             ],
