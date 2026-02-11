@@ -322,19 +322,24 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 12.w),
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: Container(
-                    width: 220.w,
-                    height: 40.h,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: AppColors.lebaneseRed,
-                      borderRadius: BorderRadius.circular(30.r),
-                    ),
-                    child: Text(
-                      l10n.becomeServiceProvider,
-                      style: AppTextStyles.text.copyWith(
-                        color: AppColors.white,
-                        fontWeight: FontWeight.bold,
+                  child: GestureDetector(
+                    onTap: () {
+                      context.push(AppRoutes.selectServiceCard);
+                    },
+                    child: Container(
+                      width: 220.w,
+                      height: 40.h,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: AppColors.lebaneseRed,
+                        borderRadius: BorderRadius.circular(30.r),
+                      ),
+                      child: Text(
+                        l10n.becomeServiceProvider,
+                        style: AppTextStyles.text.copyWith(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),

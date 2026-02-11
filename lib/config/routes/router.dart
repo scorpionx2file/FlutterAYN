@@ -4,6 +4,7 @@ import 'package:traveller/auth/presentation/screen/choose_gates_screen.dart';
 import 'package:traveller/auth/presentation/screen/forget_password_screen.dart';
 import 'package:traveller/auth/presentation/screen/sign_in_screen.dart';
 import 'package:traveller/auth/presentation/screen/welcome_auth_screen.dart';
+import 'package:traveller/core/constants/service_card/service_card.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import 'package:traveller/event_option/presentation/widgets/bottom_section/event_list.dart';
 import 'package:traveller/event_option/presentation/widgets/place_details_screen.dart';
@@ -35,6 +36,7 @@ import '../../event_option/presentation/widgets/content_section/content_section.
 import '../../gates/presentation/screens/gates_screen.dart';
 import '../../home/presentation/screens/home_screen.dart';
 import '../../map/presenttion/widgets/map_screen.dart';
+import '../../select_service/presentation/screens/select_service.dart';
 import 'app_routes.dart';
 import 'package:flutter/material.dart';
 
@@ -791,6 +793,12 @@ final GoRouter router = GoRouter(
         return VideoAndArticlesScreen(postData: post);
       },
     ),
+
+    GoRoute(
+      path: AppRoutes.selectServiceCard,
+      builder: (context, state) => const SelectServiceScreen(),
+    ),
+
 
     // ShellRoute for main screens with bottom nav
     ShellRoute(

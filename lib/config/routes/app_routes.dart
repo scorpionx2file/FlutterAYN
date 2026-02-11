@@ -21,4 +21,8 @@ class AppRoutes {
   static const String followersList = "/FollowersList";
   static const String profileSettings = "/ProfileSettings";
   static const String settingsContact = "/SettingsContact";
+
+
+  static const String selectServiceCard = "/SelectServiceCard";
+
 }
