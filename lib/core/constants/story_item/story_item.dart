@@ -4,12 +4,14 @@ import '../../theme/colors/app_colors.dart';
 import '../../theme/fonts/app_text_styles.dart';
 
 class Story{
+  final String id;
   final String imageUrl;
   final String? username;
   final bool isSeen;
   final String data;
 
   Story({
+    required this.id,
     required this.imageUrl,
     this.username,
     required this.isSeen,

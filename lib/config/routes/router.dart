@@ -118,6 +118,7 @@ final gates = [
 
 final stories = [
   Story(
+    id: 'story20',
     imageUrl:
     'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
     username: "Habiba",
@@ -126,14 +127,7 @@ final stories = [
     "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
   ),
   Story(
-    imageUrl:
-    'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-    username: "Habiba",
-    isSeen: true,
-    data:
-    "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-  ),
-  Story(
+    id: 'story18',
     imageUrl:
     'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
     username: "Habiba",
@@ -142,6 +136,7 @@ final stories = [
     "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
   ),
   Story(
+    id: 'story17',
     imageUrl:
     'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
     username: "Habiba",
@@ -150,6 +145,7 @@ final stories = [
     "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
   ),
   Story(
+    id: 'story16',
     imageUrl:
     'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
     username: "Habiba",
@@ -158,6 +154,7 @@ final stories = [
     "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
   ),
   Story(
+    id: 'story15',
     imageUrl:
     'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
     username: "Habiba",
@@ -168,6 +165,7 @@ final stories = [
 ];
 final stories2 = [
   Story(
+    id: 'story14',
     imageUrl:
     'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
     username: "Jojo",
@@ -176,6 +174,7 @@ final stories2 = [
     "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
   ),
   Story(
+    id: 'story13',
     imageUrl:
     'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
     username: "Jojo",
@@ -513,6 +512,7 @@ final List<FollowerModel> following = [
     points: 100,
     isFollowing: false,
     story: Story(
+      id: 'story12',
       imageUrl:
       'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: false,
@@ -524,6 +524,7 @@ final List<FollowerModel> following = [
     points: 200,
     isFollowing: true,
     story: Story(
+      id: 'story11',
       imageUrl:
       'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: false,
@@ -535,6 +536,7 @@ final List<FollowerModel> following = [
     points: 300,
     isFollowing: false,
     story: Story(
+      id: 'story10',
       imageUrl:
       'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: false,
@@ -546,6 +548,7 @@ final List<FollowerModel> following = [
     points: 400,
     isFollowing: true,
     story: Story(
+      id: 'story9',
       imageUrl:
       'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: false,
@@ -560,6 +563,7 @@ final List<FollowerModel> followers = [
     points: 535,
     isFollowing: false,
     story: Story(
+      id: 'story8',
       imageUrl:
       'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: false,
@@ -571,6 +575,7 @@ final List<FollowerModel> followers = [
     points: 320,
     isFollowing: true,
     story: Story(
+      id: 'story7',
       imageUrl:
       'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: true,
@@ -582,6 +587,7 @@ final List<FollowerModel> followers = [
     points: 150,
     isFollowing: false,
     story: Story(
+      id: 'story6',
       imageUrl:
       'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: true,
@@ -593,6 +599,7 @@ final List<FollowerModel> followers = [
     points: 200,
     isFollowing: true,
     story: Story(
+      id: 'story5',
       imageUrl:
       'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: true,
@@ -604,6 +611,7 @@ final List<FollowerModel> followers = [
     points: 50,
     isFollowing: false,
     story: Story(
+      id: 'story4',
       imageUrl:
       'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: true,
@@ -615,6 +623,7 @@ final List<FollowerModel> followers = [
     points: 200,
     isFollowing: true,
     story: Story(
+      id: 'story3',
       imageUrl:
       'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: true,
@@ -626,6 +635,7 @@ final List<FollowerModel> followers = [
     points: 250,
     isFollowing: false,
     story: Story(
+      id: 'story2',
       imageUrl:
       'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: true,
@@ -641,6 +651,7 @@ final List<FollowerModel> followers = [
       'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: true,
       data: '',
+      id: 'story1',
     ),
   ),
 ];

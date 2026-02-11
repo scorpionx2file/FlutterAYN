@@ -35,6 +35,14 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
   VideoPlayerController? _videoController;
   bool _isNavigating = false;
   late final AnimationStatusListener _onAnimationComplete;
+  final FocusNode _messageFocusNode = FocusNode();
+  final Map<String, String> _storyDrafts = {};
+  final TextEditingController _messageController = TextEditingController();
+  void _closeKeyboardAndResume() {
+    FocusScope.of(context).unfocus();
+    _resumeStory();
+  }
+  double get _bottomBarHeight => 90.h;
 
   bool _isVideo(String url) {
     return url.toLowerCase().endsWith('.mp4') ||
@@ -51,6 +59,7 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
     if (_isNavigating) return;
 
     if (currentIndex < stories.length - 1) {
+      _saveCurrentDraft();
       setState(() => currentIndex++);
       _loadStory();
     } else {
@@ -62,6 +71,7 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
     if (_isNavigating) return;
 
     if (currentIndex > 0) {
+      _saveCurrentDraft();
       setState(() => currentIndex--);
       _loadStory();
     } else {
@@ -71,6 +81,7 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
 
   Future<void> _loadStory() async {
     final story = stories[currentIndex];
+    final storyKey = story.id;
 
     _progressController.stop();
     _progressController.reset();
@@ -85,11 +96,13 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
       _videoController = VideoPlayerController.networkUrl(Uri.parse(story.data));
       await _videoController!.initialize();
 
-      if (!mounted) return;
+      if (!mounted || stories[currentIndex].id != storyKey) return;
 
       final duration = _videoController!.value.duration;
       _progressController.duration =
-      (duration.inMilliseconds > 0) ? duration : const Duration(seconds: 10);
+      (duration.inMilliseconds > 0)
+          ? duration
+          : const Duration(seconds: 10);
 
       setState(() {});
       await _videoController!.play();
@@ -98,6 +111,10 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
     }
 
     _progressController.forward();
+
+    if (stories[currentIndex].id == storyKey) {
+      _messageController.text = _storyDrafts[storyKey] ?? "";
+    }
   }
 
   void _pauseStory() {
@@ -140,6 +157,19 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
     }
   }
 
+  void _saveCurrentDraft() {
+    final story = stories[currentIndex];
+    final key = story.id;
+    _storyDrafts[key] = _messageController.text;
+  }
+
+  void _sendMessage() {
+    final story = stories[currentIndex];
+    final key = story.id;
+    _storyDrafts.remove(key);
+    _messageController.clear();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -168,6 +198,8 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
 
   @override
   void dispose() {
+    _messageController.dispose();
+    _messageFocusNode.dispose();
     _progressController.dispose();
     _videoController?.dispose();
     super.dispose();
@@ -217,24 +249,39 @@ class _StoryScreenState extends State<StoryScreen> with SingleTickerProviderStat
                   children: [
                     Image.asset("assets/images/icons/logo.png"),
                     SizedBox(height: 10.h),
-                    StoryBottomBar(),
+                    StoryBottomBar(
+                      focusNode: _messageFocusNode,
+                      onFocus: _pauseStory,
+                      onUnfocus: _resumeStory,
+                      controller: _messageController
+                    ),
                   ],
                 ),
               ],
             ),
           ),
 
-          Positioned.fill(
+          if (_messageFocusNode.hasFocus)
+            Positioned(
+              top: _headerHeight,
+              left: 0,
+              right: 0,
+              bottom: _bottomBarHeight,
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: _closeKeyboardAndResume,
+              ),
+            ),
+
+          Positioned(
             top: _headerHeight,
             left: 0,
             right: 0,
-            bottom: 0,
+            bottom: _bottomBarHeight,
             child: GestureDetector(
               behavior: HitTestBehavior.translucent,
-
               onLongPressStart: (_) => _pauseStory(),
               onLongPressEnd: (_) => _resumeStory(),
-
               child: Row(
                 children: [
                   Expanded(

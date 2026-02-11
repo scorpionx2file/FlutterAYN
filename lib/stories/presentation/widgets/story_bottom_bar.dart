@@ -5,7 +5,18 @@ import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 class StoryBottomBar extends StatelessWidget {
-  const StoryBottomBar({super.key});
+  final FocusNode focusNode;
+  final VoidCallback onFocus;
+  final VoidCallback onUnfocus;
+  final TextEditingController controller;
+
+  const StoryBottomBar({
+    super.key,
+    required this.focusNode,
+    required this.onFocus,
+    required this.onUnfocus,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +45,10 @@ class StoryBottomBar extends StatelessWidget {
                   SizedBox(width: 10.w),
                   Expanded(
                     child: TextField(
+                      controller: controller,
+                      focusNode: focusNode,
+                      onTap: onFocus,
+                      onEditingComplete: onUnfocus,
                       decoration: InputDecoration(
                         hintText: l10n.storySendMessageHint,
                         hintStyle: AppTextStyles.description.copyWith(
