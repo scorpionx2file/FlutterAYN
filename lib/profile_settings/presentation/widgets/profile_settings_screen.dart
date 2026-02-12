@@ -53,7 +53,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             SliverToBoxAdapter(
               child: ProfileSettingsHeader(
                 name: "Adham Mohamed",
-                username: "adhambiko",
+                username: "@adhambiko",
                 profileImage: const AssetImage("assets/images/profile.png"),
                 isProfileSettings: true,
                 isVerified: true,

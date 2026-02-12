@@ -13,6 +13,7 @@ import 'package:traveller/followers_list/presentation/widgets/followers_list_scr
 import 'package:traveller/onboarding/presentation/screen/onboarding_screen.dart';
 import 'package:traveller/otp/presentation/screen/otp_screen.dart';
 import 'package:traveller/profile_settings/presentation/widgets/profile_settings_screen.dart';
+import 'package:traveller/select_service/presentation/screens/select_service_2.dart';
 import 'package:traveller/settings_contact/presentation/widgets/settings_contact_screen.dart';
 import 'package:traveller/splash_screen.dart';
 import 'package:traveller/stories/presentation/widgets/story_screen.dart';
@@ -794,10 +795,13 @@ final GoRouter router = GoRouter(
         return VideoAndArticlesScreen(postData: post);
       },
     ),
-
     GoRoute(
       path: AppRoutes.selectService,
       builder: (context, state) => const SelectServiceScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.selectServiceInfo,
+      builder: (context, state) => const SelectServiceScreen2(),
     ),
 
 

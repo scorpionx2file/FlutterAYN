@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/constants/becom_service_indecator/page_indicator.dart';
 
+import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/button/app_button.dart';
 import '../../../core/constants/service_card/service_card.dart';
 import '../../../core/theme/colors/app_colors.dart';
@@ -135,7 +137,7 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
               onPressed: selectedIndex == null
                   ? null
                   : () {
-                // handle next action
+                context.push(AppRoutes.selectServiceInfo);
               },
               backgroundColor: selectedIndex == null
                   ? Colors.grey
