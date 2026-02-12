@@ -23,4 +23,5 @@ class AppColors {
   static const  veryPaleViolet = Color(0xFFE6D9FF);
   static const  veryLightPink = Color(0xFFFF89C0);
   static const  vividPink = Color(0xFFDE105F);
+  static const  moderateBlue = Color(0xFF42A5D1);
 }

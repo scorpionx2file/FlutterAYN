@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
-import 'package:traveller/select_service/presentation/screens/widgets/page_indicator.dart';
+import 'package:traveller/core/constants/becom_service_indecator/page_indicator.dart';
 
 import '../../../core/constants/button/app_button.dart';
 import '../../../core/constants/service_card/service_card.dart';
@@ -15,7 +15,7 @@ class SelectServiceScreen extends StatefulWidget {
 }
 
 class _SelectServiceScreenState extends State<SelectServiceScreen> {
-  int? selectedIndex; // null = no selection
+  int? selectedIndex;
 
   final List<Map<String, dynamic>> services = [
     {

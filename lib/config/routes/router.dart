@@ -5,6 +5,7 @@ import 'package:traveller/auth/presentation/screen/forget_password_screen.dart';
 import 'package:traveller/auth/presentation/screen/sign_in_screen.dart';
 import 'package:traveller/auth/presentation/screen/welcome_auth_screen.dart';
 import 'package:traveller/core/constants/service_card/service_card.dart';
+import 'package:traveller/core/constants/service_package/package_card.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import 'package:traveller/event_option/presentation/widgets/bottom_section/event_list.dart';
 import 'package:traveller/event_option/presentation/widgets/place_details_screen.dart';
@@ -795,7 +796,7 @@ final GoRouter router = GoRouter(
     ),
 
     GoRoute(
-      path: AppRoutes.selectServiceCard,
+      path: AppRoutes.selectService,
       builder: (context, state) => const SelectServiceScreen(),
     ),
 

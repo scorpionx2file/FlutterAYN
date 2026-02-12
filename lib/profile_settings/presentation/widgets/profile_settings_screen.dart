@@ -324,7 +324,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                   alignment: Alignment.centerLeft,
                   child: GestureDetector(
                     onTap: () {
-                      context.push(AppRoutes.selectServiceCard);
+                      context.push(AppRoutes.selectService);
                     },
                     child: Container(
                       width: 220.w,

@@ -23,6 +23,7 @@ class AppRoutes {
   static const String settingsContact = "/SettingsContact";
 
 
-  static const String selectServiceCard = "/SelectServiceCard";
+  static const String selectService = "/SelectServiceCard";
+  static const String selectPackage = "/SelectPackage";
 
 }
