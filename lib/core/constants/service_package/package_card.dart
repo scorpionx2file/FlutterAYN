@@ -9,151 +9,147 @@ class PackageCard extends StatelessWidget {
   final String price;
   final String? points;
   final Color titleColor;
+  final bool isSelected;
 
   const PackageCard({
     super.key,
     required this.title,
     required this.description,
     required this.price,
-    required this.titleColor, this.points,
+    required this.titleColor,
+    this.points,
+    required this.isSelected,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-      child: Container(
-        padding: EdgeInsets.all(16.r),
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.circular(16.r),
-        ),
-        child: Row(
-          children: [
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
 
-            /// Right Content
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: AppTextStyles.titles.copyWith(
-                      color: titleColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.right,
-                  ),
-                  SizedBox(height: 6.h),
-                  Text(
-                    description,
-                    style: AppTextStyles.description.copyWith(
-                      color: AppColors.strongGrey,
-                    ),
-                  ),
-                ],
+          /// Main Card
+          Container(
+            padding: EdgeInsets.all(16.r),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(16.r),
+              border: Border.all(
+                color: isSelected
+                    ? AppColors.turnbullBlue
+                    : Colors.grey.shade300,
+                width: 2,
               ),
             ),
-
-            SizedBox(width: 16.w),
-
-            /// Vertical Divider
-            Container(
-              width: 1.w,
-              height: 50.h,
-              color: AppColors.spanishGrey,
-            ),
-
-            SizedBox(width: 16.w),
-
-            /// Price Section
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
               children: [
-                Row(
-                  children: [
-                    Text(
-                      "${price}SAR",
-                      style: AppTextStyles.text.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(width: 4.w),
-                    Text(
-                      "/Month",
-                      style: AppTextStyles.description.copyWith(
-                        color: AppColors.strongGrey,
-                      ),
-                    ),
-                  ],
-                ),
 
-                if (points != null) ...[
-                  SizedBox(height: 4.h),
-                  Row(
+                /// Content
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(
-                        Icons.account_balance_wallet,
-                        size: 12.sp,
-                        color: AppColors.lebaneseRed,
-                      ),
                       Text(
-                        "${points!}Point",
-                        style: AppTextStyles.description.copyWith(
-                          color: AppColors.lebaneseRed,
+                        title,
+                        style: AppTextStyles.text.copyWith(
+                          color: titleColor,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(width: 4.w),
+                      SizedBox(height: 6.h),
                       Text(
-                        "/Month",
+                        description,
                         style: AppTextStyles.description.copyWith(
                           color: AppColors.strongGrey,
                         ),
                       ),
                     ],
                   ),
-                ],
+                ),
+
+                SizedBox(width: 16.w),
+
+                /// Divider
+                Container(
+                  width: 1.w,
+                  height: 50.h,
+                  color: AppColors.spanishGrey,
+                ),
+
+                SizedBox(width: 16.w),
+
+                /// Price Section
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          "$price SAR",
+                          style: AppTextStyles.text.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(width: 4.w),
+                        Text(
+                          "/Month",
+                          style: AppTextStyles.description.copyWith(
+                            color: AppColors.strongGrey,
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (points != null) ...[
+                      SizedBox(height: 4.h),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.account_balance_wallet,
+                            size: 12.sp,
+                            color: AppColors.lebaneseRed,
+                          ),
+                          SizedBox(width: 4.w),
+                          Text(
+                            "$points Point",
+                            style: AppTextStyles.description.copyWith(
+                              color: AppColors.lebaneseRed,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ],
+                ),
               ],
             ),
+          ),
 
-            SizedBox(width: 12.w),
-
-            /// Arrow Icon (left side)
-            Icon(
-              Icons.arrow_forward_ios_rounded,
-              size: 18.sp,
-              color: Colors.grey,
+          /// Check icon on top-left corner
+          if (isSelected)
+            Positioned(
+              top: -8.h,
+              left: -8.w,
+              child: Container(
+                padding: EdgeInsets.all(6.r),
+                decoration: BoxDecoration(
+                  color: AppColors.turnbullBlue,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.turnbullBlue.withOpacity(0.4),
+                      blurRadius: 6,
+                    )
+                  ],
+                ),
+                child: Icon(
+                  Icons.check,
+                  size: 14.sp,
+                  color: Colors.white,
+                ),
+              ),
             ),
-
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-
-
-class PackageScreen extends StatelessWidget {
-  const PackageScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.shade100,
-      body: SafeArea(
-        child: Column(
-          children: [
-            PackageCard(
-              title: "Free Trial",
-              description:
-              "Enjoy a free trial period, then choose the package that suits you best.",
-              price: "650",
-             // points: "180",
-              titleColor: AppColors.moderateBlue,
-            ),
-          ],
-        ),
+        ],
       ),
     );
   }

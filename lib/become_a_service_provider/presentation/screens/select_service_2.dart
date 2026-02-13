@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:traveller/become_a_service_provider/presentation/screens/widgets/info_screen_header.dart';
+import 'package:traveller/become_a_service_provider/presentation/screens/widgets/service_date_and_time.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
-import 'package:traveller/select_service/presentation/screens/widgets/info_screen_header.dart';
-import 'package:traveller/select_service/presentation/screens/widgets/service_date_and_time.dart';
 
 import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/becom_service_indecator/page_indicator.dart';
@@ -257,7 +257,7 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
                   onPressed: isChecked == false
                       ? null
                       : () {
-                    context.push(AppRoutes.selectPackage);
+                    context.push(AppRoutes.payment);
                   },
                   backgroundColor: isChecked == false
                       ? Colors.grey

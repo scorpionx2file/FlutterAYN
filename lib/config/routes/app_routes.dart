@@ -25,6 +25,6 @@ class AppRoutes {
 
   static const String selectService = "/SelectServiceCard";
   static const String selectServiceInfo = "/selectServiceInfo";
-  static const String selectPackage = "/SelectPackage";
+  static const String payment = "/Payment";
 
 }

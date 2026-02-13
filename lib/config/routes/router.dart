@@ -4,8 +4,6 @@ import 'package:traveller/auth/presentation/screen/choose_gates_screen.dart';
 import 'package:traveller/auth/presentation/screen/forget_password_screen.dart';
 import 'package:traveller/auth/presentation/screen/sign_in_screen.dart';
 import 'package:traveller/auth/presentation/screen/welcome_auth_screen.dart';
-import 'package:traveller/core/constants/service_card/service_card.dart';
-import 'package:traveller/core/constants/service_package/package_card.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import 'package:traveller/event_option/presentation/widgets/bottom_section/event_list.dart';
 import 'package:traveller/event_option/presentation/widgets/place_details_screen.dart';
@@ -13,13 +11,15 @@ import 'package:traveller/followers_list/presentation/widgets/followers_list_scr
 import 'package:traveller/onboarding/presentation/screen/onboarding_screen.dart';
 import 'package:traveller/otp/presentation/screen/otp_screen.dart';
 import 'package:traveller/profile_settings/presentation/widgets/profile_settings_screen.dart';
-import 'package:traveller/select_service/presentation/screens/select_service_2.dart';
 import 'package:traveller/settings_contact/presentation/widgets/settings_contact_screen.dart';
 import 'package:traveller/splash_screen.dart';
 import 'package:traveller/stories/presentation/widgets/story_screen.dart';
 import 'package:traveller/user_profile/presentation/widgets/user_profile_screen.dart';
 import 'package:traveller/video/presentation/widgets/video&articles_screen.dart';
 import '../../auth/presentation/screen/sign_up_screen.dart';
+import '../../become_a_service_provider/presentation/screens/select_service.dart';
+import '../../become_a_service_provider/presentation/screens/select_service_2.dart';
+import '../../become_a_service_provider/presentation/screens/select_service_3.dart';
 import '../../core/constants/activity_card/activity_card.dart';
 import '../../core/constants/comment/comment_item.dart';
 import '../../core/constants/comment/rating_widget.dart';
@@ -30,6 +30,7 @@ import '../../core/constants/gate/app_gate_card.dart';
 import '../../core/constants/post/post.dart';
 import '../../core/constants/post/post_content/post_content.dart';
 import '../../core/constants/post_service_provider_header/post_or_service_provider_header.dart';
+import '../../core/constants/service_package/package_card.dart';
 import '../../core/constants/story_item/story_item.dart';
 import '../../core/theme/colors/app_colors.dart';
 import '../../core/utils/map_bottom_sheet_util.dart';
@@ -38,7 +39,6 @@ import '../../event_option/presentation/widgets/content_section/content_section.
 import '../../gates/presentation/screens/gates_screen.dart';
 import '../../home/presentation/screens/home_screen.dart';
 import '../../map/presenttion/widgets/map_screen.dart';
-import '../../select_service/presentation/screens/select_service.dart';
 import 'app_routes.dart';
 import 'package:flutter/material.dart';
 
@@ -802,6 +802,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.selectServiceInfo,
       builder: (context, state) => const SelectServiceScreen2(),
+    ),
+    GoRoute(
+      path: AppRoutes.payment,
+      builder: (context, state) => const ServicePaymentScreen(),
     ),
 
 
