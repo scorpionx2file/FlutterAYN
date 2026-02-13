@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:traveller/core/constants/chosen_package_info/chosen_package_info_section.dart';
 
 import '../../../core/constants/becom_service_indecator/page_indicator.dart';
 import '../../../core/constants/button/app_button.dart';
@@ -22,6 +23,7 @@ class _ServicePaymentScreenState
   int? selectedIndex;
 
   final List<int> packagePrices = [650, 150, 4850];
+  final List<String> packageTitle = ["Free Trial", "Monthly Package", "Annual Package"];
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +65,7 @@ class _ServicePaymentScreenState
                 });
               },
               child: PackageCard(
-                title: "Free Trial",
+                title: packageTitle[0],
                 description:
                 "Enjoy a free trial period, then choose the package that suits you best.",
                 price: packagePrices[0].toString(),
@@ -81,7 +83,7 @@ class _ServicePaymentScreenState
                 });
               },
               child: PackageCard(
-                title: "Monthly Package",
+                title: packageTitle[1],
                 description:
                 "Enjoy a free trial period, then choose the package that suits you best.",
                 price: packagePrices[1].toString(),
@@ -100,7 +102,7 @@ class _ServicePaymentScreenState
                 });
               },
               child: PackageCard(
-                title: "Annual Package",
+                title:packageTitle[2],
                 description:
                 "Enjoy a free trial period, then choose the package that suits you best.",
                 price: packagePrices[2].toString(),
@@ -116,34 +118,12 @@ class _ServicePaymentScreenState
             /// ========= TOTAL SECTION =========
 
             if (selectedIndex != null)
-              Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 18.w,vertical: 4.h),
-                child: Row(
-                  mainAxisAlignment:
-                  MainAxisAlignment
-                      .spaceBetween,
-                  children: [
-                    Text(
-                      "Total",
-                      style: AppTextStyles.text
-                          .copyWith(
-                        fontWeight:
-                        FontWeight.w600,
-                      ),
-                    ),
-                    Text(
-                      "${packagePrices[selectedIndex!]} SAR",
-                      style: AppTextStyles.text
-                          .copyWith(
-                        fontWeight:
-                        FontWeight.bold,
-                        color: AppColors
-                            .turnbullBlue,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+             ChosenPackageInfoSection(
+                 packagePrices: packagePrices[selectedIndex!],
+               packageTitle: packageTitle[selectedIndex!],
+               selectedIndex: selectedIndex??0,
+
+             ),
 
             /// ========= BUTTON =========
 
