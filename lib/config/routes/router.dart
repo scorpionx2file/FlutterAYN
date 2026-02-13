@@ -8,6 +8,7 @@ import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import 'package:traveller/event_option/presentation/widgets/bottom_section/event_list.dart';
 import 'package:traveller/event_option/presentation/widgets/place_details_screen.dart';
 import 'package:traveller/followers_list/presentation/widgets/followers_list_screen.dart';
+import 'package:traveller/nearby_persons/presentation/widgets/nearby_persons_list_screen.dart';
 import 'package:traveller/onboarding/presentation/screen/onboarding_screen.dart';
 import 'package:traveller/otp/presentation/screen/otp_screen.dart';
 import 'package:traveller/profile_settings/presentation/widgets/profile_settings_screen.dart';
@@ -716,6 +717,46 @@ final List<FollowerModel> followers = [
   ),
 ];
 
+class NearbyPersonModel {
+  final String name;
+  final int miles;
+  final bool isServiceProvider;
+  final Story story;
+
+  NearbyPersonModel({
+    required this.name,
+    required this.miles,
+    required this.isServiceProvider,
+    required this.story,
+  });
+}
+final List<NearbyPersonModel> nearbyPersons = [
+  NearbyPersonModel(
+    name: 'Adham Mohamed',
+    miles: 1,
+    isServiceProvider: false,
+    story: Story(
+      id: 'story12',
+      imageUrl:
+      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+      isSeen: false,
+      data: '',
+    ),
+  ),
+  NearbyPersonModel(
+    name: 'Habiba Elhadi',
+    miles: 2,
+    isServiceProvider: true,
+    story: Story(
+      id: 'story12',
+      imageUrl:
+      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+      isSeen: true,
+      data: '',
+    ),
+  ),
+];
+
 final GoRouter router = GoRouter(
   initialLocation: AppRoutes.splash,
   routes: [
@@ -802,6 +843,10 @@ final GoRouter router = GoRouter(
 
         return VideoAndArticlesScreen(postData: post);
       },
+    ),
+    GoRoute(
+      path: AppRoutes.nearbyPersonsAndChatsList,
+      builder: (context, state) => NearbyPersonsAndChatsListScreen(nearbyPersons: nearbyPersons,chats: []),
     ),
 
     // ShellRoute for main screens with bottom nav

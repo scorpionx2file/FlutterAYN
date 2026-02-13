@@ -39,13 +39,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-/// Chat Message Bubble
+/// ChatMessageBubble
 // ScreenUtilInit(
 // designSize: const Size(360, 690),
 // builder: (_, __) {
 // return MaterialApp(
 // debugShowCheckedModeBanner: false,
 // home: Scaffold(
+// backgroundColor: const Color(0xFFF5F5F5),
 // appBar: AppBar(title: const Text('Chat Test')),
 // body: ListView(
 // padding: EdgeInsets.only(top: 16.h),

@@ -131,6 +131,12 @@ abstract class AppLocalizations {
   /// **'Chat'**
   String get chat;
 
+  /// No description provided for @chats.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats'**
+  String get chats;
+
   /// No description provided for @writeCommentHint.
   ///
   /// In en, this message translates to:
@@ -850,6 +856,13 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Password must be at least {minLen} characters'**
   String passwordMin(int minLen);
+
+  /// No description provided for @nearbyPersons.
+  ///
+  /// In en, this message translates to:
+  /// **'Nearby Persons'**
+  String get nearbyPersons;
+
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

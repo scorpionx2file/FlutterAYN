@@ -27,6 +27,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get chat => 'رسالة';
 
   @override
+  String get chats => 'المحادثات';
+
+  @override
   String get writeCommentHint => 'اكتب تعليقًا...';
 
   @override
@@ -370,6 +373,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get nameRequired => 'الاسم مطلوب';
+
+  @override
+  String get nearbyPersons => 'الاشخاص القريبين';
 
   @override
   String nameMin(int minLen) {

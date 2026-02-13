@@ -6,6 +6,7 @@
   "chooseGatesSubtitle": "اختر 3 بوابات على الأقل لتخصيص تجربتك.",
   "chooseGatesMin3Snack": "من فضلك اختر 3 بوابات على الأقل.",
   "chat": "رسالة",
+  "chats": "المحادثات",
   "writeCommentHint": "اكتب تعليقًا...",
   "comments": "التعليقات",
   "home": "الرئيسية",
@@ -135,21 +136,21 @@
                      "services": "الخدمات",
                      "available": "متاح",
                      "notAvailable": "غير متاح",
-                      "storySendMessageHint": "أرسل رسالة...",
-                       "shareProfile": "مشاركة الملف الشخصي",
-                        "muteMessages": "كتم الرسائل",
-                        "blockProfile": "حظر الملف الشخصي",
-                        "memberSpecificEvents": "فعاليات خاصة بالأعضاء",
-                        "nameRequired": "الاسم مطلوب",
-                          "nameMin": "يجب أن يكون الاسم {minLen} أحرف على الأقل",
-                          "@nameMin": { "placeholders": { "minLen": { "type": "int" } } },
-                           "otpRequired": "من فضلك أدخل رمز التحقق المكون من 4 أرقام.",
-                          "emailRequired": "البريد الإلكتروني مطلوب",
-                          "emailInvalid": "أدخل بريدًا إلكترونيًا صحيحًا",
+                     "storySendMessageHint": "أرسل رسالة...",
+                     "shareProfile": "مشاركة الملف الشخصي",
+                     "muteMessages": "كتم الرسائل",
+                     "blockProfile": "حظر الملف الشخصي",
+                     "memberSpecificEvents": "فعاليات خاصة بالأعضاء",
+                     "nameRequired": "الاسم مطلوب",
+                     "nameMin": "يجب أن يكون الاسم {minLen} أحرف على الأقل",
+                     "@nameMin": { "placeholders": { "minLen": { "type": "int" } } },
+                     "otpRequired": "من فضلك أدخل رمز التحقق المكون من 4 أرقام.",
+                     "emailRequired": "البريد الإلكتروني مطلوب",
+                     "emailInvalid": "أدخل بريدًا إلكترونيًا صحيحًا",
 
-                          "passwordRequired": "كلمة المرور مطلوبة",
-                          "passwordMin": "يجب أن تكون كلمة المرور {minLen} أحرف على الأقل",
-                          "@passwordMin": { "placeholders": { "minLen": { "type": "int" } } }
+                     "passwordRequired": "كلمة المرور مطلوبة",
+                     "passwordMin": "يجب أن تكون كلمة المرور {minLen} أحرف على الأقل",
+                     "@passwordMin": { "placeholders": { "minLen": { "type": "int" } } }
 
-
+                     "nearbyPersons": "الاشخاص القريبين"
 }

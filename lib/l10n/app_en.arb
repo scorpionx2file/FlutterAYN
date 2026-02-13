@@ -6,6 +6,7 @@
   "chooseGatesSubtitle": "Pick at least 3 gates to tailor your experience.",
   "chooseGatesMin3Snack": "Please select at least 3 gates.",
   "chat": "Chat",
+  "chats": "Chats",
   "writeCommentHint": "Write a comment...",
   "comments": "Comments",
   "home": "Home",
@@ -149,4 +150,6 @@
                         "passwordRequired": "Password is required",
                         "passwordMin": "Password must be at least {minLen} characters",
                         "@passwordMin": { "placeholders": { "minLen": { "type": "int" } } }
+
+                        "nearbyPersons": "Nearby Persons"
 }

@@ -27,6 +27,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chat => 'Chat';
 
   @override
+  String get chats => 'Chats';
+
+  @override
   String get writeCommentHint => 'Write a comment...';
 
   @override
@@ -370,6 +373,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nameRequired => 'Name is required';
+
+  @override
+  String get nearbyPersons => 'Nearby Persons';
 
   @override
   String nameMin(int minLen) {
