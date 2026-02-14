@@ -25,6 +25,7 @@ class AppRoutes {
   static const String seeAllActivities = "/SeeAllActivities";
   static const String addNewPost = "/AddNewPost";
   static const String addNewVideo = "/AddNewVideo";
+  static const String addNewEvent = "/AddNewEvent";
 
   static const String nearbyPersonsAndChatsList = "/NearbyPersonsAndChatsList";
 }

@@ -299,6 +299,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> w
                   color: AppColors.yellow,
                   direction: FabLabelDirection.left,
                   onTap: () {
+                    toggleFab();
+                    context.push(AppRoutes.addNewEvent);
                   },
                 ),
                 SizedBox(width: 12.w),

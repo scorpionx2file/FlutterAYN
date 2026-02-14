@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:traveller/add_new_event/presentation/screen/add_new_event.dart';
 import 'package:traveller/add_new_post/presentation/screen/add_new_post.dart';
 import 'package:traveller/add_new_video/presentation/screen/add_new_video.dart';
 import 'package:traveller/auth/presentation/screen/choose_gates_screen.dart';
@@ -866,7 +867,15 @@ final GoRouter router = GoRouter(
         path: AppRoutes.addNewVideo,
         builder: (context,state) => AddNewVideo(
           imageUrl: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg",
-            location: "Alexandria, Egypt",
+          location: "Alexandria, Egypt",
+        )
+    ),
+
+    GoRoute(
+        path: AppRoutes.addNewEvent,
+        builder: (context,state) => AddNewEvent(
+          imageUrl: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg",
+          location: "Alexandria, Egypt",
         )
     ),
 

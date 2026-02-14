@@ -10,6 +10,7 @@ class ProfileSettingsTile extends StatelessWidget {
   final VoidCallback? onTap;
   final bool hasPermission; // show toggle instead of arrow
   final bool showDivider;
+  final bool showIcon;
 
   const ProfileSettingsTile({
     super.key,
@@ -18,7 +19,8 @@ class ProfileSettingsTile extends StatelessWidget {
     this.trailing,
     this.onTap,
     this.hasPermission = false,
-    this.showDivider = true
+    this.showDivider = true,
+    this.showIcon = true
   });
 
   @override
@@ -47,7 +49,8 @@ class ProfileSettingsTile extends StatelessWidget {
                 ),
 
                 /// Arrow or toggle on correct side
-                hasPermission
+                if(showIcon)
+                  hasPermission
                     ? (trailing ?? SizedBox.shrink())
                     : Icon(
                   Icons.arrow_forward_ios,
