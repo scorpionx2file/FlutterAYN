@@ -283,7 +283,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> w
               color: AppColors.turnbullBlue,
               direction: FabLabelDirection.above,
               onTap: () {
-                // navigate
+                toggleFab();
+                context.push(AppRoutes.addNewPost);
               },
             ),
 

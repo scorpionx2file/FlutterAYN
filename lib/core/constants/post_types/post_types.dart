@@ -28,7 +28,7 @@ class PostTypes extends StatelessWidget{
             height: 30.h,
             color: color,
           ),
-          SizedBox(width: 10.w),
+          SizedBox(width: 3.w),
           Text(
             title,
             style: AppTextStyles.text.copyWith(

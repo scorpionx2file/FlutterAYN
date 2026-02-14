@@ -9,6 +9,7 @@ class ProfileSettingsTile extends StatelessWidget {
   final Widget? trailing; // toggle widget
   final VoidCallback? onTap;
   final bool hasPermission; // show toggle instead of arrow
+  final bool showDivider;
 
   const ProfileSettingsTile({
     super.key,
@@ -17,6 +18,7 @@ class ProfileSettingsTile extends StatelessWidget {
     this.trailing,
     this.onTap,
     this.hasPermission = false,
+    this.showDivider = true
   });
 
   @override
@@ -58,7 +60,8 @@ class ProfileSettingsTile extends StatelessWidget {
             ),
           ),
         ),
-        Divider(height: 1.h),
+        if(showDivider)
+          Divider(height: 1.h),
       ],
     );
   }
