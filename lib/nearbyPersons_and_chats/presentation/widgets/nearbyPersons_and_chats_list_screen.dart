@@ -1,27 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:traveller/core/constants/nearby/nearby_persons_list_tile.dart';
 import 'package:traveller/core/constants/text_feild/app_text_feild.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
-import '../../../core/constants/followers_list/followers_list_tile.dart';
+import '../../../config/routes/router.dart';
+import '../../../core/constants/chats/chat_tile.dart';
 
-class FollowersListScreen extends StatefulWidget {
-  final List following;
-  final List followers;
+class NearbyPersonsAndChatsListScreen extends StatefulWidget {
+  final List<NearbyPersonModel> nearbyPersons;
+  final List<ChatTileModel> chats;
 
-  const FollowersListScreen({
+  const NearbyPersonsAndChatsListScreen({
     super.key,
-    required this.following,
-    required this.followers,
+    required this.nearbyPersons,
+    required this.chats,
   });
 
   @override
-  State<FollowersListScreen> createState() => _FollowersListScreenState();
+  State<NearbyPersonsAndChatsListScreen> createState() =>
+      _NearbyPersonsAndChatsListScreenState();
 }
 
-class _FollowersListScreenState extends State<FollowersListScreen>
+class _NearbyPersonsAndChatsListScreenState
+    extends State<NearbyPersonsAndChatsListScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final TextEditingController _searchController = TextEditingController();
@@ -30,7 +34,7 @@ class _FollowersListScreenState extends State<FollowersListScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
-    _searchController.addListener(() => setState(() {}));
+    _searchController.addListener(() => setState(() {})); // Update filter dynamically
   }
 
   @override
@@ -40,12 +44,14 @@ class _FollowersListScreenState extends State<FollowersListScreen>
     super.dispose();
   }
 
-  List get filteredFollowing => widget.following
-      .where((p) => p.name.toLowerCase().contains(_searchController.text.toLowerCase()))
+  List<NearbyPersonModel> get filteredNearby => widget.nearbyPersons
+      .where((p) =>
+      p.name.toLowerCase().contains(_searchController.text.toLowerCase()))
       .toList();
 
-  List get filteredFollowers => widget.followers
-      .where((p) => p.name.toLowerCase().contains(_searchController.text.toLowerCase()))
+  List<ChatTileModel> get filteredChats => widget.chats
+      .where((c) =>
+      c.chatName.toLowerCase().contains(_searchController.text.toLowerCase()))
       .toList();
 
   @override
@@ -58,8 +64,8 @@ class _FollowersListScreenState extends State<FollowersListScreen>
           builder: (_, __) {
             return Text(
               _tabController.index == 0
-                  ? context.l10n.following
-                  : context.l10n.followers,
+                  ? context.l10n.nearbyPersons
+                  : context.l10n.chats,
               style: AppTextStyles.titles.copyWith(fontWeight: FontWeight.bold),
             );
           },
@@ -83,13 +89,13 @@ class _FollowersListScreenState extends State<FollowersListScreen>
               unselectedLabelColor: Colors.grey,
               labelStyle: AppTextStyles.title.copyWith(fontSize: 16.sp),
               tabs: [
-                Tab(text: context.l10n.following),
-                Tab(text: context.l10n.followers),
+                Tab(text: context.l10n.nearbyPersons),
+                Tab(text: context.l10n.chats),
               ],
             ),
           ),
 
-          // ===== Search Bar =====
+          // ===== Search Bar (under tabs) =====
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
             child: AppTextFields(
@@ -108,8 +114,8 @@ class _FollowersListScreenState extends State<FollowersListScreen>
             child: TabBarView(
               controller: _tabController,
               children: [
-                buildFollowingOrFollowersList(filteredFollowing),
-                buildFollowingOrFollowersList(filteredFollowers),
+                buildNearbyPersonsList(filteredNearby),
+                buildChatsList(filteredChats),
               ],
             ),
           ),
@@ -118,24 +124,39 @@ class _FollowersListScreenState extends State<FollowersListScreen>
     );
   }
 
-  Widget buildFollowingOrFollowersList(List people) {
+  Widget buildNearbyPersonsList(List<NearbyPersonModel> nearbyPersons) {
     return ListView.separated(
       padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
-      itemCount: people.length,
+      itemCount: nearbyPersons.length,
       separatorBuilder: (_, __) => SizedBox(height: 8.h),
       itemBuilder: (context, index) {
-        final item = people[index];
-        return FollowersListTile(
+        final item = nearbyPersons[index];
+        return NearbyPersonsListTile(
           story: item.story,
           name: item.name,
-          points: item.points,
-          buttonText: item.isFollowing ? context.l10n.following : context.l10n.follow,
-          isFollowing: item.isFollowing,
-          onStoryTap: () {},
+          miles: item.miles,
+          isServiceProvider: item.isServiceProvider,
           onButtonPressed: () {},
+          onStoryTap: () {},
+        );
+      },
+    );
+  }
+
+  Widget buildChatsList(List<ChatTileModel> chats) {
+    return ListView.separated(
+      padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
+      itemCount: chats.length,
+      separatorBuilder: (_, __) => SizedBox(height: 6.h),
+      itemBuilder: (context, index) {
+        final chat = chats[index];
+        return ChatTile(
+          chatModel: chat,
+          onTap: () {},
         );
       },
     );
   }
 }
+
 

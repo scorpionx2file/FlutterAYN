@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:traveller/auth/presentation/screen/choose_gates_screen.dart';
@@ -8,7 +9,6 @@ import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import 'package:traveller/event_option/presentation/widgets/bottom_section/event_list.dart';
 import 'package:traveller/event_option/presentation/widgets/place_details_screen.dart';
 import 'package:traveller/followers_list/presentation/widgets/followers_list_screen.dart';
-import 'package:traveller/nearby_persons/presentation/widgets/nearby_persons_list_screen.dart';
 import 'package:traveller/onboarding/presentation/screen/onboarding_screen.dart';
 import 'package:traveller/otp/presentation/screen/otp_screen.dart';
 import 'package:traveller/profile_settings/presentation/widgets/profile_settings_screen.dart';
@@ -17,6 +17,7 @@ import 'package:traveller/splash_screen.dart';
 import 'package:traveller/stories/presentation/widgets/story_screen.dart';
 import 'package:traveller/user_profile/presentation/widgets/user_profile_screen.dart';
 import 'package:traveller/video/presentation/widgets/video&articles_screen.dart';
+
 import '../../auth/presentation/screen/sign_up_screen.dart';
 import '../../core/constants/activity_card/activity_card.dart';
 import '../../core/constants/comment/comment_item.dart';
@@ -36,9 +37,9 @@ import '../../event_option/presentation/widgets/content_section/content_section.
 import '../../gates/presentation/screens/gates_screen.dart';
 import '../../home/presentation/screens/home_screen.dart';
 import '../../map/presenttion/widgets/map_screen.dart';
+import '../../nearbyPersons_and_chats/presentation/widgets/nearbyPersons_and_chats_list_screen.dart';
 import '../../see_all_activities/presentation/screen/see_all_activities.dart';
 import 'app_routes.dart';
-import 'package:flutter/material.dart';
 
 final badgeData = AppGateBadgeData(
   icon: Icons.sunny,
@@ -47,76 +48,76 @@ final badgeData = AppGateBadgeData(
 );
 final gates = [
   GatesData(
-      image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      title: "Tourism to Egypt",
-      badge: badgeData,
-      onTap: () {}
+    image: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+    title: "Tourism to Egypt",
+    badge: badgeData,
+    onTap: () {},
   ),
   GatesData(
-      image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      title: "Tourism to Egypt",
-      badge: badgeData,
-      onTap: () {}
+    image: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+    title: "Tourism to Egypt",
+    badge: badgeData,
+    onTap: () {},
   ),
   GatesData(
-      image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      title: "Tourism to Egypt",
-      badge: badgeData,
-      onTap: () {}
+    image: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+    title: "Tourism to Egypt",
+    badge: badgeData,
+    onTap: () {},
   ),
   GatesData(
-      image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      title: "Tourism to Egypt",
-      badge: badgeData,
-      onTap: () {}
+    image: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+    title: "Tourism to Egypt",
+    badge: badgeData,
+    onTap: () {},
   ),
   GatesData(
-      image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      title: "Tourism to Egypt",
-      badge: badgeData,
-      onTap: () {}
+    image: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+    title: "Tourism to Egypt",
+    badge: badgeData,
+    onTap: () {},
   ),
   GatesData(
-      image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      title: "Tourism to Egypt",
-      badge: badgeData,
-      onTap: () {}
+    image: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+    title: "Tourism to Egypt",
+    badge: badgeData,
+    onTap: () {},
   ),
   GatesData(
-      image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      title: "Tourism to Egypt",
-      badge: badgeData,
-      onTap: () {}
+    image: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+    title: "Tourism to Egypt",
+    badge: badgeData,
+    onTap: () {},
   ),
   GatesData(
-      image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      title: "Tourism to Egypt",
-      badge: badgeData,
-      onTap: () {}
+    image: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+    title: "Tourism to Egypt",
+    badge: badgeData,
+    onTap: () {},
   ),
   GatesData(
-      image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      title: "Tourism to Egypt",
-      badge: badgeData,
-      onTap: () {}
+    image: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+    title: "Tourism to Egypt",
+    badge: badgeData,
+    onTap: () {},
   ),
   GatesData(
-      image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      title: "Tourism to Egypt",
-      badge: badgeData,
-      onTap: () {}
+    image: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+    title: "Tourism to Egypt",
+    badge: badgeData,
+    onTap: () {},
   ),
   GatesData(
-      image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      title: "Tourism to Egypt",
-      badge: badgeData,
-      onTap: () {}
+    image: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+    title: "Tourism to Egypt",
+    badge: badgeData,
+    onTap: () {},
   ),
   GatesData(
-      image:  'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
-      title: "Tourism to Egypt",
-      badge: badgeData,
-      onTap: () {}
+    image: 'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+    title: "Tourism to Egypt",
+    badge: badgeData,
+    onTap: () {},
   ),
 ];
 
@@ -124,86 +125,79 @@ final stories = [
   Story(
     id: 'story20',
     imageUrl:
-    'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+        'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
     username: "Habiba",
     isSeen: false,
-    data:
-    "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
+    data: "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
   ),
   Story(
     id: 'story18',
     imageUrl:
-    'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+        'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
     username: "Habiba",
     isSeen: true,
     data:
-    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
   ),
   Story(
     id: 'story17',
     imageUrl:
-    'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+        'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
     username: "Habiba",
     isSeen: true,
-    data:
-    "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
+    data: "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
   ),
   Story(
     id: 'story16',
     imageUrl:
-    'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+        'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
     username: "Habiba",
     isSeen: false,
-    data:
-    "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
+    data: "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
   ),
   Story(
     id: 'story15',
     imageUrl:
-    'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+        'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
     username: "Habiba",
     isSeen: false,
-    data:
-    "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
+    data: "https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg",
   ),
 ];
 final stories2 = [
   Story(
     id: 'story14',
     imageUrl:
-    'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+        'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
     username: "Jojo",
     isSeen: false,
     data:
-    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
   ),
   Story(
     id: 'story13',
     imageUrl:
-    'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+        'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
     username: "Jojo",
     isSeen: true,
     data:
-    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
   ),
 ];
 
-final allStories = [
-  stories,
-  stories2
-];
+final allStories = [stories, stories2];
 
 final activities = [
   Activity(
     imageUrl:
-    'https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg',
+        'https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg',
     title: 'FIFA World Cup',
     category: 'Sports',
     time: 'Nov 23, 12PM',
   ),
   Activity(
     imageUrl:
-    'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+        'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
     title: 'Morning Run',
     category: 'Running',
     time: 'Dec 2, 7AM',
@@ -212,56 +206,56 @@ final activities = [
 final headerData1 = PostHeaderData(
   postId: '1',
   imageUrl:
-  'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+      'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
   username: 'Sarah Ahmed',
   jobOrLocation: 'UI Designer',
   rate: 4.8,
   description:
-  'This is a sample post description to test expandable text behavior in the feed.',
+      'This is a sample post description to test expandable text behavior in the feed.',
   isHighlighted: false,
 );
 final headerData2 = PostHeaderData(
   postId: '2',
   imageUrl:
-  'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+      'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
   username: 'Sarah Ahmed',
   jobOrLocation: 'UI Designer',
   rate: 4.8,
   description:
-  'This is a sample post description to test expandable text behavior in the feed.',
+      'This is a sample post description to test expandable text behavior in the feed.',
   isHighlighted: false,
 );
 final headerData3 = PostHeaderData(
   postId: '3',
   imageUrl:
-  'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+      'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
   username: 'Sarah Ahmed',
   jobOrLocation: 'UI Designer',
   rate: 4.8,
   description:
-  'This is a sample post description to test expandable text behavior in the feed.',
+      'This is a sample post description to test expandable text behavior in the feed.',
   isHighlighted: false,
 );
 final headerData4 = PostHeaderData(
   postId: '4',
   imageUrl:
-  'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+      'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
   username: 'Sarah Ahmed',
   jobOrLocation: 'UI Designer',
   rate: 4.8,
   description:
-  'This is a sample post description to test expandable text behavior in the feed.',
+      'This is a sample post description to test expandable text behavior in the feed.',
   isHighlighted: false,
 );
 final headerData5 = PostHeaderData(
   postId: '5',
   imageUrl:
-  'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
+      'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
   username: 'Sarah Ahmed',
   jobOrLocation: 'UI Designer',
   rate: 4.8,
   description:
-  'This is a sample post description to test expandable text behavior in the feed.',
+      'This is a sample post description to test expandable text behavior in the feed.',
   isHighlighted: false,
 );
 final contentData = PostContentData(
@@ -304,26 +298,11 @@ final contentData3 = PostContentData(
 );
 
 List<PostData> postData = [
-PostData(
-headerData: headerData1,
-contentData: contentData,
-),
-PostData(
-headerData: headerData2,
-contentData: contentData1,
-),
-PostData(
-headerData: headerData3,
-contentData: contentData2,
-),
-PostData(
-headerData: headerData4,
-contentData: contentData3,
-),
-PostData(
-headerData: headerData5,
-contentData: contentData,
-),
+  PostData(headerData: headerData1, contentData: contentData),
+  PostData(headerData: headerData2, contentData: contentData1),
+  PostData(headerData: headerData3, contentData: contentData2),
+  PostData(headerData: headerData4, contentData: contentData3),
+  PostData(headerData: headerData5, contentData: contentData),
 ];
 
 final List<MapItem> items = [
@@ -370,25 +349,37 @@ final List<CommentData> postComments = [
     'https://i.pravatar.cc/150?img=1',
     'Ahmed',
     '2h',
-    const Icon(Icons.shopping_bag_rounded, color: AppColors.spanishGrey, size: 18),
+    const Icon(
+      Icons.shopping_bag_rounded,
+      color: AppColors.spanishGrey,
+      size: 18,
+    ),
     'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
     false,
   ),
   CommentData(
-      'https://i.pravatar.cc/150?img=2',
-      'Sara',
-      '1h',
-      const Icon(Icons.shopping_bag_rounded, color: AppColors.spanishGrey, size: 18),
-      'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
-      false
+    'https://i.pravatar.cc/150?img=2',
+    'Sara',
+    '1h',
+    const Icon(
+      Icons.shopping_bag_rounded,
+      color: AppColors.spanishGrey,
+      size: 18,
+    ),
+    'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+    false,
   ),
   CommentData(
-      'https://i.pravatar.cc/150?img=3',
-      'Omar',
-      '10m',
-      const Icon(Icons.shopping_bag_rounded, color: AppColors.spanishGrey, size: 18),
-      'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
-      false
+    'https://i.pravatar.cc/150?img=3',
+    'Omar',
+    '10m',
+    const Icon(
+      Icons.shopping_bag_rounded,
+      color: AppColors.spanishGrey,
+      size: 18,
+    ),
+    'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+    false,
   ),
 ];
 final List<CommentData> serviceProviderComments = [
@@ -401,36 +392,36 @@ final List<CommentData> serviceProviderComments = [
     true,
   ),
   CommentData(
-      'https://i.pravatar.cc/150?img=2',
-      'Sara',
-      '1h',
-      RatingWidget(rating: 4.8),
-      'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
-      true
+    'https://i.pravatar.cc/150?img=2',
+    'Sara',
+    '1h',
+    RatingWidget(rating: 4.8),
+    'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+    true,
   ),
   CommentData(
-      'https://i.pravatar.cc/150?img=3',
-      'Omar',
-      '10m',
-      RatingWidget(rating: 2.2),
-      'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
-      true
+    'https://i.pravatar.cc/150?img=3',
+    'Omar',
+    '10m',
+    RatingWidget(rating: 2.2),
+    'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+    true,
   ),
   CommentData(
-      'https://i.pravatar.cc/150?img=3',
-      'Omar',
-      '10m',
-      RatingWidget(rating: 2.2),
-      'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
-      true
+    'https://i.pravatar.cc/150?img=3',
+    'Omar',
+    '10m',
+    RatingWidget(rating: 2.2),
+    'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+    true,
   ),
   CommentData(
-      'https://i.pravatar.cc/150?img=3',
-      'Omar',
-      '10m',
-      RatingWidget(rating: 2.2),
-      'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
-      true
+    'https://i.pravatar.cc/150?img=3',
+    'Omar',
+    '10m',
+    RatingWidget(rating: 2.2),
+    'A wonderful experience, Karim! I hope you can repeat the trip or organize a similar one to the beautiful Egyptian desert. Thank you so much!',
+    true,
   ),
 ];
 
@@ -440,7 +431,7 @@ final placeCont = PlaceContent(
   numOfPosts: 200,
   gateTitle: "Tourism to Egypt",
   gateDesc:
-  "It is a long-established fact that the readable content of a page will distract the reader from focusing.",
+      "It is a long-established fact that the readable content of a page will distract the reader from focusing.",
   friendsImages: [
     'https://images.pexels.com/photos/1308881/pexels-photo-1308881.jpeg',
     'https://images.pexels.com/photos/1133957/pexels-photo-1133957.jpeg',
@@ -455,105 +446,109 @@ final placeInfo = PlaceInfoModel(
 final eventPosts = [
   EventPostsData(
     imageUrl:
-    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
     username: "Habiba",
     title: "Morning Run",
     date: "Dec 2, 7AM",
     postImage:
-    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
     rate: 4.8,
   ),
   EventPostsData(
     imageUrl:
-    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
     username: "Habiba",
     title: "Morning Run",
     date: "Dec 2, 7AM",
     postImage:
-    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
     rate: 4.8,
   ),
   EventPostsData(
     imageUrl:
-    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
     username: "Habiba",
     title: "Morning Run",
     date: "Dec 2, 7AM",
     postImage:
-    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
     rate: 4.8,
   ),
   EventPostsData(
     imageUrl:
-    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
     username: "Habiba",
     title: "Morning Run",
     date: "Dec 2, 7AM",
     postImage:
-    "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
     rate: 4.8,
   ),
 ];
 final eventActivities = [
   EventActivitiesData(
-      imageUrl:"https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-      title: 'French International Tour',
-      date: '4 April',
-      category: 'Sport'
+    imageUrl:
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+    title: 'French International Tour',
+    date: '4 April',
+    category: 'Sport',
   ),
   EventActivitiesData(
-      imageUrl:"https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-      title: 'French International Tour',
-      date: '4 April',
-      category: 'Sport'
+    imageUrl:
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+    title: 'French International Tour',
+    date: '4 April',
+    category: 'Sport',
   ),
   EventActivitiesData(
-      imageUrl:"https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-      title: 'French International Tour',
-      date: '4 April',
-      category: 'Sport'
+    imageUrl:
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+    title: 'French International Tour',
+    date: '4 April',
+    category: 'Sport',
   ),
   EventActivitiesData(
-      imageUrl:"https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-      title: 'French International Tour',
-      date: '4 April',
-      category: 'Sport'
+    imageUrl:
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+    title: 'French International Tour',
+    date: '4 April',
+    category: 'Sport',
   ),
   EventActivitiesData(
-      imageUrl:"https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
-      title: '',
-      date: '4 April',
-      category: 'Sport'
+    imageUrl:
+        "https://images.pexels.com/photos/11829358/pexels-photo-11829358.jpeg",
+    title: '',
+    date: '4 April',
+    category: 'Sport',
   ),
 ];
-final eventServiceProviders= [
+final eventServiceProviders = [
   ServiceProviderData(
-      data: headerData1,
-      location: 'Egypt',
-      language: 'English'
+    data: headerData1,
+    location: 'Egypt',
+    language: 'English',
   ),
   ServiceProviderData(
-      data: headerData2,
-      location: 'Egypt',
-      language: 'English'
+    data: headerData2,
+    location: 'Egypt',
+    language: 'English',
   ),
   ServiceProviderData(
-      data: headerData3,
-      location: 'Egypt',
-      language: 'English'
+    data: headerData3,
+    location: 'Egypt',
+    language: 'English',
   ),
   ServiceProviderData(
-      data: headerData4,
-      location: 'Egypt',
-      language: 'English'
+    data: headerData4,
+    location: 'Egypt',
+    language: 'English',
   ),
   ServiceProviderData(
-      data: headerData5,
-      location: 'Egypt',
-      language: 'English'
-  )
+    data: headerData5,
+    location: 'Egypt',
+    language: 'English',
+  ),
 ];
-
 
 class FollowerModel {
   final String name;
@@ -568,6 +563,7 @@ class FollowerModel {
     required this.story,
   });
 }
+
 final List<FollowerModel> following = [
   FollowerModel(
     name: 'Adham Mohamed',
@@ -576,7 +572,7 @@ final List<FollowerModel> following = [
     story: Story(
       id: 'story12',
       imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: false,
       data: '',
     ),
@@ -588,7 +584,7 @@ final List<FollowerModel> following = [
     story: Story(
       id: 'story11',
       imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: false,
       data: '',
     ),
@@ -600,7 +596,7 @@ final List<FollowerModel> following = [
     story: Story(
       id: 'story10',
       imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: false,
       data: '',
     ),
@@ -612,7 +608,7 @@ final List<FollowerModel> following = [
     story: Story(
       id: 'story9',
       imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: false,
       data: '',
     ),
@@ -626,7 +622,7 @@ final List<FollowerModel> followers = [
     story: Story(
       id: 'story8',
       imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: false,
       data: '',
     ),
@@ -638,7 +634,7 @@ final List<FollowerModel> followers = [
     story: Story(
       id: 'story7',
       imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: true,
       data: '',
     ),
@@ -650,7 +646,7 @@ final List<FollowerModel> followers = [
     story: Story(
       id: 'story6',
       imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: true,
       data: '',
     ),
@@ -662,7 +658,7 @@ final List<FollowerModel> followers = [
     story: Story(
       id: 'story5',
       imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: true,
       data: '',
     ),
@@ -674,7 +670,7 @@ final List<FollowerModel> followers = [
     story: Story(
       id: 'story4',
       imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: true,
       data: '',
     ),
@@ -686,7 +682,7 @@ final List<FollowerModel> followers = [
     story: Story(
       id: 'story3',
       imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: true,
       data: '',
     ),
@@ -698,7 +694,7 @@ final List<FollowerModel> followers = [
     story: Story(
       id: 'story2',
       imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: true,
       data: '',
     ),
@@ -709,7 +705,7 @@ final List<FollowerModel> followers = [
     isFollowing: true,
     story: Story(
       imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: true,
       data: '',
       id: 'story1',
@@ -730,6 +726,7 @@ class NearbyPersonModel {
     required this.story,
   });
 }
+
 final List<NearbyPersonModel> nearbyPersons = [
   NearbyPersonModel(
     name: 'Adham Mohamed',
@@ -738,7 +735,7 @@ final List<NearbyPersonModel> nearbyPersons = [
     story: Story(
       id: 'story12',
       imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: false,
       data: '',
     ),
@@ -750,15 +747,115 @@ final List<NearbyPersonModel> nearbyPersons = [
     story: Story(
       id: 'story12',
       imageUrl:
-      'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
+          'https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg',
       isSeen: true,
       data: '',
     ),
   ),
 ];
 
+enum ChatMessageType { text, voice, image, video, location, file }
+
+class ChatTileModel {
+  final String chatName;
+  final String time;
+  final List<String> avatars; // 1 = single, >1 = group
+  final ChatMessageType lastMessageType;
+  final String? lastMessageText;
+  final bool isServiceProvider;
+  final int? unreadCount;
+  final bool isOnline;
+
+  ChatTileModel({
+    required this.chatName,
+    required this.time,
+    required this.avatars,
+    required this.lastMessageType,
+    this.lastMessageText,
+    this.isServiceProvider = false,
+    this.unreadCount,
+    this.isOnline = false,
+  });
+}
+
+final List<ChatTileModel> chats = [
+  ChatTileModel(
+    chatName: 'Mahmoud Saady',
+    time: '14:41',
+    avatars: ['https://i.pravatar.cc/150?img=1'],
+    lastMessageType: ChatMessageType.voice,
+    isServiceProvider: true,
+    unreadCount: 2,
+    isOnline: true,
+  ),
+  ChatTileModel(
+    chatName: 'Layla Ahmed',
+    time: '13:20',
+    avatars: ['https://i.pravatar.cc/150?img=2'],
+    lastMessageType: ChatMessageType.text,
+    lastMessageText: 'هل يمكننا الاجتماع اليوم؟',
+    unreadCount: 0,
+    isOnline: false,
+  ),
+  ChatTileModel(
+    chatName: 'Support Team',
+    time: '12:05',
+    avatars: [
+      'https://i.pravatar.cc/150?img=3',
+      'https://i.pravatar.cc/150?img=4',
+      'https://i.pravatar.cc/150?img=5'
+    ],
+    lastMessageType: ChatMessageType.text,
+    lastMessageText: 'تم تحديث طلبك بنجاح.',
+    isServiceProvider: true,
+    unreadCount: 5,
+    isOnline: true,
+  ),
+  ChatTileModel(
+    chatName: 'Ahmed & Hossam',
+    time: '10:30',
+    avatars: [
+      'https://i.pravatar.cc/150?img=6',
+      'https://i.pravatar.cc/150?img=7'
+    ],
+    lastMessageType: ChatMessageType.image,
+    lastMessageText: '📷 صورة جديدة',
+    isOnline: false,
+  ),
+  ChatTileModel(
+    chatName: 'Sara Mohamed',
+    time: '09:15',
+    avatars: ['https://i.pravatar.cc/150?img=8'],
+    lastMessageType: ChatMessageType.text,
+    lastMessageText: 'صباح الخير!',
+    isOnline: true,
+  ),
+  ChatTileModel(
+    chatName: 'Customer Service',
+    time: 'Yesterday',
+    avatars: ['https://i.pravatar.cc/150?img=9'],
+    lastMessageType: ChatMessageType.voice,
+    isServiceProvider: true,
+    unreadCount: 1,
+    isOnline: false,
+  ),
+  ChatTileModel(
+    chatName: 'المجموعة العائلية',
+    time: 'Yesterday',
+    avatars: [
+      'https://i.pravatar.cc/150?img=10',
+      'https://i.pravatar.cc/150?img=11',
+      'https://i.pravatar.cc/150?img=12'
+    ],
+    lastMessageType: ChatMessageType.text,
+    lastMessageText: 'لنلتقي هذا الأسبوع!',
+    unreadCount: 0,
+    isOnline: true,
+  ),
+];
+
 final GoRouter router = GoRouter(
-  initialLocation: AppRoutes.splash,
+  initialLocation: AppRoutes.nearbyPersonsAndChatsList,
   routes: [
     GoRoute(
       path: AppRoutes.splash,
@@ -808,18 +905,24 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.video,
-      builder: (context, state)  {
+      builder: (context, state) {
         final postData = state.extra as PostData;
         return VideoAndArticlesScreen(postData: postData);
       },
     ),
     GoRoute(
       path: AppRoutes.gateDetails,
-      builder: (context, state) => PlaceDetailsScreen(placeInfo: placeInfo,posts: eventPosts,activities: eventActivities,services: eventServiceProviders,),
+      builder: (context, state) => PlaceDetailsScreen(
+        placeInfo: placeInfo,
+        posts: eventPosts,
+        activities: eventActivities,
+        services: eventServiceProviders,
+      ),
     ),
     GoRoute(
       path: AppRoutes.followersList,
-      builder: (context, state) => FollowersListScreen(following: following, followers: followers),
+      builder: (context, state) =>
+          FollowersListScreen(following: following, followers: followers),
     ),
     GoRoute(
       path: AppRoutes.profileSettings,
@@ -836,9 +939,7 @@ final GoRouter router = GoRouter(
         final post = findPostById(postId);
 
         if (post == null) {
-          return Scaffold(
-            body: Center(child: Text(context.l10n.postNotFound)),
-          );
+          return Scaffold(body: Center(child: Text(context.l10n.postNotFound)));
         }
 
         return VideoAndArticlesScreen(postData: post);
@@ -846,7 +947,10 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.nearbyPersonsAndChatsList,
-      builder: (context, state) => NearbyPersonsAndChatsListScreen(nearbyPersons: nearbyPersons,chats: []),
+      builder: (context, state) => NearbyPersonsAndChatsListScreen(
+        nearbyPersons: nearbyPersons,
+        chats: chats,
+      ),
     ),
 
     // ShellRoute for main screens with bottom nav
@@ -873,8 +977,11 @@ final GoRouter router = GoRouter(
       routes: [
         GoRoute(
           path: AppRoutes.home,
-          builder: (context, state) =>
-              HomeScreen(stories: stories, postData: postData, activities: activities),
+          builder: (context, state) => HomeScreen(
+            stories: stories,
+            postData: postData,
+            activities: activities,
+          ),
         ),
         GoRoute(
           path: AppRoutes.map, // you can define a route for your map screen
@@ -891,7 +998,8 @@ final GoRouter router = GoRouter(
         ),
         GoRoute(
           path: AppRoutes.profile, // route for profile
-          builder: (context, state) => UserProfileScreen(activities: activities, postData: postData),
+          builder: (context, state) =>
+              UserProfileScreen(activities: activities, postData: postData),
         ),
         GoRoute(
           path: AppRoutes.seeAllActivities,
@@ -904,4 +1012,3 @@ final GoRouter router = GoRouter(
     ),
   ],
 );
-
