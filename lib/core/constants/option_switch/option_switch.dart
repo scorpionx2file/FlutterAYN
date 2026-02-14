@@ -30,7 +30,7 @@ class _OptionSwitchState extends State<OptionSwitch>{
             value: widget.value,
             onChanged: widget.onChanged,
             activeThumbColor: AppColors.turnbullBlue,
-            activeTrackColor: AppColors.deepMarine,
+            activeTrackColor: AppColors.spanishGrey,
         ),
         SizedBox(width: 10.w),
         Text(

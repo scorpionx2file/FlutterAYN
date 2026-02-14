@@ -9,12 +9,12 @@ import 'package:traveller/core/theme/colors/app_colors.dart';
 import '../../../core/constants/add_new_header/add_new_header.dart';
 
 class AddNewPost extends StatelessWidget{
-  final String imageIrl;
+  final String imageUrl;
   final String location;
 
   const AddNewPost({
     super.key,
-    required this.imageIrl,
+    required this.imageUrl,
     required this.location
   });
 
@@ -31,7 +31,7 @@ class AddNewPost extends StatelessWidget{
         child: Column(
           children: [
             AddNewHeader(
-              imageUrl: imageIrl,
+              imageUrl: imageUrl,
               location: location,
               isEventPage: false,
             ),

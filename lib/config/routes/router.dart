@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:traveller/add_new_post/presentation/screen/add_new_post.dart';
+import 'package:traveller/add_new_video/presentation/screen/add_new_video.dart';
 import 'package:traveller/auth/presentation/screen/choose_gates_screen.dart';
 import 'package:traveller/auth/presentation/screen/forget_password_screen.dart';
 import 'package:traveller/auth/presentation/screen/sign_in_screen.dart';
@@ -855,8 +856,20 @@ final GoRouter router = GoRouter(
 
     GoRoute(
         path: AppRoutes.addNewPost,
-        builder: (context,state) => AddNewPost(imageIrl: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg", location: "Alexandria, Egypt")
+        builder: (context,state) => AddNewPost(
+            imageUrl: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg",
+            location: "Alexandria, Egypt"
+        )
     ),
+
+    GoRoute(
+        path: AppRoutes.addNewVideo,
+        builder: (context,state) => AddNewVideo(
+          imageUrl: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg",
+            location: "Alexandria, Egypt",
+        )
+    ),
+
     GoRoute(
       path: AppRoutes.nearbyPersonsAndChatsList,
       builder: (context, state) => NearbyPersonsAndChatsListScreen(nearbyPersons: nearbyPersons,chats: []),

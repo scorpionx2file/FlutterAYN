@@ -330,6 +330,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> w
                   color: AppColors.lebaneseRed,
                   direction: FabLabelDirection.right,
                   onTap: () {
+                    toggleFab();
+                    context.push(AppRoutes.addNewVideo);
                   },
                 ),
               ],
