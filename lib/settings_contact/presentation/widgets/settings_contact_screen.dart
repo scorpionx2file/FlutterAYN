@@ -7,7 +7,7 @@ import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
-import 'contact_message_textarea.dart';
+import '../../../core/constants/text_area/text_area.dart';
 
 class SettingsContactScreen extends StatelessWidget {
   const SettingsContactScreen({super.key});
@@ -84,7 +84,10 @@ class SettingsContactScreen extends StatelessWidget {
 
               SizedBox(height: 4.h),
 
-              ContactMessageTextArea(),
+              TextArea(
+                  hintText: context.l10n.enterYourMessageHint,
+                height: 200.h,
+              ),
 
               SizedBox(height: 24.h),
 

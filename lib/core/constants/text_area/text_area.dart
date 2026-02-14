@@ -4,8 +4,15 @@ import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
-class ContactMessageTextArea extends StatelessWidget {
-  const ContactMessageTextArea({super.key});
+class TextArea extends StatelessWidget {
+  final String hintText;
+  final double height;
+
+  const TextArea({
+    super.key,
+    required this.hintText,
+    required this.height
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +20,7 @@ class ContactMessageTextArea extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 4.w),
       child: Container(
         width: double.infinity,
-        height: 200.h,
+        height: height,
         padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
           color: AppColors.white,
@@ -24,8 +31,8 @@ class ContactMessageTextArea extends StatelessWidget {
           expands: true,
           textAlignVertical: TextAlignVertical.top,
           decoration: InputDecoration(
-            hintText: context.l10n.enterYourMessageHint,
-            hintStyle: AppTextStyles.description.copyWith(color: AppColors.black),
+            hintText: hintText,
+            hintStyle: AppTextStyles.description.copyWith(color: AppColors.spanishGrey),
             border: InputBorder.none,
             contentPadding: EdgeInsets.zero,
           ),

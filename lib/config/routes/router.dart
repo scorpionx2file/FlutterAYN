@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:traveller/add_new_post/presentation/screen/add_new_post.dart';
 import 'package:traveller/auth/presentation/screen/choose_gates_screen.dart';
 import 'package:traveller/auth/presentation/screen/forget_password_screen.dart';
 import 'package:traveller/auth/presentation/screen/sign_in_screen.dart';
@@ -803,6 +804,18 @@ final GoRouter router = GoRouter(
         return VideoAndArticlesScreen(postData: post);
       },
     ),
+    GoRoute(
+      path: AppRoutes.seeAllActivities,
+      builder: (context, state) {
+        final activities = state.extra as List<Activity>;
+        return SeeAllActivities(activities: activities);
+      },
+    ),
+
+    GoRoute(
+        path: AppRoutes.addNewPost,
+        builder: (context,state) => AddNewPost(imageIrl: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg", location: "Alexandria, Egypt")
+    ),
 
     // ShellRoute for main screens with bottom nav
     ShellRoute(
@@ -847,13 +860,6 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: AppRoutes.profile, // route for profile
           builder: (context, state) => UserProfileScreen(activities: activities, postData: postData),
-        ),
-        GoRoute(
-          path: AppRoutes.seeAllActivities,
-          builder: (context, state) {
-            final activities = state.extra as List<Activity>;
-            return SeeAllActivities(activities: activities);
-          },
         ),
       ],
     ),
