@@ -27,6 +27,21 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Service Provider Info'), centerTitle: true),
+      bottomNavigationBar:  Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: AppButton(
+          text: "Next",
+          textStyle: AppTextStyles.text,
+          onPressed: isChecked == false
+              ? null
+              : () {
+            context.push(AppRoutes.payment);
+          },
+          backgroundColor: isChecked == false
+              ? Colors.grey
+              : AppColors.turnbullBlue,
+        ),
+      ),
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -248,7 +263,7 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
 
             SliverToBoxAdapter(child: SizedBox(height: 10.h)),
 
-            SliverToBoxAdapter(
+            /*SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: AppButton(
@@ -265,7 +280,7 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
                 ),
               ),
             ),
-            SliverToBoxAdapter(child: SizedBox(height: 10.h)),
+            SliverToBoxAdapter(child: SizedBox(height: 10.h)),*/
           ],
         ),
       ),

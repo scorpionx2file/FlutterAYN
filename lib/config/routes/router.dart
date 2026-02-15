@@ -39,6 +39,7 @@ import '../../event_option/presentation/widgets/content_section/content_section.
 import '../../gates/presentation/screens/gates_screen.dart';
 import '../../home/presentation/screens/home_screen.dart';
 import '../../map/presenttion/widgets/map_screen.dart';
+import '../../payment/presentation/payment_method_screen.dart';
 import 'app_routes.dart';
 import 'package:flutter/material.dart';
 
@@ -806,6 +807,17 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.payment,
       builder: (context, state) => const ServicePaymentScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.paymentMethod,
+      builder: (context, state) {
+        final data = state.extra as Map<String, dynamic>;
+
+        return PaymentMethodScreen(
+          packageTitle: data["title"],
+          packagePrices: data["price"],
+        );
+      },
     ),
 
 

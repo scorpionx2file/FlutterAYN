@@ -7,9 +7,8 @@ import '../../theme/fonts/app_text_styles.dart';
 class ChosenPackageInfoSection extends StatelessWidget {
   final int packagePrices ;
   final String packageTitle;
-  final int selectedIndex;
 
-  const ChosenPackageInfoSection({super.key, required this.packagePrices, required this.packageTitle, required this.selectedIndex});
+  const ChosenPackageInfoSection({super.key, required this.packagePrices, required this.packageTitle});
 
   @override
   Widget build(BuildContext context) {
