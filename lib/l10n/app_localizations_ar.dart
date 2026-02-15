@@ -375,9 +375,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get nameRequired => 'الاسم مطلوب';
 
   @override
-  String get nearbyPersons => 'الاشخاص القريبين';
-
-  @override
   String nameMin(int minLen) {
     return 'يجب أن يكون الاسم $minLen أحرف على الأقل';
   }
@@ -395,4 +392,50 @@ class AppLocalizationsAr extends AppLocalizations {
   String passwordMin(int minLen) {
     return 'يجب أن تكون كلمة المرور $minLen أحرف على الأقل';
   }
+
+  @override
+  String get nearbyPersons => 'الاشخاص القريبين';
+
+  @override
+  String get saveToBagsTitle => 'أضِفه إلى الحقائب';
+
+  @override
+  String get createNewBag => 'إضافة حقيبة جديدة';
+
+  @override
+  String get createNewBagTitle => 'إنشاء حقيبة جديدة';
+
+  @override
+  String get bagNameHint => 'اسم الحقيبة';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get create => 'إنشاء';
+
+  @override
+  String get myListTitle => 'قائمتي';
+
+  @override
+  String bagsCount(int count) {
+    return 'الحقائب: $count';
+  }
+
+  @override
+  String get searchHere => 'اكتب هنا للبحث...';
+
+  @override
+  String savedCount(int count) {
+    return 'المحفوظات: $count';
+  }
+
+  @override
+  String get notificationsTitle => 'Notifications';
+
+  @override
+  String get termsPrivacyTitle => 'بنود الاستخدام والخصوصية';
+
+  @override
+  String get acceptTermsLabel => 'أؤكد أنني أوافق على البنود';
 }

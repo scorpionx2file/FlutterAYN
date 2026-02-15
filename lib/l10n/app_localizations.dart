@@ -863,6 +863,83 @@ abstract class AppLocalizations {
   /// **'Nearby Persons'**
   String get nearbyPersons;
 
+  /// No description provided for @saveToBagsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to bags'**
+  String get saveToBagsTitle;
+
+  /// No description provided for @createNewBag.
+  ///
+  /// In en, this message translates to:
+  /// **'Create new bag'**
+  String get createNewBag;
+
+  /// No description provided for @createNewBagTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create new bag'**
+  String get createNewBagTitle;
+
+  /// No description provided for @bagNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Bag name'**
+  String get bagNameHint;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @create.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get create;
+
+  /// No description provided for @myListTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My List'**
+  String get myListTitle;
+
+  /// No description provided for @bagsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Bags: {count}'**
+  String bagsCount(int count);
+
+  /// No description provided for @searchHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Search here...'**
+  String get searchHere;
+
+  /// No description provided for @savedCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved: {count}'**
+  String savedCount(int count);
+
+  /// No description provided for @notificationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notificationsTitle;
+
+  /// No description provided for @termsPrivacyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of Use & Privacy'**
+  String get termsPrivacyTitle;
+
+  /// No description provided for @acceptTermsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'I confirm that I accept the terms'**
+  String get acceptTermsLabel;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

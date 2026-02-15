@@ -375,9 +375,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nameRequired => 'Name is required';
 
   @override
-  String get nearbyPersons => 'Nearby Persons';
-
-  @override
   String nameMin(int minLen) {
     return 'Name must be at least $minLen characters';
   }
@@ -395,4 +392,50 @@ class AppLocalizationsEn extends AppLocalizations {
   String passwordMin(int minLen) {
     return 'Password must be at least $minLen characters';
   }
+
+  @override
+  String get nearbyPersons => 'Nearby Persons';
+
+  @override
+  String get saveToBagsTitle => 'Add to bags';
+
+  @override
+  String get createNewBag => 'Create new bag';
+
+  @override
+  String get createNewBagTitle => 'Create new bag';
+
+  @override
+  String get bagNameHint => 'Bag name';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get create => 'Create';
+
+  @override
+  String get myListTitle => 'My List';
+
+  @override
+  String bagsCount(int count) {
+    return 'Bags: $count';
+  }
+
+  @override
+  String get searchHere => 'Search here...';
+
+  @override
+  String savedCount(int count) {
+    return 'Saved: $count';
+  }
+
+  @override
+  String get notificationsTitle => 'Notifications';
+
+  @override
+  String get termsPrivacyTitle => 'Terms of Use & Privacy';
+
+  @override
+  String get acceptTermsLabel => 'I confirm that I accept the terms';
 }

@@ -149,7 +149,26 @@
 
                         "passwordRequired": "Password is required",
                         "passwordMin": "Password must be at least {minLen} characters",
-                        "@passwordMin": { "placeholders": { "minLen": { "type": "int" } } }
+                        "@passwordMin": { "placeholders": { "minLen": { "type": "int" } } },
 
-                        "nearbyPersons": "Nearby Persons"
+                        "nearbyPersons": "Nearby Persons",
+                         "saveToBagsTitle": "Add to bags",
+                          "createNewBag": "Create new bag",
+                          "createNewBagTitle": "Create new bag",
+                          "bagNameHint": "Bag name",
+                          "cancel": "Cancel",
+                          "create": "Create",
+                          "add": "Add",
+                          "myListTitle": "My List",
+                            "bagsCount": "Bags: {count}",
+                            "@bagsCount": {
+                              "placeholders": { "count": { "type": "int" } }
+
+                            },
+                            "searchHere": "Search here...",
+                              "savedCount": "Saved: {count}",
+                              "@savedCount": { "placeholders": { "count": { "type": "int" } } },
+                              "notificationsTitle": "Notifications",
+                              "termsPrivacyTitle": "Terms of Use & Privacy",
+                              "acceptTermsLabel": "I confirm that I accept the terms"
 }

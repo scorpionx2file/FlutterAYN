@@ -150,7 +150,27 @@
 
                      "passwordRequired": "كلمة المرور مطلوبة",
                      "passwordMin": "يجب أن تكون كلمة المرور {minLen} أحرف على الأقل",
-                     "@passwordMin": { "placeholders": { "minLen": { "type": "int" } } }
+                     "@passwordMin": { "placeholders": { "minLen": { "type": "int" } } },
 
-                     "nearbyPersons": "الاشخاص القريبين"
+                     "nearbyPersons": "الاشخاص القريبين",
+                     "saveToBagsTitle": "أضِفه إلى الحقائب",
+                       "createNewBag": "إضافة حقيبة جديدة",
+                       "createNewBagTitle": "إنشاء حقيبة جديدة",
+                       "bagNameHint": "اسم الحقيبة",
+                       "cancel": "إلغاء",
+                       "create": "إنشاء",
+                       "add": "إضافة",
+                       "myListTitle": "قائمتي",
+                         "bagsCount": "الحقائب: {count}",
+                         "@bagsCount": {
+                           "placeholders": { "count": { "type": "int" } }
+
+                         },
+
+                         "searchHere": "اكتب هنا للبحث...",
+                           "savedCount": "المحفوظات: {count}",
+                           "@savedCount": { "placeholders": { "count": { "type": "int" } } },
+                           "notificationsTitle": "Notifications",
+                           "termsPrivacyTitle": "بنود الاستخدام والخصوصية",
+                           "acceptTermsLabel": "أؤكد أنني أوافق على البنود"
 }

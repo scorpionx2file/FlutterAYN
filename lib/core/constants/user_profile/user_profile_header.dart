@@ -9,6 +9,7 @@ import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import '../../../user_profile/presentation/widgets/user_profile_pop-up.dart';
 import '../../theme/colors/app_colors.dart';
+import '../bag/save_to_bag_bottom_sheet.dart';
 
 class UserProfileHeader extends StatefulWidget {
   final bool isMyProfile;
@@ -97,15 +98,20 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
               if (widget.isMyProfile)
                 PositionedDirectional(
                   top: 28.h,
-                  end: 16.w, // right in LTR, left in RTL
+                  end: 16.w,
+                  // right in LTR, left in RTL
                   child: Row(
                     children: [
                       topHeaderIcon(
                         Icons.chat_bubble_outline,
-                        context.l10n.messages,
+                        context.l10n.messages
                       ),
                       SizedBox(width: 16.w),
-                      topHeaderIcon(Icons.work_outline, context.l10n.bags),
+                      topHeaderIcon(
+                        onTap: () => context.push(AppRoutes.savedBags),
+                        Icons.work_outline,
+                        context.l10n.bags
+                      ),
                     ],
                   ),
                 ),
@@ -418,7 +424,7 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
                   Flexible(
                     flex: 2, // Follow button gets 2 shares (wider)
                     child: AppButton(
-                      text:  context.l10n.follow,
+                      text: context.l10n.follow,
                       icon: Icon(Icons.person_add, size: 20),
                       height: 30.h,
                       onPressed: () {},
@@ -501,16 +507,23 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
     );
   }
 
-  Widget topHeaderIcon(IconData icon, String label) {
-    return Column(
-      children: [
-        Icon(icon, color: AppColors.white, size: 22.sp),
-        SizedBox(height: 4.h),
-        Text(
-          label,
-          style: AppTextStyles.description.copyWith(color: AppColors.white),
+  Widget topHeaderIcon(IconData icon, String label, {VoidCallback? onTap}) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12.r),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 4.h),
+        child: Column(
+          children: [
+            Icon(icon, color: AppColors.white, size: 22.sp),
+            SizedBox(height: 4.h),
+            Text(
+              label,
+              style: AppTextStyles.description.copyWith(color: AppColors.white),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 

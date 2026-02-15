@@ -98,7 +98,9 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 ),
                 title: l10n.notifications,
                 hasPermission: false,
-                onTap: () {},
+                onTap: () {
+                  context.push(AppRoutes.notifications);
+                },
               ),
             ),
             SliverToBoxAdapter(
@@ -311,7 +313,9 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 ),
                 title: l10n.aboutUs,
                 hasPermission: false,
-                onTap: () {},
+                onTap: () {
+                  context.push(AppRoutes.termsPrivacy);
+                },
               ),
             ),
 

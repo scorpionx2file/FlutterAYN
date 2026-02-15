@@ -13,9 +13,11 @@ class AppRoutes {
   static const String map = "/Map";
   static const String gates = "/Gates";
   static const String profile = "/Profile";
-
+  static const String savedPosts = "/SavedPosts";
   static const String story = "/Story";
   static const String gateDetails = "/gateDetails";
+  static const String notifications = "/Notifications";
+  static const String termsPrivacy = "/TermsPrivacy";
 
   static const String video = "/Video";
   static const String followersList = "/FollowersList";
@@ -25,4 +27,6 @@ class AppRoutes {
   static const String seeAllActivities = "/SeeAllActivities";
 
   static const String nearbyPersonsAndChatsList = "/NearbyPersonsAndChatsList";
+
+  static const String savedBags = "/SavedBags";
 }

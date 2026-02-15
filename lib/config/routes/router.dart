@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:traveller/auth/presentation/screen/choose_gates_screen.dart';
@@ -11,11 +13,11 @@ import 'package:traveller/followers_list/presentation/widgets/followers_list_scr
 import 'package:traveller/nearby_persons/presentation/widgets/nearby_persons_list_screen.dart';
 import 'package:traveller/onboarding/presentation/screen/onboarding_screen.dart';
 import 'package:traveller/otp/presentation/screen/otp_screen.dart';
-import 'package:traveller/profile_settings/presentation/widgets/profile_settings_screen.dart';
+import 'package:traveller/profile_settings/presentation/profile/profile_settings_screen.dart';
 import 'package:traveller/settings_contact/presentation/widgets/settings_contact_screen.dart';
 import 'package:traveller/splash_screen.dart';
 import 'package:traveller/stories/presentation/widgets/story_screen.dart';
-import 'package:traveller/user_profile/presentation/widgets/user_profile_screen.dart';
+import 'package:traveller/user_profile/presentation/screens/user_profile_screen.dart';
 import 'package:traveller/video/presentation/widgets/video&articles_screen.dart';
 import '../../auth/presentation/screen/sign_up_screen.dart';
 import '../../core/constants/activity_card/activity_card.dart';
@@ -36,10 +38,12 @@ import '../../event_option/presentation/widgets/content_section/content_section.
 import '../../gates/presentation/screens/gates_screen.dart';
 import '../../home/presentation/screens/home_screen.dart';
 import '../../map/presenttion/widgets/map_screen.dart';
+import '../../profile_settings/presentation/notification/notifications_screen.dart';
+import '../../profile_settings/presentation/terms_privacy/terms_privacy_screen.dart';
 import '../../see_all_activities/presentation/screen/see_all_activities.dart';
+import '../../user_profile/presentation/screens/saved_bags_screen.dart';
+import '../../user_profile/presentation/screens/saved_posts_screen.dart';
 import 'app_routes.dart';
-import 'package:flutter/material.dart';
-
 final badgeData = AppGateBadgeData(
   icon: Icons.sunny,
   primaryText: "25",
@@ -765,6 +769,24 @@ final GoRouter router = GoRouter(
       builder: (context, state) => const SplashScreen(),
     ),
     GoRoute(
+      path: AppRoutes.savedPosts,
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>? ?? {};
+        final title = (extra['title'] as String?) ?? "Saved Posts";
+        final posts = (extra['posts'] as List<PostData>?) ?? <PostData>[];
+        return SavedPostsScreen(title: title, posts: posts);
+      },
+    ),
+
+    GoRoute(
+      path: AppRoutes.notifications,
+      builder: (context, state) => const NotificationsScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.termsPrivacy,
+      builder: (context, state) => const TermsPrivacyScreen(),
+    ),
+    GoRoute(
       path: AppRoutes.onboarding,
       builder: (context, state) => const OnboardingScreen(),
     ),
@@ -791,6 +813,10 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.chooseGates,
       builder: (context, state) => const ChooseGatesScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.savedBags,
+      builder: (context, state) => SavedBagsScreen(posts: postData),
     ),
     GoRoute(
       path: AppRoutes.story,
