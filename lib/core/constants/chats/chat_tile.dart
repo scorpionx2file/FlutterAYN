@@ -52,7 +52,7 @@ class AvatarSection extends StatelessWidget {
   final List<String> avatars;
   final bool isOnline;
 
-  const AvatarSection({required this.avatars, required this.isOnline});
+  const AvatarSection({super.key, required this.avatars, required this.isOnline});
 
   @override
   Widget build(BuildContext context) {
@@ -191,6 +191,14 @@ class RightSection extends StatelessWidget {
           style: AppTextStyles.smallText.copyWith(color: AppColors.strongGrey),
         ),
         6.verticalSpace,
+
+        if (model.isMuted)
+          Icon(
+            Icons.volume_off,
+            size: 16.sp,
+            color: AppColors.strongGrey,
+          ),
+
         if (unread > 0)
           Container(
             padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),

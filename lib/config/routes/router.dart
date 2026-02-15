@@ -765,6 +765,8 @@ class ChatTileModel {
   final bool isServiceProvider;
   final int? unreadCount;
   final bool isOnline;
+  bool isMuted;
+
 
   ChatTileModel({
     required this.chatName,
@@ -775,6 +777,7 @@ class ChatTileModel {
     this.isServiceProvider = false,
     this.unreadCount,
     this.isOnline = false,
+    this.isMuted = false,
   });
 }
 

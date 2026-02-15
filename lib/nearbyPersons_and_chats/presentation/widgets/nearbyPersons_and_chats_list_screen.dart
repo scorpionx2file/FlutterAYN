@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:traveller/core/constants/nearby/nearby_persons_list_tile.dart';
 import 'package:traveller/core/constants/text_feild/app_text_feild.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
@@ -10,13 +11,13 @@ import '../../../config/routes/router.dart';
 import '../../../core/constants/chats/chat_tile.dart';
 
 class NearbyPersonsAndChatsListScreen extends StatefulWidget {
-  final List<NearbyPersonModel> nearbyPersons;
   final List<ChatTileModel> chats;
+  final List<NearbyPersonModel> nearbyPersons;
 
   const NearbyPersonsAndChatsListScreen({
     super.key,
-    required this.nearbyPersons,
     required this.chats,
+    required this.nearbyPersons,
   });
 
   @override
@@ -44,14 +45,14 @@ class _NearbyPersonsAndChatsListScreenState
     super.dispose();
   }
 
-  List<NearbyPersonModel> get filteredNearby => widget.nearbyPersons
-      .where((p) =>
-      p.name.toLowerCase().contains(_searchController.text.toLowerCase()))
-      .toList();
-
   List<ChatTileModel> get filteredChats => widget.chats
       .where((c) =>
       c.chatName.toLowerCase().contains(_searchController.text.toLowerCase()))
+      .toList();
+
+  List<NearbyPersonModel> get filteredNearby => widget.nearbyPersons
+      .where((p) =>
+      p.name.toLowerCase().contains(_searchController.text.toLowerCase()))
       .toList();
 
   @override
@@ -64,8 +65,8 @@ class _NearbyPersonsAndChatsListScreenState
           builder: (_, __) {
             return Text(
               _tabController.index == 0
-                  ? context.l10n.nearbyPersons
-                  : context.l10n.chats,
+                  ? context.l10n.chats
+                  : context.l10n.nearbyPersons,
               style: AppTextStyles.titles.copyWith(fontWeight: FontWeight.bold),
             );
           },
@@ -86,11 +87,11 @@ class _NearbyPersonsAndChatsListScreenState
               ),
               indicatorSize: TabBarIndicatorSize.tab,
               labelColor: AppColors.turnbullBlue,
-              unselectedLabelColor: Colors.grey,
+              unselectedLabelColor: AppColors.spanishGrey,
               labelStyle: AppTextStyles.title.copyWith(fontSize: 16.sp),
               tabs: [
-                Tab(text: context.l10n.nearbyPersons),
                 Tab(text: context.l10n.chats),
+                Tab(text: context.l10n.nearbyPersons),
               ],
             ),
           ),
@@ -114,8 +115,8 @@ class _NearbyPersonsAndChatsListScreenState
             child: TabBarView(
               controller: _tabController,
               children: [
-                buildNearbyPersonsList(filteredNearby),
                 buildChatsList(filteredChats),
+                buildNearbyPersonsList(filteredNearby),
               ],
             ),
           ),
@@ -150,13 +151,44 @@ class _NearbyPersonsAndChatsListScreenState
       separatorBuilder: (_, __) => SizedBox(height: 6.h),
       itemBuilder: (context, index) {
         final chat = chats[index];
-        return ChatTile(
-          chatModel: chat,
-          onTap: () {},
+        return Slidable(
+          key: ValueKey(chat.chatName),
+          endActionPane: ActionPane(
+            motion: const ScrollMotion(),
+            children: [
+              // ===== Mute / Unmute Action =====
+              SlidableAction(
+                onPressed: (_) {
+                  setState(() {
+                    chat.isMuted = !chat.isMuted; // toggle mute state
+                  });
+                },
+                backgroundColor: Colors.transparent,
+                foregroundColor: AppColors.black,
+                icon: chat.isMuted ? Icons.volume_up : Icons.volume_off,
+                label: chat.isMuted ? 'Unmute' : 'Mute',
+              ),
+              // ===== Delete Action =====
+              SlidableAction(
+                onPressed: (_) {
+                  setState(() {
+                    widget.chats.removeAt(index); // remove chat
+                  });
+                },
+                backgroundColor: AppColors.lebaneseRed,
+                foregroundColor: AppColors.white,
+                icon: Icons.delete,
+                label: 'Delete',
+              ),
+            ],
+          ),
+          child: ChatTile(
+            chatModel: chat,
+            onTap: () {},
+            // Show mute icon on tile if chat.isMuted
+          ),
         );
       },
     );
   }
 }
-
-
