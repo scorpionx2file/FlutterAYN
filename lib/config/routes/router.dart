@@ -1,8 +1,9 @@
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:traveller/add_new_event/presentation/screen/add_new_event.dart';
-import 'package:traveller/add_new_post/presentation/screen/add_new_post.dart';
+import 'package:traveller/add_new_topic/presentation/screen/add_new_topic.dart';
 import 'package:traveller/add_new_video/presentation/screen/add_new_video.dart';
+import 'package:traveller/add_types/presentation/screen/add_types.dart';
 import 'package:traveller/auth/presentation/screen/choose_gates_screen.dart';
 import 'package:traveller/auth/presentation/screen/forget_password_screen.dart';
 import 'package:traveller/auth/presentation/screen/sign_in_screen.dart';
@@ -856,8 +857,8 @@ final GoRouter router = GoRouter(
     ),
 
     GoRoute(
-        path: AppRoutes.addNewPost,
-        builder: (context,state) => AddNewPost(
+        path: AppRoutes.addNewTopic,
+        builder: (context,state) => AddNewTopic(
             imageUrl: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg",
             location: "Alexandria, Egypt"
         )
@@ -877,6 +878,21 @@ final GoRouter router = GoRouter(
           imageUrl: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg",
           location: "Alexandria, Egypt",
         )
+    ),
+
+    GoRoute(
+      path: AppRoutes.addTypes,
+      builder: (context, state) {
+        final args = state.extra as AddTypesArgs?;
+
+        return AddTypes(
+          imageUrl: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg",
+          location: "Alexandria, Egypt",
+          title: args?.title ?? "Add Types",
+          isEvent: args?.isEvent ?? false,
+          selectedIndex: args?.selectedIndex ?? 0,
+        );
+      },
     ),
 
     GoRoute(

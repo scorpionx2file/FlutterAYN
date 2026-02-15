@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:traveller/core/constants/app_header/app_header.dart';
 import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/constants/post_types/post_types.dart';
 import 'package:traveller/core/constants/profile_settings/profile_settings_tile.dart';
 import 'package:traveller/core/constants/text_area/text_area.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
+import '../../../add_types/presentation/screen/add_types.dart';
+import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/add_new_header/add_new_header.dart';
 
-class AddNewPost extends StatelessWidget{
+class AddNewTopic extends StatelessWidget{
   final String imageUrl;
   final String location;
 
-  const AddNewPost({
+  const AddNewTopic({
     super.key,
     required this.imageUrl,
     required this.location
@@ -22,7 +25,7 @@ class AddNewPost extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppHeader(
-        title: "Add Post",
+        title: "Add Topic",
         showBack: true,
       ),
       resizeToAvoidBottomInset: true,
@@ -75,6 +78,16 @@ class AddNewPost extends StatelessWidget{
                 icon: Image.asset("assets/images/icons/hashtag.png"),
                 title: "Choose a type",
                 showDivider: false,
+                onTap: () {
+                  context.push(
+                      AppRoutes.addTypes,
+                    extra: AddTypesArgs(
+                        title: "Add Topic",
+                        isEvent: false,
+                      selectedIndex: 0
+                    ),
+                  );
+                }
               ),
             ),
 
@@ -93,7 +106,7 @@ class AddNewPost extends StatelessWidget{
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            _PostTypes(),
+            _TopicTypes(),
             SizedBox(height: 16.h),
             AppButton(
               text: "Post",
@@ -106,9 +119,7 @@ class AddNewPost extends StatelessWidget{
   }
 }
 
-class _PostTypes extends StatelessWidget{
-  const _PostTypes({super.key});
-
+class _TopicTypes extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Row(

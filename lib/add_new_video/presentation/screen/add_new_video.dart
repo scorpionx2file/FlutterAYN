@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:traveller/core/constants/add_new_header/add_new_header.dart';
 import 'package:traveller/core/constants/app_header/app_header.dart';
 import 'package:traveller/core/constants/option_switch/option_switch.dart';
+import '../../../add_types/presentation/screen/add_types.dart';
+import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/button/app_button.dart';
 import '../../../core/constants/profile_settings/profile_settings_tile.dart';
 import '../../../core/constants/text_area/text_area.dart';
@@ -78,6 +81,16 @@ class _AddNewVideoState extends State<AddNewVideo> {
                 icon: Image.asset("assets/images/icons/hashtag.png"),
                 title: "Choose a type",
                 showDivider: false,
+                onTap: (){
+                  context.push(
+                    AppRoutes.addTypes,
+                    extra: AddTypesArgs(
+                        title: "Add Video",
+                        isEvent: false,
+                      selectedIndex: 0
+                    ),
+                  );
+                },
               ),
             ),
 

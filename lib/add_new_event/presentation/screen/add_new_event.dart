@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:traveller/add_types/presentation/screen/add_types.dart';
 import 'package:traveller/core/constants/event_data/event_data.dart';
 import 'package:traveller/core/constants/post_types/post_types.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
+import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/add_new_header/add_new_header.dart';
 import '../../../core/constants/app_header/app_header.dart';
 import '../../../core/constants/button/app_button.dart';
@@ -138,6 +141,16 @@ class _AddNewEventState extends State<AddNewEvent>{
                     icon: Image.asset("assets/images/icons/hashtag.png"),
                     title: "Choose a type",
                     showDivider: false,
+                    onTap: (){
+                      context.push(
+                        AppRoutes.addTypes,
+                        extra: AddTypesArgs(
+                            title: "Add Event",
+                            isEvent: true,
+                          selectedIndex: selectedIndex
+                        ),
+                      );
+                    },
                   ),
                 ),
         
@@ -402,8 +415,6 @@ class _AddNewEventState extends State<AddNewEvent>{
 }
 
 class _AddMedia extends StatelessWidget{
-  const _AddMedia({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Row(

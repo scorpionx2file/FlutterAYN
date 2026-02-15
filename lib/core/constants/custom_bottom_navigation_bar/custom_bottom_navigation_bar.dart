@@ -284,7 +284,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> w
               direction: FabLabelDirection.above,
               onTap: () {
                 toggleFab();
-                context.push(AppRoutes.addNewPost);
+                context.push(AppRoutes.addNewTopic);
               },
             ),
 

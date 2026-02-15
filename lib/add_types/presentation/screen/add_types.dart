@@ -1,0 +1,148 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:traveller/core/constants/text_feild/app_text_feild.dart';
+import '../../../core/constants/add_new_header/add_new_header.dart';
+import '../../../core/constants/app_header/app_header.dart';
+import '../../../core/constants/button/app_button.dart';
+import '../../../core/theme/colors/app_colors.dart';
+
+class AddTypesArgs{
+  final String title;
+  final bool isEvent;
+  final int selectedIndex;
+
+  const AddTypesArgs({
+    required this.title,
+    required this.isEvent,
+    required this.selectedIndex
+  });
+}
+
+class AddTypes extends StatefulWidget{
+  final String title;
+  final String imageUrl;
+  final String location;
+  final bool isEvent;
+  final int? selectedIndex;
+
+  const AddTypes({
+    super.key,
+    required this.title,
+    required this.imageUrl,
+    required this.location,
+    required this.isEvent,
+    this.selectedIndex,
+  });
+
+  @override
+  State<AddTypes> createState() => _AddTypesState();
+}
+
+class _AddTypesState extends State<AddTypes> {
+  final Set<int> selectedIndexes = {};
+  final controller = TextEditingController();
+  final types = [
+    "Tourism",
+    "Mountain climbing",
+    "Services",
+    "Events",
+    "Pharos Civilization",
+    "Tourist Information",
+    "Model",
+    "Travel Information"
+  ];
+
+  int selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedIndex = widget.selectedIndex ?? 0;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppHeader(
+        title: widget.title,
+        showBack: true,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          children: [
+            AddNewHeader(
+              imageUrl: widget.imageUrl,
+              location: widget.location,
+              isEventPage: widget.isEvent,
+              selectedIndex: selectedIndex,
+              onToggleChanged: (value) {
+                setState(() {
+                  selectedIndex = value;
+                });
+              },
+            ),
+            SizedBox(height: 20.h),
+
+            AppTextFields(
+              controller: controller,
+              icon: Icons.search,
+              hintText: "Search for type",
+            ),
+
+            SizedBox(height: 40.h),
+
+            Wrap(
+              spacing: 10.w,
+              children: List.generate(types.length, (index){
+                final isSelected = selectedIndexes.contains(index);
+                return ChoiceChip(
+                  label: Text(types[index]),
+                  selected: isSelected,
+                  onSelected: (value){
+                    setState(() {
+                      if (value) {
+                        selectedIndexes.add(index);
+                      } else {
+                        selectedIndexes.remove(index);
+                      }
+                    });
+                  },
+                  selectedColor: AppColors.lebaneseRed,
+                  backgroundColor: AppColors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.r),
+                      side: BorderSide(
+                          color: AppColors.white,
+                          width: 1.w
+                      )
+                  ),
+                  labelStyle: TextStyle(
+                    color: isSelected
+                        ? AppColors.white
+                        : AppColors.strongGrey,
+                  ),
+                  showCheckmark: false,
+                );
+              }),
+            )
+          ]
+        )
+      ),
+
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.only(
+            left: 16,
+            right: 16,
+            bottom: MediaQuery.of(context).viewInsets.bottom + 20,
+            top: 12
+        ),
+
+        child: AppButton(
+          text: "Save",
+          onPressed: (){},
+        ),
+      ),
+    );
+  }
+}

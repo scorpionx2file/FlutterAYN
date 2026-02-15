@@ -23,9 +23,10 @@ class AppRoutes {
   static const String settingsContact = "/SettingsContact";
 
   static const String seeAllActivities = "/SeeAllActivities";
-  static const String addNewPost = "/AddNewPost";
+  static const String addNewTopic = "/AddNewTopic";
   static const String addNewVideo = "/AddNewVideo";
   static const String addNewEvent = "/AddNewEvent";
+  static const String addTypes = "/AddTypes";
 
   static const String nearbyPersonsAndChatsList = "/NearbyPersonsAndChatsList";
 }
