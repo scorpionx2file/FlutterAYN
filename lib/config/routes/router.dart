@@ -3,6 +3,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:traveller/add_new_event/presentation/screen/add_new_event.dart';
 import 'package:traveller/add_new_topic/presentation/screen/add_new_topic.dart';
 import 'package:traveller/add_new_video/presentation/screen/add_new_video.dart';
+import 'package:traveller/add_poll/presentation/screen/add_poll.dart';
 import 'package:traveller/add_types/presentation/screen/add_types.dart';
 import 'package:traveller/auth/presentation/screen/choose_gates_screen.dart';
 import 'package:traveller/auth/presentation/screen/forget_password_screen.dart';
@@ -893,6 +894,14 @@ final GoRouter router = GoRouter(
           selectedIndex: args?.selectedIndex ?? 0,
         );
       },
+    ),
+
+    GoRoute(
+        path: AppRoutes.addPoll,
+        builder: (context,state) => AddPoll(
+          imageUrl: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg",
+          location: "Alexandria, Egypt",
+        )
     ),
 
     GoRoute(

@@ -27,6 +27,7 @@ class AppRoutes {
   static const String addNewVideo = "/AddNewVideo";
   static const String addNewEvent = "/AddNewEvent";
   static const String addTypes = "/AddTypes";
+  static const String addPoll = "/AddPoll";
 
   static const String nearbyPersonsAndChatsList = "/NearbyPersonsAndChatsList";
 }

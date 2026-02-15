@@ -143,7 +143,9 @@ class _TopicTypes extends StatelessWidget{
             title: "Add Poll",
             imageUrl: "assets/images/icons/poll.png",
             color: AppColors.darkYellow,
-            onTap: (){}
+            onTap: (){
+              context.push(AppRoutes.addPoll);
+            }
         ),
       ],
     );
