@@ -14,12 +14,14 @@ class AppColors {
   static const strongGrey = Color(0xff393939);
   static const spanishGrey = Color(0xffA0A0A0);
   static const lightSilver = Color(0xffE0E0E0);
+  static const veryLightGray = Color(0xbaf2f2f2);
   static const white = Color(0xffFFFFFF);
   static const lightGreen = Color(0xff81DB88);
   static const orange = Color(0xFFFF8A3D);
   static const babyPink = Color(0xFFFFC1DC);
   static const babyBlue = Color(0xFF9FC3FF);
   static const  lightViolet = Color(0xFFA953FF);
+  static const  verySoftViolet = Color(0xFFD2A5F7);
   static const  veryPaleViolet = Color(0xFFE6D9FF);
   static const  veryLightPink = Color(0xFFFF89C0);
   static const  vividPink = Color(0xFFDE105F);

@@ -44,6 +44,7 @@ class _ServicePaymentScreenState
                   packagePrices: packagePrices[selectedIndex!],
                   packageTitle: packageTitle[selectedIndex!],
                 ),
+              SizedBox(height: 10.h,),
               AppButton(
                 text: "Confirmation and payment",
                 textStyle: AppTextStyles.text,
