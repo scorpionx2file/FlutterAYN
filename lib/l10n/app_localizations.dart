@@ -875,6 +875,12 @@ abstract class AppLocalizations {
   /// **'Delete'**
   String get delete;
 
+  /// No description provided for @writeYourMessageHere.
+  ///
+  /// In en, this message translates to:
+  /// **'writeYourMessageHere'**
+  String get writeYourMessageHere;
+
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

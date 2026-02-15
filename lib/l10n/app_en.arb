@@ -153,5 +153,7 @@
 
                         "nearbyPersons": "Nearby Persons"
                         "mute": "Mute"
-                         "delete": "Delete"
+                        "delete": "Delete"
+                        "writeYourMessageHere": "Write Your Message Here"
+
 }

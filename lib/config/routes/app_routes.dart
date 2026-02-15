@@ -25,4 +25,5 @@ class AppRoutes {
   static const String seeAllActivities = "/SeeAllActivities";
 
   static const String nearbyPersonsAndChatsList = "/NearbyPersonsAndChatsList";
+  static const String chat = "/Chat";
 }

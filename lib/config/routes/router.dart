@@ -5,6 +5,7 @@ import 'package:traveller/auth/presentation/screen/choose_gates_screen.dart';
 import 'package:traveller/auth/presentation/screen/forget_password_screen.dart';
 import 'package:traveller/auth/presentation/screen/sign_in_screen.dart';
 import 'package:traveller/auth/presentation/screen/welcome_auth_screen.dart';
+import 'package:traveller/chat_screen/presentation/widgets/chat_screen.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import 'package:traveller/event_option/presentation/widgets/bottom_section/event_list.dart';
 import 'package:traveller/event_option/presentation/widgets/place_details_screen.dart';
@@ -767,7 +768,6 @@ class ChatTileModel {
   final bool isOnline;
   bool isMuted;
 
-
   ChatTileModel({
     required this.chatName,
     required this.time,
@@ -806,7 +806,7 @@ final List<ChatTileModel> chats = [
     avatars: [
       'https://i.pravatar.cc/150?img=3',
       'https://i.pravatar.cc/150?img=4',
-      'https://i.pravatar.cc/150?img=5'
+      'https://i.pravatar.cc/150?img=5',
     ],
     lastMessageType: ChatMessageType.text,
     lastMessageText: 'تم تحديث طلبك بنجاح.',
@@ -819,7 +819,7 @@ final List<ChatTileModel> chats = [
     time: '10:30',
     avatars: [
       'https://i.pravatar.cc/150?img=6',
-      'https://i.pravatar.cc/150?img=7'
+      'https://i.pravatar.cc/150?img=7',
     ],
     lastMessageType: ChatMessageType.image,
     lastMessageText: '📷 صورة جديدة',
@@ -848,7 +848,7 @@ final List<ChatTileModel> chats = [
     avatars: [
       'https://i.pravatar.cc/150?img=10',
       'https://i.pravatar.cc/150?img=11',
-      'https://i.pravatar.cc/150?img=12'
+      'https://i.pravatar.cc/150?img=12',
     ],
     lastMessageType: ChatMessageType.text,
     lastMessageText: 'لنلتقي هذا الأسبوع!',
@@ -858,7 +858,7 @@ final List<ChatTileModel> chats = [
 ];
 
 final GoRouter router = GoRouter(
-  initialLocation: AppRoutes.nearbyPersonsAndChatsList,
+  initialLocation: AppRoutes.chat,
   routes: [
     GoRoute(
       path: AppRoutes.splash,
@@ -955,6 +955,7 @@ final GoRouter router = GoRouter(
         chats: chats,
       ),
     ),
+    GoRoute(path: AppRoutes.chat, builder: (context, state) => ChatScreen()),
 
     // ShellRoute for main screens with bottom nav
     ShellRoute(

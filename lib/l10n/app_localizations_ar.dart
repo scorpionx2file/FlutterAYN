@@ -384,6 +384,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get delete => 'حذف';
 
   @override
+  String get writeYourMessageHere => 'اكتب رسالة هنا';
+
+  @override
   String nameMin(int minLen) {
     return 'يجب أن يكون الاسم $minLen أحرف على الأقل';
   }

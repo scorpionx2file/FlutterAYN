@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/theme_data/theme_data_light.dart';
+
 import 'config/routes/router.dart';
-import 'core/constants/chat_screen/chat_message_bubble.dart';
 import 'l10n/app_localizations.dart';
 
 void main() {
@@ -38,48 +38,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-/// ChatMessageBubble
-// ScreenUtilInit(
-// designSize: const Size(360, 690),
-// builder: (_, __) {
-// return MaterialApp(
-// debugShowCheckedModeBanner: false,
-// home: Scaffold(
-// backgroundColor: const Color(0xFFF5F5F5),
-// appBar: AppBar(title: const Text('Chat Test')),
-// body: ListView(
-// padding: EdgeInsets.only(top: 16.h),
-// children: [
-// ChatMessageBubble(
-// message: 'مرحبا أهلا بك في التطبيق',
-// isMe: false,
-// avatarUrl: 'https://i.pravatar.cc/150?img=5',
-// time: '16 min ago',
-// ),
-// ChatMessageBubble(
-// message: 'Sweet, Welcome !! 😊',
-// isMe: true,
-// avatarUrl: 'https://i.pravatar.cc/150?img=12',
-// time: '15 min ago',
-// ),
-// ChatMessageBubble(
-// message: 'I was Reading your profile, Interest',
-// isMe: false,
-// avatarUrl: 'https://i.pravatar.cc/150?img=5',
-// time: '16 min ago',
-// ),
-// ChatMessageBubble(
-// message: 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء 😍',
-// isMe: false,
-// avatarUrl: 'https://i.pravatar.cc/150?img=5',
-// time: '16 min ago',
-// ),
-// ],
-// ),
-// ),
-// );
-// },
-// );
-
-
