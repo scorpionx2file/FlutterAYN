@@ -77,12 +77,18 @@ class _PlaceDetailsScreenState extends State<PlaceDetailsScreen> {
           // ===== CONTENT OVER IMAGE =====
           Positioned(
             top: 150.h,
-            child: ContentSection(placeContent: widget.placeInfo.placeContent),
+            child: SizedBox(
+              width: 1.sw,
+              child: ContentSection(
+                placeContent: widget.placeInfo.placeContent,
+              ),
+            ),
           ),
+
 
           // ===== WHITE SECTION OVER IMAGE =====
           Positioned(
-            top: 320.h,
+            top: 300.h,
             left: 0,
             right: 0,
             bottom: 0,
@@ -104,11 +110,10 @@ class _PlaceDetailsScreenState extends State<PlaceDetailsScreen> {
                       debugPrint(selectedIndex.toString());
                     },
                   ),
-                  SizedBox(height: 20.h),
                   Expanded(
                     child: SingleChildScrollView(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        padding: EdgeInsets.symmetric(horizontal: 10.w),
                         child: EventList(posts: widget.posts, activities: widget.activities,services: widget.services, selectedIndex: selectedIndex,
                         ),
                       ),
