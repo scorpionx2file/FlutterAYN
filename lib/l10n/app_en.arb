@@ -152,4 +152,8 @@
                         "@passwordMin": { "placeholders": { "minLen": { "type": "int" } } }
 
                         "nearbyPersons": "Nearby Persons"
+                        "mute": "Mute"
+                        "delete": "Delete"
+                        "writeYourMessageHere": "Write Your Message Here"
+
 }

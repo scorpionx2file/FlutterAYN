@@ -378,6 +378,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get nearbyPersons => 'الاشخاص القريبين';
 
   @override
+  String get mute => 'الغاء الصوت';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get writeYourMessageHere => 'اكتب رسالة هنا';
+
+  @override
   String nameMin(int minLen) {
     return 'يجب أن يكون الاسم $minLen أحرف على الأقل';
   }

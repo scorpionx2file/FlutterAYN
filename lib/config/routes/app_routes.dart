@@ -30,4 +30,5 @@ class AppRoutes {
   static const String addPoll = "/AddPoll";
 
   static const String nearbyPersonsAndChatsList = "/NearbyPersonsAndChatsList";
+  static const String chat = "/Chat";
 }
