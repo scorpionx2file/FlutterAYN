@@ -2,18 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:traveller/core/constants/app_header/app_header.dart';
-import 'package:traveller/core/constants/button/app_button.dart';
-import 'package:traveller/core/constants/post_types/post_types.dart';
-import 'package:traveller/core/constants/app_tile/app_tile.dart';
 import 'package:traveller/core/constants/text_area/text_area.dart';
-import 'package:traveller/core/theme/colors/app_colors.dart';
 import '../../../add_types/presentation/screen/add_types.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/add_new_bottom_bar/add_new_bottom_bar.dart';
 import '../../../core/constants/add_new_header/add_new_header.dart';
 import '../../../core/constants/add_new_post_option_tile/add_new_post_option_tile.dart';
 
-class AddNewTopic extends StatelessWidget{
+class AddNewTopic extends StatefulWidget {
   final String imageUrl;
   final String location;
 
@@ -22,6 +18,14 @@ class AddNewTopic extends StatelessWidget{
     required this.imageUrl,
     required this.location
   });
+
+  @override
+  State<AddNewTopic> createState() => _AddNewTopicState();
+}
+
+class _AddNewTopicState extends State<AddNewTopic> {
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController bodyController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,8 +40,8 @@ class AddNewTopic extends StatelessWidget{
         child: Column(
           children: [
             AddNewHeader(
-              imageUrl: imageUrl,
-              location: location,
+              imageUrl: widget.imageUrl,
+              location: widget.location,
               isEventPage: false,
             ),
 
@@ -46,6 +50,7 @@ class AddNewTopic extends StatelessWidget{
             TextArea(
               hintText: "Post title",
               height: 55.h,
+              controller: titleController,
             ),
 
             SizedBox(height: 10.h),
@@ -53,6 +58,7 @@ class AddNewTopic extends StatelessWidget{
             TextArea(
               hintText: "Post but not less than 20 word",
               height: 135.h,
+              controller: bodyController,
             ),
 
             SizedBox(height: 10.h),
@@ -87,32 +93,25 @@ class AddNewTopic extends StatelessWidget{
         ),
       ),
 
-      bottomNavigationBar: AddNewBottomBar(
-        text: "Post",
-        onTap: (){},
-        showTypes: true,
-        items:  [
-          PostTypeItem(
-              title: "Add Image",
-              imageUrl: "assets/images/icons/image_icon.png",
-              color: AppColors.turnbullBlue,
-              onTap: (){}
-          ),
-          PostTypeItem(
-              title: "Add Video",
-              imageUrl: "assets/images/icons/video.png",
-              color: AppColors.lebaneseRed,
-              onTap: (){}
-          ),PostTypeItem(
-              title: "Add Poll",
-              imageUrl: "assets/images/icons/poll.png",
-              color: AppColors.darkYellow,
-              onTap: (){
-                context.push(AppRoutes.addPoll);
-              }
-          ),
-        ],
-      )
-    );
+        bottomNavigationBar: AddNewBottomBar(
+          text: "Post",
+          onTap: () {
+            final text = bodyController.text.trim();
+            final wordCount = text
+                .split(RegExp(r'\s+'))
+                .where((w) => w.isNotEmpty)
+                .length;
+
+            if (wordCount < 20) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text("Post must be at least 20 words"),
+                ),
+              );
+              return;
+            }
+          },
+        )
+        );
   }
 }
