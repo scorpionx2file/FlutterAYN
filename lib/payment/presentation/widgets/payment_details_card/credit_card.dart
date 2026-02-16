@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
-import '../../../core/theme/colors/app_colors.dart';
-import '../../../core/utils/helper/custom_number_formatter.dart';
+import '../../../../core/theme/colors/app_colors.dart';
+import '../../../../core/utils/helper/custom_number_formatter.dart';
 
 class PaymentVisaCard extends StatefulWidget {
   const PaymentVisaCard({super.key});

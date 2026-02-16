@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:traveller/payment/presentation/widgets/payment_details_card.dart';
+import 'package:traveller/payment/presentation/widgets/payment_details_card/credit_card.dart';
+import 'package:traveller/payment/presentation/widgets/payment_details_card/paypal_card.dart';
 import 'package:traveller/payment/presentation/widgets/payment_methods_card.dart';
 
 import '../../core/constants/button/app_button.dart';
@@ -21,6 +22,7 @@ class PaymentMethodScreen extends StatefulWidget {
 class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
 
   int selectedIndex=0;
+
   final List<String> paymentMethodsImages = [
     "assets/images/Credit.png",
     "assets/images/payPal.png",
@@ -108,11 +110,22 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
             ),
             SliverToBoxAdapter(child: SizedBox(height: 20.h)),
             SliverToBoxAdapter(
-               child:  PaymentVisaCard()
+               child:
+                _selectedPaymentCard()
             )
           ],
         ),
       ),
     );
+  }
+
+  Widget _selectedPaymentCard(){
+    if(selectedIndex==1){
+      return PayPalCard(
+        email: "ameerhasan@paypal.me",
+        addedDate: "15/02/2017",
+      );
+    }
+   return PaymentVisaCard();
   }
 }
