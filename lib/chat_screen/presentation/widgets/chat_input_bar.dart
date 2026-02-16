@@ -3,39 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
-import 'package:latlong2/latlong.dart';
 import '../../../core/utils/location/location_picker_bottom_sheet.dart';
-import 'package:geolocator/geolocator.dart';
+import '../../../core/utils/location/location_service.dart';
 
 class ChatInputBar extends StatelessWidget {
   final void Function(String message) onSendMessage;
 
   const ChatInputBar({super.key, required this.onSendMessage});
-
-  Future<Position?> requestLocationPermission() async {
-    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      return null;
-    }
-
-    LocationPermission permission = await Geolocator.checkPermission();
-
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return null;
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      // User permanently denied
-      return null;
-    }
-
-    return await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +74,7 @@ class ChatInputBar extends StatelessWidget {
           ),
 
           // LOCATION
+          // LOCATION
           IconButton(
             icon: Icon(
               Icons.location_on_outlined,
@@ -107,18 +82,14 @@ class ChatInputBar extends StatelessWidget {
               color: AppColors.spanishGrey,
             ),
             onPressed: () async {
-              final position = await requestLocationPermission();
+              final currentLatLng = await LocationService.getCurrentLatLng();
 
-              if (position == null) {
-                // You can show a snackbar or dialog here
+              if (currentLatLng == null) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text("Location permission denied")),
                 );
                 return;
               }
-
-              final initialLatLng =
-              LatLng(position.latitude, position.longitude);
 
               if (!context.mounted) return;
 
@@ -132,7 +103,7 @@ class ChatInputBar extends StatelessWidget {
                 ),
                 builder: (_) {
                   return LocationPickerBottomSheet(
-                    initialPosition: initialLatLng,
+                    initialPosition: currentLatLng,
                     onSend: (locationUrl) {
                       onSendMessage(locationUrl);
                     },

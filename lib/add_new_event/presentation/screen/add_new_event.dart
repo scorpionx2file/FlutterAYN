@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
@@ -8,17 +7,14 @@ import 'package:traveller/core/constants/add_new_bottom_bar/add_new_bottom_bar.d
 import 'package:traveller/core/constants/event_data/event_data.dart';
 import 'package:traveller/core/constants/post_types/post_types.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
-
 import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/add_new_build_map/add_new_build_map.dart';
 import '../../../core/constants/add_new_header/add_new_header.dart';
 import '../../../core/constants/add_new_post_option_tile/add_new_post_option_tile.dart';
 import '../../../core/constants/app_header/app_header.dart';
-import '../../../core/constants/button/app_button.dart';
-import '../../../core/constants/option_switch/option_switch.dart';
-import '../../../core/constants/app_tile/app_tile.dart';
 import '../../../core/constants/text_area/text_area.dart';
 import '../../../core/theme/colors/app_colors.dart';
+import '../../../core/utils/location/location_service.dart';
 
 class AddNewEvent extends StatefulWidget {
   final String imageUrl;
@@ -35,12 +31,27 @@ class AddNewEvent extends StatefulWidget {
 }
 
 class _AddNewEventState extends State<AddNewEvent>{
-  LatLng selectedLocation = LatLng(50.0, 10.0);
   int selectedIndex = 1;
   DateTime? eventDate;
   DateTime? lastDate;
   double eventPayment = 120;
   int personsNumber = 150;
+  LatLng? selectedLocation;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCurrentLocation();
+  }
+
+  Future<void> _loadCurrentLocation() async {
+    final current = await LocationService.getCurrentLatLng();
+    if (current != null && mounted) {
+      setState(() {
+        selectedLocation = current;
+      });
+    }
+  }
 
   String convertMonthToText({required int month}) {
     return switch (month) {
@@ -87,7 +98,7 @@ class _AddNewEventState extends State<AddNewEvent>{
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: eventDate ?? DateTime.now(),
-      firstDate: DateTime(2020),
+      firstDate: DateTime.now(),
       lastDate: DateTime(2030),
     );
 
@@ -117,8 +128,8 @@ class _AddNewEventState extends State<AddNewEvent>{
     DateTime? picked = await showDatePicker(
       context: context,
       initialDate: lastDate ?? DateTime.now(),
-      firstDate: DateTime(2020),
-      lastDate: DateTime(2030),
+      firstDate: DateTime.now(),
+      lastDate: eventDate!,
     );
 
     if (picked != null) {
@@ -315,7 +326,11 @@ class _AddNewEventState extends State<AddNewEvent>{
                 _buildDateSection(
                   title: "Last time for subscription",
                   date: lastDate,
-                  onTap: _pickLastDate,
+                  onTap: eventDate == null ? () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Select event date first")),
+                    );
+                  } : _pickLastDate,
                   text: lastDate != null
                       ? "${lastDate!.day} $month"
                       : "Select date",
@@ -327,8 +342,10 @@ class _AddNewEventState extends State<AddNewEvent>{
         
                 SizedBox(height: 10.h),
 
-                AddNewBuildMap(
-                  selectedLocation: selectedLocation,
+                selectedLocation == null
+                    ? const Center(child: CircularProgressIndicator())
+                    : AddNewBuildMap(
+                  selectedLocation: selectedLocation!,
                   onLocationChanged: (newLocation) {
                     setState(() {
                       selectedLocation = newLocation;

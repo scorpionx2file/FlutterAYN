@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:traveller/core/constants/add_new_header/add_new_header.dart';
 import 'package:traveller/core/constants/app_header/app_header.dart';
-import 'package:traveller/core/constants/option_switch/option_switch.dart';
 import '../../../add_types/presentation/screen/add_types.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/add_new_bottom_bar/add_new_bottom_bar.dart';
 import '../../../core/constants/add_new_build_map/add_new_build_map.dart';
 import '../../../core/constants/add_new_post_option_tile/add_new_post_option_tile.dart';
-import '../../../core/constants/button/app_button.dart';
-import '../../../core/constants/app_tile/app_tile.dart';
 import '../../../core/constants/text_area/text_area.dart';
 import '../../../core/theme/colors/app_colors.dart';
+import '../../../core/utils/location/location_service.dart';
 
 class AddNewVideo extends StatefulWidget {
   final String imageUrl;
@@ -32,7 +29,22 @@ class AddNewVideo extends StatefulWidget {
 
 
 class _AddNewVideoState extends State<AddNewVideo> {
-  LatLng selectedLocation = LatLng(50.0, 10.0);
+  LatLng? selectedLocation;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCurrentLocation();
+  }
+
+  Future<void> _loadCurrentLocation() async {
+    final current = await LocationService.getCurrentLatLng();
+    if (current != null && mounted) {
+      setState(() {
+        selectedLocation = current;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,14 +99,17 @@ class _AddNewVideoState extends State<AddNewVideo> {
             ),
 
             SizedBox(height: 10.h),
-            AddNewBuildMap(
-              selectedLocation: selectedLocation,
+
+            selectedLocation == null
+                ? const Center(child: CircularProgressIndicator())
+                : AddNewBuildMap(
+              selectedLocation: selectedLocation!,
               onLocationChanged: (newLocation) {
                 setState(() {
                   selectedLocation = newLocation;
                 });
-                },
-            )
+              },
+            ),
           ],
         ),
       ),
