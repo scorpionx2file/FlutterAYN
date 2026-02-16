@@ -106,6 +106,7 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
 
                 return GestureDetector(
                   onTap: () {
+                    if(index==2)return;
                     setState(() {
                       selectedIndex = index;
                     });
@@ -149,23 +150,6 @@ class _SelectServiceScreenState extends State<SelectServiceScreen> {
             ),
           ),
           SliverToBoxAdapter(child: SizedBox(height: 30.h)),
-          /*SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: AppButton(
-                text: "Next",
-                textStyle: AppTextStyles.text,
-                onPressed: selectedIndex == null
-                    ? null
-                    : () {
-                  context.push(AppRoutes.selectServiceInfo);
-                },
-                backgroundColor: selectedIndex == null
-                    ? Colors.grey
-                    : AppColors.turnbullBlue,
-              ),
-            ),
-          ),*/
         ],
       ),
     );
