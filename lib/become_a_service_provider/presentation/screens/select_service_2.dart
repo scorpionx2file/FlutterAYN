@@ -6,6 +6,7 @@ import 'package:traveller/become_a_service_provider/presentation/screens/widgets
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
 import '../../../config/routes/app_routes.dart';
+import '../../../core/constants/add_new_post_option_tile/add_new_post_option_tile.dart';
 import '../../../core/constants/app_tile/app_tile.dart';
 import '../../../core/constants/becom_service_indecator/page_indicator.dart';
 import '../../../core/constants/button/app_button.dart';
@@ -158,39 +159,40 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
             SliverToBoxAdapter(child: SizedBox(height: 5.h)),
 
             SliverToBoxAdapter(
-              child: AppTile(
-                icon: Icon(
+              child:
+              Padding(
+                padding:  EdgeInsets.symmetric(horizontal: 8.0.w),
+                child: AddNewPostOptionTile(icon:Icon(
                   Icons.public_outlined,
                   size: 24.r,
                   color: AppColors.turnbullBlue,
+                ) ,
+                    title: 'Language'
+                  , onTap: () {  }
+                  , showDivider: false,
                 ),
-                title: "Language",
-                hasPermission: false,
-                onTap: () {},
-                // background: AppColors.white,
-                // backArrowColor: AppColors.moderateBlue,
-              ),
+              )
             ),
             SliverToBoxAdapter(child: SizedBox(height: 10.h)),
 
             SliverToBoxAdapter(
-              child: AppTile(
-                icon: Icon(
+              child:Padding(
+                padding:  EdgeInsets.symmetric(horizontal: 8.0.w),
+                child: AddNewPostOptionTile(icon:Icon(
                   Icons.door_back_door_outlined,
                   size: 24.r,
                   color: AppColors.turnbullBlue,
+                ) ,
+                  title: 'Choose Gate'
+                  , onTap: () {  }
+                  , showDivider: false,
                 ),
-                title: "Choose Gate",
-                hasPermission: false,
-                onTap: () {},
-                // background: AppColors.white,
-                // backArrowColor: AppColors.moderateBlue,
-              ),
+              )
             ),
 
             SliverToBoxAdapter(
               child: Padding(
-                padding: EdgeInsets.all(6.w),
+                padding: EdgeInsets.symmetric(vertical: 12.h,horizontal: 8.w),
                 child: Container(
                   height: 120.h,
                   padding: EdgeInsets.symmetric(

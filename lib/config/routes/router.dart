@@ -1021,7 +1021,29 @@ final GoRouter router = GoRouter(
       ),
     ),
     GoRoute(path: AppRoutes.chat, builder: (context, state) => ChatScreen()),
+    GoRoute(
+      path: AppRoutes.selectService,
+      builder: (context, state) => const SelectServiceScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.selectServiceInfo,
+      builder: (context, state) => const SelectServiceScreen2(),
+    ),
+    GoRoute(
+      path: AppRoutes.payment,
+      builder: (context, state) => const ServicePaymentScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.paymentMethod,
+      builder: (context, state) {
+        final data = state.extra as Map<String, dynamic>;
 
+        return PaymentMethodScreen(
+          packageTitle: data["title"],
+          packagePrices: data["price"],
+        );
+      },
+    ),
     // ShellRoute for main screens with bottom nav
     ShellRoute(
       builder: (context, state, child) {
