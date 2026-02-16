@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:traveller/core/constants/add_new_bottom_bar/add_new_bottom_bar.dart';
 import 'package:traveller/core/constants/text_feild/app_text_feild.dart';
 import '../../../core/constants/add_new_header/add_new_header.dart';
 import '../../../core/constants/app_header/app_header.dart';
@@ -130,19 +131,10 @@ class _AddTypesState extends State<AddTypes> {
         )
       ),
 
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(
-            left: 16,
-            right: 16,
-            bottom: MediaQuery.of(context).viewInsets.bottom + 20,
-            top: 12
-        ),
-
-        child: AppButton(
+      bottomNavigationBar: AddNewBottomBar(
           text: "Save",
-          onPressed: (){},
-        ),
-      ),
+          onTap: (){}
+      )
     );
   }
 }

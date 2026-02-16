@@ -4,16 +4,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:traveller/add_types/presentation/screen/add_types.dart';
+import 'package:traveller/core/constants/add_new_bottom_bar/add_new_bottom_bar.dart';
 import 'package:traveller/core/constants/event_data/event_data.dart';
 import 'package:traveller/core/constants/post_types/post_types.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
 import '../../../config/routes/app_routes.dart';
+import '../../../core/constants/add_new_build_map/add_new_build_map.dart';
 import '../../../core/constants/add_new_header/add_new_header.dart';
+import '../../../core/constants/add_new_post_option_tile/add_new_post_option_tile.dart';
 import '../../../core/constants/app_header/app_header.dart';
 import '../../../core/constants/button/app_button.dart';
 import '../../../core/constants/option_switch/option_switch.dart';
-import '../../../core/constants/profile_settings/profile_settings_tile.dart';
+import '../../../core/constants/app_tile/app_tile.dart';
 import '../../../core/constants/text_area/text_area.dart';
 import '../../../core/theme/colors/app_colors.dart';
 
@@ -55,6 +58,162 @@ class _AddNewEventState extends State<AddNewEvent>{
       12 => "Dec",
       _ => "Invalid month",
     };
+  }
+
+  Widget _buildDateSection({
+    required String title,
+    required DateTime? date,
+    required VoidCallback onTap,
+    required String text,
+  }) {
+    return EventData(
+      title: title,
+      icon: "assets/images/icons/calender.png",
+      child: GestureDetector(
+        onTap: onTap,
+        child: Text(
+          text,
+          style: TextStyle(
+            color: date != null
+                ? Colors.black
+                : AppColors.spanishGrey,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _pickEventDate() async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: eventDate ?? DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2030),
+    );
+
+    if (pickedDate == null) return;
+
+    TimeOfDay? pickedTime = await showTimePicker(
+      initialTime: TimeOfDay.now(),
+      context: context,
+    );
+
+    if (pickedTime == null) return;
+
+    final combinedDateTime = DateTime(
+      pickedDate.year,
+      pickedDate.month,
+      pickedDate.day,
+      pickedTime.hour,
+      pickedTime.minute,
+    );
+
+    setState(() {
+      eventDate = combinedDateTime;
+    });
+  }
+
+  Future<void> _pickLastDate() async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: lastDate ?? DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2030),
+    );
+
+    if (picked != null) {
+      setState(() {
+        lastDate = picked;
+      });
+    }
+  }
+
+  Widget _buildCounterSection({
+    required String title,
+    required String icon,
+    required int value,
+    required VoidCallback onIncrement,
+    required VoidCallback onDecrement,
+  }) {
+    return EventData(
+      title: title,
+      icon: icon,
+      trailing: [
+        GestureDetector(
+          onTap: onDecrement,
+          child: Icon(
+            Icons.minimize,
+            color: AppColors.spanishGrey,
+            size: 20.sp,
+          ),
+        ),
+        SizedBox(width: 10.w),
+        GestureDetector(
+          onTap: onIncrement,
+          child: Icon(
+            Icons.add,
+            color: AppColors.spanishGrey,
+            size: 20.sp,
+          ),
+        ),
+      ],
+      child: Text(
+        "$value\$",
+        style: AppTextStyles.text,
+      ),
+    );
+  }
+
+  Widget _buildPaymentAndAvailability() {
+    return AnimatedCrossFade(
+      firstChild: const SizedBox.shrink(),
+      secondChild: SizedBox(
+        width: double.infinity,
+        child: Row(
+          children: [
+            Expanded(
+              child: _buildCounterSection(
+                title: "Event payment",
+                icon: "assets/images/icons/dollar.png",
+                value: eventPayment.toInt(),
+                onDecrement: () {
+                  setState(() {
+                    eventPayment--;
+                  });
+                },
+                onIncrement: () {
+                  setState(() {
+                    eventPayment++;
+                  });
+                },
+              ),
+            ),
+            SizedBox(width: 10.w),
+            Expanded(
+              child: _buildCounterSection(
+                title: "Availability",
+                icon: "assets/images/icons/person.png",
+                value: personsNumber,
+                onDecrement: () {
+                  setState(() {
+                    personsNumber--;
+                  });
+                },
+                onIncrement: () {
+                  setState(() {
+                    personsNumber++;
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+      crossFadeState: selectedIndex == 0
+          ? CrossFadeState.showSecond
+          : CrossFadeState.showFirst,
+      duration: const Duration(milliseconds: 200),
+    );
   }
 
   @override
@@ -102,278 +261,79 @@ class _AddNewEventState extends State<AddNewEvent>{
                 ),
         
                 SizedBox(height: 10.h),
-        
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(10.r),
-                  ),
-                  child: ProfileSettingsTile(
-                    icon: Image.asset("assets/images/icons/link.png"),
-                    title: "Event Link",
-                    showDivider: false,
-                    showIcon: false,
-                  ),
+
+                AddNewPostOptionTile(
+                  icon: Image.asset("assets/images/icons/link.png"),
+                  title: "Event Link",
+                  showDivider: false,
+                  showIcon: false,
+                  onTap: () {}
                 ),
         
                 SizedBox(height: 10.h),
-        
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(10.r),
-                  ),
-                  child: ProfileSettingsTile(
-                    icon: Image.asset("assets/images/icons/gate.png"),
-                    title: "Choose a gate",
-                    showDivider: false,
-                  ),
+
+                AddNewPostOptionTile(
+                  icon: Image.asset("assets/images/icons/gate.png"),
+                  title: "Choose a gate",
+                  showDivider: false,
+                  onTap: (){}
                 ),
         
                 SizedBox(height: 10.h),
-        
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.white,
-                    borderRadius: BorderRadius.circular(10.r),
-                  ),
-                  child: ProfileSettingsTile(
-                    icon: Image.asset("assets/images/icons/hashtag.png"),
-                    title: "Choose a type",
-                    showDivider: false,
-                    onTap: (){
-                      context.push(
-                        AppRoutes.addTypes,
-                        extra: AddTypesArgs(
-                            title: "Add Event",
-                            isEvent: true,
+
+                AddNewPostOptionTile(
+                  icon: Image.asset("assets/images/icons/hashtag.png"),
+                  title: "Choose a type",
+                  showDivider: false,
+                  onTap: (){
+                    context.push(
+                      AppRoutes.addTypes,
+                      extra: AddTypesArgs(
+                          title: "Add Event",
+                          isEvent: true,
                           selectedIndex: selectedIndex
-                        ),
-                      );
-                    },
-                  ),
+                      ),
+                    );
+                  },
                 ),
         
                 SizedBox(height: 10.h),
-        
-                EventData(
+
+                _buildDateSection(
                   title: "Event Date",
-                  icon: "assets/images/icons/calender.png",
-                  child: GestureDetector(
-                    onTap: () async {
-                      // 1. Pick date
-                      DateTime? pickedDate = await showDatePicker(
-                        context: context,
-                        initialDate: eventDate ?? DateTime.now(),
-                        firstDate: DateTime(2020),
-                        lastDate: DateTime(2030),
-                      );
-
-                      if (pickedDate == null) return;
-
-                      // 2. Pick time
-                      TimeOfDay? pickedTime = await showTimePicker(
-                        initialTime: TimeOfDay.now(),
-                        context: context,
-                      );
-
-                      if (pickedTime == null) return;
-
-                      // 3. Combine date + time
-                      final combinedDateTime = DateTime(
-                        pickedDate.year,
-                        pickedDate.month,
-                        pickedDate.day,
-                        pickedTime.hour,
-                        pickedTime.minute,
-                      );
-
-                      setState(() {
-                        eventDate = combinedDateTime;
-                      });
-                    },
-
-                    child: Text(
-                      eventDate != null
-                          ? "${eventDate!.day} $month - "
-                          "${eventDate!.hour.toString().padLeft(2, '0')}:"
-                          "${eventDate!.minute.toString().padLeft(2, '0')}"
-                          : "Select date",
-                      style: TextStyle(
-                        color: eventDate != null ? Colors.black : AppColors.spanishGrey,
-                      ),
-                    ),
-                  ),
+                  date: eventDate,
+                  onTap: _pickEventDate,
+                  text: eventDate != null
+                      ? "${eventDate!.day} $month - "
+                      "${eventDate!.hour.toString().padLeft(2, '0')}:"
+                      "${eventDate!.minute.toString().padLeft(2, '0')}"
+                      : "Select date",
                 ),
-        
+
                 SizedBox(height: 10.h),
-        
-                EventData(
+
+                _buildDateSection(
                   title: "Last time for subscription",
-                  icon: "assets/images/icons/calender.png",
-                  child: GestureDetector(
-                    onTap: () async {
-                      DateTime? picked = await showDatePicker(
-                        context: context,
-                        initialDate: lastDate ?? DateTime.now(),
-                        firstDate: DateTime(2020),
-                        lastDate: DateTime(2030),
-                      );
-                      if (picked != null) {
-                        setState(() {
-                          lastDate = picked;
-                        });
-                      }
-                    },
-                    child: Text(
-                      lastDate != null
-                          ? "${lastDate!.day} $month"
-                          : "Select date",
-                      style: TextStyle(
-                        color: lastDate != null ? Colors.black : AppColors.spanishGrey,
-                      ),
-                    ),
-                  ),
+                  date: lastDate,
+                  onTap: _pickLastDate,
+                  text: lastDate != null
+                      ? "${lastDate!.day} $month"
+                      : "Select date",
                 ),
         
                 SizedBox(height: 10.h),
-        
-                AnimatedCrossFade(
-                    firstChild: SizedBox.shrink(),
-                    secondChild: SizedBox(
-                      width: double.infinity,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: EventData(
-                              title: "Event payment",
-                              icon: "assets/images/icons/dollar.png",
-                              trailing: [
-                                GestureDetector(
-                                  onTap: (){
-                                    setState(() {
-                                      eventPayment--;
-                                    });
-                                  },
-                                  child: Icon(
-                                      Icons.minimize,
-                                    color: AppColors.spanishGrey,
-                                    size: 20.sp,
-                                  ),
-                                ),
 
-                                SizedBox(width: 10.w),
-
-                                GestureDetector(
-                                  onTap: (){
-                                    setState(() {
-                                      eventPayment++;
-                                    });
-                                  },
-                                  child: Icon(
-                                      Icons.add,
-                                    color: AppColors.spanishGrey,
-                                    size: 20.sp,
-                                  ),
-                                )
-                              ],
-                              child: Text(
-                                "$eventPayment\$",
-                                style: AppTextStyles.text,
-                              )
-                                                  ),
-                          ),
-                          SizedBox(width: 10.w),
-                          Expanded(
-                            child: EventData(
-                              title: "Availability",
-                              icon: "assets/images/icons/person.png",
-                              trailing: [
-                                GestureDetector(
-                                  onTap: (){
-                                    setState(() {
-                                      personsNumber--;
-                                    });
-                                  },
-                                  child: Icon(
-                                    Icons.minimize,
-                                    color: AppColors.spanishGrey,
-                                    size: 20.sp,
-                                  ),
-                                ),
-
-                                GestureDetector(
-                                  onTap: (){
-                                    setState(() {
-                                      personsNumber++;
-                                    });
-                                  },
-                                  child: Icon(
-                                    Icons.add,
-                                    color: AppColors.spanishGrey,
-                                    size: 20.sp,
-                                  ),
-                                )
-                              ],
-                              child: Text(
-                                "$personsNumber\$",
-                                style: AppTextStyles.text,
-                              )
-                                                  ),
-                          )],
-                      ),
-                    ),
-                  crossFadeState: selectedIndex == 0
-                      ? CrossFadeState.showSecond
-                      : CrossFadeState.showFirst,
-                  duration: Duration(milliseconds: 200),
-                ),
+              _buildPaymentAndAvailability(),
         
                 SizedBox(height: 10.h),
-        
-                Container(
-                  height: 135.h,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.r),
-                    color: AppColors.white,
-                  ),
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10.r),
-                      child: FlutterMap(
-                        options: MapOptions(
-                          initialCenter: selectedLocation,
-                          initialZoom: 5,
-                          onTap: (tapPosition, point) {
-                            setState(() {
-                              selectedLocation = point;
-                            });
-                          },
-                        ),
-                        children: [
-                          TileLayer(
-                            urlTemplate:
-                            'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-                            subdomains: ['a', 'b', 'c', 'd'],
-                          ),
-                          MarkerLayer(
-                            markers: [
-                              Marker(
-                                point: selectedLocation,
-                                width: 40,
-                                height: 40,
-                                alignment: Alignment.topCenter,
-                                child: Icon(
-                                  Icons.location_pin,
-                                  color: AppColors.turnbullBlue,
-                                  size: 40,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
-                  ),
+
+                AddNewBuildMap(
+                  selectedLocation: selectedLocation,
+                  onLocationChanged: (newLocation) {
+                    setState(() {
+                      selectedLocation = newLocation;
+                    });
+                  },
                 ),
               ],
             ),
@@ -381,60 +341,27 @@ class _AddNewEventState extends State<AddNewEvent>{
         ),
       ),
 
-        bottomNavigationBar: Padding(
-          padding: EdgeInsets.only(
-            left: 16,
-            right: 16,
-            bottom: MediaQuery.of(context).viewInsets.bottom + 20,
-            top: 12,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _AddMedia(),
-              SizedBox(height: 16.h),
-              OptionSwitch(
-                title: 'Subscribe in event',
-                value: true,
-                onChanged: (bool value) {  },
-              ),
-              SizedBox(height: 16.h),
-              AppButton(
-                text: "Post Event",
-                icon: Icon(
-                  Icons.videocam,
-                  color: AppColors.white,
-                ),
-                onPressed: () {},
-              ),
-            ],
-          ),
+        bottomNavigationBar: AddNewBottomBar(
+            text: "Post Event",
+            onTap: (){},
+          showSwitch: true,
+          switchTitle: "Subscribe in event",
+          showTypes: true,
+          items:  [
+            PostTypeItem(
+              title: "Add Photo",
+              imageUrl: "assets/images/icons/image_icon.png",
+              color: AppColors.turnbullBlue,
+              onTap: () {},
+            ),
+            PostTypeItem(
+              title: "Add Video",
+              imageUrl: "assets/images/icons/video.png",
+              color: AppColors.lebaneseRed,
+              onTap: () {},
+            ),
+          ],
         )
-    );
-  }
-}
-
-class _AddMedia extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        PostTypes(
-            title: "Add Photo",
-            imageUrl: "assets/images/icons/image_icon.png",
-            color: AppColors.turnbullBlue,
-            onTap: (){}
-        ),
-
-        SizedBox(width: 35.w),
-
-        PostTypes(
-            title: "Add Video",
-            imageUrl: "assets/images/icons/video.png",
-            color: AppColors.lebaneseRed,
-            onTap: (){}
-        )
-      ],
     );
   }
 }
