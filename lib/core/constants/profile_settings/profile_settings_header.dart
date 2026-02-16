@@ -71,7 +71,7 @@ class ProfileSettingsHeader extends StatelessWidget {
 
                     /// USERNAME
                     Text(
-                      '@$username',
+                      username,
                       style: AppTextStyles.description.copyWith(
                         color: AppColors.white,
                       ),

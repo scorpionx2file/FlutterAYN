@@ -25,6 +25,9 @@ import 'package:traveller/user_profile/presentation/widgets/user_profile_screen.
 import 'package:traveller/video/presentation/widgets/video&articles_screen.dart';
 
 import '../../auth/presentation/screen/sign_up_screen.dart';
+import '../../become_a_service_provider/presentation/screens/select_service.dart';
+import '../../become_a_service_provider/presentation/screens/select_service_2.dart';
+import '../../become_a_service_provider/presentation/screens/select_service_3.dart';
 import '../../core/constants/activity_card/activity_card.dart';
 import '../../core/constants/comment/comment_item.dart';
 import '../../core/constants/comment/rating_widget.dart';
@@ -35,6 +38,7 @@ import '../../core/constants/gate/app_gate_card.dart';
 import '../../core/constants/post/post.dart';
 import '../../core/constants/post/post_content/post_content.dart';
 import '../../core/constants/post_service_provider_header/post_or_service_provider_header.dart';
+import '../../core/constants/service_package/package_card.dart';
 import '../../core/constants/story_item/story_item.dart';
 import '../../core/theme/colors/app_colors.dart';
 import '../../core/utils/map_bottom_sheet_util.dart';
@@ -43,6 +47,7 @@ import '../../event_option/presentation/widgets/content_section/content_section.
 import '../../gates/presentation/screens/gates_screen.dart';
 import '../../home/presentation/screens/home_screen.dart';
 import '../../map/presenttion/widgets/map_screen.dart';
+import '../../payment/presentation/payment_method_screen.dart';
 import '../../nearbyPersons_and_chats/presentation/widgets/nearbyPersons_and_chats_list_screen.dart';
 import '../../see_all_activities/presentation/screen/see_all_activities.dart';
 import 'app_routes.dart';

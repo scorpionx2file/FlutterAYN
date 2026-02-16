@@ -31,4 +31,11 @@ class AppRoutes {
 
   static const String nearbyPersonsAndChatsList = "/NearbyPersonsAndChatsList";
   static const String chat = "/Chat";
+
+
+  static const String selectService = "/SelectServiceCard";
+  static const String selectServiceInfo = "/selectServiceInfo";
+  static const String payment = "/Payment";
+  static const String paymentMethod = "/PaymentMethod";
+
 }
