@@ -6,10 +6,10 @@ import 'package:traveller/become_a_service_provider/presentation/screens/widgets
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
 import '../../../config/routes/app_routes.dart';
+import '../../../core/constants/app_tile/app_tile.dart';
 import '../../../core/constants/becom_service_indecator/page_indicator.dart';
 import '../../../core/constants/button/app_button.dart';
 import '../../../core/constants/profile_settings/profile_settings_header.dart';
-import '../../../core/constants/profile_settings/profile_settings_tile.dart';
 import '../../../core/theme/colors/app_colors.dart';
 
 class SelectServiceScreen2 extends StatefulWidget {
@@ -158,7 +158,7 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
             SliverToBoxAdapter(child: SizedBox(height: 5.h)),
 
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Icon(
                   Icons.public_outlined,
                   size: 24.r,
@@ -167,14 +167,14 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
                 title: "Language",
                 hasPermission: false,
                 onTap: () {},
-                background: AppColors.white,
-                backArrowColor: AppColors.moderateBlue,
+                // background: AppColors.white,
+                // backArrowColor: AppColors.moderateBlue,
               ),
             ),
             SliverToBoxAdapter(child: SizedBox(height: 10.h)),
 
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Icon(
                   Icons.door_back_door_outlined,
                   size: 24.r,
@@ -183,8 +183,8 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
                 title: "Choose Gate",
                 hasPermission: false,
                 onTap: () {},
-                background: AppColors.white,
-                backArrowColor: AppColors.moderateBlue,
+                // background: AppColors.white,
+                // backArrowColor: AppColors.moderateBlue,
               ),
             ),
 

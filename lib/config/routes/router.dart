@@ -868,7 +868,7 @@ final List<ChatTileModel> chats = [
 ];
 
 final GoRouter router = GoRouter(
-  initialLocation: AppRoutes.chat,
+  initialLocation: AppRoutes.splash,
   routes: [
     GoRoute(
       path: AppRoutes.splash,
