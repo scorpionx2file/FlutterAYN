@@ -2,6 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../theme/fonts/app_text_styles.dart';
 
+class PostTypeItem {
+  final String title;
+  final String imageUrl;
+  final Color color;
+  final VoidCallback onTap;
+
+  PostTypeItem({
+    required this.title,
+    required this.imageUrl,
+    required this.color,
+    required this.onTap,
+  });
+}
+
 class PostTypes extends StatelessWidget{
   final String title;
   final String imageUrl;

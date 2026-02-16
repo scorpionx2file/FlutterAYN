@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
-class ProfileSettingsTile extends StatelessWidget {
+class AppTile extends StatelessWidget {
   final Widget icon;
   final String title;
   final Widget? trailing; // toggle widget
@@ -12,7 +12,7 @@ class ProfileSettingsTile extends StatelessWidget {
   final bool showDivider;
   final bool showIcon;
 
-  const ProfileSettingsTile({
+  const AppTile({
     super.key,
     required this.icon,
     required this.title,

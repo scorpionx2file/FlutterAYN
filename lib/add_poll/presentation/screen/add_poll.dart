@@ -9,6 +9,8 @@ import 'package:traveller/core/constants/text_area/text_area.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
+import '../../../core/constants/add_new_bottom_bar/add_new_bottom_bar.dart';
+
 class AddPoll extends StatefulWidget{
   final String imageUrl;
   final String location;
@@ -84,22 +86,12 @@ class _AddPollState extends State<AddPoll>{
           ]
       ),
       ),
-      bottomNavigationBar: Padding(
-          padding: EdgeInsets.only(
-            left: 16,
-            right: 16,
-            bottom: MediaQuery.of(context).viewInsets.bottom+20,
-            top: 12
-          ),
-        child: AppButton(
-          text: "Add Poll",
-          backgroundColor: AppColors.yellow,
-          textStyle: AppTextStyles.button.copyWith(
-            color: AppColors.black,
-          ),
-          onPressed: (){},
-        ),
-      ),
+      bottomNavigationBar: AddNewBottomBar(
+        text: "Post Event",
+        onTap: (){},
+        buttonColor: AppColors.yellow,
+        textColor: AppColors.black,
+      )
     );
   }
 }

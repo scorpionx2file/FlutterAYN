@@ -8,8 +8,11 @@ import 'package:traveller/core/constants/app_header/app_header.dart';
 import 'package:traveller/core/constants/option_switch/option_switch.dart';
 import '../../../add_types/presentation/screen/add_types.dart';
 import '../../../config/routes/app_routes.dart';
+import '../../../core/constants/add_new_bottom_bar/add_new_bottom_bar.dart';
+import '../../../core/constants/add_new_build_map/add_new_build_map.dart';
+import '../../../core/constants/add_new_post_option_tile/add_new_post_option_tile.dart';
 import '../../../core/constants/button/app_button.dart';
-import '../../../core/constants/profile_settings/profile_settings_tile.dart';
+import '../../../core/constants/app_tile/app_tile.dart';
 import '../../../core/constants/text_area/text_area.dart';
 import '../../../core/theme/colors/app_colors.dart';
 
@@ -58,116 +61,52 @@ class _AddNewVideoState extends State<AddNewVideo> {
 
             SizedBox(height: 10.h),
 
-            Container(
-              decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.circular(10.r),
-              ),
-              child: ProfileSettingsTile(
-                icon: Image.asset("assets/images/icons/gate.png"),
-                title: "Choose a gate",
-                showDivider: false,
-              ),
+            AddNewPostOptionTile(
+              icon: Image.asset("assets/images/icons/gate.png"),
+              title: "Choose a gate",
+              showDivider: false,
+              onTap: (){}
             ),
 
             SizedBox(height: 10.h),
 
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                color: AppColors.white,
-              ),
-              child: ProfileSettingsTile(
-                icon: Image.asset("assets/images/icons/hashtag.png"),
-                title: "Choose a type",
-                showDivider: false,
-                onTap: (){
-                  context.push(
-                    AppRoutes.addTypes,
-                    extra: AddTypesArgs(
-                        title: "Add Video",
-                        isEvent: false,
+            AddNewPostOptionTile(
+              icon: Image.asset("assets/images/icons/hashtag.png"),
+              title: "Choose a type",
+              showDivider: false,
+              onTap: (){
+                context.push(
+                  AppRoutes.addTypes,
+                  extra: AddTypesArgs(
+                      title: "Add Video",
+                      isEvent: false,
                       selectedIndex: 0
-                    ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
 
             SizedBox(height: 10.h),
-
-            Container(
-              height: 135.h,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                color: AppColors.white,
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.r),
-                child: FlutterMap(
-                  options: MapOptions(
-                    initialCenter: selectedLocation,
-                    initialZoom: 5,
-                    onTap: (tapPosition, point) {
-                      setState(() {
-                        selectedLocation = point;
-                      });
-                    },
-                  ),
-                  children: [
-                    TileLayer(
-                      urlTemplate:
-                      'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-                      subdomains: ['a', 'b', 'c', 'd'],
-                    ),
-                    MarkerLayer(
-                      markers: [
-                        Marker(
-                          point: selectedLocation,
-                          width: 40,
-                          height: 40,
-                          alignment: Alignment.topCenter,
-                          child: Icon(
-                            Icons.location_pin,
-                            color: AppColors.turnbullBlue,
-                            size: 40,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                )
-              ),
-            ),
+            AddNewBuildMap(
+              selectedLocation: selectedLocation,
+              onLocationChanged: (newLocation) {
+                setState(() {
+                  selectedLocation = newLocation;
+                });
+                },
+            )
           ],
         ),
       ),
 
-        bottomNavigationBar: Padding(
-          padding: EdgeInsets.only(
-            left: 16,
-            right: 16,
-            bottom: MediaQuery.of(context).viewInsets.bottom + 20,
-            top: 12,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              OptionSwitch(
-              title: 'Save video in gallery',
-              value: true,
-                onChanged: (bool value) {  },
-              ),
-              SizedBox(height: 16.h),
-              AppButton(
-                text: "Post Video",
-                icon: Icon(
-                  Icons.videocam,
-                  color: AppColors.white,
-                ),
-                onPressed: () {},
-              ),
-            ],
+        bottomNavigationBar: AddNewBottomBar(
+          text: "Post Video",
+          onTap: (){},
+          showSwitch: true,
+          switchTitle: "Save video in gallery",
+          icon: Icon(
+            Icons.videocam,
+            color: AppColors.white,
           ),
         )
     );
