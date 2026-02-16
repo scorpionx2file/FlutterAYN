@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:maplibre_gl/maplibre_gl.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
 
 class LocationPickerBottomSheet extends StatefulWidget {
-  final Position initialPosition;
+  final LatLng initialPosition; // Pass initial position directly
   final void Function(String locationUrl) onSend;
 
   const LocationPickerBottomSheet({
@@ -19,16 +19,12 @@ class LocationPickerBottomSheet extends StatefulWidget {
 
 class _LocationPickerBottomSheetState
     extends State<LocationPickerBottomSheet> {
-  MapLibreMapController? controller;
-  LatLng? selectedLatLng;
+  late LatLng selectedLatLng;
 
   @override
   void initState() {
     super.initState();
-    selectedLatLng = LatLng(
-      widget.initialPosition.latitude,
-      widget.initialPosition.longitude,
-    );
+    selectedLatLng = widget.initialPosition;
   }
 
   @override
@@ -39,44 +35,37 @@ class _LocationPickerBottomSheetState
         children: [
           // MAP
           Expanded(
-            child: SafeArea(
-              child: MapLibreMap(
-                styleString:
-                'https://tiles.stadiamaps.com/styles/alidade_smooth.json',
-                initialCameraPosition: CameraPosition(
-                  target: selectedLatLng!,
-                  zoom: 15,
-                ),
-                onMapCreated: (mapController) async {
-                  controller = mapController;
-
-                  // Add marker at initial position
-                  await controller!.addSymbol(
-                    SymbolOptions(
-                      geometry: selectedLatLng!,
-                      iconImage: "marker-15", // Default MapLibre icon
-                      iconSize: 1.5,
-                    ),
-                  );
-                },
-                onMapClick: (point, latLng) async {
+            child: FlutterMap(
+              options: MapOptions(
+                initialCenter: selectedLatLng,
+                initialZoom: 15,
+                onTap: (tapPosition, latLng) {
                   setState(() {
                     selectedLatLng = latLng;
                   });
-
-                  // Move marker to tapped location
-                  if (controller != null) {
-                    controller!.clearSymbols();
-                    await controller!.addSymbol(
-                      SymbolOptions(
-                        geometry: selectedLatLng!,
-                        iconImage: "marker-15",
-                        iconSize: 1.5,
-                      ),
-                    );
-                  }
                 },
               ),
+              children: [
+                TileLayer(
+                  urlTemplate:
+                  'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+                  subdomains: ['a', 'b', 'c', 'd'],
+                ),
+                MarkerLayer(
+                  markers: [
+                    Marker(
+                      point: selectedLatLng,
+                      width: 40,
+                      height: 40,
+                      child: Icon(
+                        Icons.location_on,
+                        size: 40,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
 
@@ -88,7 +77,7 @@ class _LocationPickerBottomSheetState
               child: ElevatedButton(
                 onPressed: () {
                   final locationUrl =
-                      'https://www.openstreetmap.org/?mlat=${selectedLatLng!.latitude}&mlon=${selectedLatLng!.longitude}';
+                      'https://www.openstreetmap.org/?mlat=${selectedLatLng.latitude}&mlon=${selectedLatLng.longitude}';
                   widget.onSend(locationUrl);
                   Navigator.pop(context);
                 },
