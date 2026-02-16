@@ -3,12 +3,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
+import 'package:geolocator/geolocator.dart';
+import '../../../core/utils/location/location_picker_bottom_sheet.dart';
+import '../../../core/utils/location/location_service.dart';
 
 class ChatInputBar extends StatelessWidget {
-  const ChatInputBar({super.key});
+  final void Function(String message) onSendMessage;
+
+  const ChatInputBar({super.key, required this.onSendMessage});
 
   @override
   Widget build(BuildContext context) {
+    final textController = TextEditingController();
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12.w),
       height: 72.h,
@@ -24,24 +31,30 @@ class ChatInputBar extends StatelessWidget {
       ),
       child: Row(
         children: [
-          /// SEND
+          // SEND TEXT MESSAGE
           IconButton(
             icon: Icon(
               Icons.send,
               size: 22.sp,
               color: AppColors.turnbullBlue,
             ),
-            onPressed: () {},
+            onPressed: () {
+              final text = textController.text.trim();
+              if (text.isNotEmpty) {
+                onSendMessage(text);
+                textController.clear();
+              }
+            },
           ),
 
-          /// DIVIDER
+          // DIVIDER
           Container(
             width: 1.w,
             height: 28.h,
             color: AppColors.spanishGrey.withOpacity(0.4),
           ),
 
-          /// CAMERA
+          // CAMERA
           IconButton(
             icon: Icon(
               Icons.camera_alt_outlined,
@@ -51,7 +64,7 @@ class ChatInputBar extends StatelessWidget {
             onPressed: () {},
           ),
 
-          /// MICROPHONE
+          // MICROPHONE
           IconButton(
             icon: Icon(
               Icons.mic_none_outlined,
@@ -61,20 +74,42 @@ class ChatInputBar extends StatelessWidget {
             onPressed: () {},
           ),
 
-          /// LOCATION
+          // LOCATION
           IconButton(
             icon: Icon(
               Icons.location_on_outlined,
               size: 22.sp,
               color: AppColors.spanishGrey,
             ),
-            onPressed: () {},
+            onPressed: () async {
+              final position = await LocationService.getCurrentLocation();
+              if (position == null || !context.mounted) return;
+
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(16),
+                  ),
+                ),
+                builder: (_) {
+                  return LocationPickerBottomSheet(
+                    initialPosition: position,
+                    onSend: (locationUrl) {
+                      onSendMessage(locationUrl);
+                    },
+                  );
+                },
+              );
+            },
           ),
 
-          /// INPUT FIELD
+          // INPUT FIELD
           Expanded(
             child: TextField(
-              textAlign: TextAlign.right,
+              controller: textController,
+              textAlign: TextAlign.start,
               decoration: InputDecoration(
                 hintText: context.l10n.writeYourMessageHere,
                 hintStyle: AppTextStyles.description.copyWith(

@@ -101,7 +101,7 @@ class ChatScreen extends StatelessWidget {
           ),
 
           /// ================= CHAT INPUT BAR =================
-          ChatInputBar(),
+          ChatInputBar(onSendMessage: (String message) {  },),
         ],
       ),
     );
