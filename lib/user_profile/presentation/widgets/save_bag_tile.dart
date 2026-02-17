@@ -17,28 +17,35 @@ class SavedBagTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Row(
-        children: [
-          Icon(Icons.chevron_right, size: 24.sp, color: AppColors.lightSilver),
-          SizedBox(width: 10.w),
-          Expanded(
-            child: Text(
-              title,
-              textAlign: TextAlign.right,
-              style: AppTextStyles.text.copyWith(
-                color: AppColors.black,
-                fontWeight: FontWeight.w600,
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 10.h),
+        child: Row(
+          children: [
+            Image.asset(
+              'assets/images/icons/suitcase.png',
+              width: 22.sp,
+              height: 22.sp,
+              color: AppColors.turnbullBlue,
+            ),
+            SizedBox(width: 12.w),
+            Expanded(
+              child: Text(
+                title,
+                textAlign: TextAlign.left,
+                style: AppTextStyles.text.copyWith(
+                  color: AppColors.black,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
-          ),
-          SizedBox(width: 12.w),
-          Image.asset(
-            'assets/images/icons/suitcase.png',
-            width: 22.sp,
-            height: 22.sp,
-            color: AppColors.turnbullBlue,
-          ),
-        ],
+
+            Icon(
+              Icons.chevron_right,
+              size: 24.sp,
+              color: AppColors.lightSilver,
+            ),
+          ],
+        ),
       ),
     );
   }
