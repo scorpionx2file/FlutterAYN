@@ -15,25 +15,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get next => 'Next';
 
   @override
-  String get chooseGatesTitle => 'Choose Your Favorite Gates';
-
-  @override
-  String get chooseGatesSubtitle => 'Pick at least 3 gates to tailor your experience.';
-
-  @override
-  String get chooseGatesMin3Snack => 'Please select at least 3 gates.';
-
-  @override
-  String get chat => 'Chat';
-
-  @override
-  String get chats => 'Chats';
-
-  @override
-  String get writeCommentHint => 'Write a comment...';
-
-  @override
-  String get comments => 'Comments';
+  String get previous => 'Previous';
 
   @override
   String get home => 'Home';
@@ -51,16 +33,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get add => 'Add';
 
   @override
+  String get points => 'Points';
+
+  @override
   String get share => 'Share';
 
   @override
   String get comment => 'Comment';
-
-  @override
-  String get sharePostMessage => 'Check out this post on Traveller';
-
-  @override
-  String get travellerPost => 'Traveller Post';
 
   @override
   String get posts => 'Posts';
@@ -75,31 +54,61 @@ class AppLocalizationsEn extends AppLocalizations {
   String get services => 'Services';
 
   @override
-  String get following => 'Following';
+  String get location => 'Location';
 
   @override
-  String get followers => 'Followers';
+  String get chooseGatesTitle => 'Choose Your Favorite Gates';
+
+  @override
+  String get chooseGatesSubtitle => 'Pick at least 3 gates to tailor your experience.';
+
+  @override
+  String get chooseGatesMin3Snack => 'Please select at least 3 gates.';
+
+  @override
+  String get chooseGatesMin3Snack_duplicate => 'Please select at least 3 gates.';
+
+  @override
+  String get chat => 'Chat';
+
+  @override
+  String get chats => 'Chats';
+
+  @override
+  String get messages => 'Messages';
+
+  @override
+  String get writeCommentHint => 'Write a comment...';
+
+  @override
+  String get comments => 'Comments';
+
+  @override
+  String get sharePostMessage => 'Check out this post on Traveller';
+
+  @override
+  String get travellerPost => 'Traveller Post';
 
   @override
   String get searchHint => 'Search …';
 
   @override
-  String get follow => 'Follow';
+  String get searchHint_plain => 'Search...';
 
   @override
   String get searchGateHint => 'Search a gate...';
+
+  @override
+  String get searchLocationHint => 'Search location...';
+
+  @override
+  String get searchHere => 'Search here...';
 
   @override
   String get seeAll => 'See all';
 
   @override
   String get recentPosts => 'Recent Posts';
-
-  @override
-  String get location => 'Location';
-
-  @override
-  String get searchLocationHint => 'Search location...';
 
   @override
   String get verifyPhoneNumber => 'Verify your phone number';
@@ -135,25 +144,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterYourMessageHint => 'Enter your message ...';
 
   @override
-  String get previous => 'Previous';
+  String get postNotFound => 'Post not found';
 
   @override
-  String get postNotFound => 'Post not found';
+  String get postNotFound_duplicate => 'Post not found';
 
   @override
   String get settings => 'Settings';
 
   @override
+  String get logout => 'Logout';
+
+  @override
   String get otpRequired => 'Please enter the 4-digit code.';
 
   @override
-  String get messages => 'Messages';
-
-  @override
   String get bags => 'Bags';
-
-  @override
-  String get points => 'Points';
 
   @override
   String get totalPoints => 'Total Points';
@@ -201,6 +207,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emailAddressHint => 'Enter your email address';
 
   @override
+  String get emailAddressHintExample => 'email@gmail.com';
+
+  @override
   String get registerTitle => 'Welcome to Our Community!';
 
   @override
@@ -229,9 +238,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get fullNameHint => 'Enter your name';
-
-  @override
-  String get emailAddressHintExample => 'email@gmail.com';
 
   @override
   String get signUp => 'Sign Up';
@@ -279,9 +285,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboardingSubtitle5 => 'Connect with travelers and build new experiences together.';
 
   @override
-  String get logout => 'Logout';
-
-  @override
   String get profileSettingsSectionAppPerformance => 'Application Performance';
 
   @override
@@ -289,6 +292,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notifications => 'Notifications';
+
+  @override
+  String get notificationsTitle => 'Notifications';
 
   @override
   String get language => 'Language';
@@ -407,4 +413,89 @@ class AppLocalizationsEn extends AppLocalizations {
   String passwordMin(int minLen) {
     return 'Password must be at least $minLen characters';
   }
+
+  @override
+  String get saveToBagsTitle => 'Add to bags';
+
+  @override
+  String get createNewBag => 'Create new bag';
+
+  @override
+  String get createNewBagTitle => 'Create new bag';
+
+  @override
+  String get bagNameHint => 'Bag name';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get create => 'Create';
+
+  @override
+  String get myListTitle => 'My List';
+
+  @override
+  String bagsCount(int count) {
+    return 'Bags: $count';
+  }
+
+  @override
+  String savedCount(int count) {
+    return 'Saved: $count';
+  }
+
+  @override
+  String get termsPrivacyTitle => 'Terms of Use & Privacy';
+
+  @override
+  String get acceptTermsLabel => 'I confirm that I accept the terms';
+
+  @override
+  String get pointsDialogTitle => 'Welcome to the app';
+
+  @override
+  String get pointsUnitShort => 'pts';
+
+  @override
+  String get pointsDialogSubtitle => 'You earned welcome points. You can earn more points by completing tasks inside the app.';
+
+  @override
+  String get pointsDialogCta => 'Let\'s start';
+
+  @override
+  String get searchResultsTitle => 'Search results';
+
+  @override
+  String get searchResultsFor => 'Search results for';
+
+  @override
+  String get results => 'Results';
+
+  @override
+  String get resultsCountPlaceholder => 'Results:';
+
+  @override
+  String get tabPeople => 'People';
+
+  @override
+  String get tabPlaces => 'Places';
+
+  @override
+  String get tabServices => 'Services';
+
+  @override
+  String get tabEvents => 'Events';
+
+  @override
+  String get follow => 'Follow';
+
+  @override
+  String get following => 'Following';
+
+  @override
+  String get followers => 'Followers';
+
+  @override
+  String get unfollow => 'Unfollow';
 }

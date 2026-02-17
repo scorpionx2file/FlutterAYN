@@ -9,6 +9,7 @@ import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../../core/utils/validators/auth_validators.dart';
 import '../widgets/sign_in_progress_bar.dart';
+import '../widgets/social_icon_button.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -55,20 +56,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      bottomNavigationBar: SafeArea(
-        top: false,
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(18.w, 10.h, 18.w, 12.h),
-          child: SizedBox(
-            width: double.infinity,
-            child: AppButton(
-              text: context.l10n.next,
-              onPressed: _submit,
-              height: 38.h,
-            ),
-          ),
-        ),
-      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -145,8 +132,42 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         obscureText: true,
                         validator: (v) => AuthValidators.password(context, v),
                       ),
+                      SizedBox(height: 18.h),
 
+                      AppButton(
+                        text: context.l10n.next,
+                        onPressed: _submit,
+                        height: 36.h,
+                      ),
                       SizedBox(height: 28.h),
+
+                      Align(
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SocialIconButton(
+                              onTap: () {},
+                              backgroundColor: AppColors.black,
+                              child: Icon(Icons.apple, color: AppColors.white, size: 18.sp),
+                            ),
+
+                            SizedBox(width: 14.w),
+
+                            SocialIconButton(
+                              onTap: () {},
+                              backgroundColor: AppColors.neonCoral,
+                              child: Image.asset(
+                                "assets/images/icons/google.png",
+                                color: AppColors.white,
+                                width: 18.sp,
+                                height: 18.sp,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
                     ],
                   ),
                 ),

@@ -1,160 +1,241 @@
 {
   "@@locale": "ar",
+
   "appTitle": "Traveller",
   "next": "التالي",
+  "previous": "السابق",
+
+  "home": "الرئيسية",
+  "map": "الخريطة",
+  "gates": "البوابات",
+  "profile": "الملف الشخصي",
+
+  "add": "إضافة",
+  "points": "النقاط",
+  "share": "مشاركة",
+  "comment": "تعليق",
+  "posts": "المنشورات",
+  "friend": "صديق",
+  "activities": "الأنشطة",
+  "services": "الخدمات",
+  "location": "الموقع",
+
   "chooseGatesTitle": "اختر البوابات المفضلة",
   "chooseGatesSubtitle": "اختر 3 بوابات على الأقل لتخصيص تجربتك.",
   "chooseGatesMin3Snack": "من فضلك اختر 3 بوابات على الأقل.",
+  "chooseGatesMin3Snack_duplicate": "من فضلك اختر 3 بوابات على الأقل.",
+
   "chat": "رسالة",
   "chats": "المحادثات",
+  "messages": "رسائل",
+
   "writeCommentHint": "اكتب تعليقًا...",
   "comments": "التعليقات",
-  "home": "الرئيسية",
-   "map": "الخريطة",
-   "gates": "البوابات",
-   "profile": "الملف الشخصي",
-   "add": "إضافة",
-   "points": "النقاط",
-   "share": "مشاركة",
-   "comment": "تعليق",
-   "sharePostMessage": "شاهد هذا المنشور على Traveller",
-   "travellerPost": "منشور Traveller",
-   "posts": "المنشورات",
-   "friend": "صديق",
-   "activities": "الأنشطة",
-   "services": "الخدمات",
-    "following": "المتابَعون",
-    "followers": "المتابِعون",
-    "searchHint": "ابحث …",
-    "follow": "متابعة",
-    "searchGateHint": "ابحث عن بوابة...",
-    "seeAll": "عرض الكل",
-    "recentPosts": "أحدث المنشورات",
-    "location": "الموقع",
-    "searchLocationHint": "ابحث عن الموقع...",
-    "verifyPhoneNumber": "تحقق من رقم هاتفك",
-    "enterVerificationCode": "أدخل رمز التحقق الذي أرسلناه إلى هاتفك.",
-    "verify": "تحقق",
-    "didntReceiveCode": "لم يصلك الرمز؟",
-    "resendCode": "إعادة إرسال الرمز",
-    "contactTechnicalSupport": "تواصل مع الدعم الفني",
-    "mobileNumber": "رقم الهاتف",
-    "enterYourNumberHint": "أدخل رقمك ...",
-    "yourMessage": "رسالتك",
-    "send": "إرسال",
-    "enterYourMessageHint": "اكتب رسالتك ...",
-    "previous": "السابق",
-    "postNotFound": "المنشور غير موجود",
-  "chooseGatesMin3Snack": "من فضلك اختر 3 بوابات على الأقل.",
-  "messages": "رسائل",
-    "bags": "حقائب",
-    "followers": "يتابع",
-    "following": "يتابعه",
-    "points": "النقاط",
-    "totalPoints": "إجمالي النقاط",
-    "premiumFeatures": "مميزات الباقة المميزة",
-    "premiumFeatureExample": "شرح لإحدى مميزات الباقة المميزة",
-    "follow": "متابعة",
-    "editMyInfo": "تعديل بياناتي",
-    "reportTitle": "الإبلاغ عن المحتوى",
-      "reportReasonMisleading": "محتوى مضلل",
-      "reportReasonCopyright": "انتهاك حقوق النشر",
-      "reportReasonViolence": "يحتوي على محتوى عنيف",
-      "send": "إرسال",
-       "editAccount": "تعديل الحساب",
-       "readMore": "قراءة المزيد",
-         "less": "أقل",
-          "forgetPasswordTitle": "نسيت كلمة المرور؟",
-           "forgetPasswordDesc": "من فضلك أدخل بريدك الإلكتروني لاستلام رابط إنشاء كلمة مرور جديدة عبر البريد.",
-           "emailAddressLabel": "البريد الإلكتروني",
-           "emailAddressHint": "أدخل بريدك الإلكتروني",
-           "registerTitle": "مرحبًا بك في مجتمعنا!",
-             "registerSubtitle": "أنشئ حسابًا للبدء",
-             "emailAddressLabel": "البريد الإلكتروني",
-             "emailAddressHint": "أدخل بريدك الإلكتروني",
-             "passwordLabel": "كلمة المرور",
-             "passwordHint": "أدخل كلمة المرور",
-             "forgetPasswordLink": "نسيت كلمة المرور؟",
-             "login": "تسجيل الدخول",
-             "registerTerms": "بالتسجيل، أنت توافق على الشروط والأحكام وسياسة الخصوصية.",
-             "signUpAccountInfoTitle": "معلومات الحساب",
-               "fullNameLabel": "الاسم الكامل",
-               "fullNameHint": "أدخل اسمك",
-               "emailAddressLabel": "البريد الإلكتروني",
-               "emailAddressHintExample": "email@gmail.com",
-               "signUp": "إنشاء حساب",
-                 "alreadyHaveAccount": "لديك حساب بالفعل؟ ",
-                 "signIn": "تسجيل الدخول",
-                 "skip": "تخطي",
-                   "getStarted": "ابدأ الآن",
 
-                   "onboardingTitle1": "شارك رحلتك مع الجميع",
-                   "onboardingSubtitle1": "انشر لحظاتك ودع الآخرين يتابعون قصتك في السفر.",
+  "sharePostMessage": "شاهد هذا المنشور على Traveller",
+  "travellerPost": "منشور Traveller",
 
-                   "onboardingTitle2": "اعثر على أقرب الأماكن السياحية حولك",
-                   "onboardingSubtitle2": "اكتشف أفضل الأماكن القريبة بتجربة بسيطة وسريعة.",
+  "searchHint": "ابحث …",
+  "searchHint_plain": "ابحث...",
+  "searchGateHint": "ابحث عن بوابة...",
+  "searchLocationHint": "ابحث عن الموقع...",
+  "searchHere": "اكتب هنا للبحث...",
 
-                   "onboardingTitle3": "قدّم خدماتك السياحية بسهولة",
-                   "onboardingSubtitle3": "اعرض خدماتك وأدرها بخطوات سريعة.",
+  "seeAll": "عرض الكل",
+  "recentPosts": "أحدث المنشورات",
 
-                   "onboardingTitle4": "سوق لجميع الأنشطة السياحية",
-                   "onboardingSubtitle4": "استكشف الأنشطة والمعالم وتجارب رائعة.",
+  "verifyPhoneNumber": "تحقق من رقم هاتفك",
+  "enterVerificationCode": "أدخل رمز التحقق الذي أرسلناه إلى هاتفك.",
+  "verify": "تحقق",
+  "didntReceiveCode": "لم يصلك الرمز؟",
+  "resendCode": "إعادة إرسال الرمز",
 
-                   "onboardingTitle5": "تعرّف على أصدقاء جدد بالقرب منك",
-                   "onboardingSubtitle5": "تواصل مع المسافرين وابنِ تجارب جديدة معًا.",
-                   "settings": "الإعدادات",
-                   "logout": "تسجيل الخروج",
-                     "profileSettingsSectionAppPerformance": "أداء التطبيق",
-                     "favouriteGates": "البوابات المفضلة",
-                     "notifications": "الإشعارات",
-                     "language": "اللغة",
-                     "english": "English",
-                     "arabic": "العربية",
-                     "status": "الحالة",
-                     "online": "متصل",
-                     "offline": "غير متصل",
-                     "location": "الموقع",
-                     "on": "تشغيل",
-                     "off": "إيقاف",
+  "contactTechnicalSupport": "تواصل مع الدعم الفني",
+  "mobileNumber": "رقم الهاتف",
+  "enterYourNumberHint": "أدخل رقمك ...",
 
-                     "accountInformation": "معلومات الحساب",
-                     "email": "البريد الإلكتروني",
-                     "twitterAccount": "حساب تويتر",
-                     "snapchatAccount": "حساب سناب شات",
-                     "mobileNumber": "رقم الهاتف",
+  "yourMessage": "رسالتك",
+  "send": "إرسال",
+  "send_duplicate": "إرسال",
+  "enterYourMessageHint": "اكتب رسالتك ...",
 
-                     "paymentAndPoints": "الدفع والنقاط",
-                     "pointsSystem": "نظام النقاط",
-                     "paymentMethods": "طرق الدفع",
+  "postNotFound": "المنشور غير موجود",
+  "postNotFound_duplicate": "المنشور غير موجود",
 
-                     "others": "أخرى",
-                     "privacyPolicy": "الخصوصية والسياسة",
-                     "contactUs": "تواصل معنا",
-                     "aboutUs": "من نحن",
+  "bags": "حقائب",
+  "totalPoints": "إجمالي النقاط",
+  "premiumFeatures": "مميزات الباقة المميزة",
+  "premiumFeatureExample": "شرح لإحدى مميزات الباقة المميزة",
+  "editMyInfo": "تعديل بياناتي",
 
-                     "becomeServiceProvider": "كن مقدم خدمة",
-                     "services": "الخدمات",
-                     "available": "متاح",
-                     "notAvailable": "غير متاح",
-                     "storySendMessageHint": "أرسل رسالة...",
-                     "shareProfile": "مشاركة الملف الشخصي",
-                     "muteMessages": "كتم الرسائل",
-                     "blockProfile": "حظر الملف الشخصي",
-                     "memberSpecificEvents": "فعاليات خاصة بالأعضاء",
-                     "nameRequired": "الاسم مطلوب",
-                     "nameMin": "يجب أن يكون الاسم {minLen} أحرف على الأقل",
-                     "@nameMin": { "placeholders": { "minLen": { "type": "int" } } },
-                     "otpRequired": "من فضلك أدخل رمز التحقق المكون من 4 أرقام.",
-                     "emailRequired": "البريد الإلكتروني مطلوب",
-                     "emailInvalid": "أدخل بريدًا إلكترونيًا صحيحًا",
+  "reportTitle": "الإبلاغ عن المحتوى",
+  "reportReasonMisleading": "محتوى مضلل",
+  "reportReasonCopyright": "انتهاك حقوق النشر",
+  "reportReasonViolence": "يحتوي على محتوى عنيف",
 
-                     "passwordRequired": "كلمة المرور مطلوبة",
-                     "passwordMin": "يجب أن تكون كلمة المرور {minLen} أحرف على الأقل",
-                     "@passwordMin": { "placeholders": { "minLen": { "type": "int" } } }
+  "editAccount": "تعديل الحساب",
+  "readMore": "قراءة المزيد",
+  "less": "أقل",
 
+  "forgetPasswordTitle": "نسيت كلمة المرور؟",
+  "forgetPasswordDesc": "من فضلك أدخل بريدك الإلكتروني لاستلام رابط إنشاء كلمة مرور جديدة عبر البريد.",
+
+  "emailAddressLabel": "البريد الإلكتروني",
+  "emailAddressHint": "أدخل بريدك الإلكتروني",
+  "emailAddressHintExample": "email@gmail.com",
+
+  "passwordLabel": "كلمة المرور",
+  "passwordHint": "أدخل كلمة المرور",
+  "forgetPasswordLink": "نسيت كلمة المرور؟",
+
+  "login": "تسجيل الدخول",
+
+  "registerTitle": "مرحبًا بك في مجتمعنا!",
+  "registerSubtitle": "أنشئ حسابًا للبدء",
+  "registerTerms": "بالتسجيل، أنت توافق على الشروط والأحكام وسياسة الخصوصية.",
+
+  "signUpAccountInfoTitle": "معلومات الحساب",
+  "fullNameLabel": "الاسم الكامل",
+  "fullNameHint": "أدخل اسمك",
+
+  "signUp": "إنشاء حساب",
+  "alreadyHaveAccount": "لديك حساب بالفعل؟ ",
+  "signIn": "تسجيل الدخول",
+
+  "skip": "تخطي",
+  "getStarted": "ابدأ الآن",
+
+  "onboardingTitle1": "شارك رحلتك مع الجميع",
+  "onboardingSubtitle1": "انشر لحظاتك ودع الآخرين يتابعون قصتك في السفر.",
+  "onboardingTitle2": "اعثر على أقرب الأماكن السياحية حولك",
+  "onboardingSubtitle2": "اكتشف أفضل الأماكن القريبة بتجربة بسيطة وسريعة.",
+  "onboardingTitle3": "قدّم خدماتك السياحية بسهولة",
+  "onboardingSubtitle3": "اعرض خدماتك وأدرها بخطوات سريعة.",
+  "onboardingTitle4": "سوق لجميع الأنشطة السياحية",
+  "onboardingSubtitle4": "استكشف الأنشطة والمعالم وتجارب رائعة.",
+  "onboardingTitle5": "تعرّف على أصدقاء جدد بالقرب منك",
+  "onboardingSubtitle5": "تواصل مع المسافرين وابنِ تجارب جديدة معًا.",
+
+  "settings": "الإعدادات",
+  "logout": "تسجيل الخروج",
+
+  "profileSettingsSectionAppPerformance": "أداء التطبيق",
+  "favouriteGates": "البوابات المفضلة",
+  "notifications": "الإشعارات",
+  "notificationsTitle": "الإشعارات",
+
+  "language": "اللغة",
+  "english": "English",
+  "arabic": "العربية",
+
+  "status": "الحالة",
+  "online": "متصل",
+  "offline": "غير متصل",
+  "on": "تشغيل",
+  "off": "إيقاف",
+
+  "accountInformation": "معلومات الحساب",
+  "email": "البريد الإلكتروني",
+  "twitterAccount": "حساب تويتر",
+  "snapchatAccount": "حساب سناب شات",
+
+  "paymentAndPoints": "الدفع والنقاط",
+  "pointsSystem": "نظام النقاط",
+  "paymentMethods": "طرق الدفع",
+
+  "others": "أخرى",
+  "privacyPolicy": "الخصوصية والسياسة",
+  "contactUs": "تواصل معنا",
+  "aboutUs": "من نحن",
+
+  "becomeServiceProvider": "كن مقدم خدمة",
+  "available": "متاح",
+  "notAvailable": "غير متاح",
+
+  "storySendMessageHint": "أرسل رسالة...",
+  "shareProfile": "مشاركة الملف الشخصي",
+  "muteMessages": "كتم الرسائل",
+  "blockProfile": "حظر الملف الشخصي",
+  "memberSpecificEvents": "فعاليات خاصة بالأعضاء",
+
+  "nameRequired": "الاسم مطلوب",
+  "nameMin": "يجب أن يكون الاسم {minLen} أحرف على الأقل",
+  "@nameMin": {
+    "placeholders": {
+      "minLen": { "type": "int" }
+    }
+  },
+
+  "otpRequired": "من فضلك أدخل رمز التحقق المكون من 4 أرقام.",
+  "emailRequired": "البريد الإلكتروني مطلوب",
+  "emailInvalid": "أدخل بريدًا إلكترونيًا صحيحًا",
+
+  "passwordRequired": "كلمة المرور مطلوبة",
+  "passwordMin": "يجب أن تكون كلمة المرور {minLen} أحرف على الأقل",
+  "@passwordMin": {
+    "placeholders": {
+      "minLen": { "type": "int" }
+    }
+  },
+
+  "nearbyPersons": "الاشخاص القريبين",
+  "saveToBagsTitle": "أضِفه إلى الحقائب",
+  "createNewBag": "إضافة حقيبة جديدة",
+  "createNewBagTitle": "إنشاء حقيبة جديدة",
+  "bagNameHint": "اسم الحقيبة",
+  "cancel": "إلغاء",
+  "create": "إنشاء",
+  "myListTitle": "قائمتي",
+
+  "bagsCount": "الحقائب: {count}",
+  "@bagsCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "savedCount": "المحفوظات: {count}",
+  "@savedCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
                      "nearbyPersons": "الاشخاص القريبين"
                      "mute": "الغاء الصوت"
                      "delete": "حذف"
                      "writeYourMessageHere": "اكتب رسالة هنا"
                      "tapToView": "انقر للعرض"
+}
+
+  "mute": "كتم",
+  "delete": "حذف",
+  "writeYourMessageHere": "اكتب رسالة هنا",
+
+  "termsPrivacyTitle": "بنود الاستخدام والخصوصية",
+  "acceptTermsLabel": "أؤكد أنني أوافق على البنود",
+
+  "pointsDialogTitle": "مرحبًا بك في التطبيق",
+  "pointsUnitShort": "نقطة",
+  "pointsDialogSubtitle": "لقد اكتسبت نقاط ترحيب، يمكنك زيادة النقاط عن طريق إكمال المهام داخل التطبيق.",
+  "pointsDialogCta": "هيا بنا نبدأ",
+
+  "searchResultsTitle": "نتائج البحث",
+  "searchResultsFor": "نتائج البحث عن",
+  "results": "النتائج",
+  "resultsCountPlaceholder": "عدد النتائج:",
+
+  "tabPeople": "أشخاص",
+  "tabPlaces": "مواضيع",
+  "tabServices": "خدمات",
+  "tabEvents": "أحداث",
+
+  "follow": "متابعة",
+  "unfollow": "إلغاء المتابعة",
+
+  "following": "المتابَعون",
+  "followers": "المتابعون",
+
+  "following_verb": "يتابعه",
+  "followers_verb": "يتابع"
+
 }

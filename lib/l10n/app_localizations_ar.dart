@@ -15,25 +15,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get next => 'التالي';
 
   @override
-  String get chooseGatesTitle => 'اختر البوابات المفضلة';
-
-  @override
-  String get chooseGatesSubtitle => 'اختر 3 بوابات على الأقل لتخصيص تجربتك.';
-
-  @override
-  String get chooseGatesMin3Snack => 'من فضلك اختر 3 بوابات على الأقل.';
-
-  @override
-  String get chat => 'رسالة';
-
-  @override
-  String get chats => 'المحادثات';
-
-  @override
-  String get writeCommentHint => 'اكتب تعليقًا...';
-
-  @override
-  String get comments => 'التعليقات';
+  String get previous => 'السابق';
 
   @override
   String get home => 'الرئيسية';
@@ -51,16 +33,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get add => 'إضافة';
 
   @override
+  String get points => 'النقاط';
+
+  @override
   String get share => 'مشاركة';
 
   @override
   String get comment => 'تعليق';
-
-  @override
-  String get sharePostMessage => 'شاهد هذا المنشور على Traveller';
-
-  @override
-  String get travellerPost => 'منشور Traveller';
 
   @override
   String get posts => 'المنشورات';
@@ -75,31 +54,61 @@ class AppLocalizationsAr extends AppLocalizations {
   String get services => 'الخدمات';
 
   @override
-  String get following => 'يتابعه';
+  String get location => 'الموقع';
 
   @override
-  String get followers => 'يتابع';
+  String get chooseGatesTitle => 'اختر البوابات المفضلة';
+
+  @override
+  String get chooseGatesSubtitle => 'اختر 3 بوابات على الأقل لتخصيص تجربتك.';
+
+  @override
+  String get chooseGatesMin3Snack => 'من فضلك اختر 3 بوابات على الأقل.';
+
+  @override
+  String get chooseGatesMin3Snack_duplicate => 'من فضلك اختر 3 بوابات على الأقل.';
+
+  @override
+  String get chat => 'رسالة';
+
+  @override
+  String get chats => 'المحادثات';
+
+  @override
+  String get messages => 'رسائل';
+
+  @override
+  String get writeCommentHint => 'اكتب تعليقًا...';
+
+  @override
+  String get comments => 'التعليقات';
+
+  @override
+  String get sharePostMessage => 'شاهد هذا المنشور على Traveller';
+
+  @override
+  String get travellerPost => 'منشور Traveller';
 
   @override
   String get searchHint => 'ابحث …';
 
   @override
-  String get follow => 'متابعة';
+  String get searchHint_plain => 'ابحث...';
 
   @override
   String get searchGateHint => 'ابحث عن بوابة...';
+
+  @override
+  String get searchLocationHint => 'ابحث عن الموقع...';
+
+  @override
+  String get searchHere => 'اكتب هنا للبحث...';
 
   @override
   String get seeAll => 'عرض الكل';
 
   @override
   String get recentPosts => 'أحدث المنشورات';
-
-  @override
-  String get location => 'الموقع';
-
-  @override
-  String get searchLocationHint => 'ابحث عن الموقع...';
 
   @override
   String get verifyPhoneNumber => 'تحقق من رقم هاتفك';
@@ -135,25 +144,22 @@ class AppLocalizationsAr extends AppLocalizations {
   String get enterYourMessageHint => 'اكتب رسالتك ...';
 
   @override
-  String get previous => 'السابق';
+  String get postNotFound => 'المنشور غير موجود';
 
   @override
-  String get postNotFound => 'المنشور غير موجود';
+  String get postNotFound_duplicate => 'المنشور غير موجود';
 
   @override
   String get settings => 'الإعدادات';
 
   @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
   String get otpRequired => 'من فضلك أدخل رمز التحقق المكون من 4 أرقام.';
 
   @override
-  String get messages => 'رسائل';
-
-  @override
   String get bags => 'حقائب';
-
-  @override
-  String get points => 'النقاط';
 
   @override
   String get totalPoints => 'إجمالي النقاط';
@@ -201,6 +207,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get emailAddressHint => 'أدخل بريدك الإلكتروني';
 
   @override
+  String get emailAddressHintExample => 'email@gmail.com';
+
+  @override
   String get registerTitle => 'مرحبًا بك في مجتمعنا!';
 
   @override
@@ -229,9 +238,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get fullNameHint => 'أدخل اسمك';
-
-  @override
-  String get emailAddressHintExample => 'email@gmail.com';
 
   @override
   String get signUp => 'إنشاء حساب';
@@ -279,9 +285,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get onboardingSubtitle5 => 'تواصل مع المسافرين وابنِ تجارب جديدة معًا.';
 
   @override
-  String get logout => 'تسجيل الخروج';
-
-  @override
   String get profileSettingsSectionAppPerformance => 'أداء التطبيق';
 
   @override
@@ -289,6 +292,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get notifications => 'الإشعارات';
+
+  @override
+  String get notificationsTitle => 'الإشعارات';
 
   @override
   String get language => 'اللغة';
@@ -407,4 +413,90 @@ class AppLocalizationsAr extends AppLocalizations {
   String passwordMin(int minLen) {
     return 'يجب أن تكون كلمة المرور $minLen أحرف على الأقل';
   }
+
+  @override
+  String get saveToBagsTitle => 'أضِفه إلى الحقائب';
+
+  @override
+  String get createNewBag => 'إضافة حقيبة جديدة';
+
+  @override
+  String get createNewBagTitle => 'إنشاء حقيبة جديدة';
+
+  @override
+  String get bagNameHint => 'اسم الحقيبة';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get create => 'إنشاء';
+
+  @override
+  String get myListTitle => 'قائمتي';
+
+  @override
+  String bagsCount(int count) {
+    return 'الحقائب: $count';
+  }
+
+  @override
+  String savedCount(int count) {
+    return 'المحفوظات: $count';
+  }
+
+  @override
+  String get termsPrivacyTitle => 'بنود الاستخدام والخصوصية';
+
+  @override
+  String get acceptTermsLabel => 'أؤكد أنني أوافق على البنود';
+
+  @override
+  String get pointsDialogTitle => 'مرحبًا بك في التطبيق';
+
+  @override
+  String get pointsUnitShort => 'نقطة';
+
+  @override
+  String get pointsDialogSubtitle => 'لقد اكتسبت نقاط ترحيب، يمكنك زيادة النقاط عن طريق إكمال المهام داخل التطبيق.';
+
+  @override
+  String get pointsDialogCta => 'هيا بنا نبدأ';
+
+  @override
+  String get searchResultsTitle => 'نتائج البحث';
+
+  @override
+  String get searchResultsFor => 'نتائج البحث عن';
+
+  @override
+  String get results => 'النتائج';
+
+  @override
+  String get resultsCountPlaceholder => 'عدد النتائج:';
+
+  @override
+  String get tabPeople => 'أشخاص';
+
+  @override
+  String get tabPlaces => 'مواضيع';
+
+  @override
+  String get tabServices => 'خدمات';
+
+  @override
+  String get tabEvents => 'أحداث';
+
+  @override
+  String get follow => 'متابعة';
+
+  @override
+  String get following => 'المتابَعون';
+
+  @override
+  String get followers => 'المتابعون';
+
+  @override
+  String get unfollow => 'إلغاء المتابعة';
+
 }

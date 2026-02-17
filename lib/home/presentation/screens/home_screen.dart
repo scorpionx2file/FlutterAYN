@@ -111,8 +111,10 @@ class _HomeTopBar extends StatelessWidget{
               mainAxisSize: MainAxisSize.min,
               children: [
               GestureDetector(
-                onTap: (){},
-                child: Image.asset(
+                  onTap: () {
+                    context.push(AppRoutes.searchResults);
+                  },
+                  child: Image.asset(
                     "assets/images/icons/search.png",
                     width: 18.w,
                     height: 18.h,
