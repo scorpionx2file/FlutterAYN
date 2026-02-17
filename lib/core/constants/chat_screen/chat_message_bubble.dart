@@ -16,6 +16,7 @@ class ChatMessageBubble extends StatefulWidget {
   final bool isMe;
   final String avatarUrl;
   final String time;
+  final int? audioLength;
 
   const ChatMessageBubble({
     super.key,
@@ -25,6 +26,7 @@ class ChatMessageBubble extends StatefulWidget {
     required this.isMe,
     required this.avatarUrl,
     required this.time,
+    this.audioLength
   });
 
   @override
@@ -36,6 +38,54 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
   bool isPlaying = false;
   Duration position = Duration.zero;
   Duration duration = Duration.zero;
+
+  Widget _buildAudioWave() {
+    final audioSeconds = widget.audioLength ?? 0;
+    final minutes = (audioSeconds ~/ 60).toString().padLeft(2, '0');
+    final seconds = (audioSeconds % 60).toString().padLeft(2, '0');
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(
+          isPlaying ? Icons.pause : Icons.play_arrow,
+          color: widget.isMe ? AppColors.white : AppColors.black,
+        ),
+        SizedBox(width: 8.w),
+        Row(
+          children: List.generate(18, (i) {
+            return Container(
+              margin: EdgeInsets.symmetric(horizontal: 2.w),
+              width: 3.w,
+              height: (i.isEven ? 18.h : 10.h),
+              decoration: BoxDecoration(
+                color: (widget.isMe ? Colors.white : Colors.black)
+                    .withOpacity(0.7),
+                borderRadius: BorderRadius.circular(4),
+              ),
+            );
+          }),
+        ),
+        SizedBox(width: 8.w),
+        Text(
+          "$minutes:$seconds",
+          style: TextStyle(
+            color: widget.isMe ? AppColors.white : AppColors.black,
+            fontSize: 12.sp,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _loadAudioDuration() async {
+    if (_player == null) return;
+    final info = await _player!.getProgress();
+    if (info != null && mounted) {
+      setState(() {
+        duration = info['duration'] ?? Duration.zero;
+      });
+    }
+  }
 
   @override
   void initState() {
@@ -71,11 +121,14 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
         },
       );
 
+      _player!.setSubscriptionDuration(const Duration(milliseconds: 200));
+
+      await _loadAudioDuration();
+
       _player!.onProgress!.listen((event) {
         if (mounted) {
           setState(() {
             position = event.position;
-            duration = event.duration ?? Duration.zero;
           });
         }
       });
@@ -225,21 +278,8 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
             color: widget.isMe ? AppColors.turnbullBlue : AppColors.white,
             borderRadius: BorderRadius.circular(16.r),
           ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(isPlaying ? Icons.pause : Icons.play_arrow,
-                  color: widget.isMe ? AppColors.white : AppColors.black),
-              SizedBox(width: 12.w),
-              Text(
-                '${position.inMinutes.toString().padLeft(2, '0')}:${(position.inSeconds % 60).toString().padLeft(2, '0')}',
-                style: TextStyle(
-                  color: widget.isMe ? AppColors.white : AppColors.black,
-                ),
-              ),
-            ],
-          ),
-        ),
+          child: _buildAudioWave(),
+      ),
       );
     } else {
       // Text message (unchanged)

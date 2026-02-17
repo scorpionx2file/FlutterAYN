@@ -6,7 +6,6 @@ import 'package:latlong2/latlong.dart';
 import '../../../core/constants/chat_screen/chat_message_bubble.dart';
 import '../../../core/theme/colors/app_colors.dart';
 import '../../../core/theme/fonts/app_text_styles.dart';
-import '../../../core/utils/location/location_picker_bottom_sheet.dart';
 import 'chat_input_bar.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -78,16 +77,16 @@ class _ChatScreenState extends State<ChatScreen> {
     _scrollToBottom();
   }
 
-  void _sendAudio(File file) {
+  void _sendAudio(File file, int durationInSeconds) {
     setState(() {
       messages.add({
         'audioFile': file,
         'isMe': true,
         'avatarUrl': 'https://i.pravatar.cc/150?img=12',
         'time': 'now',
+        'audioLength': durationInSeconds,
       });
     });
-    _scrollToBottom();
   }
 
   void _scrollToBottom() {
@@ -163,6 +162,9 @@ class _ChatScreenState extends State<ChatScreen> {
                         isMe: msg['isMe'],
                         avatarUrl: msg['avatarUrl'],
                         time: msg['time'],
+                        audioLength: msg['audioLength'] is int
+                              ? msg['audioLength'] as int
+                              : int.tryParse(msg['audioLength'].toString()),
                       );
                     },
                     childCount: messages.length,

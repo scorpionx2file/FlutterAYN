@@ -4,22 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
-import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-
-import '../../../core/theme/colors/app_colors.dart';
-import '../../../core/theme/fonts/app_text_styles.dart';
 import '../../../core/utils/location/location_picker_bottom_sheet.dart';
 import '../../../core/utils/location/location_service.dart';
 
 class ChatInputBar extends StatefulWidget {
   final void Function(String) onSendMessage;
   final void Function(LatLng) onSendLocation;
-  final void Function(File audio)? onSendAudio;
+  final void Function(File audio, int durationInSeconds)? onSendAudio;
 
   const ChatInputBar({
     super.key,
@@ -43,6 +39,16 @@ class _ChatInputBarState extends State<ChatInputBar> {
   int seconds = 0;
   Timer? _timer;
   OverlayEntry? _recordingOverlay;
+
+  double _recordingWidth(BuildContext context) {
+    final minWidth = 140.w;
+    final maxWidth = MediaQuery.of(context).size.width - 32.w;
+
+    final extra = seconds * 6.w;
+    final width = minWidth + extra;
+
+    return width.clamp(minWidth, maxWidth);
+  }
 
   @override
   void initState() {
@@ -78,9 +84,13 @@ class _ChatInputBarState extends State<ChatInputBar> {
   void _startTimer() {
     _timer = Timer.periodic(
       const Duration(seconds: 1),
-      (_) => setState(() => seconds++),
+          (_) {
+        setState(() => seconds++);
+        _recordingOverlay?.markNeedsBuild();
+      },
     );
   }
+
 
   void _stopTimer() {
     _timer?.cancel();
@@ -97,7 +107,7 @@ class _ChatInputBarState extends State<ChatInputBar> {
         right: 16.w,
         child: Material(
           color: Colors.transparent,
-          child: Container(
+          child: AnimatedContainer(
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -112,6 +122,8 @@ class _ChatInputBarState extends State<ChatInputBar> {
                 ),
               ],
             ),
+            duration: const Duration(milliseconds: 300),
+            width: _recordingWidth(context),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -236,7 +248,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
     setState(() {
       isRecording = true;
       isPaused = false;
-      seconds = 0;
     });
 
     _startTimer();
@@ -255,18 +266,22 @@ class _ChatInputBarState extends State<ChatInputBar> {
     await _recorder!.resumeRecorder();
     _startTimer();
     setState(() => isPaused = false);
+    _recordingOverlay?.markNeedsBuild();
   }
 
   Future<void> _stopRecording({bool send = false}) async {
     if (_recorder == null) return;
 
     await _recorder!.stopRecorder();
+    final recordedDuration = seconds;
     _stopTimer();
 
-    if (send && audioPath != null)
-      widget.onSendAudio?.call(File(audioPath!));
-    else if (audioPath != null)
+    if (send && audioPath != null) {
+      // Pass duration to parent callback
+      widget.onSendAudio?.call(File(audioPath!), recordedDuration);
+    } else if (audioPath != null) {
       File(audioPath!).deleteSync();
+    }
 
     audioPath = null;
     setState(() {
@@ -352,7 +367,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
           ),
 
           // LOCATION
-          // LOCATION
           IconButton(
             icon: Icon(
               Icons.location_on_outlined,
@@ -384,14 +398,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
                   initialPosition: initialLatLng,
                   onSend: widget.onSendLocation,
                 ),
-                builder: (_) {
-                  return LocationPickerBottomSheet(
-                    initialPosition: currentLatLng,
-                    onSend: (locationUrl) {
-                      onSendMessage(locationUrl);
-                    },
-                  );
-                },
               );
             },
           ),
