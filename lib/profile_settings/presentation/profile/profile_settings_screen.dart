@@ -7,7 +7,7 @@ import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
-import '../../../core/constants/profile_settings/profile_settings_tile.dart';
+import '../../../core/constants/app_tile/app_tile.dart';
 import '../../../core/constants/profile_settings/profile_settings_tile_segmented_toggle.dart';
 import '../widgets/points_welcome_dialog.dart';
 
@@ -54,7 +54,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             SliverToBoxAdapter(
               child: ProfileSettingsHeader(
                 name: "Adham Mohamed",
-                username: "adhambiko",
+                username: "@adhambiko",
                 profileImage: const AssetImage("assets/images/profile.png"),
                 isProfileSettings: true,
                 isVerified: true,
@@ -79,7 +79,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
 
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Icon(
                   Icons.place,
                   size: 24.r,
@@ -91,7 +91,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               ),
             ),
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Icon(
                   Icons.notifications,
                   size: 24.r,
@@ -105,7 +105,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               ),
             ),
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Icon(
                   Icons.language,
                   size: 24.r,
@@ -124,7 +124,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               ),
             ),
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Icon(
                   Icons.remove_red_eye,
                   size: 24.r,
@@ -143,7 +143,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               ),
             ),
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Icon(
                   Icons.my_location_sharp,
                   size: 24.r,
@@ -178,7 +178,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
 
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Icon(
                   Icons.email,
                   size: 24.r,
@@ -190,7 +190,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               ),
             ),
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Image.asset(
                   "assets/images/icons/twitter.png",
                   width: 24.w,
@@ -203,7 +203,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               ),
             ),
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Image.asset(
                   "assets/images/icons/snapchat.png",
                   width: 24.w,
@@ -216,7 +216,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               ),
             ),
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Icon(
                   Icons.phone_iphone,
                   size: 24.r,
@@ -244,7 +244,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
 
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Icon(Icons.info, size: 24.r, color: AppColors.strongGrey),
                 title: l10n.pointsSystem,
                 hasPermission: false,
@@ -258,7 +258,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               ),
             ),
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Icon(
                   Icons.payment,
                   size: 24.r,
@@ -286,7 +286,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
 
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Icon(
                   Icons.privacy_tip,
                   size: 24.r,
@@ -298,7 +298,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               ),
             ),
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Icon(
                   Icons.phone,
                   size: 24.r,
@@ -312,7 +312,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
               ),
             ),
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Icon(
                   Icons.question_mark,
                   size: 24.r,
@@ -333,19 +333,24 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 12.w),
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: Container(
-                    width: 220.w,
-                    height: 40.h,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: AppColors.lebaneseRed,
-                      borderRadius: BorderRadius.circular(30.r),
-                    ),
-                    child: Text(
-                      l10n.becomeServiceProvider,
-                      style: AppTextStyles.text.copyWith(
-                        color: AppColors.white,
-                        fontWeight: FontWeight.bold,
+                  child: GestureDetector(
+                    onTap: () {
+                      context.push(AppRoutes.selectService);
+                    },
+                    child: Container(
+                      width: 220.w,
+                      height: 40.h,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: AppColors.lebaneseRed,
+                        borderRadius: BorderRadius.circular(30.r),
+                      ),
+                      child: Text(
+                        l10n.becomeServiceProvider,
+                        style: AppTextStyles.text.copyWith(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -354,7 +359,7 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
             ),
 
             SliverToBoxAdapter(
-              child: ProfileSettingsTile(
+              child: AppTile(
                 icon: Icon(
                   Icons.language,
                   size: 24.r,

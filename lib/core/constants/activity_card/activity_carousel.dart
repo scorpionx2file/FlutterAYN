@@ -12,7 +12,7 @@ class ActivityCarousel extends StatefulWidget {
   const ActivityCarousel({
     super.key,
     required this.activities,
-    this.height = 110,
+    this.height = 115,
     required this.isYellow,
   });
 

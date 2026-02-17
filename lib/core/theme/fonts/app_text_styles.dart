@@ -22,6 +22,12 @@ class AppTextStyles {
     fontWeight: FontWeight.normal,
     letterSpacing: 0,
   );
+  static TextStyle headingH4 = TextStyle(
+    fontSize: 18.sp,
+    fontFamily: AppFonts.notoKufiArabic,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 0,
+  );
   static TextStyle title = TextStyle(
     fontSize: 22.sp,
     fontFamily: AppFonts.notoKufiArabic,

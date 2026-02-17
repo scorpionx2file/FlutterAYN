@@ -165,6 +165,10 @@
                          "@bagsCount": {
                            "placeholders": { "count": { "type": "int" } }
 
+                     "nearbyPersons": "الاشخاص القريبين"
+                     "mute": "الغاء الصوت"
+                     "delete": "حذف"
+                     "writeYourMessageHere": "اكتب رسالة هنا"
                          },
 
                          "searchHere": "اكتب هنا للبحث...",

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:traveller/core/constants/app_header/app_header.dart';
 import 'package:traveller/core/constants/event_options/event_options_activities/event_options_activities.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../../core/constants/activity_card/activity_card.dart';
-import '../../../core/theme/fonts/app_text_styles.dart';
 
 class SeeAllActivities extends StatelessWidget{
   final List<Activity> activities;
@@ -15,15 +14,13 @@ class SeeAllActivities extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
+    return Scaffold(
+      appBar: AppHeader(
+          title: context.l10n.activities,
+          showBack: true
+      ),
+      body: Column(
         children: [
-          Text(
-            context.l10n.activities,
-            style: AppTextStyles.title,
-          ),
-          SizedBox(height: 8.h),
           ListView.builder(
               padding: EdgeInsets.zero,
               shrinkWrap: true,

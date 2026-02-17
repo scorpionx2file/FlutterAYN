@@ -8,16 +8,21 @@ class AddNewHeader extends StatelessWidget{
   final String imageUrl;
   final String location;
   final bool isEventPage;
+  final Function(int)? onToggleChanged;
+  final int? selectedIndex;
 
   const AddNewHeader({
     super.key,
     required this.imageUrl,
     required this.location,
     required this.isEventPage,
+    this.onToggleChanged,
+    this.selectedIndex
   });
 
   @override
   Widget build(BuildContext context) {
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -38,11 +43,16 @@ class AddNewHeader extends StatelessWidget{
             color: AppColors.spanishGrey
           )
         ),
+        SizedBox(width: 50.w),
         if(isEventPage)...[
          ProfileSettingsTileSegmentedToggle(
-             options: ["Paid","Not Paid"],
-             selectedIndex: 0,
-             onChanged: (value) {}
+           options: ["Paid","Not Paid"],
+           selectedIndex: selectedIndex!,
+           onChanged: (value) {
+             if (onToggleChanged != null) {
+               onToggleChanged!(value);
+             }
+           },
          )
         ]
       ]

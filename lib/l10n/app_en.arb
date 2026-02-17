@@ -185,6 +185,11 @@
                                   "tabServices": "Services",
                                   "tabEvents": "Events",
 
+                        "nearbyPersons": "Nearby Persons"
+                        "mute": "Mute"
+                        "delete": "Delete"
+                        "writeYourMessageHere": "Write Your Message Here"
+
                                   "follow": "Follow",
                                   "following": "Following",
                                   "followers": "Followers",

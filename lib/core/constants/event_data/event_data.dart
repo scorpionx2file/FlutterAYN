@@ -39,6 +39,7 @@ class EventData extends StatelessWidget{
                 icon,
                 width: 20.w,
                 height: 20.h,
+                color: AppColors.turnbullBlue,
               ),
 
               SizedBox(width: 10.w),

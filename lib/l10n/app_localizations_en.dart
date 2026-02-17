@@ -375,6 +375,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nameRequired => 'Name is required';
 
   @override
+  String get nearbyPersons => 'Nearby Persons';
+
+  @override
+  String get mute => 'Mute';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get writeYourMessageHere => 'Write Your Message Here';
+
+  @override
   String nameMin(int minLen) {
     return 'Name must be at least $minLen characters';
   }

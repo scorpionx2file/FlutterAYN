@@ -15,13 +15,20 @@ class ProfileSettingsTileSegmentedToggle extends StatelessWidget {
     required this.onChanged,
   });
 
+  Color getSelectedColor(int index) {
+    if (index == 0) return AppColors.turnbullBlue;
+    if (index == 1) return AppColors.lebaneseRed;
+    return AppColors.turnbullBlue;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final selectedColor = getSelectedColor(selectedIndex);
     return Container(
       height: 32.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(22.r),
-        border: Border.all(color: AppColors.turnbullBlue, width: 1),
+        border: Border.all(color: selectedColor, width: 1),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -34,7 +41,7 @@ class ProfileSettingsTileSegmentedToggle extends StatelessWidget {
               alignment: Alignment.center,
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               decoration: BoxDecoration(
-                color: selected ? AppColors.turnbullBlue : Colors.transparent,
+                color: selected ? selectedColor : Colors.transparent,
                 borderRadius: BorderRadius.circular(22.r),
               ),
               child: Text(

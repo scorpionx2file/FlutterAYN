@@ -3,20 +3,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
-class ProfileSettingsTile extends StatelessWidget {
+class AppTile extends StatelessWidget {
   final Widget icon;
   final String title;
   final Widget? trailing; // toggle widget
   final VoidCallback? onTap;
   final bool hasPermission; // show toggle instead of arrow
+  final bool showDivider;
+  final bool showIcon;
 
-  const ProfileSettingsTile({
+  const AppTile({
     super.key,
     required this.icon,
     required this.title,
     this.trailing,
     this.onTap,
     this.hasPermission = false,
+    this.showDivider = true,
+    this.showIcon = true
   });
 
   @override
@@ -45,7 +49,8 @@ class ProfileSettingsTile extends StatelessWidget {
                 ),
 
                 /// Arrow or toggle on correct side
-                hasPermission
+                if(showIcon)
+                  hasPermission
                     ? (trailing ?? SizedBox.shrink())
                     : Icon(
                   Icons.arrow_forward_ios,
@@ -58,7 +63,8 @@ class ProfileSettingsTile extends StatelessWidget {
             ),
           ),
         ),
-        Divider(height: 1.h),
+        if(showDivider)
+          Divider(height: 1.h),
       ],
     );
   }

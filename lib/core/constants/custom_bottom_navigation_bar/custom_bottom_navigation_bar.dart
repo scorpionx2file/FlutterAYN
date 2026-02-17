@@ -283,7 +283,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> w
               color: AppColors.turnbullBlue,
               direction: FabLabelDirection.above,
               onTap: () {
-                // navigate
+                toggleFab();
+                context.push(AppRoutes.addNewTopic);
               },
             ),
 
@@ -298,6 +299,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> w
                   color: AppColors.yellow,
                   direction: FabLabelDirection.left,
                   onTap: () {
+                    toggleFab();
+                    context.push(AppRoutes.addNewEvent);
                   },
                 ),
                 SizedBox(width: 12.w),
@@ -329,6 +332,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> w
                   color: AppColors.lebaneseRed,
                   direction: FabLabelDirection.right,
                   onTap: () {
+                    toggleFab();
+                    context.push(AppRoutes.addNewVideo);
                   },
                 ),
               ],

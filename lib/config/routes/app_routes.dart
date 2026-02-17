@@ -26,8 +26,21 @@ class AppRoutes {
   static const String settingsContact = "/SettingsContact";
 
   static const String seeAllActivities = "/SeeAllActivities";
+  static const String addNewTopic = "/AddNewTopic";
+  static const String addNewVideo = "/AddNewVideo";
+  static const String addNewEvent = "/AddNewEvent";
+  static const String addTypes = "/AddTypes";
+  static const String addPoll = "/AddPoll";
 
   static const String nearbyPersonsAndChatsList = "/NearbyPersonsAndChatsList";
+  static const String chat = "/Chat";
+
+
+  static const String selectService = "/SelectServiceCard";
+  static const String selectServiceInfo = "/selectServiceInfo";
+  static const String payment = "/Payment";
+  static const String paymentMethod = "/PaymentMethod";
+
 
   static const String savedBags = "/SavedBags";
 }
