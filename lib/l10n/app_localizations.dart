@@ -881,6 +881,12 @@ abstract class AppLocalizations {
   /// **'writeYourMessageHere'**
   String get writeYourMessageHere;
 
+  /// No description provided for @tapToView.
+  ///
+  /// In en, this message translates to:
+  /// **'tapToView'**
+  String get tapToView;
+
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

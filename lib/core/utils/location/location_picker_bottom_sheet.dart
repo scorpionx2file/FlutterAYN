@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 
 class LocationPickerBottomSheet extends StatefulWidget {
@@ -19,8 +20,7 @@ class LocationPickerBottomSheet extends StatefulWidget {
       _LocationPickerBottomSheetState();
 }
 
-class _LocationPickerBottomSheetState
-    extends State<LocationPickerBottomSheet> {
+class _LocationPickerBottomSheetState extends State<LocationPickerBottomSheet> {
   late LatLng selectedLatLng;
 
   @override
@@ -49,18 +49,18 @@ class _LocationPickerBottomSheetState
               children: [
                 TileLayer(
                   urlTemplate:
-                  'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+                      'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
                   subdomains: ['a', 'b', 'c', 'd'],
                 ),
                 MarkerLayer(
                   markers: [
                     Marker(
                       point: selectedLatLng,
-                      width: 40.w,
-                      height: 40.h,
+                      width: 36.w,
+                      height: 36.h,
                       child: Icon(
                         Icons.location_on,
-                        size: 40.r,
+                        size: 36.r,
                         color: AppColors.lebaneseRed,
                       ),
                     ),
@@ -70,15 +70,16 @@ class _LocationPickerBottomSheetState
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16.r),
             child: SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
+              child: AppButton(
+                height: 32.h,
+                text: 'Send Location',
                 onPressed: () {
                   widget.onSend(selectedLatLng);
                   Navigator.pop(context);
                 },
-                child: const Text('Send location'),
               ),
             ),
           ),
