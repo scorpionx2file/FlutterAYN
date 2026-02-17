@@ -12,9 +12,11 @@ import '../../../core/constants/add_new_build_map/add_new_build_map.dart';
 import '../../../core/constants/add_new_header/add_new_header.dart';
 import '../../../core/constants/add_new_post_option_tile/add_new_post_option_tile.dart';
 import '../../../core/constants/app_header/app_header.dart';
+import '../../../core/constants/media_text_area/media_text_area.dart';
 import '../../../core/constants/text_area/text_area.dart';
 import '../../../core/theme/colors/app_colors.dart';
 import '../../../core/utils/location/location_service.dart';
+import '../../../core/utils/media_picker/media_picker.dart';
 
 class AddNewEvent extends StatefulWidget {
   final String imageUrl;
@@ -37,6 +39,9 @@ class _AddNewEventState extends State<AddNewEvent>{
   double eventPayment = 120;
   int personsNumber = 150;
   LatLng? selectedLocation;
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController bodyController = TextEditingController();
+  final GlobalKey<MediaTextAreaState> mediaKey = GlobalKey<MediaTextAreaState>();
 
   @override
   void initState() {
@@ -262,13 +267,16 @@ class _AddNewEventState extends State<AddNewEvent>{
                 TextArea(
                   hintText: "Event title",
                   height: 55.h,
+                  controller: titleController,
                 ),
         
                 SizedBox(height: 10.h),
-        
-                TextArea(
+
+                MediaTextArea(
+                  key: mediaKey,
                   hintText: "Event details",
                   height: 135.h,
+                  controller: bodyController,
                 ),
         
                 SizedBox(height: 10.h),
@@ -369,13 +377,35 @@ class _AddNewEventState extends State<AddNewEvent>{
               title: "Add Photo",
               imageUrl: "assets/images/icons/image_icon.png",
               color: AppColors.turnbullBlue,
-              onTap: () {},
+              onTap: () async {
+                bool granted = await MediaPicker.requestPermissions();
+                if (!granted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Permission denied. Please enable in settings.")),
+                  );
+                  return;
+                }
+
+                final file = await MediaPicker.pickImage();
+                if (file != null) mediaKey.currentState?.addMedia(file);
+              },
             ),
             PostTypeItem(
               title: "Add Video",
               imageUrl: "assets/images/icons/video.png",
               color: AppColors.lebaneseRed,
-              onTap: () {},
+              onTap: () async {
+                bool granted = await MediaPicker.requestPermissions();
+                if (!granted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Permission denied")),
+                  );
+                  return;
+                }
+
+                final file = await MediaPicker.pickVideo();
+                if (file != null) mediaKey.currentState?.addMedia(file);
+              },
             ),
           ],
         )
