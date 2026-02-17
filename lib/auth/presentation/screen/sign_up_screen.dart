@@ -56,20 +56,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      bottomNavigationBar: SafeArea(
-        top: false,
-        child: Padding(
-          padding: EdgeInsets.fromLTRB(18.w, 10.h, 18.w, 12.h),
-          child: SizedBox(
-            width: double.infinity,
-            child: AppButton(
-              text: context.l10n.next,
-              onPressed: _submit,
-              height: 38.h,
-            ),
-          ),
-        ),
-      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -146,7 +132,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         obscureText: true,
                         validator: (v) => AuthValidators.password(context, v),
                       ),
+                      SizedBox(height: 18.h),
 
+                      AppButton(
+                        text: context.l10n.next,
+                        onPressed: _submit,
+                        height: 36.h,
+                      ),
                       SizedBox(height: 28.h),
 
                       Align(

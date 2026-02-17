@@ -143,32 +143,32 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
                 SizedBox(height: 16.h),
-                Align(
-                  alignment: Alignment.center,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SocialIconButton(
-                        onTap: () {},
-                        backgroundColor: AppColors.black,
-                        child: Icon(Icons.apple, color: AppColors.white, size: 18.sp),
-                      ),
-
-                      SizedBox(width: 14.w),
-
-                      SocialIconButton(
-                        onTap: () {},
-                        backgroundColor: AppColors.neonCoral,
-                        child: Image.asset(
-                          "assets/images/icons/google.png",
-                          color: AppColors.white,
-                          width: 18.sp,
-                          height: 18.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // Align(
+                //   alignment: Alignment.center,
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       SocialIconButton(
+                //         onTap: () {},
+                //         backgroundColor: AppColors.black,
+                //         child: Icon(Icons.apple, color: AppColors.white, size: 18.sp),
+                //       ),
+                //
+                //       SizedBox(width: 14.w),
+                //
+                //       SocialIconButton(
+                //         onTap: () {},
+                //         backgroundColor: AppColors.neonCoral,
+                //         child: Image.asset(
+                //           "assets/images/icons/google.png",
+                //           color: AppColors.white,
+                //           width: 18.sp,
+                //           height: 18.sp,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
 
 
               ],
