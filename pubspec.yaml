@@ -44,6 +44,10 @@ dependencies:
   intl: any
   geolocator: ^14.0.2
   url_launcher: ^6.3.2
+  flutter_sound: ^9.1.12   # stable for recording
+  permission_handler: ^12.0.1
+  path_provider: ^2.1.5
+  audioplayers: ^6.5.1
 
 dev_dependencies:
   flutter_test:

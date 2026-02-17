@@ -1,10 +1,13 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
-import 'chat_input_bar.dart';
 import '../../../core/constants/chat_screen/chat_message_bubble.dart';
 import '../../../core/theme/colors/app_colors.dart';
 import '../../../core/theme/fonts/app_text_styles.dart';
+import '../../../core/utils/location/location_picker_bottom_sheet.dart';
+import 'chat_input_bar.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -75,6 +78,18 @@ class _ChatScreenState extends State<ChatScreen> {
     _scrollToBottom();
   }
 
+  void _sendAudio(File file) {
+    setState(() {
+      messages.add({
+        'audioFile': file,
+        'isMe': true,
+        'avatarUrl': 'https://i.pravatar.cc/150?img=12',
+        'time': 'now',
+      });
+    });
+    _scrollToBottom();
+  }
+
   void _scrollToBottom() {
     Future.delayed(const Duration(milliseconds: 100), () {
       if (_scrollController.hasClients) {
@@ -85,6 +100,21 @@ class _ChatScreenState extends State<ChatScreen> {
         );
       }
     });
+  }
+
+  Future<Position?> requestLocationPermission() async {
+    if (!await Geolocator.isLocationServiceEnabled()) return null;
+
+    var permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) return null;
+    }
+
+    if (permission == LocationPermission.deniedForever) return null;
+
+    return await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
   }
 
   @override
@@ -109,10 +139,8 @@ class _ChatScreenState extends State<ChatScreen> {
           Expanded(
             child: CustomScrollView(
               controller: _scrollController,
-              keyboardDismissBehavior:
-              ScrollViewKeyboardDismissBehavior.onDrag,
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               slivers: [
-                // Date
                 SliverToBoxAdapter(
                   child: Center(
                     child: Text(
@@ -124,8 +152,6 @@ class _ChatScreenState extends State<ChatScreen> {
                     ),
                   ),
                 ),
-
-                // Messages
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                         (context, index) {
@@ -133,6 +159,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       return ChatMessageBubble(
                         message: msg['message'],
                         location: msg['location'],
+                        audioFile: msg['audioFile'],
                         isMe: msg['isMe'],
                         avatarUrl: msg['avatarUrl'],
                         time: msg['time'],
@@ -141,32 +168,16 @@ class _ChatScreenState extends State<ChatScreen> {
                     childCount: messages.length,
                   ),
                 ),
-
-                // Typing indicator
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 4.h),
-                    child: Text(
-                      'Typing ...',
-                      style: AppTextStyles.description.copyWith(
-                        color: AppColors.spanishGrey,
-                      ),
-                    ),
-                  ),
-                ),
-
-                // Space for input bar
                 SliverToBoxAdapter(
                   child: SizedBox(height: 90.h),
                 ),
               ],
             ),
           ),
-
-          // Input bar
           ChatInputBar(
             onSendMessage: _sendMessage,
             onSendLocation: _sendLocation,
+            onSendAudio: _sendAudio,
           ),
         ],
       ),

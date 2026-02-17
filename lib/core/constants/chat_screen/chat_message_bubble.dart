@@ -1,35 +1,18 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:traveller/core/theme/colors/app_colors.dart';
-import 'package:traveller/core/theme/fonts/app_text_styles.dart';
-import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
+import 'package:flutter_sound/flutter_sound.dart';
 import '../../../chat_screen/presentation/widgets/full_map_screen.dart';
+import '../../../core/theme/colors/app_colors.dart';
+import '../../../core/theme/fonts/app_text_styles.dart';
+import '../../../core/utils/extensions/build_context_extensions.dart';
 
-enum ChatMessageType { text, location }
-
-class ChatMessage {
-  final ChatMessageType type;
-  final String? text;
-  final LatLng? location;
-  final bool isMe;
-  final String avatarUrl;
-  final String time;
-
-  ChatMessage({
-    required this.type,
-    this.text,
-    this.location,
-    required this.isMe,
-    required this.avatarUrl,
-    required this.time,
-  });
-}
-
-class ChatMessageBubble extends StatelessWidget {
+class ChatMessageBubble extends StatefulWidget {
   final String? message;
   final LatLng? location;
+  final File? audioFile;
   final bool isMe;
   final String avatarUrl;
   final String time;
@@ -38,23 +21,81 @@ class ChatMessageBubble extends StatelessWidget {
     super.key,
     this.message,
     this.location,
+    this.audioFile,
     required this.isMe,
     required this.avatarUrl,
     required this.time,
   });
 
   @override
+  State<ChatMessageBubble> createState() => _ChatMessageBubbleState();
+}
+
+class _ChatMessageBubbleState extends State<ChatMessageBubble> {
+  FlutterSoundPlayer? _player;
+  bool isPlaying = false;
+  Duration position = Duration.zero;
+  Duration duration = Duration.zero;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.audioFile != null) {
+      _player = FlutterSoundPlayer();
+      _player!.openPlayer();
+    }
+  }
+
+  @override
+  void dispose() {
+    _player?.closePlayer();
+    _player = null;
+    super.dispose();
+  }
+
+  void _toggleAudio() async {
+    if (_player == null || widget.audioFile == null) return;
+
+    if (isPlaying) {
+      await _player!.pausePlayer();
+      setState(() => isPlaying = false);
+    } else {
+      await _player!.startPlayer(
+        fromURI: widget.audioFile!.path,
+        codec: Codec.aacADTS,
+        whenFinished: () {
+          setState(() {
+            isPlaying = false;
+            position = Duration.zero;
+          });
+        },
+      );
+
+      _player!.onProgress!.listen((event) {
+        if (mounted) {
+          setState(() {
+            position = event.position;
+            duration = event.duration ?? Duration.zero;
+          });
+        }
+      });
+
+      setState(() => isPlaying = true);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     Widget bubbleContent;
 
-    if (location != null) {
-      /// ENHANCED LOCATION MESSAGE UI
+    if (widget.location != null) {
+      // Existing location message code (unchanged)
       bubbleContent = GestureDetector(
         onTap: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => FullMapScreen(location: location!),
+              builder: (_) => FullMapScreen(location: widget.location!),
             ),
           );
         },
@@ -75,11 +116,10 @@ class ChatMessageBubble extends StatelessWidget {
             borderRadius: BorderRadius.circular(18.r),
             child: Stack(
               children: [
-                /// Mini Map (non-interactive)
                 AbsorbPointer(
                   child: FlutterMap(
                     options: MapOptions(
-                      initialCenter: location!,
+                      initialCenter: widget.location!,
                       initialZoom: 15,
                     ),
                     children: [
@@ -91,7 +131,7 @@ class ChatMessageBubble extends StatelessWidget {
                       MarkerLayer(
                         markers: [
                           Marker(
-                            point: location!,
+                            point: widget.location!,
                             width: 48.w,
                             height: 48.h,
                             child: Icon(
@@ -111,8 +151,6 @@ class ChatMessageBubble extends StatelessWidget {
                     ],
                   ),
                 ),
-
-                /// Gradient overlay
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -126,8 +164,6 @@ class ChatMessageBubble extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                /// Location label
                 Positioned(
                   top: 10.h,
                   left: 12.w,
@@ -156,8 +192,6 @@ class ChatMessageBubble extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                /// Tap hint
                 Positioned(
                   bottom: 10.h,
                   right: 12.w,
@@ -181,17 +215,40 @@ class ChatMessageBubble extends StatelessWidget {
           ),
         ),
       );
+    } else if (widget.audioFile != null) {
+      // Audio message UI
+      bubbleContent = GestureDetector(
+        onTap: _toggleAudio,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+          decoration: BoxDecoration(
+            color: widget.isMe ? AppColors.turnbullBlue : AppColors.white,
+            borderRadius: BorderRadius.circular(16.r),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(isPlaying ? Icons.pause : Icons.play_arrow,
+                  color: widget.isMe ? AppColors.white : AppColors.black),
+              SizedBox(width: 12.w),
+              Text(
+                '${position.inMinutes.toString().padLeft(2, '0')}:${(position.inSeconds % 60).toString().padLeft(2, '0')}',
+                style: TextStyle(
+                  color: widget.isMe ? AppColors.white : AppColors.black,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
     } else {
-      /// TEXT MESSAGE
+      // Text message (unchanged)
       bubbleContent = Text(
-        message ?? '',
-        textDirection: getTextDirection(message ?? ''),
+        widget.message ?? '',
+        textDirection: getTextDirection(widget.message ?? ''),
         style: AppTextStyles.description.copyWith(
           height: 1.4,
-          color: isMe ? AppColors.white : AppColors.black,
-          decoration: message?.startsWith('https://') ?? false
-              ? TextDecoration.underline
-              : TextDecoration.none,
+          color: widget.isMe ? AppColors.white : AppColors.black,
         ),
       );
     }
@@ -200,32 +257,29 @@ class ChatMessageBubble extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
       child: Row(
         mainAxisAlignment:
-        isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+        widget.isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (!isMe) ChatAvatar(avatarUrl),
-          if (!isMe) SizedBox(width: 12.w),
+          if (!widget.isMe) ChatAvatar(widget.avatarUrl),
+          if (!widget.isMe) SizedBox(width: 12.w),
           Flexible(
             child: Column(
-              crossAxisAlignment:
-              isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              crossAxisAlignment: widget.isMe
+                  ? CrossAxisAlignment.end
+                  : CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: location == null
-                      ? EdgeInsets.symmetric(
-                      horizontal: 14.w, vertical: 10.h)
+                  padding: widget.location == null && widget.audioFile == null
+                      ? EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h)
                       : EdgeInsets.zero,
-                  decoration: location == null
+                  decoration: widget.location == null && widget.audioFile == null
                       ? BoxDecoration(
-                    color:
-                    isMe ? AppColors.turnbullBlue : AppColors.white,
+                    color: widget.isMe ? AppColors.turnbullBlue : AppColors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(16.r),
                       topRight: Radius.circular(16.r),
-                      bottomLeft:
-                      Radius.circular(isMe ? 16.r : 4.r),
-                      bottomRight:
-                      Radius.circular(isMe ? 4.r : 16.r),
+                      bottomLeft: Radius.circular(widget.isMe ? 16.r : 4.r),
+                      bottomRight: Radius.circular(widget.isMe ? 4.r : 16.r),
                     ),
                     boxShadow: [
                       BoxShadow(
@@ -240,7 +294,7 @@ class ChatMessageBubble extends StatelessWidget {
                 ),
                 SizedBox(height: 4.h),
                 Text(
-                  time,
+                  widget.time,
                   style: AppTextStyles.smallText.copyWith(
                     color: AppColors.spanishGrey,
                   ),
@@ -248,8 +302,8 @@ class ChatMessageBubble extends StatelessWidget {
               ],
             ),
           ),
-          if (isMe) SizedBox(width: 12.w),
-          if (isMe) ChatAvatar(avatarUrl),
+          if (widget.isMe) SizedBox(width: 12.w),
+          if (widget.isMe) ChatAvatar(widget.avatarUrl),
         ],
       ),
     );
@@ -257,9 +311,7 @@ class ChatMessageBubble extends StatelessWidget {
 
   TextDirection getTextDirection(String text) {
     final arabicRegex = RegExp(r'[\u0600-\u06FF]');
-    return arabicRegex.hasMatch(text)
-        ? TextDirection.rtl
-        : TextDirection.ltr;
+    return arabicRegex.hasMatch(text) ? TextDirection.rtl : TextDirection.ltr;
   }
 }
 
