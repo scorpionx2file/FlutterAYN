@@ -12,6 +12,7 @@ import '../../../core/constants/add_new_post_option_tile/add_new_post_option_til
 import '../../../core/constants/text_area/text_area.dart';
 import '../../../core/theme/colors/app_colors.dart';
 import '../../../core/utils/location/location_service.dart';
+import '../../../core/utils/media_picker/media_picker.dart';
 
 class AddNewVideo extends StatefulWidget {
   final String imageUrl;
@@ -116,7 +117,12 @@ class _AddNewVideoState extends State<AddNewVideo> {
 
         bottomNavigationBar: AddNewBottomBar(
           text: "Post Video",
-          onTap: (){},
+          onTap: () async {
+            final file = await MediaPicker.recordVideoFromCamera();
+            if (file != null) {
+              print("Video path: ${file.path}");
+            }
+          },
           showSwitch: true,
           switchTitle: "Save video in gallery",
           icon: Icon(

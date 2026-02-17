@@ -24,23 +24,32 @@ class MediaPicker {
   }
 
   static Future<bool> requestPermissions() async {
-    Permission permissionImages = Permission.photos;
-    Permission permissionVideos = Permission.videos;
-
     if (Platform.isAndroid) {
-      permissionImages = Permission.photos;
-      permissionVideos = Permission.videos;
+      final statuses = await [
+        Permission.camera,
+        Permission.photos,
+        Permission.videos,
+      ].request();
+
+      return statuses.values.every((status) => status.isGranted);
+    } else {
+      final status = await Permission.photos.request();
+      return status.isGranted;
     }
+  }
 
-    Map<Permission, PermissionStatus> statuses = await [
-      permissionImages,
-      permissionVideos
-    ].request();
+  static Future<File?> recordVideoFromCamera() async {
+    final granted = await Permission.camera.request();
+    if (!granted.isGranted) return null;
 
-    bool grantedImages = statuses[permissionImages]?.isGranted ?? false;
-    bool grantedVideos = statuses[permissionVideos]?.isGranted ?? false;
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickVideo(
+      source: ImageSource.camera,
+      maxDuration: const Duration(minutes: 2),
+    );
 
-    return grantedImages && grantedVideos;
+    if (pickedFile == null) return null;
+    return File(pickedFile.path);
   }
 
 }
