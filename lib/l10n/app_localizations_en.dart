@@ -387,6 +387,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get writeYourMessageHere => 'Write Your Message Here';
 
   @override
+  String get tapToView => 'Tap To View';
+
+  @override
   String nameMin(int minLen) {
     return 'Name must be at least $minLen characters';
   }
