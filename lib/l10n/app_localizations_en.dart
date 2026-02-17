@@ -81,7 +81,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get followers => 'Followers';
 
   @override
-  String get searchHint => 'Search …';
+  String get searchHint => 'Search...';
 
   @override
   String get follow => 'Follow';
@@ -438,4 +438,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get acceptTermsLabel => 'I confirm that I accept the terms';
+
+  @override
+  String get pointsDialogTitle => 'Welcome to the app';
+
+  @override
+  String get pointsUnitShort => 'pts';
+
+  @override
+  String get pointsDialogSubtitle => 'You earned welcome points. You can earn more points by completing tasks inside the app.';
+
+  @override
+  String get pointsDialogCta => 'Let\'s start';
+
+  @override
+  String get searchResultsTitle => 'Search results';
+
+  @override
+  String get searchResultsFor => 'Search results for';
+
+  @override
+  String get resultsCountPlaceholder => 'Results: ';
+
+  @override
+  String get tabPeople => 'People';
+
+  @override
+  String get tabPlaces => 'Places';
+
+  @override
+  String get tabServices => 'Services';
+
+  @override
+  String get tabEvents => 'Events';
+
+  @override
+  String get unfollow => 'Unfollow';
 }

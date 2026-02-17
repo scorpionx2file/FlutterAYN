@@ -172,5 +172,25 @@
                            "@savedCount": { "placeholders": { "count": { "type": "int" } } },
                            "notificationsTitle": "Notifications",
                            "termsPrivacyTitle": "بنود الاستخدام والخصوصية",
-                           "acceptTermsLabel": "أؤكد أنني أوافق على البنود"
+                           "acceptTermsLabel": "أؤكد أنني أوافق على البنود",
+                           "pointsDialogTitle": "مرحبًا بك في التطبيق",
+                             "pointsUnitShort": "نقطة",
+                             "pointsDialogSubtitle": "لقد اكتسبت نقاط ترحيب، يمكنك زيادة النقاط عن طريق إكمال المهام داخل التطبيق.",
+                             "pointsDialogCta": "هيا بنا نبدأ",
+                             "searchResultsFor": "نتائج البحث عن",
+                               "resultsCountPlaceholder": "عدد النتائج: ",
+
+                               "tabPeople": "أشخاص",
+                               "tabPlaces": "مواضيع",
+                               "tabServices": "خدمات",
+                               "tabEvents": "أحداث",
+
+                               "follow": "متابعة",
+                               "following": "متابَعون",
+                               "followers": "المتابعون",
+                               "unfollow": "إلغاء المتابعة",
+
+                               "postNotFound": "المنشور غير موجود",
+                               "searchResultsTitle": "نتائج البحث",
+                                 "searchHint": "ابحث..."
 }

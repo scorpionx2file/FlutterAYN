@@ -170,5 +170,25 @@
                               "@savedCount": { "placeholders": { "count": { "type": "int" } } },
                               "notificationsTitle": "Notifications",
                               "termsPrivacyTitle": "Terms of Use & Privacy",
-                              "acceptTermsLabel": "I confirm that I accept the terms"
+                              "acceptTermsLabel": "I confirm that I accept the terms",
+                              "pointsDialogTitle": "Welcome to the app",
+                                "pointsUnitShort": "pts",
+                                "pointsDialogSubtitle": "You earned welcome points. You can earn more points by completing tasks inside the app.",
+                                "pointsDialogCta": "Let's start",
+                                 "searchResultsTitle": "Search results",
+                                  "searchHint": "Search...",
+                                "searchResultsFor": "Search results for",
+                                  "resultsCountPlaceholder": "Results: ",
+
+                                  "tabPeople": "People",
+                                  "tabPlaces": "Places",
+                                  "tabServices": "Services",
+                                  "tabEvents": "Events",
+
+                                  "follow": "Follow",
+                                  "following": "Following",
+                                  "followers": "Followers",
+                                  "unfollow": "Unfollow",
+
+                                  "postNotFound": "Post not found"
 }

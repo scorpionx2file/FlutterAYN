@@ -75,13 +75,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get services => 'الخدمات';
 
   @override
-  String get following => 'يتابعه';
+  String get following => 'متابَعون';
 
   @override
-  String get followers => 'يتابع';
+  String get followers => 'المتابعون';
 
   @override
-  String get searchHint => 'ابحث …';
+  String get searchHint => 'ابحث...';
 
   @override
   String get follow => 'متابعة';
@@ -438,4 +438,40 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get acceptTermsLabel => 'أؤكد أنني أوافق على البنود';
+
+  @override
+  String get pointsDialogTitle => 'مرحبًا بك في التطبيق';
+
+  @override
+  String get pointsUnitShort => 'نقطة';
+
+  @override
+  String get pointsDialogSubtitle => 'لقد اكتسبت نقاط ترحيب، يمكنك زيادة النقاط عن طريق إكمال المهام داخل التطبيق.';
+
+  @override
+  String get pointsDialogCta => 'هيا بنا نبدأ';
+
+  @override
+  String get searchResultsTitle => 'نتائج البحث';
+
+  @override
+  String get searchResultsFor => 'نتائج البحث عن';
+
+  @override
+  String get resultsCountPlaceholder => 'عدد النتائج: ';
+
+  @override
+  String get tabPeople => 'أشخاص';
+
+  @override
+  String get tabPlaces => 'مواضيع';
+
+  @override
+  String get tabServices => 'خدمات';
+
+  @override
+  String get tabEvents => 'أحداث';
+
+  @override
+  String get unfollow => 'إلغاء المتابعة';
 }

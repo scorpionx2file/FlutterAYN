@@ -9,6 +9,7 @@ import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import '../../../core/constants/profile_settings/profile_settings_tile.dart';
 import '../../../core/constants/profile_settings/profile_settings_tile_segmented_toggle.dart';
+import '../widgets/points_welcome_dialog.dart';
 
 class ProfileSettingsScreen extends StatefulWidget {
   const ProfileSettingsScreen({super.key});
@@ -247,7 +248,13 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 icon: Icon(Icons.info, size: 24.r, color: AppColors.strongGrey),
                 title: l10n.pointsSystem,
                 hasPermission: false,
-                onTap: () {},
+                  onTap: () {
+                    PointsWelcomeDialog.show(
+                      context,
+                      points: 120,
+                      onStart: () {},
+                    );
+                  },
               ),
             ),
             SliverToBoxAdapter(

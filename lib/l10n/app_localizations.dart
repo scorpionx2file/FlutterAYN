@@ -242,7 +242,7 @@ abstract class AppLocalizations {
   /// No description provided for @searchHint.
   ///
   /// In en, this message translates to:
-  /// **'Search …'**
+  /// **'Search...'**
   String get searchHint;
 
   /// No description provided for @follow.
@@ -940,6 +940,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'I confirm that I accept the terms'**
   String get acceptTermsLabel;
+
+  /// No description provided for @pointsDialogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to the app'**
+  String get pointsDialogTitle;
+
+  /// No description provided for @pointsUnitShort.
+  ///
+  /// In en, this message translates to:
+  /// **'pts'**
+  String get pointsUnitShort;
+
+  /// No description provided for @pointsDialogSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You earned welcome points. You can earn more points by completing tasks inside the app.'**
+  String get pointsDialogSubtitle;
+
+  /// No description provided for @pointsDialogCta.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s start'**
+  String get pointsDialogCta;
+
+  /// No description provided for @searchResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Search results'**
+  String get searchResultsTitle;
+
+  /// No description provided for @searchResultsFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Search results for'**
+  String get searchResultsFor;
+
+  /// No description provided for @resultsCountPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Results: '**
+  String get resultsCountPlaceholder;
+
+  /// No description provided for @tabPeople.
+  ///
+  /// In en, this message translates to:
+  /// **'People'**
+  String get tabPeople;
+
+  /// No description provided for @tabPlaces.
+  ///
+  /// In en, this message translates to:
+  /// **'Places'**
+  String get tabPlaces;
+
+  /// No description provided for @tabServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get tabServices;
+
+  /// No description provided for @tabEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'Events'**
+  String get tabEvents;
+
+  /// No description provided for @unfollow.
+  ///
+  /// In en, this message translates to:
+  /// **'Unfollow'**
+  String get unfollow;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

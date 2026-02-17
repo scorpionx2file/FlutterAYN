@@ -41,32 +41,6 @@ class WelcomeAuthScreen extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: 18.h),
-
-          Align(
-            alignment: Alignment.centerRight,
-            child: Column(
-              children: [
-                SocialIconButton(
-                  onTap: () {},
-                  backgroundColor: AppColors.black,
-                  child: Icon(Icons.apple, color: AppColors.white, size: 18.sp),
-                ),
-                SizedBox(height: 12.h),
-                SocialIconButton(
-                  onTap: () {},
-                  backgroundColor: AppColors.neonCoral,
-                  child: Image.asset(
-                    "assets/images/icons/google.png",
-                    color: AppColors.white,
-                    width: 18.sp,
-                    height: 18.sp,
-                  ),
-                ),
-              ],
-            ),
-          ),
-
           SizedBox(height: 22.h),
 
           Row(
@@ -89,7 +63,7 @@ class WelcomeAuthScreen extends StatelessWidget {
             ],
           ),
 
-          SizedBox(height: 120.h),
+          SizedBox(height: 240.h),
 
           Text(
             l10n.registerTerms,

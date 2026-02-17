@@ -9,6 +9,7 @@ import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../../core/utils/validators/auth_validators.dart';
 import '../widgets/sign_in_progress_bar.dart';
+import '../widgets/social_icon_button.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -147,6 +148,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
 
                       SizedBox(height: 28.h),
+
+                      Align(
+                        alignment: Alignment.center,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SocialIconButton(
+                              onTap: () {},
+                              backgroundColor: AppColors.black,
+                              child: Icon(Icons.apple, color: AppColors.white, size: 18.sp),
+                            ),
+
+                            SizedBox(width: 14.w),
+
+                            SocialIconButton(
+                              onTap: () {},
+                              backgroundColor: AppColors.neonCoral,
+                              child: Image.asset(
+                                "assets/images/icons/google.png",
+                                color: AppColors.white,
+                                width: 18.sp,
+                                height: 18.sp,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+
                     ],
                   ),
                 ),

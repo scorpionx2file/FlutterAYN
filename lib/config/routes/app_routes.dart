@@ -18,6 +18,7 @@ class AppRoutes {
   static const String gateDetails = "/gateDetails";
   static const String notifications = "/Notifications";
   static const String termsPrivacy = "/TermsPrivacy";
+  static const String searchResults = "/searchResults";
 
   static const String video = "/Video";
   static const String followersList = "/FollowersList";

@@ -40,6 +40,7 @@ import '../../home/presentation/screens/home_screen.dart';
 import '../../map/presenttion/widgets/map_screen.dart';
 import '../../profile_settings/presentation/notification/notifications_screen.dart';
 import '../../profile_settings/presentation/terms_privacy/terms_privacy_screen.dart';
+import '../../search/screen/search_results_screen.dart';
 import '../../see_all_activities/presentation/screen/see_all_activities.dart';
 import '../../user_profile/presentation/screens/saved_bags_screen.dart';
 import '../../user_profile/presentation/screens/saved_posts_screen.dart';
@@ -777,7 +778,18 @@ final GoRouter router = GoRouter(
         return SavedPostsScreen(title: title, posts: posts);
       },
     ),
-
+    GoRoute(
+      path: AppRoutes.searchResults,
+      builder: (context, state) {
+        final initialQuery = (state.extra as String?) ?? "";
+        return SearchResultsScreen(
+          initialQuery: initialQuery,
+          peopleFollowing: following,
+          peopleFollowers: followers,
+          posts: postData,
+        );
+      },
+    ),
     GoRoute(
       path: AppRoutes.notifications,
       builder: (context, state) => const NotificationsScreen(),
