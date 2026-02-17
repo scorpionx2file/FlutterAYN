@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:traveller/core/theme/colors/app_colors.dart';
 
 class LocationPickerBottomSheet extends StatefulWidget {
-  final LatLng initialPosition; // Pass initial position directly
-  final void Function(String locationUrl) onSend;
+  final LatLng initialPosition;
+  final void Function(LatLng location) onSend;
 
   const LocationPickerBottomSheet({
     super.key,
@@ -33,7 +35,6 @@ class _LocationPickerBottomSheetState
       height: MediaQuery.of(context).size.height * 0.75,
       child: Column(
         children: [
-          // MAP
           Expanded(
             child: FlutterMap(
               options: MapOptions(
@@ -55,12 +56,12 @@ class _LocationPickerBottomSheetState
                   markers: [
                     Marker(
                       point: selectedLatLng,
-                      width: 40,
-                      height: 40,
+                      width: 40.w,
+                      height: 40.h,
                       child: Icon(
                         Icons.location_on,
-                        size: 40,
-                        color: Colors.red,
+                        size: 40.r,
+                        color: AppColors.lebaneseRed,
                       ),
                     ),
                   ],
@@ -68,17 +69,13 @@ class _LocationPickerBottomSheetState
               ],
             ),
           ),
-
-          // SEND BUTTON
           Padding(
             padding: const EdgeInsets.all(16),
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  final locationUrl =
-                      'https://www.openstreetmap.org/?mlat=${selectedLatLng.latitude}&mlon=${selectedLatLng.longitude}';
-                  widget.onSend(locationUrl);
+                  widget.onSend(selectedLatLng);
                   Navigator.pop(context);
                 },
                 child: const Text('Send location'),
