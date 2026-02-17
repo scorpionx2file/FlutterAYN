@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/constants/profile_settings/profile_settings_tile_segmented_toggle.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../theme/colors/app_colors.dart';
 
 class AddNewHeader extends StatelessWidget{
@@ -46,7 +47,10 @@ class AddNewHeader extends StatelessWidget{
         SizedBox(width: 50.w),
         if(isEventPage)...[
          ProfileSettingsTileSegmentedToggle(
-           options: ["Paid","Not Paid"],
+           options: [
+             context.l10n.paid,
+             context.l10n.notPaid
+           ],
            selectedIndex: selectedIndex!,
            onChanged: (value) {
              if (onToggleChanged != null) {

@@ -8,6 +8,7 @@ import 'package:traveller/core/constants/poll_option/poll_option.dart';
 import 'package:traveller/core/constants/text_area/text_area.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 import '../../../core/constants/add_new_bottom_bar/add_new_bottom_bar.dart';
 
@@ -26,11 +27,11 @@ class AddPoll extends StatefulWidget{
 }
 
 class _AddPollState extends State<AddPoll>{
-  List<String> options = ["Option 1", "Option 2", "Option 3"];
   @override
   Widget build(BuildContext context) {
+    List<String> options = ["${context.l10n.answer} 1", "${context.l10n.answer} 2", "${context.l10n.answer} 3"];
     return Scaffold(
-      appBar: AppHeader(title: "Add Topic"),
+      appBar: AppHeader(title: context.l10n.addTopic),
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(8),
@@ -45,7 +46,7 @@ class _AddPollState extends State<AddPoll>{
             SizedBox(height: 20.h),
 
             OptionSwitch(
-              title: "Add Poll",
+              title: context.l10n.addPoll,
               value: true,
               onChanged: (bool value) {  },
             ),
@@ -53,7 +54,7 @@ class _AddPollState extends State<AddPoll>{
             SizedBox(height: 10.h),
 
             TextArea(
-                hintText: "Poll Question",
+                hintText: context.l10n.pollQuestion,
                 height: 50.h
             ),
 
@@ -63,7 +64,7 @@ class _AddPollState extends State<AddPoll>{
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: PollOption(
-                        initialText: "Option ${index+1}",
+                        initialText: "${context.l10n.answer} ${index+1}",
                         onTap: (){
                           setState(() {
                             options.removeAt(index);
@@ -76,10 +77,10 @@ class _AddPollState extends State<AddPoll>{
             SizedBox(height: 8.h),
 
             _DottedBorderButton(
-                text: "Add Answer",
+                text: context.l10n.addAnswer,
                 onTap: (){
                   setState(() {
-                    options.add("Option ${options.length + 1}");
+                    options.add("${context.l10n.answer} ${options.length + 1}");
                   });
                 }
             )
@@ -87,7 +88,7 @@ class _AddPollState extends State<AddPoll>{
       ),
       ),
       bottomNavigationBar: AddNewBottomBar(
-        text: "Post Event",
+        text: context.l10n.postTopic,
         onTap: (){},
         buttonColor: AppColors.yellow,
         textColor: AppColors.black,

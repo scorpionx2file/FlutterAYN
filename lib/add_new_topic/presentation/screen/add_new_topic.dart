@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:traveller/core/constants/app_header/app_header.dart';
 import 'package:traveller/core/constants/text_area/text_area.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../../add_types/presentation/screen/add_types.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/add_new_bottom_bar/add_new_bottom_bar.dart';
@@ -36,7 +37,7 @@ class _AddNewTopicState extends State<AddNewTopic> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppHeader(title: "Add Topic", showBack: true),
+      appBar: AppHeader(title: context.l10n.addTopic, showBack: true),
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(8),
@@ -49,32 +50,32 @@ class _AddNewTopicState extends State<AddNewTopic> {
             ),
             SizedBox(height: 20.h),
             TextArea(
-              hintText: "Post title",
+              hintText: context.l10n.topicTitle,
               height: 55.h,
               controller: titleController,
             ),
             SizedBox(height: 10.h),
             MediaTextArea(
               key: mediaKey,
-              hintText: "Post but not less than 20 words",
+              hintText: context.l10n.topicDetails,
               height: 135.h,
               controller: bodyController,
             ),
             SizedBox(height: 10.h),
             AddNewPostOptionTile(
                 icon: Image.asset("assets/images/icons/gate.png"),
-                title: "Choose a gate",
+                title: context.l10n.chooseAGate,
                 showDivider: false,
                 onTap: () {}),
             SizedBox(height: 10.h),
             AddNewPostOptionTile(
               icon: Image.asset("assets/images/icons/hashtag.png"),
-              title: "Choose a type",
+              title: context.l10n.chooseAType,
               showDivider: false,
               onTap: () {
                 context.push(
                   AppRoutes.addTypes,
-                  extra: AddTypesArgs(title: "Add Topic", isEvent: false, selectedIndex: 0),
+                  extra: AddTypesArgs(title: context.l10n.addTopic, isEvent: false, selectedIndex: 0),
                 );
               },
             ),
@@ -83,13 +84,13 @@ class _AddNewTopicState extends State<AddNewTopic> {
         ),
       ),
       bottomNavigationBar: AddNewBottomBar(
-        text: "Post",
+        text: context.l10n.postTopic,
         onTap: () {
           final text = bodyController.text.trim();
           final wordCount = text.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
           if (wordCount < 20) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Post must be at least 20 words")),
+              SnackBar(content: Text(context.l10n.postDetailsLimitation)),
             );
             return;
           }
@@ -97,14 +98,14 @@ class _AddNewTopicState extends State<AddNewTopic> {
         showTypes: true,
         items: [
           PostTypeItem(
-            title: "Add Image",
+            title: context.l10n.addPhoto,
             imageUrl: "assets/images/icons/image_icon.png",
             color: AppColors.turnbullBlue,
             onTap: () async {
               bool granted = await MediaPicker.requestPermissions();
               if (!granted) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Permission denied. Please enable in settings.")),
+                  SnackBar(content: Text(context.l10n.permissionDeniedPleaseEnableInSettings)),
                 );
                 return;
               }
@@ -115,14 +116,14 @@ class _AddNewTopicState extends State<AddNewTopic> {
           ),
 
           PostTypeItem(
-            title: "Add Video",
+            title: context.l10n.addVideo,
             imageUrl: "assets/images/icons/video.png",
             color: AppColors.lebaneseRed,
             onTap: () async {
               bool granted = await MediaPicker.requestPermissions();
               if (!granted) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("Permission denied")),
+                  SnackBar(content: Text(context.l10n.permissionDeniedPleaseEnableInSettings)),
                 );
                 return;
               }
@@ -133,7 +134,7 @@ class _AddNewTopicState extends State<AddNewTopic> {
           ),
 
           PostTypeItem(
-            title: "Add Poll",
+            title: context.l10n.poll,
             imageUrl: "assets/images/icons/poll.png",
             color: AppColors.darkYellow,
             onTap: () {

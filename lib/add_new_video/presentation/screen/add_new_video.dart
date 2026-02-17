@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:traveller/core/constants/add_new_header/add_new_header.dart';
 import 'package:traveller/core/constants/app_header/app_header.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../../add_types/presentation/screen/add_types.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/add_new_bottom_bar/add_new_bottom_bar.dart';
@@ -51,7 +52,7 @@ class _AddNewVideoState extends State<AddNewVideo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppHeader(
-        title: "Add Video",
+        title: context.l10n.addVideo,
         showBack: true,
       ),
       resizeToAvoidBottomInset: true,
@@ -68,7 +69,7 @@ class _AddNewVideoState extends State<AddNewVideo> {
             SizedBox(height: 20.h),
 
             TextArea(
-              hintText: "Video title",
+              hintText: context.l10n.videoTitle,
               height: 55.h,
             ),
 
@@ -76,7 +77,7 @@ class _AddNewVideoState extends State<AddNewVideo> {
 
             AddNewPostOptionTile(
               icon: Image.asset("assets/images/icons/gate.png"),
-              title: "Choose a gate",
+              title: context.l10n.chooseAGate,
               showDivider: false,
               onTap: (){}
             ),
@@ -85,13 +86,13 @@ class _AddNewVideoState extends State<AddNewVideo> {
 
             AddNewPostOptionTile(
               icon: Image.asset("assets/images/icons/hashtag.png"),
-              title: "Choose a type",
+              title: context.l10n.chooseAType,
               showDivider: false,
               onTap: (){
                 context.push(
                   AppRoutes.addTypes,
                   extra: AddTypesArgs(
-                      title: "Add Video",
+                      title: context.l10n.addVideo,
                       isEvent: false,
                       selectedIndex: 0
                   ),
@@ -116,7 +117,7 @@ class _AddNewVideoState extends State<AddNewVideo> {
       ),
 
         bottomNavigationBar: AddNewBottomBar(
-          text: "Post Video",
+          text: context.l10n.postVideo,
           onTap: () async {
             final file = await MediaPicker.recordVideoFromCamera();
             if (file != null) {
@@ -124,7 +125,7 @@ class _AddNewVideoState extends State<AddNewVideo> {
             }
           },
           showSwitch: true,
-          switchTitle: "Save video in gallery",
+          switchTitle: context.l10n.saveVideoInGallery,
           icon: Icon(
             Icons.videocam,
             color: AppColors.white,

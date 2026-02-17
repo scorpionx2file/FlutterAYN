@@ -375,18 +375,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get nameRequired => 'الاسم مطلوب';
 
   @override
-  String get nearbyPersons => 'الاشخاص القريبين';
-
-  @override
-  String get mute => 'الغاء الصوت';
-
-  @override
-  String get delete => 'حذف';
-
-  @override
-  String get writeYourMessageHere => 'اكتب رسالة هنا';
-
-  @override
   String nameMin(int minLen) {
     return 'يجب أن يكون الاسم $minLen أحرف على الأقل';
   }
@@ -404,4 +392,157 @@ class AppLocalizationsAr extends AppLocalizations {
   String passwordMin(int minLen) {
     return 'يجب أن تكون كلمة المرور $minLen أحرف على الأقل';
   }
+
+  @override
+  String get nearbyPersons => 'الاشخاص القريبين';
+
+  @override
+  String get mute => 'الغاء الصوت';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get writeYourMessageHere => 'اكتب رسالة هنا';
+
+  @override
+  String get jan => 'يناير';
+
+  @override
+  String get feb => 'فبراير';
+
+  @override
+  String get mar => 'مارس';
+
+  @override
+  String get apr => 'إبريل';
+
+  @override
+  String get may => 'مايو';
+
+  @override
+  String get jun => 'يونيو';
+
+  @override
+  String get jul => 'يوليو';
+
+  @override
+  String get aug => 'اغسطس';
+
+  @override
+  String get sep => 'سبتمبر';
+
+  @override
+  String get oct => 'اكتوبر';
+
+  @override
+  String get nov => 'نوفمبر';
+
+  @override
+  String get dec => 'ديسمبر';
+
+  @override
+  String get invalidMonth => 'Invalid month';
+
+  @override
+  String get eventPayment => 'رسوم الحدث';
+
+  @override
+  String get availability => 'الاتاحة';
+
+  @override
+  String get eventDate => 'تاريخ الحدث';
+
+  @override
+  String get lastTimeForSubscription => 'آخر موعد للاشتراك';
+
+  @override
+  String get addPhoto => 'أضف صورة';
+
+  @override
+  String get addVideo => 'أضف فيديو';
+
+  @override
+  String get addPoll => 'أضف استبيان';
+
+  @override
+  String get poll => 'استبيان';
+
+  @override
+  String get subscribeInEvent => 'الاشتراك في اتاحة الحدث';
+
+  @override
+  String get addEvent => 'أضف حدث';
+
+  @override
+  String get eventTitle => 'عنوان الحدث';
+
+  @override
+  String get eventDetails => 'تفاصيل الحدث';
+
+  @override
+  String get eventLink => 'رابط الحدث';
+
+  @override
+  String get chooseAGate => 'اختر بوابة';
+
+  @override
+  String get chooseAType => 'اختر تصنيف';
+
+  @override
+  String get selectDate => 'اختر تاريخ';
+
+  @override
+  String get selectEventDateFirst => 'اختر تاريخ الحدث أولاً';
+
+  @override
+  String get postEvent => 'نشر الحدث';
+
+  @override
+  String get permissionDeniedPleaseEnableInSettings => 'تم رفض الإذن. يرجى التمكين في الإعدادات';
+
+  @override
+  String get addTopic => 'اضافة موضوع';
+
+  @override
+  String get topicTitle => 'عنوان الموضوع';
+
+  @override
+  String get topicDetails => 'سرد الموضوع بما لا يقل عن 20 كلمة';
+
+  @override
+  String get postTopic => 'Post Topic';
+
+  @override
+  String get postDetailsLimitation => 'سرد الموضوع يجب ألاّ يقل عن 20 كلمة';
+
+  @override
+  String get postVideo => 'نشر الفيديو';
+
+  @override
+  String get saveVideoInGallery => 'حفظ الفيديو في المعرض';
+
+  @override
+  String get videoTitle => 'عنوان الفيديو';
+
+  @override
+  String get answer => 'الاجابة';
+
+  @override
+  String get addAnswer => 'اضافة اجابة';
+
+  @override
+  String get pollQuestion => 'سؤال الاستبيان';
+
+  @override
+  String get save => 'حفظ';
+
+  @override
+  String get searchForType => 'ابحث عن تصنيف';
+
+  @override
+  String get paid => 'مدفوع';
+
+  @override
+  String get notPaid => 'غير مدفوع';
 }
