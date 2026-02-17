@@ -107,47 +107,11 @@ abstract class AppLocalizations {
   /// **'Next'**
   String get next;
 
-  /// No description provided for @chooseGatesTitle.
+  /// No description provided for @previous.
   ///
   /// In en, this message translates to:
-  /// **'Choose Your Favorite Gates'**
-  String get chooseGatesTitle;
-
-  /// No description provided for @chooseGatesSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Pick at least 3 gates to tailor your experience.'**
-  String get chooseGatesSubtitle;
-
-  /// No description provided for @chooseGatesMin3Snack.
-  ///
-  /// In en, this message translates to:
-  /// **'Please select at least 3 gates.'**
-  String get chooseGatesMin3Snack;
-
-  /// No description provided for @chat.
-  ///
-  /// In en, this message translates to:
-  /// **'Chat'**
-  String get chat;
-
-  /// No description provided for @chats.
-  ///
-  /// In en, this message translates to:
-  /// **'Chats'**
-  String get chats;
-
-  /// No description provided for @writeCommentHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Write a comment...'**
-  String get writeCommentHint;
-
-  /// No description provided for @comments.
-  ///
-  /// In en, this message translates to:
-  /// **'Comments'**
-  String get comments;
+  /// **'Previous'**
+  String get previous;
 
   /// No description provided for @home.
   ///
@@ -179,6 +143,12 @@ abstract class AppLocalizations {
   /// **'Add'**
   String get add;
 
+  /// No description provided for @points.
+  ///
+  /// In en, this message translates to:
+  /// **'Points'**
+  String get points;
+
   /// No description provided for @share.
   ///
   /// In en, this message translates to:
@@ -190,18 +160,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Comment'**
   String get comment;
-
-  /// No description provided for @sharePostMessage.
-  ///
-  /// In en, this message translates to:
-  /// **'Check out this post on Traveller'**
-  String get sharePostMessage;
-
-  /// No description provided for @travellerPost.
-  ///
-  /// In en, this message translates to:
-  /// **'Traveller Post'**
-  String get travellerPost;
 
   /// No description provided for @posts.
   ///
@@ -227,35 +185,107 @@ abstract class AppLocalizations {
   /// **'Services'**
   String get services;
 
-  /// No description provided for @following.
+  /// No description provided for @location.
   ///
   /// In en, this message translates to:
-  /// **'Following'**
-  String get following;
+  /// **'Location'**
+  String get location;
 
-  /// No description provided for @followers.
+  /// No description provided for @chooseGatesTitle.
   ///
   /// In en, this message translates to:
-  /// **'Followers'**
-  String get followers;
+  /// **'Choose Your Favorite Gates'**
+  String get chooseGatesTitle;
+
+  /// No description provided for @chooseGatesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick at least 3 gates to tailor your experience.'**
+  String get chooseGatesSubtitle;
+
+  /// No description provided for @chooseGatesMin3Snack.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select at least 3 gates.'**
+  String get chooseGatesMin3Snack;
+
+  /// No description provided for @chooseGatesMin3Snack_duplicate.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select at least 3 gates.'**
+  String get chooseGatesMin3Snack_duplicate;
+
+  /// No description provided for @chat.
+  ///
+  /// In en, this message translates to:
+  /// **'Chat'**
+  String get chat;
+
+  /// No description provided for @chats.
+  ///
+  /// In en, this message translates to:
+  /// **'Chats'**
+  String get chats;
+
+  /// No description provided for @messages.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages'**
+  String get messages;
+
+  /// No description provided for @writeCommentHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Write a comment...'**
+  String get writeCommentHint;
+
+  /// No description provided for @comments.
+  ///
+  /// In en, this message translates to:
+  /// **'Comments'**
+  String get comments;
+
+  /// No description provided for @sharePostMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Check out this post on Traveller'**
+  String get sharePostMessage;
+
+  /// No description provided for @travellerPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Traveller Post'**
+  String get travellerPost;
 
   /// No description provided for @searchHint.
   ///
   /// In en, this message translates to:
-  /// **'Search...'**
+  /// **'Search …'**
   String get searchHint;
 
-  /// No description provided for @follow.
+  /// No description provided for @searchHint_plain.
   ///
   /// In en, this message translates to:
-  /// **'Follow'**
-  String get follow;
+  /// **'Search...'**
+  String get searchHint_plain;
 
   /// No description provided for @searchGateHint.
   ///
   /// In en, this message translates to:
   /// **'Search a gate...'**
   String get searchGateHint;
+
+  /// No description provided for @searchLocationHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search location...'**
+  String get searchLocationHint;
+
+  /// No description provided for @searchHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Search here...'**
+  String get searchHere;
 
   /// No description provided for @seeAll.
   ///
@@ -268,18 +298,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Recent Posts'**
   String get recentPosts;
-
-  /// No description provided for @location.
-  ///
-  /// In en, this message translates to:
-  /// **'Location'**
-  String get location;
-
-  /// No description provided for @searchLocationHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Search location...'**
-  String get searchLocationHint;
 
   /// No description provided for @verifyPhoneNumber.
   ///
@@ -347,17 +365,17 @@ abstract class AppLocalizations {
   /// **'Enter your message ...'**
   String get enterYourMessageHint;
 
-  /// No description provided for @previous.
-  ///
-  /// In en, this message translates to:
-  /// **'Previous'**
-  String get previous;
-
   /// No description provided for @postNotFound.
   ///
   /// In en, this message translates to:
   /// **'Post not found'**
   String get postNotFound;
+
+  /// No description provided for @postNotFound_duplicate.
+  ///
+  /// In en, this message translates to:
+  /// **'Post not found'**
+  String get postNotFound_duplicate;
 
   /// No description provided for @settings.
   ///
@@ -365,29 +383,23 @@ abstract class AppLocalizations {
   /// **'Settings'**
   String get settings;
 
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
   /// No description provided for @otpRequired.
   ///
   /// In en, this message translates to:
   /// **'Please enter the 4-digit code.'**
   String get otpRequired;
 
-  /// No description provided for @messages.
-  ///
-  /// In en, this message translates to:
-  /// **'Messages'**
-  String get messages;
-
   /// No description provided for @bags.
   ///
   /// In en, this message translates to:
   /// **'Bags'**
   String get bags;
-
-  /// No description provided for @points.
-  ///
-  /// In en, this message translates to:
-  /// **'Points'**
-  String get points;
 
   /// No description provided for @totalPoints.
   ///
@@ -479,6 +491,12 @@ abstract class AppLocalizations {
   /// **'Enter your email address'**
   String get emailAddressHint;
 
+  /// No description provided for @emailAddressHintExample.
+  ///
+  /// In en, this message translates to:
+  /// **'email@gmail.com'**
+  String get emailAddressHintExample;
+
   /// No description provided for @registerTitle.
   ///
   /// In en, this message translates to:
@@ -538,12 +556,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter your name'**
   String get fullNameHint;
-
-  /// No description provided for @emailAddressHintExample.
-  ///
-  /// In en, this message translates to:
-  /// **'email@gmail.com'**
-  String get emailAddressHintExample;
 
   /// No description provided for @signUp.
   ///
@@ -635,12 +647,6 @@ abstract class AppLocalizations {
   /// **'Connect with travelers and build new experiences together.'**
   String get onboardingSubtitle5;
 
-  /// No description provided for @logout.
-  ///
-  /// In en, this message translates to:
-  /// **'Logout'**
-  String get logout;
-
   /// No description provided for @profileSettingsSectionAppPerformance.
   ///
   /// In en, this message translates to:
@@ -658,6 +664,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Notifications'**
   String get notifications;
+
+  /// No description provided for @notificationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications'**
+  String get notificationsTitle;
 
   /// No description provided for @language.
   ///
@@ -863,24 +875,6 @@ abstract class AppLocalizations {
   /// **'Nearby Persons'**
   String get nearbyPersons;
 
-  /// No description provided for @mute.
-  ///
-  /// In en, this message translates to:
-  /// **'Mute'**
-  String get mute;
-
-  /// No description provided for @delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get delete;
-
-  /// No description provided for @writeYourMessageHere.
-  ///
-  /// In en, this message translates to:
-  /// **'writeYourMessageHere'**
-  String get writeYourMessageHere;
-
   /// No description provided for @saveToBagsTitle.
   ///
   /// In en, this message translates to:
@@ -929,23 +923,11 @@ abstract class AppLocalizations {
   /// **'Bags: {count}'**
   String bagsCount(int count);
 
-  /// No description provided for @searchHere.
-  ///
-  /// In en, this message translates to:
-  /// **'Search here...'**
-  String get searchHere;
-
   /// No description provided for @savedCount.
   ///
   /// In en, this message translates to:
   /// **'Saved: {count}'**
   String savedCount(int count);
-
-  /// No description provided for @notificationsTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Notifications'**
-  String get notificationsTitle;
 
   /// No description provided for @termsPrivacyTitle.
   ///
@@ -995,10 +977,16 @@ abstract class AppLocalizations {
   /// **'Search results for'**
   String get searchResultsFor;
 
+  /// No description provided for @results.
+  ///
+  /// In en, this message translates to:
+  /// **'Results'**
+  String get results;
+
   /// No description provided for @resultsCountPlaceholder.
   ///
   /// In en, this message translates to:
-  /// **'Results: '**
+  /// **'Results:'**
   String get resultsCountPlaceholder;
 
   /// No description provided for @tabPeople.
@@ -1025,11 +1013,47 @@ abstract class AppLocalizations {
   /// **'Events'**
   String get tabEvents;
 
+  /// No description provided for @follow.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow'**
+  String get follow;
+
+  /// No description provided for @following.
+  ///
+  /// In en, this message translates to:
+  /// **'Following'**
+  String get following;
+
+  /// No description provided for @followers.
+  ///
+  /// In en, this message translates to:
+  /// **'Followers'**
+  String get followers;
+
   /// No description provided for @unfollow.
   ///
   /// In en, this message translates to:
   /// **'Unfollow'**
   String get unfollow;
+
+  /// No description provided for @mute.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute'**
+  String get mute;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @writeYourMessageHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Write Your Message Here'**
+  String get writeYourMessageHere;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
