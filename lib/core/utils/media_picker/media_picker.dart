@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -52,4 +53,8 @@ class MediaPicker {
     return File(pickedFile.path);
   }
 
+  static Future<void> saveVideoToGallery(String path) async {
+    final result = await ImageGallerySaver.saveFile(path);
+    print(result);
+  }
 }

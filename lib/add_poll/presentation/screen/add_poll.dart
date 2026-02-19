@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/constants/add_new_header/add_new_header.dart';
 import 'package:traveller/core/constants/app_header/app_header.dart';
-import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/constants/option_switch/option_switch.dart';
 import 'package:traveller/core/constants/poll_option/poll_option.dart';
 import 'package:traveller/core/constants/text_area/text_area.dart';
@@ -26,10 +25,25 @@ class AddPoll extends StatefulWidget{
   State<AddPoll> createState() => _AddPollState();
 }
 
-class _AddPollState extends State<AddPoll>{
+class _AddPollState extends State<AddPoll> {
+
+  late List<String> options;
+  bool _initialized = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_initialized) {
+      options = [
+        "${context.l10n.answer} 1",
+        "${context.l10n.answer} 2",
+        "${context.l10n.answer} 3",
+      ];
+      _initialized = true;
+    }
+  }
   @override
   Widget build(BuildContext context) {
-    List<String> options = ["${context.l10n.answer} 1", "${context.l10n.answer} 2", "${context.l10n.answer} 3"];
     return Scaffold(
       appBar: AppHeader(title: context.l10n.addTopic),
       resizeToAvoidBottomInset: true,

@@ -545,4 +545,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notPaid => 'Not Paid';
+
+  @override
+  String get recordVideo => 'Record Video';
 }

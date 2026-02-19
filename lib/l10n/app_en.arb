@@ -189,5 +189,6 @@
     "save": "Save",
     "searchForType": "Search for type",
     "paid": "Paid",
-    "notPaid": "Not Paid"
+    "notPaid": "Not Paid",
+    "recordVideo": "Record Video"
 }

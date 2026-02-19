@@ -38,7 +38,6 @@ import '../../core/constants/gate/app_gate_card.dart';
 import '../../core/constants/post/post.dart';
 import '../../core/constants/post/post_content/post_content.dart';
 import '../../core/constants/post_service_provider_header/post_or_service_provider_header.dart';
-import '../../core/constants/service_package/package_card.dart';
 import '../../core/constants/story_item/story_item.dart';
 import '../../core/theme/colors/app_colors.dart';
 import '../../core/utils/map_bottom_sheet_util.dart';
@@ -49,6 +48,7 @@ import '../../home/presentation/screens/home_screen.dart';
 import '../../map/presenttion/widgets/map_screen.dart';
 import '../../payment/presentation/payment_method_screen.dart';
 import '../../nearbyPersons_and_chats/presentation/widgets/nearbyPersons_and_chats_list_screen.dart';
+import '../../post_video/presentation/screen/post_video.dart';
 import '../../see_all_activities/presentation/screen/see_all_activities.dart';
 import 'app_routes.dart';
 
@@ -1011,6 +1011,14 @@ final GoRouter router = GoRouter(
           imageUrl: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg",
           location: "Alexandria, Egypt",
         )
+    ),
+
+    GoRoute(
+      path: AppRoutes.postVideo,
+      builder: (context, state) {
+        final videoPath = state.extra as String;
+        return PostVideo(videoPath: videoPath);
+      },
     ),
 
     GoRoute(

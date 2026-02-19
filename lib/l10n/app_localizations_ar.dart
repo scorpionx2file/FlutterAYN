@@ -475,7 +475,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get addEvent => 'أضف حدث';
 
   @override
-  String get eventTitle => 'عنوان الحدث';
+  String get eventTitle => 'عنوان الحدث*';
 
   @override
   String get eventDetails => 'تفاصيل الحدث';
@@ -505,10 +505,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get addTopic => 'اضافة موضوع';
 
   @override
-  String get topicTitle => 'عنوان الموضوع';
+  String get topicTitle => 'عنوان الموضوع*';
 
   @override
-  String get topicDetails => 'سرد الموضوع بما لا يقل عن 20 كلمة';
+  String get topicDetails => 'سرد الموضوع بما لا يقل عن 20 كلمة*';
 
   @override
   String get postTopic => 'Post Topic';
@@ -523,7 +523,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get saveVideoInGallery => 'حفظ الفيديو في المعرض';
 
   @override
-  String get videoTitle => 'عنوان الفيديو';
+  String get videoTitle => 'عنوان الفيديو*';
 
   @override
   String get answer => 'الاجابة';
@@ -545,4 +545,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get notPaid => 'غير مدفوع';
+
+  @override
+  String get recordVideo => 'تسجيل الفيديو';
 }

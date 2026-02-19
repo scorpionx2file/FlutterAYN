@@ -32,6 +32,7 @@ class AddNewVideo extends StatefulWidget {
 
 class _AddNewVideoState extends State<AddNewVideo> {
   LatLng? selectedLocation;
+  bool saveToGallery = true;
 
   @override
   void initState() {
@@ -116,21 +117,42 @@ class _AddNewVideoState extends State<AddNewVideo> {
         ),
       ),
 
-        bottomNavigationBar: AddNewBottomBar(
-          text: context.l10n.postVideo,
-          onTap: () async {
-            final file = await MediaPicker.recordVideoFromCamera();
-            if (file != null) {
-              print("Video path: ${file.path}");
+      bottomNavigationBar: AddNewBottomBar(
+        text: context.l10n.recordVideo,
+        switchTitle: context.l10n.saveVideoInGallery,
+        showSwitch: true,
+        switchValue: saveToGallery,
+        onSwitchChanged: (value) {
+          setState(() {
+            saveToGallery = value;
+          });
+        },
+        onTap: () async {
+          final file = await MediaPicker.recordVideoFromCamera();
+
+          if (file != null && mounted) {
+
+            try {
+              if (saveToGallery) {
+                await MediaPicker.saveVideoToGallery(file.path);
+              }
+            } catch (e) {
+              debugPrint("Gallery save failed: $e");
             }
-          },
-          showSwitch: true,
-          switchTitle: context.l10n.saveVideoInGallery,
-          icon: Icon(
-            Icons.videocam,
-            color: AppColors.white,
-          ),
-        )
+
+            if (!mounted) return;
+
+            context.push(
+              AppRoutes.postVideo,
+              extra: file.path,
+            );
+          }
+        },
+        icon: const Icon(
+          Icons.videocam,
+          color: AppColors.white,
+        ),
+      ),
     );
   }
 }

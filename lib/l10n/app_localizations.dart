@@ -1162,6 +1162,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Not Paid'**
   String get notPaid;
+
+  /// No description provided for @recordVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Record Video'**
+  String get recordVideo;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
