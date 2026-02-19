@@ -11,6 +11,7 @@ import 'package:traveller/auth/presentation/screen/forget_password_screen.dart';
 import 'package:traveller/auth/presentation/screen/sign_in_screen.dart';
 import 'package:traveller/auth/presentation/screen/welcome_auth_screen.dart';
 import 'package:traveller/chat_screen/presentation/widgets/chat_screen.dart';
+import 'package:traveller/core/constants/app_header/app_header.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import 'package:traveller/event_option/presentation/widgets/bottom_section/event_list.dart';
 import 'package:traveller/event_option/presentation/widgets/place_details_screen.dart';
@@ -900,7 +901,15 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.chooseGates,
-      builder: (context, state) => const ChooseGatesScreen(),
+      builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>? ?? {};
+        final allowMultiple = extra['allowMultiple'] ?? true;
+        final title = extra['title'] ?? "Choose Gates";
+        return ChooseGatesScreen(
+          allowMultiple: allowMultiple,
+          appBar: allowMultiple ? null : AppHeader(title: title),
+        );
+        },
     ),
     GoRoute(
       path: AppRoutes.story,

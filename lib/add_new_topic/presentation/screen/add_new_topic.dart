@@ -5,6 +5,7 @@ import 'package:traveller/core/constants/app_header/app_header.dart';
 import 'package:traveller/core/constants/text_area/text_area.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../../add_types/presentation/screen/add_types.dart';
+import '../../../auth/presentation/screen/choose_gates_screen.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/add_new_bottom_bar/add_new_bottom_bar.dart';
 import '../../../core/constants/add_new_header/add_new_header.dart';
@@ -32,7 +33,7 @@ class _AddNewTopicState extends State<AddNewTopic> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
   List<String> selectedTypes = [];
-
+  String? selectedGateName;
   final GlobalKey<MediaTextAreaState> mediaKey = GlobalKey<MediaTextAreaState>();
 
   @override
@@ -64,11 +65,28 @@ class _AddNewTopicState extends State<AddNewTopic> {
             ),
             SizedBox(height: 10.h),
             AddNewPostOptionTile(
-                icon: Image.asset("assets/images/icons/gate.png"),
-                title: context.l10n.chooseAGate,
-                showDivider: false,
-                onTap: () {}),
+              icon: Image.asset("assets/images/icons/gate.png"),
+              title: selectedGateName ?? context.l10n.chooseAGate,
+              showDivider: false,
+              onTap: () async {
+                final result = await context.push<GateItem>(
+                  AppRoutes.chooseGates,
+                  extra: {
+                    'allowMultiple': false,
+                    'title': context.l10n.addVideo,
+                  },
+                );
+
+                if (result != null) {
+                  setState(() {
+                    selectedGateName = result.title;
+                  });
+                }
+              },
+            ),
+
             SizedBox(height: 10.h),
+
             AddNewPostOptionTile(
               icon: Image.asset("assets/images/icons/hashtag.png"),
               title: selectedTypes.isEmpty

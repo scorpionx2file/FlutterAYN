@@ -8,6 +8,7 @@ import 'package:traveller/core/constants/event_data/event_data.dart';
 import 'package:traveller/core/constants/post_types/post_types.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
+import '../../../auth/presentation/screen/choose_gates_screen.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/add_new_build_map/add_new_build_map.dart';
 import '../../../core/constants/add_new_header/add_new_header.dart';
@@ -43,6 +44,7 @@ class _AddNewEventState extends State<AddNewEvent>{
   LatLng? selectedLocation;
   List<String> selectedTypes = [];
   String? eventLink;
+  String? selectedGateName;
   final TextEditingController linkController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
@@ -362,9 +364,23 @@ class _AddNewEventState extends State<AddNewEvent>{
 
                 AddNewPostOptionTile(
                   icon: Image.asset("assets/images/icons/gate.png"),
-                  title: context.l10n.chooseAGate,
+                  title: selectedGateName ?? context.l10n.chooseAGate,
                   showDivider: false,
-                  onTap: (){}
+                  onTap: () async {
+                    final result = await context.push<GateItem>(
+                      AppRoutes.chooseGates,
+                      extra: {
+                        'allowMultiple': false,
+                        'title': context.l10n.addEvent,
+                      },
+                    );
+
+                    if (result != null) {
+                      setState(() {
+                        selectedGateName = result.title;
+                      });
+                    }
+                  },
                 ),
         
                 SizedBox(height: 10.h),
