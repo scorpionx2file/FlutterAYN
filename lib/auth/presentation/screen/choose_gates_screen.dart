@@ -6,6 +6,7 @@ import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
+
 import '../widgets/selectable_gate_card.dart';
 import '../widgets/sign_in_progress_bar.dart';
 
@@ -18,7 +19,9 @@ class GateItem {
 }
 
 class ChooseGatesScreen extends StatefulWidget {
-  const ChooseGatesScreen({super.key});
+  final bool isRegister;
+
+  const ChooseGatesScreen({super.key, required this.isRegister});
 
   @override
   State<ChooseGatesScreen> createState() => _ChooseGatesScreenState();
@@ -28,16 +31,44 @@ class _ChooseGatesScreenState extends State<ChooseGatesScreen> {
   final Set<String> _selected = {};
 
   final List<GateItem> _gates = const [
-    GateItem(id: "camping", title: "Camping Adventures", asset: "assets/images/gate.png"),
-    GateItem(id: "seas", title: "Seas & Oceans", asset: "assets/images/gate.png"),
+    GateItem(
+      id: "camping",
+      title: "Camping Adventures",
+      asset: "assets/images/gate.png",
+    ),
+    GateItem(
+      id: "seas",
+      title: "Seas & Oceans",
+      asset: "assets/images/gate.png",
+    ),
     GateItem(id: "paris", title: "Paris Trip", asset: "assets/images/gate.png"),
-    GateItem(id: "adventure", title: "Adventure Gate", asset: "assets/images/gate.png"),
-    GateItem(id: "mountains", title: "Mountain Trails", asset: "assets/images/gate.png"),
-    GateItem(id: "desert", title: "Desert Escape", asset: "assets/images/gate.png"),
+    GateItem(
+      id: "adventure",
+      title: "Adventure Gate",
+      asset: "assets/images/gate.png",
+    ),
+    GateItem(
+      id: "mountains",
+      title: "Mountain Trails",
+      asset: "assets/images/gate.png",
+    ),
+    GateItem(
+      id: "desert",
+      title: "Desert Escape",
+      asset: "assets/images/gate.png",
+    ),
     GateItem(id: "city", title: "City Breaks", asset: "assets/images/gate.png"),
-    GateItem(id: "culture", title: "Culture & Museums", asset: "assets/images/gate.png"),
+    GateItem(
+      id: "culture",
+      title: "Culture & Museums",
+      asset: "assets/images/gate.png",
+    ),
     GateItem(id: "food", title: "Food Trips", asset: "assets/images/gate.png"),
-    GateItem(id: "islands", title: "Island Hopping", asset: "assets/images/gate.png"),
+    GateItem(
+      id: "islands",
+      title: "Island Hopping",
+      asset: "assets/images/gate.png",
+    ),
   ];
 
   void _toggle(String id) {
@@ -51,14 +82,28 @@ class _ChooseGatesScreenState extends State<ChooseGatesScreen> {
   }
 
   void _next() {
-    if (_selected.length < 3) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(context.l10n.chooseGatesMin3Snack)),
-      );
-      return;
+    if (widget.isRegister) {
+      print("is register");
+      if (_selected.length < 3) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(context.l10n.chooseGatesMin3Snack)),
+        );
+        return;
+      }
+      context.push(AppRoutes.register);
+    } else {
+      if (_selected.isEmpty) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Choose the gate")));
+        return;
+      }
+      final selectedGates = _gates
+          .where((gate) => _selected.contains(gate.id))
+          .map((gate) => gate.title)
+          .toList();
+      context.pop(selectedGates);
     }
-
-    context.push(AppRoutes.register);
   }
 
   @override
@@ -100,12 +145,16 @@ class _ChooseGatesScreenState extends State<ChooseGatesScreen> {
                     SizedBox(height: 14.h),
                     Text(
                       context.l10n.chooseGatesTitle,
-                      style: AppTextStyles.title.copyWith(color: AppColors.black),
+                      style: AppTextStyles.title.copyWith(
+                        color: AppColors.black,
+                      ),
                     ),
                     SizedBox(height: 6.h),
                     Text(
                       context.l10n.chooseGatesSubtitle,
-                      style: AppTextStyles.description.copyWith(color: AppColors.spanishGrey),
+                      style: AppTextStyles.description.copyWith(
+                        color: AppColors.spanishGrey,
+                      ),
                     ),
                     SizedBox(height: 18.h),
 

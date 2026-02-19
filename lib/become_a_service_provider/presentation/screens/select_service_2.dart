@@ -29,7 +29,8 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
   String? selectedLocation;
   final TextEditingController _textController = TextEditingController();
 
-  String selectedLanguage = "Language"; // default language
+  String selectedLanguage = "Language";
+  String selectedGates = "Choose Gate";
 
   final ImagePicker _picker = ImagePicker();
   final List<XFile> _images = [];
@@ -47,7 +48,8 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        String tempSelection = selectedLanguage; // temp variable for bottom sheet
+        String tempSelection =
+            selectedLanguage; // temp variable for bottom sheet
 
         return StatefulBuilder(
           builder: (context, setModalState) {
@@ -85,7 +87,8 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
                     text: "Done",
                     onPressed: () {
                       setState(() {
-                        selectedLanguage = tempSelection; // save selection to main screen
+                        selectedLanguage =
+                            tempSelection; // save selection to main screen
                       });
                       Navigator.pop(context);
                     },
@@ -275,8 +278,18 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
                     size: 24.r,
                     color: AppColors.turnbullBlue,
                   ),
-                  title: 'Choose Gate',
-                  onTap: () {},
+                  title: selectedGates,
+                  onTap: () async{
+                    final result = await context.push<List<String>>(
+                      "${AppRoutes.chooseGates}?isRegister=false",
+                    );
+
+                    if(result != null) {
+                      setState(() {
+                        selectedGates = result.join(", ");
+                      });
+                    }
+                  },
                   showDivider: false,
                 ),
               ),
@@ -286,20 +299,22 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.w),
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.w,
+                    vertical: 14.h,
+                  ),
                   decoration: BoxDecoration(
                     color: AppColors.white,
                     borderRadius: BorderRadius.circular(16.r),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min, // <-- important
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      /// Top Title
                       /// Text Input
                       TextField(
-                        controller: _textController, // your TextEditingController
-                        maxLines: null, // allows multiple lines
+                        controller: _textController,
+                        maxLines: null,
                         decoration: InputDecoration(
                           hintText: "Write your service details...",
                           border: InputBorder.none,

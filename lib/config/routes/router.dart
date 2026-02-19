@@ -875,7 +875,7 @@ final List<ChatTileModel> chats = [
 ];
 
 final GoRouter router = GoRouter(
-  initialLocation: AppRoutes.chat,
+  initialLocation: AppRoutes.splash,
   routes: [
     GoRoute(
       path: AppRoutes.splash,
@@ -936,7 +936,12 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.chooseGates,
-      builder: (context, state) => const ChooseGatesScreen(),
+      builder: (context, state) {
+        final extra = state.uri.queryParameters["isRegister"]=='true';
+        return ChooseGatesScreen(
+          isRegister: extra,
+        );
+      },
     ),
     GoRoute(
       path: AppRoutes.savedBags,
