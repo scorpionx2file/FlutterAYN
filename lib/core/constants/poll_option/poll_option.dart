@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 
-class PollOption extends StatefulWidget{
-  final String initialText;
+class PollOption extends StatefulWidget {
+  final TextEditingController controller;
   final VoidCallback onTap;
-
 
   const PollOption({
     super.key,
-    required this.initialText,
+    required this.controller,
     required this.onTap,
   });
 
@@ -18,14 +17,7 @@ class PollOption extends StatefulWidget{
 }
 
 class _PollOptionState extends State<PollOption>{
-  late TextEditingController _controller;
   bool _isEditing = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController(text: widget.initialText);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +49,9 @@ class _PollOptionState extends State<PollOption>{
               child: SizedBox(
                 width: 200.w,
                 child: TextField(
-                  controller: _controller,
+                  controller: widget.controller,
                   enabled: _isEditing,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     border: InputBorder.none,
                   ),
                 ),

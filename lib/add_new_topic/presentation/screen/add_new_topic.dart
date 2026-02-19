@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:traveller/add_new_topic/presentation/screen/poll_preview.dart';
 import 'package:traveller/core/constants/app_header/app_header.dart';
 import 'package:traveller/core/constants/text_area/text_area.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
@@ -32,9 +33,10 @@ class AddNewTopic extends StatefulWidget {
 class _AddNewTopicState extends State<AddNewTopic> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
+  final GlobalKey<MediaTextAreaState> mediaKey = GlobalKey<MediaTextAreaState>();
   List<String> selectedTypes = [];
   String? selectedGateName;
-  final GlobalKey<MediaTextAreaState> mediaKey = GlobalKey<MediaTextAreaState>();
+  PollData? createdPoll;
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +112,29 @@ class _AddNewTopicState extends State<AddNewTopic> {
                 }
               },
             ),
-            SizedBox(height: 30.h),
+            SizedBox(height: 10.h),
+
+            if (createdPoll != null)
+              PollPreview(
+                question: createdPoll!.question,
+                options: createdPoll!.options,
+                onEdit: () async {
+                  final edited = await context.push<PollData>(
+                    AppRoutes.addPoll,
+                    extra: createdPoll,
+                  );
+                  if (edited != null) {
+                    setState(() {
+                      createdPoll = edited;
+                    });
+                  }
+                },
+                onDelete: () {
+                  setState(() {
+                    createdPoll = null;
+                  });
+                },
+              ),
           ],
         ),
       ),
@@ -168,8 +192,13 @@ class _AddNewTopicState extends State<AddNewTopic> {
             title: context.l10n.poll,
             imageUrl: "assets/images/icons/poll.png",
             color: AppColors.darkYellow,
-            onTap: () {
-              context.push(AppRoutes.addPoll);
+            onTap: () async {
+              final result = await context.push<PollData>(AppRoutes.addPoll);
+              if (result != null) {
+                setState(() {
+                  createdPoll = result;
+                });
+              }
             },
           ),
         ],

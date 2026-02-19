@@ -25,6 +25,7 @@ import 'package:traveller/stories/presentation/widgets/story_screen.dart';
 import 'package:traveller/user_profile/presentation/widgets/user_profile_screen.dart';
 import 'package:traveller/video/presentation/widgets/video&articles_screen.dart';
 
+import '../../add_new_topic/presentation/screen/poll_preview.dart';
 import '../../auth/presentation/screen/sign_up_screen.dart';
 import '../../become_a_service_provider/presentation/screens/select_service.dart';
 import '../../become_a_service_provider/presentation/screens/select_service_2.dart';
@@ -1016,10 +1017,15 @@ final GoRouter router = GoRouter(
 
     GoRoute(
         path: AppRoutes.addPoll,
-        builder: (context,state) => AddPoll(
-          imageUrl: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg",
-          location: "Alexandria, Egypt",
-        )
+        builder: (context,state) {
+          final initialPoll = state.extra as PollData?;
+          return AddPoll
+        (
+            imageUrl: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg",
+            location: "Alexandria, Egypt",
+            initialPoll: initialPoll,
+        );
+    }
     ),
 
     GoRoute(
