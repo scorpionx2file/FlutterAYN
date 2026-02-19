@@ -499,4 +499,16 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get unfollow => 'إلغاء المتابعة';
 
+  @override
+  String get takePhoto => 'التقط صوره';
+
+  @override
+  String get recordVideo => 'التقط فيديو';
+
+  @override
+  String get chooseImage => 'اختر صوره';
+
+  @override
+  String get chooseVideo => 'اختر فيديو';
+
 }

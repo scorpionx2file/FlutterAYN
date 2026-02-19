@@ -1,27 +1,34 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:traveller/core/theme/colors/app_colors.dart';
-import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:flutter_sound/flutter_sound.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:traveller/core/theme/colors/app_colors.dart';
+import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
+
 import '../../../core/utils/location/location_picker_bottom_sheet.dart';
 import '../../../core/utils/location/location_service.dart';
+import '../../../core/utils/media_picker/media_picker.dart';
+
+enum MediaType { image, video }
 
 class ChatInputBar extends StatefulWidget {
   final void Function(String) onSendMessage;
   final void Function(LatLng) onSendLocation;
   final void Function(File audio, int durationInSeconds)? onSendAudio;
+  final void Function(File file, MediaType type)? onSendMedia;
 
   const ChatInputBar({
     super.key,
     required this.onSendMessage,
     required this.onSendLocation,
     this.onSendAudio,
+    this.onSendMedia,
   });
 
   @override
@@ -43,10 +50,8 @@ class _ChatInputBarState extends State<ChatInputBar> {
   double _recordingWidth(BuildContext context) {
     final minWidth = 140.w;
     final maxWidth = MediaQuery.of(context).size.width - 32.w;
-
     final extra = seconds * 6.w;
     final width = minWidth + extra;
-
     return width.clamp(minWidth, maxWidth);
   }
 
@@ -81,16 +86,80 @@ class _ChatInputBarState extends State<ChatInputBar> {
     setState(() => isTextEmpty = true);
   }
 
-  void _startTimer() {
-    _timer = Timer.periodic(
-      const Duration(seconds: 1),
-          (_) {
-        setState(() => seconds++);
-        _recordingOverlay?.markNeedsBuild();
-      },
+  void _openMediaPickerSheet() {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+      ),
+      builder: (_) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _mediaTile(
+              icon: Icons.camera_alt,
+              title: context.l10n.takePhoto,
+              onTap: () async {
+                Navigator.pop(context);
+                final file = await MediaPicker.takePictureFromCamera();
+                if (file != null)
+                  widget.onSendMedia?.call(file, MediaType.image);
+              },
+            ),
+            _mediaTile(
+              icon: Icons.videocam,
+              title: context.l10n.recordVideo,
+              onTap: () async {
+                Navigator.pop(context);
+                final file = await MediaPicker.recordVideoFromCamera();
+                if (file != null)
+                  widget.onSendMedia?.call(file, MediaType.video);
+              },
+            ),
+            _mediaTile(
+              icon: Icons.photo,
+              title: context.l10n.chooseImage,
+              onTap: () async {
+                Navigator.pop(context);
+                final file = await MediaPicker.pickImage();
+                if (file != null)
+                  widget.onSendMedia?.call(file, MediaType.image);
+              },
+            ),
+            _mediaTile(
+              icon: Icons.video_library,
+              title: context.l10n.chooseVideo,
+              onTap: () async {
+                Navigator.pop(context);
+                final file = await MediaPicker.pickVideo();
+                if (file != null)
+                  widget.onSendMedia?.call(file, MediaType.video);
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 
+  Widget _mediaTile({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+  }) {
+    return ListTile(
+      leading: Icon(icon, color: AppColors.turnbullBlue),
+      title: Text(title, style: AppTextStyles.description),
+      onTap: onTap,
+    );
+  }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      setState(() => seconds++);
+      _recordingOverlay?.markNeedsBuild();
+    });
+  }
 
   void _stopTimer() {
     _timer?.cancel();
@@ -114,105 +183,23 @@ class _ChatInputBarState extends State<ChatInputBar> {
                 colors: [AppColors.turnbullBlue, AppColors.turnbullBlue],
               ),
               borderRadius: BorderRadius.circular(16.r),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.black.withOpacity(0.2),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
-                ),
-              ],
             ),
             duration: const Duration(milliseconds: 300),
             width: _recordingWidth(context),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Circular timer
-                Container(
-                  width: 48.w,
-                  height: 48.w,
-                  decoration: BoxDecoration(
-                    color: AppColors.spanishGrey.withOpacity(0.2),
-                    shape: BoxShape.circle,
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    '${(seconds ~/ 60).toString().padLeft(2, '0')}:${(seconds % 60).toString().padLeft(2, '0')}',
-                    style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                Text(
+                  '${(seconds ~/ 60).toString().padLeft(2, '0')}:${(seconds % 60).toString().padLeft(2, '0')}',
+                  style: const TextStyle(color: AppColors.white),
                 ),
-                SizedBox(width: 12.w),
-
-                // Pulsing mic
-                SizedBox(
-                  width: 40.w,
-                  height: 40.w,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      if (isRecording && !isPaused)
-                        TweenAnimationBuilder<double>(
-                          tween: Tween(begin: 0.7, end: 1.3),
-                          duration: const Duration(seconds: 1),
-                          curve: Curves.easeInOut,
-                          builder: (context, scale, child) {
-                            return Transform.scale(
-                              scale: scale,
-                              child: Container(
-                                width: 36.w,
-                                height: 36.w,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: AppColors.turnbullBlue.withOpacity(
-                                    0.3,
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                          onEnd: () {
-                            if (isRecording && !isPaused)
-                              _recordingOverlay?.markNeedsBuild();
-                          },
-                        ),
-                      Icon(
-                        isPaused ? Icons.mic_off : Icons.mic,
-                        color: AppColors.white,
-                        size: 26.sp,
-                      ),
-                    ],
-                  ),
-                ),
-
                 const Spacer(),
-                Row(
-                  children: [
-                    // Delete button
-                    IconButton(
-                      padding: EdgeInsets.zero,
-                      iconSize: 22.sp,
-                      icon: const Icon(Icons.delete, color: AppColors.white),
-                      onPressed: () => _stopRecording(send: false),
-                    ),
-                    SizedBox(width: 8.w),
-                    // Send button
-                    Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.turnbullBlue,
-                        shape: BoxShape.circle,
-                      ),
-                      child: IconButton(
-                        padding: EdgeInsets.zero,
-                        iconSize: 22.sp,
-                        icon: const Icon(Icons.send, color: AppColors.white),
-                        onPressed: () => _stopRecording(send: true),
-                      ),
-                    ),
-                  ],
+                IconButton(
+                  icon: const Icon(Icons.delete, color: AppColors.white),
+                  onPressed: () => _stopRecording(send: false),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.send, color: AppColors.white),
+                  onPressed: () => _stopRecording(send: true),
                 ),
               ],
             ),
@@ -232,8 +219,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
   Future<void> _startRecording() async {
     final status = await Permission.microphone.request();
     if (!status.isGranted) return;
-
-    if (_recorder == null) await _initRecorder();
 
     final dir = await getTemporaryDirectory();
     audioPath = '${dir.path}/${DateTime.now().millisecondsSinceEpoch}.aac';
@@ -266,7 +251,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
     await _recorder!.resumeRecorder();
     _startTimer();
     setState(() => isPaused = false);
-    _recordingOverlay?.markNeedsBuild();
   }
 
   Future<void> _stopRecording({bool send = false}) async {
@@ -277,7 +261,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
     _stopTimer();
 
     if (send && audioPath != null) {
-      // Pass duration to parent callback
       widget.onSendAudio?.call(File(audioPath!), recordedDuration);
     } else if (audioPath != null) {
       File(audioPath!).deleteSync();
@@ -292,21 +275,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
     _hideRecordingOverlay();
   }
 
-  Future<Position?> _requestLocationPermission() async {
-    if (!await Geolocator.isLocationServiceEnabled()) return null;
-
-    var permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) return null;
-    }
-    if (permission == LocationPermission.deniedForever) return null;
-
-    return await Geolocator.getCurrentPosition(
-      desiredAccuracy: LocationAccuracy.high,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -315,13 +283,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(12.r)),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.black.withOpacity(0.05),
-            blurRadius: 8,
-            offset: const Offset(0, -2),
-          ),
-        ],
       ),
       child: Row(
         children: [
@@ -335,18 +296,13 @@ class _ChatInputBarState extends State<ChatInputBar> {
             ),
             onPressed: isTextEmpty ? null : _sendMessage,
           ),
-          Container(
-            width: 1.w,
-            height: 28.h,
-            color: AppColors.spanishGrey.withOpacity(0.4),
-          ),
           IconButton(
             icon: Icon(
               Icons.camera_alt_outlined,
               size: 22.sp,
               color: AppColors.spanishGrey,
             ),
-            onPressed: () {},
+            onPressed: _openMediaPickerSheet,
           ),
           IconButton(
             icon: Icon(
@@ -365,8 +321,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
                 await _resumeRecording();
             },
           ),
-
-          // LOCATION
           IconButton(
             icon: Icon(
               Icons.location_on_outlined,
@@ -375,27 +329,13 @@ class _ChatInputBarState extends State<ChatInputBar> {
             ),
             onPressed: () async {
               final currentLatLng = await LocationService.getCurrentLatLng();
-
-              if (currentLatLng == null) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Location permission denied")),
-                );
-                return;
-              }
-              final pos = await _requestLocationPermission();
-              if (pos == null) return;
-
-              final initialLatLng = LatLng(pos.latitude, pos.longitude);
-              if (!context.mounted) return;
+              if (currentLatLng == null) return;
 
               showModalBottomSheet(
                 context: context,
                 isScrollControlled: true,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-                ),
                 builder: (_) => LocationPickerBottomSheet(
-                  initialPosition: initialLatLng,
+                  initialPosition: currentLatLng,
                   onSend: widget.onSendLocation,
                 ),
               );
@@ -404,7 +344,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
           Expanded(
             child: TextField(
               controller: textController,
-              textInputAction: TextInputAction.send,
               onSubmitted: (_) => _sendMessage(),
               decoration: InputDecoration(
                 hintText: "Write your message here",
@@ -412,8 +351,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
                   color: AppColors.spanishGrey,
                 ),
                 border: InputBorder.none,
-                isDense: true,
-                contentPadding: EdgeInsets.symmetric(horizontal: 4.w),
               ),
             ),
           ),

@@ -52,4 +52,19 @@ class MediaPicker {
     return File(pickedFile.path);
   }
 
+  static Future<File?> takePictureFromCamera() async {
+    final granted = await Permission.camera.request();
+    if (!granted.isGranted) return null;
+
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 85, // optional (0–100)
+      preferredCameraDevice: CameraDevice.rear,
+    );
+
+    if (pickedFile == null) return null;
+    return File(pickedFile.path);
+  }
+
 }

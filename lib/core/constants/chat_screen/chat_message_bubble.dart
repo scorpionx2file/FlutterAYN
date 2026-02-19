@@ -1,9 +1,14 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:latlong2/latlong.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_sound/flutter_sound.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:traveller/chat_screen/presentation/widgets/full_media_screen.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
+
+import '../../../chat_screen/presentation/widgets/chat_input_bar.dart';
 import '../../../chat_screen/presentation/widgets/full_map_screen.dart';
 import '../../../core/theme/colors/app_colors.dart';
 import '../../../core/theme/fonts/app_text_styles.dart';
@@ -13,6 +18,8 @@ class ChatMessageBubble extends StatefulWidget {
   final String? message;
   final LatLng? location;
   final File? audioFile;
+  final File? mediaFile;
+  final MediaType? mediaType;
   final bool isMe;
   final String avatarUrl;
   final String time;
@@ -23,10 +30,12 @@ class ChatMessageBubble extends StatefulWidget {
     this.message,
     this.location,
     this.audioFile,
+    this.mediaFile,
+    this.mediaType,
     required this.isMe,
     required this.avatarUrl,
     required this.time,
-    this.audioLength
+    this.audioLength,
   });
 
   @override
@@ -38,54 +47,6 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
   bool isPlaying = false;
   Duration position = Duration.zero;
   Duration duration = Duration.zero;
-
-  Widget _buildAudioWave() {
-    final audioSeconds = widget.audioLength ?? 0;
-    final minutes = (audioSeconds ~/ 60).toString().padLeft(2, '0');
-    final seconds = (audioSeconds % 60).toString().padLeft(2, '0');
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(
-          isPlaying ? Icons.pause : Icons.play_arrow,
-          color: widget.isMe ? AppColors.white : AppColors.black,
-        ),
-        SizedBox(width: 8.w),
-        Row(
-          children: List.generate(18, (i) {
-            return Container(
-              margin: EdgeInsets.symmetric(horizontal: 2.w),
-              width: 3.w,
-              height: (i.isEven ? 18.h : 10.h),
-              decoration: BoxDecoration(
-                color: (widget.isMe ? Colors.white : Colors.black)
-                    .withOpacity(0.7),
-                borderRadius: BorderRadius.circular(4),
-              ),
-            );
-          }),
-        ),
-        SizedBox(width: 8.w),
-        Text(
-          "$minutes:$seconds",
-          style: TextStyle(
-            color: widget.isMe ? AppColors.white : AppColors.black,
-            fontSize: 12.sp,
-          ),
-        ),
-      ],
-    );
-  }
-
-  Future<void> _loadAudioDuration() async {
-    if (_player == null) return;
-    final info = await _player!.getProgress();
-    if (info != null && mounted) {
-      setState(() {
-        duration = info['duration'] ?? Duration.zero;
-      });
-    }
-  }
 
   @override
   void initState() {
@@ -101,6 +62,16 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
     _player?.closePlayer();
     _player = null;
     super.dispose();
+  }
+
+  Future<void> _loadAudioDuration() async {
+    if (_player == null) return;
+    final info = await _player!.getProgress();
+    if (info != null && mounted) {
+      setState(() {
+        duration = info['duration'] ?? Duration.zero;
+      });
+    }
   }
 
   void _toggleAudio() async {
@@ -137,12 +108,60 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
     }
   }
 
+  Widget _buildAudioWave() {
+    final audioSeconds = widget.audioLength ?? 0;
+    final minutes = (audioSeconds ~/ 60).toString().padLeft(2, '0');
+    final seconds = (audioSeconds % 60).toString().padLeft(2, '0');
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(
+          isPlaying ? Icons.pause : Icons.play_arrow,
+          color: widget.isMe ? AppColors.white : AppColors.black,
+        ),
+        SizedBox(width: 8.w),
+        Row(
+          children: List.generate(18, (i) {
+            return Container(
+              margin: EdgeInsets.symmetric(horizontal: 2.w),
+              width: 3.w,
+              height: (i.isEven ? 18.h : 10.h),
+              decoration: BoxDecoration(
+                color: (widget.isMe ? AppColors.white : AppColors.black).withOpacity(
+                  0.7,
+                ),
+                borderRadius: BorderRadius.circular(4),
+              ),
+            );
+          }),
+        ),
+        SizedBox(width: 8.w),
+        Text(
+          "$minutes:$seconds",
+          style: TextStyle(
+            color: widget.isMe ? AppColors.white : AppColors.black,
+            fontSize: 12.sp,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Future<ImageProvider> _getVideoThumbnail(File file) async {
+    final uint8list = await VideoThumbnail.thumbnailData(
+      video: file.path,
+      imageFormat: ImageFormat.JPEG,
+      maxWidth: 300,
+      quality: 75,
+    );
+    return MemoryImage(uint8list!);
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget bubbleContent;
 
     if (widget.location != null) {
-      // Existing location message code (unchanged)
       bubbleContent = GestureDetector(
         onTap: () {
           Navigator.push(
@@ -178,7 +197,7 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
                     children: [
                       TileLayer(
                         urlTemplate:
-                        'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+                            'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
                         subdomains: ['a', 'b', 'c', 'd'],
                       ),
                       MarkerLayer(
@@ -221,19 +240,17 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
                   top: 10.h,
                   left: 12.w,
                   child: Container(
-                    padding:
-                    EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10.w,
+                      vertical: 4.h,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.black.withOpacity(0.55),
                       borderRadius: BorderRadius.circular(20.r),
                     ),
                     child: Row(
                       children: [
-                        Icon(
-                          Icons.place,
-                          color: AppColors.white,
-                          size: 14.r,
-                        ),
+                        Icon(Icons.place, color: AppColors.white, size: 14.r),
                         SizedBox(width: 4.w),
                         Text(
                           context.l10n.location,
@@ -249,8 +266,10 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
                   bottom: 10.h,
                   right: 12.w,
                   child: Container(
-                    padding:
-                    EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10.w,
+                      vertical: 4.h,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.black.withOpacity(0.55),
                       borderRadius: BorderRadius.circular(20.r),
@@ -269,7 +288,6 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
         ),
       );
     } else if (widget.audioFile != null) {
-      // Audio message UI
       bubbleContent = GestureDetector(
         onTap: _toggleAudio,
         child: Container(
@@ -279,10 +297,64 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
             borderRadius: BorderRadius.circular(16.r),
           ),
           child: _buildAudioWave(),
-      ),
+        ),
+      );
+    } else if (widget.mediaFile != null) {
+      bubbleContent = GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => FullMediaScreen(
+                file: widget.mediaFile!,
+                type: widget.mediaType!,
+              ),
+            ),
+          );
+        },
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16.r),
+          child: widget.mediaType == MediaType.image
+              ? Image.file(
+                  widget.mediaFile!,
+                  width: 0.6.sw,
+                  height: 190.h,
+                  fit: BoxFit.cover,
+                )
+              : Stack(
+                  children: [
+                    FutureBuilder<ImageProvider>(
+                      future: _getVideoThumbnail(widget.mediaFile!),
+                      builder: (context, snapshot) {
+                        return Container(
+                          width: 0.6.sw,
+                          height: 190.h,
+                          decoration: BoxDecoration(
+                            color: AppColors.black,
+                            image: snapshot.hasData
+                                ? DecorationImage(
+                                    image: snapshot.data!,
+                                    fit: BoxFit.cover,
+                                  )
+                                : null,
+                          ),
+                        );
+                      },
+                    ),
+                    Positioned.fill(
+                      child: Center(
+                        child: Icon(
+                          Icons.play_circle_fill,
+                          size: 48.r,
+                          color: AppColors.white.withOpacity(0.8),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+        ),
       );
     } else {
-      // Text message (unchanged)
       bubbleContent = Text(
         widget.message ?? '',
         textDirection: getTextDirection(widget.message ?? ''),
@@ -296,8 +368,9 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.h, horizontal: 12.w),
       child: Row(
-        mainAxisAlignment:
-        widget.isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+        mainAxisAlignment: widget.isMe
+            ? MainAxisAlignment.end
+            : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!widget.isMe) ChatAvatar(widget.avatarUrl),
@@ -309,26 +382,38 @@ class _ChatMessageBubbleState extends State<ChatMessageBubble> {
                   : CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: widget.location == null && widget.audioFile == null
+                  padding:
+                      widget.location == null &&
+                          widget.audioFile == null &&
+                          widget.mediaFile == null
                       ? EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h)
                       : EdgeInsets.zero,
-                  decoration: widget.location == null && widget.audioFile == null
+                  decoration:
+                      widget.location == null &&
+                          widget.audioFile == null &&
+                          widget.mediaFile == null
                       ? BoxDecoration(
-                    color: widget.isMe ? AppColors.turnbullBlue : AppColors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16.r),
-                      topRight: Radius.circular(16.r),
-                      bottomLeft: Radius.circular(widget.isMe ? 16.r : 4.r),
-                      bottomRight: Radius.circular(widget.isMe ? 4.r : 16.r),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.black.withOpacity(0.05),
-                        blurRadius: 6,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  )
+                          color: widget.isMe
+                              ? AppColors.turnbullBlue
+                              : AppColors.white,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(16.r),
+                            topRight: Radius.circular(16.r),
+                            bottomLeft: Radius.circular(
+                              widget.isMe ? 16.r : 4.r,
+                            ),
+                            bottomRight: Radius.circular(
+                              widget.isMe ? 4.r : 16.r,
+                            ),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.black.withOpacity(0.05),
+                              blurRadius: 6,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        )
                       : null,
                   child: bubbleContent,
                 ),
@@ -362,9 +447,6 @@ class ChatAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 24.r,
-      backgroundImage: NetworkImage(avatarUrl),
-    );
+    return CircleAvatar(radius: 24.r, backgroundImage: NetworkImage(avatarUrl));
   }
 }

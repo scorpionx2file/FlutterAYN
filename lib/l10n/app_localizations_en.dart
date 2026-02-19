@@ -498,4 +498,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unfollow => 'Unfollow';
+
+  @override
+  String get takePhoto => 'ُTake Photo';
+
+  @override
+  String get recordVideo => 'Record Video';
+
+  @override
+  String get chooseImage => 'Cُhoose Image';
+
+  @override
+  String get chooseVideo => 'Cُhoose Video';
 }

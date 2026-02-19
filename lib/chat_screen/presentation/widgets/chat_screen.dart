@@ -1,8 +1,10 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+
 import '../../../core/constants/chat_screen/chat_message_bubble.dart';
 import '../../../core/theme/colors/app_colors.dart';
 import '../../../core/theme/fonts/app_text_styles.dart';
@@ -44,8 +46,7 @@ class _ChatScreenState extends State<ChatScreen> {
         'time': '16 min ago',
       },
       {
-        'message':
-        'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء 😍',
+        'message': 'هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء 😍',
         'isMe': false,
         'avatarUrl': 'https://i.pravatar.cc/150?img=5',
         'time': '16 min ago',
@@ -87,6 +88,20 @@ class _ChatScreenState extends State<ChatScreen> {
         'audioLength': durationInSeconds,
       });
     });
+    _scrollToBottom();
+  }
+
+  void _sendMedia(File file, MediaType type) {
+    setState(() {
+      messages.add({
+        'mediaFile': file,
+        'mediaType': type,
+        'isMe': true,
+        'avatarUrl': 'https://i.pravatar.cc/150?img=12',
+        'time': 'now',
+      });
+    });
+    _scrollToBottom();
   }
 
   void _scrollToBottom() {
@@ -113,7 +128,8 @@ class _ChatScreenState extends State<ChatScreen> {
     if (permission == LocationPermission.deniedForever) return null;
 
     return await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+      desiredAccuracy: LocationAccuracy.high,
+    );
   }
 
   @override
@@ -152,27 +168,24 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                 ),
                 SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                      final msg = messages[index];
-                      return ChatMessageBubble(
-                        message: msg['message'],
-                        location: msg['location'],
-                        audioFile: msg['audioFile'],
-                        isMe: msg['isMe'],
-                        avatarUrl: msg['avatarUrl'],
-                        time: msg['time'],
-                        audioLength: msg['audioLength'] is int
-                              ? msg['audioLength'] as int
-                              : int.tryParse(msg['audioLength'].toString()),
-                      );
-                    },
-                    childCount: messages.length,
-                  ),
+                  delegate: SliverChildBuilderDelegate((context, index) {
+                    final msg = messages[index];
+                    return ChatMessageBubble(
+                      message: msg['message'],
+                      location: msg['location'],
+                      audioFile: msg['audioFile'],
+                      mediaFile: msg['mediaFile'],
+                      mediaType: msg['mediaType'],
+                      isMe: msg['isMe'],
+                      avatarUrl: msg['avatarUrl'],
+                      time: msg['time'],
+                      audioLength: msg['audioLength'] is int
+                          ? msg['audioLength'] as int
+                          : int.tryParse(msg['audioLength'].toString()),
+                    );
+                  }, childCount: messages.length),
                 ),
-                SliverToBoxAdapter(
-                  child: SizedBox(height: 90.h),
-                ),
+                SliverToBoxAdapter(child: SizedBox(height: 90.h)),
               ],
             ),
           ),
@@ -180,6 +193,7 @@ class _ChatScreenState extends State<ChatScreen> {
             onSendMessage: _sendMessage,
             onSendLocation: _sendLocation,
             onSendAudio: _sendAudio,
+            onSendMedia: _sendMedia,
           ),
         ],
       ),

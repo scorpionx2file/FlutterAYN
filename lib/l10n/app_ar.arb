@@ -238,4 +238,9 @@
   "following_verb": "يتابعه",
   "followers_verb": "يتابع"
 
+  "takePhoto": "التقط صوره"
+  "recordVideo": "التقط فيديو"
+  "chooseImage": "اختر صوره"
+  "chooseVideo": "اختر فيديو"
+
 }

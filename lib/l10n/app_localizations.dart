@@ -1061,6 +1061,31 @@ abstract class AppLocalizations {
   /// **'tapToView'**
   String get tapToView;
 
+  /// No description provided for @takePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'takePhoto'**
+  String get takePhoto;
+
+  /// No description provided for @recordVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'recordVideo'**
+  String get recordVideo;
+
+  /// No description provided for @chooseImage.
+  ///
+  /// In en, this message translates to:
+  /// **'chooseImage'**
+  String get chooseImage;
+
+  /// No description provided for @chooseVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'chooseVideo'**
+  String get chooseVideo;
+
+
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
