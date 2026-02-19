@@ -1073,18 +1073,11 @@ abstract class AppLocalizations {
   /// **'recordVideo'**
   String get recordVideo;
 
-  /// No description provided for @chooseImage.
+  /// No description provided for @chooseFromGallery.
   ///
   /// In en, this message translates to:
-  /// **'chooseImage'**
-  String get chooseImage;
-
-  /// No description provided for @chooseVideo.
-  ///
-  /// In en, this message translates to:
-  /// **'chooseVideo'**
-  String get chooseVideo;
-
+  /// **'chooseFromGallery'**
+  String get chooseFromGallery;
 
 }
 

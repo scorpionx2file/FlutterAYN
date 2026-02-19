@@ -23,6 +23,28 @@ class MediaPicker {
     return File(pickedFile.path);
   }
 
+  /// Pick either image or video from gallery
+  static Future<Map<String, dynamic>?> pickMediaFromGallery() async {
+    final granted = await Permission.photos.request();
+    if (!granted.isGranted) return null;
+
+    final picker = ImagePicker();
+
+    // Pick either image or video
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery)
+        ?? await picker.pickVideo(source: ImageSource.gallery);
+
+    if (pickedFile == null) return null;
+
+    final isVideo = pickedFile.path.endsWith('.mp4') ||
+        pickedFile.path.endsWith('.mov');
+
+    return {
+      'file': File(pickedFile.path),
+      'type': isVideo ? 'video' : 'image',
+    };
+  }
+
   static Future<bool> requestPermissions() async {
     if (Platform.isAndroid) {
       final statuses = await [

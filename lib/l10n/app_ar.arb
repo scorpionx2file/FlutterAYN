@@ -240,7 +240,6 @@
 
   "takePhoto": "التقط صوره"
   "recordVideo": "التقط فيديو"
-  "chooseImage": "اختر صوره"
-  "chooseVideo": "اختر فيديو"
+  "chooseFromGallery": "اختر من المعرض"
 
 }

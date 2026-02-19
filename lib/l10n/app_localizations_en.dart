@@ -506,8 +506,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get recordVideo => 'Record Video';
 
   @override
-  String get chooseImage => 'Cُhoose Image';
+  String get chooseFromGallery => 'Choose From Gallery';
 
-  @override
-  String get chooseVideo => 'Cُhoose Video';
 }

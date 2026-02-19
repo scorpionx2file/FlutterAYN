@@ -88,6 +88,8 @@ class _ChatInputBarState extends State<ChatInputBar> {
   void _openMediaPickerSheet() {
     showModalBottomSheet(
       context: context,
+      isDismissible: true, // allows tap outside to dismiss
+      enableDrag: true,    // allows swipe down to dismiss
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
       ),
@@ -116,23 +118,19 @@ class _ChatInputBarState extends State<ChatInputBar> {
               },
             ),
             _mediaTile(
-              icon: Icons.photo,
-              title: context.l10n.chooseImage,
+              icon: Icons.photo_library,
+              title: context.l10n.chooseFromGallery,
               onTap: () async {
                 Navigator.pop(context);
-                final file = await MediaPicker.pickImage();
-                if (file != null)
-                  widget.onSendMedia?.call(file, MediaType.image);
-              },
-            ),
-            _mediaTile(
-              icon: Icons.video_library,
-              title: context.l10n.chooseVideo,
-              onTap: () async {
-                Navigator.pop(context);
-                final file = await MediaPicker.pickVideo();
-                if (file != null)
-                  widget.onSendMedia?.call(file, MediaType.video);
+                final media = await MediaPicker.pickMediaFromGallery();
+                if (media != null) {
+                  final file = media['file'] as File;
+                  final type = media['type'] as String;
+                  widget.onSendMedia?.call(
+                    file,
+                    type == 'video' ? MediaType.video : MediaType.image,
+                  );
+                }
               },
             ),
           ],
@@ -276,8 +274,6 @@ class _ChatInputBarState extends State<ChatInputBar> {
 
   @override
   Widget build(BuildContext context) {
-    final textController = TextEditingController();
-
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12.w),
       height: 60.h,

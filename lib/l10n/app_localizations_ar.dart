@@ -506,9 +506,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get recordVideo => 'التقط فيديو';
 
   @override
-  String get chooseImage => 'اختر صوره';
-
-  @override
-  String get chooseVideo => 'اختر فيديو';
+  String get chooseFromGallery => 'اختر من المعرض';
 
 }
