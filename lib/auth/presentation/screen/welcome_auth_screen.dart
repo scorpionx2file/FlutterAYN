@@ -35,7 +35,7 @@ class WelcomeAuthScreen extends StatelessWidget {
             width: double.infinity,
             child: AppButton(
               text: l10n.signUp,
-              onPressed: () => context.go(AppRoutes.chooseGates),
+              onPressed: () => context.go("${AppRoutes.chooseGates}?isRegister=true"),
               height: 36.h,
               backgroundColor: AppColors.turnbullBlue,
             ),

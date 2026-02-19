@@ -936,7 +936,12 @@ final GoRouter router = GoRouter(
     ),
     GoRoute(
       path: AppRoutes.chooseGates,
-      builder: (context, state) => const ChooseGatesScreen(),
+      builder: (context, state) {
+        final extra = state.uri.queryParameters["isRegister"]=='true';
+        return ChooseGatesScreen(
+          isRegister: extra,
+        );
+      },
     ),
     GoRoute(
       path: AppRoutes.savedBags,
