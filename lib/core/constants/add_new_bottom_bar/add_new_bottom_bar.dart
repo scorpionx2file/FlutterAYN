@@ -58,7 +58,7 @@ class AddNewBottomBar extends StatelessWidget{
 
           AppButton(
             text: text,
-            onPressed: () {},
+            onPressed: onTap,
             backgroundColor: buttonColor,
             icon: icon,
             textStyle: AppTextStyles.button.copyWith(

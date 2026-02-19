@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
-import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 class TextArea extends StatelessWidget {
   final String hintText;
   final double height;
+  final TextEditingController? controller;
 
   const TextArea({
     super.key,
     required this.hintText,
-    required this.height
+    required this.height,
+    this.controller,
   });
 
   @override
@@ -27,12 +28,15 @@ class TextArea extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.r),
         ),
         child: TextField(
+          controller: controller,
           maxLines: null,
           expands: true,
           textAlignVertical: TextAlignVertical.top,
           decoration: InputDecoration(
             hintText: hintText,
-            hintStyle: AppTextStyles.description.copyWith(color: AppColors.spanishGrey),
+            hintStyle: AppTextStyles.description.copyWith(
+              color: AppColors.spanishGrey,
+            ),
             border: InputBorder.none,
             contentPadding: EdgeInsets.zero,
           ),

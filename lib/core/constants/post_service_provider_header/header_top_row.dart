@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/constants/post_service_provider_header/post_or_service_provider_header.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
+import '../bag/save_to_bag_bottom_sheet.dart';
 import 'header_actions.dart';
 import 'header_avatar.dart';
 import 'header_use_info.dart';
@@ -36,7 +37,15 @@ class HeaderTopRow extends StatelessWidget {
 
         HeaderActions(
           iconColor: iconColor,
-          onMoreTap: onMoreTap,
+          onMoreTap: (){},
+            onSuitcaseTap: () {
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (_) => const SaveToBagBottomSheet(),
+              );
+            },
           isHighlighted: data.isHighlighted
         ),
       ],

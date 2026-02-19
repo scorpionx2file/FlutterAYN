@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:traveller/core/constants/button/app_button.dart';
+import 'package:traveller/core/theme/colors/app_colors.dart';
 
 class LocationPickerBottomSheet extends StatefulWidget {
-  final LatLng initialPosition; // Pass initial position directly
-  final void Function(String locationUrl) onSend;
+  final LatLng initialPosition;
+  final void Function(LatLng location) onSend;
 
   const LocationPickerBottomSheet({
     super.key,
@@ -17,8 +20,7 @@ class LocationPickerBottomSheet extends StatefulWidget {
       _LocationPickerBottomSheetState();
 }
 
-class _LocationPickerBottomSheetState
-    extends State<LocationPickerBottomSheet> {
+class _LocationPickerBottomSheetState extends State<LocationPickerBottomSheet> {
   late LatLng selectedLatLng;
 
   @override
@@ -33,7 +35,6 @@ class _LocationPickerBottomSheetState
       height: MediaQuery.of(context).size.height * 0.75,
       child: Column(
         children: [
-          // MAP
           Expanded(
             child: FlutterMap(
               options: MapOptions(
@@ -48,19 +49,19 @@ class _LocationPickerBottomSheetState
               children: [
                 TileLayer(
                   urlTemplate:
-                  'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+                      'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
                   subdomains: ['a', 'b', 'c', 'd'],
                 ),
                 MarkerLayer(
                   markers: [
                     Marker(
                       point: selectedLatLng,
-                      width: 40,
-                      height: 40,
+                      width: 36.w,
+                      height: 36.h,
                       child: Icon(
                         Icons.location_on,
-                        size: 40,
-                        color: Colors.red,
+                        size: 36.r,
+                        color: AppColors.lebaneseRed,
                       ),
                     ),
                   ],
@@ -68,20 +69,17 @@ class _LocationPickerBottomSheetState
               ],
             ),
           ),
-
-          // SEND BUTTON
           Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16.r),
             child: SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
+              child: AppButton(
+                height: 32.h,
+                text: 'Send Location',
                 onPressed: () {
-                  final locationUrl =
-                      'https://www.openstreetmap.org/?mlat=${selectedLatLng.latitude}&mlon=${selectedLatLng.longitude}';
-                  widget.onSend(locationUrl);
+                  widget.onSend(selectedLatLng);
                   Navigator.pop(context);
                 },
-                child: const Text('Send location'),
               ),
             ),
           ),
