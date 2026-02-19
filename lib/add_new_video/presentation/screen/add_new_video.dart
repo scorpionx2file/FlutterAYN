@@ -143,7 +143,7 @@ class _AddNewVideoState extends State<AddNewVideo> {
 
             try {
               if (saveToGallery) {
-                await MediaPicker.saveVideoToGallery(file.path);
+                print("saved");
               }
             } catch (e) {
               debugPrint("Gallery save failed: $e");

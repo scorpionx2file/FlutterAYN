@@ -42,6 +42,8 @@ class _AddNewEventState extends State<AddNewEvent>{
   bool subscribeInEvent = true;
   LatLng? selectedLocation;
   List<String> selectedTypes = [];
+  String? eventLink;
+  final TextEditingController linkController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
   final GlobalKey<MediaTextAreaState> mediaKey = GlobalKey<MediaTextAreaState>();
@@ -235,6 +237,68 @@ class _AddNewEventState extends State<AddNewEvent>{
     );
   }
 
+  void _openLinkDialog() {
+    linkController.text = eventLink ?? "";
+    bool isValid = true;
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            String? errorText = isValid ? null : "Invalid link";
+
+            return AlertDialog(
+              title: Text(context.l10n.eventLink),
+              content: TextField(
+                controller: linkController,
+                keyboardType: TextInputType.url,
+                decoration: InputDecoration(
+                  hintText: "https://example.com",
+                  errorText: errorText,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: isValid ? AppColors.spanishGrey : AppColors.lebaneseRed,
+                    ),
+                  ),
+                ),
+                onChanged: (_) {
+                  if (!isValid) setStateDialog(() => isValid = true);
+                },
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => context.pop(),
+                  child: Text("cancel"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    final text = linkController.text.trim();
+
+                    final urlPattern = r'^(https?:\/\/)?([\w\-]+\.)+[\w]{2,}(\/\S*)?$';
+                    final isUrlValid = RegExp(urlPattern).hasMatch(text);
+
+                    if (text.isEmpty || !isUrlValid) {
+                      setStateDialog(() => isValid = false);
+                      return;
+                    }
+
+                    setState(() {
+                      eventLink = text;
+                    });
+
+                    context.pop();
+                  },
+                  child: Text(context.l10n.save),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     String month = convertMonthToText(month: eventDate?.month??0);
@@ -286,12 +350,14 @@ class _AddNewEventState extends State<AddNewEvent>{
 
                 AddNewPostOptionTile(
                   icon: Image.asset("assets/images/icons/link.png"),
-                  title: context.l10n.eventLink,
+                  title: eventLink == null
+                      ? context.l10n.eventLink
+                      : eventLink!,
                   showDivider: false,
                   showIcon: false,
-                  onTap: () {}
+                  onTap: _openLinkDialog,
                 ),
-        
+
                 SizedBox(height: 10.h),
 
                 AddNewPostOptionTile(
