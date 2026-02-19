@@ -41,6 +41,7 @@ class _AddNewEventState extends State<AddNewEvent>{
   int personsNumber = 150;
   bool subscribeInEvent = true;
   LatLng? selectedLocation;
+  List<String> selectedTypes = [];
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
   final GlobalKey<MediaTextAreaState> mediaKey = GlobalKey<MediaTextAreaState>();
@@ -304,20 +305,29 @@ class _AddNewEventState extends State<AddNewEvent>{
 
                 AddNewPostOptionTile(
                   icon: Image.asset("assets/images/icons/hashtag.png"),
-                  title: context.l10n.chooseAType,
+                  title: selectedTypes.isEmpty
+                      ? context.l10n.chooseAType
+                      : selectedTypes.join(", "),
                   showDivider: false,
-                  onTap: (){
-                    context.push(
+                  onTap: () async {
+                    final result = await context.push(
                       AppRoutes.addTypes,
                       extra: AddTypesArgs(
-                          title: context.l10n.addEvent,
-                          isEvent: true,
-                          selectedIndex: selectedIndex
+                        title: context.l10n.addEvent,
+                        isEvent: false,
+                        selectedIndex: 0,
                       ),
                     );
+
+                    if (result != null && result is List<String>) {
+                      setState(() {
+                        selectedTypes = result;
+                      });
+                    }
                   },
                 ),
-        
+
+
                 SizedBox(height: 10.h),
 
                 _buildDateSection(

@@ -33,6 +33,7 @@ class AddNewVideo extends StatefulWidget {
 class _AddNewVideoState extends State<AddNewVideo> {
   LatLng? selectedLocation;
   bool saveToGallery = true;
+  List<String> selectedTypes = [];
 
   @override
   void initState() {
@@ -87,17 +88,25 @@ class _AddNewVideoState extends State<AddNewVideo> {
 
             AddNewPostOptionTile(
               icon: Image.asset("assets/images/icons/hashtag.png"),
-              title: context.l10n.chooseAType,
+              title: selectedTypes.isEmpty
+                  ? context.l10n.chooseAType
+                  : selectedTypes.join(", "),
               showDivider: false,
-              onTap: (){
-                context.push(
+              onTap: () async {
+                final result = await context.push(
                   AppRoutes.addTypes,
                   extra: AddTypesArgs(
-                      title: context.l10n.addVideo,
-                      isEvent: false,
-                      selectedIndex: 0
+                    title: context.l10n.addVideo,
+                    isEvent: false,
+                    selectedIndex: 0,
                   ),
                 );
+
+                if (result != null && result is List<String>) {
+                  setState(() {
+                    selectedTypes = result;
+                  });
+                }
               },
             ),
 

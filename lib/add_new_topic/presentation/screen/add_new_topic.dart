@@ -31,6 +31,7 @@ class AddNewTopic extends StatefulWidget {
 class _AddNewTopicState extends State<AddNewTopic> {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
+  List<String> selectedTypes = [];
 
   final GlobalKey<MediaTextAreaState> mediaKey = GlobalKey<MediaTextAreaState>();
 
@@ -70,13 +71,25 @@ class _AddNewTopicState extends State<AddNewTopic> {
             SizedBox(height: 10.h),
             AddNewPostOptionTile(
               icon: Image.asset("assets/images/icons/hashtag.png"),
-              title: context.l10n.chooseAType,
+              title: selectedTypes.isEmpty
+                  ? context.l10n.chooseAType
+                  : selectedTypes.join(", "),
               showDivider: false,
-              onTap: () {
-                context.push(
+              onTap: () async {
+                final result = await context.push(
                   AppRoutes.addTypes,
-                  extra: AddTypesArgs(title: context.l10n.addTopic, isEvent: false, selectedIndex: 0),
+                  extra: AddTypesArgs(
+                    title: context.l10n.addTopic,
+                    isEvent: false,
+                    selectedIndex: 0,
+                  ),
                 );
+
+                if (result != null && result is List<String>) {
+                  setState(() {
+                    selectedTypes = result;
+                  });
+                }
               },
             ),
             SizedBox(height: 30.h),
