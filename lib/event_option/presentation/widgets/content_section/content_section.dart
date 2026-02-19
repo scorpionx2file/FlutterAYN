@@ -36,7 +36,7 @@ final PlaceContent placeContent;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 22.w),
+      padding: EdgeInsets.symmetric(horizontal: 12.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

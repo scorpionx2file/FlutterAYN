@@ -34,10 +34,11 @@ class EventList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      padding: EdgeInsets.only(top: 6.h),
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemCount: _itemCount,
-      separatorBuilder: (_, __) => SizedBox(height: 16.h),
+      separatorBuilder: (_, __) => SizedBox(height: 10.h),
       itemBuilder: (_, index) => _buildItem(index),
     );
   }

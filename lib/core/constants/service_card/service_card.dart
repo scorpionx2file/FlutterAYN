@@ -14,7 +14,7 @@ class ServiceCard extends StatelessWidget {
     required this.service,
     required this.image,
     required this.colors,
-    this.isSelected = false, // default false
+    this.isSelected = false,
   });
 
   @override
