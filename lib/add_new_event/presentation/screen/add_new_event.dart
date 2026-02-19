@@ -39,6 +39,7 @@ class _AddNewEventState extends State<AddNewEvent>{
   DateTime? lastDate;
   double eventPayment = 120;
   int personsNumber = 150;
+  bool subscribeInEvent = true;
   LatLng? selectedLocation;
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
@@ -332,18 +333,19 @@ class _AddNewEventState extends State<AddNewEvent>{
 
                 SizedBox(height: 10.h),
 
-                _buildDateSection(
-                  title: context.l10n.lastTimeForSubscription,
-                  date: lastDate,
-                  onTap: eventDate == null ? () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(context.l10n.selectEventDateFirst)),
-                    );
-                  } : _pickLastDate,
-                  text: lastDate != null
+                if(subscribeInEvent)
+                  _buildDateSection(
+                    title: context.l10n.lastTimeForSubscription,
+                    date: lastDate,
+                    onTap: eventDate == null ? () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(context.l10n.selectEventDateFirst)),
+                      );
+                    } : _pickLastDate,
+                    text: lastDate != null
                       ? "${lastDate!.day} $month"
                       : context.l10n.selectDate,
-                ),
+                  ),
         
                 SizedBox(height: 10.h),
 
@@ -372,6 +374,12 @@ class _AddNewEventState extends State<AddNewEvent>{
             onTap: (){},
           showSwitch: true,
           switchTitle: context.l10n.subscribeInEvent,
+          switchValue: subscribeInEvent,
+          onSwitchChanged: (value){
+              setState(() {
+                subscribeInEvent = value;
+              });
+          },
           showTypes: true,
           items:  [
             PostTypeItem(
