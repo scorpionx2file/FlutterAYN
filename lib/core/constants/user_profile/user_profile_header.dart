@@ -103,6 +103,7 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
                   child: Row(
                     children: [
                       topHeaderIcon(
+                        onTap: () => context.push(AppRoutes.nearbyPersonsAndChatsList),
                         Icons.chat_bubble_outline,
                         context.l10n.messages
                       ),
@@ -418,7 +419,9 @@ class _UserProfileHeaderState extends State<UserProfileHeader>
                 children: [
                   Flexible(
                     flex: 1, // Chat button gets 1 share
-                    child: ChatButton(onTap: () {}),
+                    child: ChatButton(onTap: () {
+                      context.push(AppRoutes.nearbyPersonsAndChatsList);
+                    }),
                   ),
                   SizedBox(width: 8.w),
                   Flexible(

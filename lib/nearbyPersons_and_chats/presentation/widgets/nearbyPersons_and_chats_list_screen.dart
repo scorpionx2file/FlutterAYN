@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:go_router/go_router.dart';
+import 'package:traveller/config/routes/app_routes.dart';
+import 'package:traveller/core/constants/chat_screen/chat_message_bubble.dart';
 import 'package:traveller/core/constants/nearby/nearby_persons_list_tile.dart';
 import 'package:traveller/core/constants/text_feild/app_text_feild.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
@@ -71,6 +74,10 @@ class _NearbyPersonsAndChatsListScreenState
             );
           },
         ),
+        actions: [
+          ChatAvatar("https://i.pravatar.cc/150?img=5"),
+          SizedBox(width: 8.w),
+        ],
       ),
       body: Column(
         children: [
@@ -137,7 +144,7 @@ class _NearbyPersonsAndChatsListScreenState
           name: item.name,
           miles: item.miles,
           isServiceProvider: item.isServiceProvider,
-          onButtonPressed: () {},
+          onButtonPressed: () {context.push(AppRoutes.chat);},
           onStoryTap: () {},
         );
       },
@@ -184,7 +191,7 @@ class _NearbyPersonsAndChatsListScreenState
           ),
           child: ChatTile(
             chatModel: chat,
-            onTap: () {},
+            onTap: () {context.push(AppRoutes.chat);},
             // Show mute icon on tile if chat.isMuted
           ),
         );
