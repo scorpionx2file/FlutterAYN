@@ -1079,6 +1079,291 @@ abstract class AppLocalizations {
   /// **'chooseFromGallery'**
   String get chooseFromGallery;
 
+  /// No description provided for @jan.
+  ///
+  /// In en, this message translates to:
+  /// **'Jan'**
+  String get jan;
+
+  /// No description provided for @feb.
+  ///
+  /// In en, this message translates to:
+  /// **'Feb'**
+  String get feb;
+
+  /// No description provided for @mar.
+  ///
+  /// In en, this message translates to:
+  /// **'Mar'**
+  String get mar;
+
+  /// No description provided for @apr.
+  ///
+  /// In en, this message translates to:
+  /// **'Apr'**
+  String get apr;
+
+  /// No description provided for @may.
+  ///
+  /// In en, this message translates to:
+  /// **'May'**
+  String get may;
+
+  /// No description provided for @jun.
+  ///
+  /// In en, this message translates to:
+  /// **'Jun'**
+  String get jun;
+
+  /// No description provided for @jul.
+  ///
+  /// In en, this message translates to:
+  /// **'Jul'**
+  String get jul;
+
+  /// No description provided for @aug.
+  ///
+  /// In en, this message translates to:
+  /// **'Aug'**
+  String get aug;
+
+  /// No description provided for @sep.
+  ///
+  /// In en, this message translates to:
+  /// **'Sep'**
+  String get sep;
+
+  /// No description provided for @oct.
+  ///
+  /// In en, this message translates to:
+  /// **'Oct'**
+  String get oct;
+
+  /// No description provided for @nov.
+  ///
+  /// In en, this message translates to:
+  /// **'Nov'**
+  String get nov;
+
+  /// No description provided for @dec.
+  ///
+  /// In en, this message translates to:
+  /// **'Dec'**
+  String get dec;
+
+  /// No description provided for @invalidMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid month'**
+  String get invalidMonth;
+
+  /// No description provided for @eventPayment.
+  ///
+  /// In en, this message translates to:
+  /// **'Event payment'**
+  String get eventPayment;
+
+  /// No description provided for @availability.
+  ///
+  /// In en, this message translates to:
+  /// **'Availability'**
+  String get availability;
+
+  /// No description provided for @eventDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Event Date'**
+  String get eventDate;
+
+  /// No description provided for @lastTimeForSubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'Last time for subscription'**
+  String get lastTimeForSubscription;
+
+  /// No description provided for @addPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Photo'**
+  String get addPhoto;
+
+  /// No description provided for @addVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Video'**
+  String get addVideo;
+
+  /// No description provided for @addPoll.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Poll'**
+  String get addPoll;
+
+  /// No description provided for @poll.
+  ///
+  /// In en, this message translates to:
+  /// **'Poll'**
+  String get poll;
+
+  /// No description provided for @subscribeInEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscribe in event'**
+  String get subscribeInEvent;
+
+  /// No description provided for @addEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Event'**
+  String get addEvent;
+
+  /// No description provided for @eventTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Event title'**
+  String get eventTitle;
+
+  /// No description provided for @eventDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Event details'**
+  String get eventDetails;
+
+  /// No description provided for @eventLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Event Link'**
+  String get eventLink;
+
+  /// No description provided for @chooseAGate.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a gate'**
+  String get chooseAGate;
+
+  /// No description provided for @chooseAType.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a type'**
+  String get chooseAType;
+
+  /// No description provided for @selectDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Select date'**
+  String get selectDate;
+
+  /// No description provided for @selectEventDateFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Select event date first'**
+  String get selectEventDateFirst;
+
+  /// No description provided for @postEvent.
+  ///
+  /// In en, this message translates to:
+  /// **'Post Event'**
+  String get postEvent;
+
+  /// No description provided for @permissionDeniedPleaseEnableInSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Permission denied. Please enable in settings'**
+  String get permissionDeniedPleaseEnableInSettings;
+
+  /// No description provided for @addTopic.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Topic'**
+  String get addTopic;
+
+  /// No description provided for @topicTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Topic title'**
+  String get topicTitle;
+
+  /// No description provided for @topicDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Topic details (20 word as minimum)'**
+  String get topicDetails;
+
+  /// No description provided for @postTopic.
+  ///
+  /// In en, this message translates to:
+  /// **'Post Topic'**
+  String get postTopic;
+
+  /// No description provided for @postDetailsLimitation.
+  ///
+  /// In en, this message translates to:
+  /// **'Post must be at least 20 words'**
+  String get postDetailsLimitation;
+
+  /// No description provided for @postVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Post Video'**
+  String get postVideo;
+
+  /// No description provided for @saveVideoInGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Save video in gallery'**
+  String get saveVideoInGallery;
+
+  /// No description provided for @videoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Video Title'**
+  String get videoTitle;
+
+  /// No description provided for @answer.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer'**
+  String get answer;
+
+  /// No description provided for @addAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Answer'**
+  String get addAnswer;
+
+  /// No description provided for @pollQuestion.
+  ///
+  /// In en, this message translates to:
+  /// **'Poll Question'**
+  String get pollQuestion;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @searchForType.
+  ///
+  /// In en, this message translates to:
+  /// **'Search for type'**
+  String get searchForType;
+
+  /// No description provided for @paid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get paid;
+
+  /// No description provided for @notPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Not Paid'**
+  String get notPaid;
+
+  /// No description provided for @recordVideo.
+  ///
+  /// In en, this message translates to:
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -13,6 +13,7 @@ import 'package:traveller/auth/presentation/screen/forget_password_screen.dart';
 import 'package:traveller/auth/presentation/screen/sign_in_screen.dart';
 import 'package:traveller/auth/presentation/screen/welcome_auth_screen.dart';
 import 'package:traveller/chat_screen/presentation/widgets/chat_screen.dart';
+import 'package:traveller/core/constants/app_header/app_header.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import 'package:traveller/event_option/presentation/widgets/bottom_section/event_list.dart';
 import 'package:traveller/event_option/presentation/widgets/place_details_screen.dart';
@@ -26,6 +27,7 @@ import 'package:traveller/stories/presentation/widgets/story_screen.dart';
 import 'package:traveller/user_profile/presentation/screens/user_profile_screen.dart';
 import 'package:traveller/video/presentation/widgets/video&articles_screen.dart';
 
+import '../../add_new_topic/presentation/screen/poll_preview.dart';
 import '../../auth/presentation/screen/sign_up_screen.dart';
 import '../../become_a_service_provider/presentation/screens/select_service.dart';
 import '../../become_a_service_provider/presentation/screens/select_service_2.dart';
@@ -40,7 +42,6 @@ import '../../core/constants/gate/app_gate_card.dart';
 import '../../core/constants/post/post.dart';
 import '../../core/constants/post/post_content/post_content.dart';
 import '../../core/constants/post_service_provider_header/post_or_service_provider_header.dart';
-import '../../core/constants/service_package/package_card.dart';
 import '../../core/constants/story_item/story_item.dart';
 import '../../core/theme/colors/app_colors.dart';
 import '../../core/utils/map_bottom_sheet_util.dart';
@@ -54,6 +55,7 @@ import '../../profile_settings/presentation/terms_privacy/terms_privacy_screen.d
 import '../../search/screen/search_results_screen.dart';
 import '../../payment/presentation/payment_method_screen.dart';
 import '../../nearbyPersons_and_chats/presentation/widgets/nearbyPersons_and_chats_list_screen.dart';
+import '../../post_video/presentation/screen/post_video.dart';
 import '../../see_all_activities/presentation/screen/see_all_activities.dart';
 import '../../user_profile/presentation/screens/saved_bags_screen.dart';
 import '../../user_profile/presentation/screens/saved_posts_screen.dart';
@@ -937,9 +939,14 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: AppRoutes.chooseGates,
       builder: (context, state) {
+        final extra = state.extra as Map<String, dynamic>? ?? {};
+        final allowMultiple = extra['allowMultiple'] ?? true;
+        final title = extra['title'] ?? "Choose Gates";
         final extra = state.uri.queryParameters["isRegister"]=='true';
         return ChooseGatesScreen(
           isRegister: extra,
+          allowMultiple: allowMultiple,
+          appBar: allowMultiple ? null : AppHeader(title: title),
         );
       },
     ),
@@ -1052,10 +1059,23 @@ final GoRouter router = GoRouter(
 
     GoRoute(
         path: AppRoutes.addPoll,
-        builder: (context,state) => AddPoll(
-          imageUrl: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg",
-          location: "Alexandria, Egypt",
-        )
+        builder: (context,state) {
+          final initialPoll = state.extra as PollData?;
+          return AddPoll
+        (
+            imageUrl: "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg",
+            location: "Alexandria, Egypt",
+            initialPoll: initialPoll,
+        );
+    }
+    ),
+
+    GoRoute(
+      path: AppRoutes.postVideo,
+      builder: (context, state) {
+        final videoPath = state.extra as String;
+        return PostVideo(videoPath: videoPath);
+      },
     ),
 
     GoRoute(

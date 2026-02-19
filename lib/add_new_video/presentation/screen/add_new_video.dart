@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:traveller/core/constants/add_new_header/add_new_header.dart';
 import 'package:traveller/core/constants/app_header/app_header.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../../add_types/presentation/screen/add_types.dart';
+import '../../../auth/presentation/screen/choose_gates_screen.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/add_new_bottom_bar/add_new_bottom_bar.dart';
 import '../../../core/constants/add_new_build_map/add_new_build_map.dart';
@@ -31,6 +33,9 @@ class AddNewVideo extends StatefulWidget {
 
 class _AddNewVideoState extends State<AddNewVideo> {
   LatLng? selectedLocation;
+  bool saveToGallery = true;
+  List<String> selectedTypes = [];
+  String? selectedGateName;
 
   @override
   void initState() {
@@ -51,7 +56,7 @@ class _AddNewVideoState extends State<AddNewVideo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppHeader(
-        title: "Add Video",
+        title: context.l10n.addVideo,
         showBack: true,
       ),
       resizeToAvoidBottomInset: true,
@@ -68,34 +73,56 @@ class _AddNewVideoState extends State<AddNewVideo> {
             SizedBox(height: 20.h),
 
             TextArea(
-              hintText: "Video title",
+              hintText: context.l10n.videoTitle,
               height: 55.h,
             ),
 
             SizedBox(height: 10.h),
 
-            AddNewPostOptionTile(
-              icon: Image.asset("assets/images/icons/gate.png"),
-              title: "Choose a gate",
-              showDivider: false,
-              onTap: (){}
-            ),
+          AddNewPostOptionTile(
+            icon: Image.asset("assets/images/icons/gate.png"),
+            title: selectedGateName ?? context.l10n.chooseAGate,
+            showDivider: false,
+            onTap: () async {
+              final result = await context.push<GateItem>(
+                AppRoutes.chooseGates,
+                extra: {
+                  'allowMultiple': false,
+                  'title': context.l10n.addVideo,
+                },
+              );
+
+              if (result != null) {
+                setState(() {
+                  selectedGateName = result.title;
+                });
+              }
+            },
+          ),
 
             SizedBox(height: 10.h),
 
             AddNewPostOptionTile(
               icon: Image.asset("assets/images/icons/hashtag.png"),
-              title: "Choose a type",
+              title: selectedTypes.isEmpty
+                  ? context.l10n.chooseAType
+                  : selectedTypes.join(", "),
               showDivider: false,
-              onTap: (){
-                context.push(
+              onTap: () async {
+                final result = await context.push(
                   AppRoutes.addTypes,
                   extra: AddTypesArgs(
-                      title: "Add Video",
-                      isEvent: false,
-                      selectedIndex: 0
+                    title: context.l10n.addVideo,
+                    isEvent: false,
+                    selectedIndex: 0,
                   ),
                 );
+
+                if (result != null && result is List<String>) {
+                  setState(() {
+                    selectedTypes = result;
+                  });
+                }
               },
             ),
 
@@ -115,21 +142,42 @@ class _AddNewVideoState extends State<AddNewVideo> {
         ),
       ),
 
-        bottomNavigationBar: AddNewBottomBar(
-          text: "Post Video",
-          onTap: () async {
-            final file = await MediaPicker.recordVideoFromCamera();
-            if (file != null) {
-              print("Video path: ${file.path}");
+      bottomNavigationBar: AddNewBottomBar(
+        text: context.l10n.recordVideo,
+        switchTitle: context.l10n.saveVideoInGallery,
+        showSwitch: true,
+        switchValue: saveToGallery,
+        onSwitchChanged: (value) {
+          setState(() {
+            saveToGallery = value;
+          });
+        },
+        onTap: () async {
+          final file = await MediaPicker.recordVideoFromCamera();
+
+          if (file != null && mounted) {
+
+            try {
+              if (saveToGallery) {
+                print("saved");
+              }
+            } catch (e) {
+              debugPrint("Gallery save failed: $e");
             }
-          },
-          showSwitch: true,
-          switchTitle: "Save video in gallery",
-          icon: Icon(
-            Icons.videocam,
-            color: AppColors.white,
-          ),
-        )
+
+            if (!mounted) return;
+
+            context.push(
+              AppRoutes.postVideo,
+              extra: file.path,
+            );
+          }
+        },
+        icon: const Icon(
+          Icons.videocam,
+          color: AppColors.white,
+        ),
+      ),
     );
   }
 }

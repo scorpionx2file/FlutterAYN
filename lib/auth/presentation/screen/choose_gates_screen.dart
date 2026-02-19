@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
+import '../../../config/routes/app_routes.dart';
 import '../widgets/selectable_gate_card.dart';
 import '../widgets/sign_in_progress_bar.dart';
 
@@ -20,8 +20,16 @@ class GateItem {
 
 class ChooseGatesScreen extends StatefulWidget {
   final bool isRegister;
+  final bool allowMultiple;
+  final PreferredSizeWidget? appBar;
 
-  const ChooseGatesScreen({super.key, required this.isRegister});
+
+  const ChooseGatesScreen({
+    super.key,
+    required this.isRegister,
+    this.allowMultiple = true,
+    this.appBar,
+  });
 
   @override
   State<ChooseGatesScreen> createState() => _ChooseGatesScreenState();
@@ -73,9 +81,14 @@ class _ChooseGatesScreenState extends State<ChooseGatesScreen> {
 
   void _toggle(String id) {
     setState(() {
-      if (_selected.contains(id)) {
-        _selected.remove(id);
+      if (widget.allowMultiple) {
+        if (_selected.contains(id)) {
+          _selected.remove(id);
+        } else {
+          _selected.add(id);
+        }
       } else {
+        _selected.clear();
         _selected.add(id);
       }
     });
@@ -104,23 +117,36 @@ class _ChooseGatesScreenState extends State<ChooseGatesScreen> {
           .toList();
       context.pop(selectedGates);
     }
+    if (_selected.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Please choose a gate")),
+      );
+      return;
+    }
+
+    if (widget.allowMultiple) {
+      final selectedGates = _gates.where((g) => _selected.contains(g.id)).toList();
+      Navigator.of(context).pop(selectedGates);
+    } else {
+      final gate = _gates.firstWhere((g) => _selected.first == g.id);
+      Navigator.of(context).pop(gate);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     final progress = _selected.isEmpty ? 0.0 : (1 / 3);
-
     return Scaffold(
-      backgroundColor: AppColors.white,
+      appBar: widget.appBar,
       bottomNavigationBar: SafeArea(
         top: false,
         child: Padding(
-          padding: EdgeInsets.fromLTRB(18.w, 10.h, 18.w, 12.h),
+          padding: EdgeInsets.all(18.w),
           child: SizedBox(
             width: double.infinity,
             child: AppButton(
-              text: context.l10n.next,
-              onPressed: () => _next(),
+              text: "Select",
+              onPressed: _next,
               height: 36.h,
             ),
           ),
@@ -159,8 +185,7 @@ class _ChooseGatesScreenState extends State<ChooseGatesScreen> {
                     SizedBox(height: 18.h),
 
                     GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
+                      padding: EdgeInsets.all(18.w),
                       itemCount: _gates.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
@@ -171,7 +196,6 @@ class _ChooseGatesScreenState extends State<ChooseGatesScreen> {
                       itemBuilder: (context, i) {
                         final g = _gates[i];
                         return SelectableGateCard(
-                          key: ValueKey(g.id),
                           title: g.title,
                           image: AssetImage(g.asset),
                           selected: _selected.contains(g.id),
@@ -185,7 +209,6 @@ class _ChooseGatesScreenState extends State<ChooseGatesScreen> {
             ),
           ],
         ),
-      ),
     );
   }
 }

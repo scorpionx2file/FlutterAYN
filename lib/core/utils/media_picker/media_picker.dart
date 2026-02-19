@@ -88,5 +88,4 @@ class MediaPicker {
     if (pickedFile == null) return null;
     return File(pickedFile.path);
   }
-
 }

@@ -381,21 +381,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nameRequired => 'Name is required';
 
   @override
-  String get nearbyPersons => 'Nearby Persons';
-
-  @override
-  String get mute => 'Mute';
-
-  @override
-  String get delete => 'Delete';
-
-  @override
-  String get writeYourMessageHere => 'Write Your Message Here';
-
-  @override
-  String get tapToView => 'Tap To View';
-
-  @override
   String nameMin(int minLen) {
     return 'Name must be at least $minLen characters';
   }
@@ -413,6 +398,69 @@ class AppLocalizationsEn extends AppLocalizations {
   String passwordMin(int minLen) {
     return 'Password must be at least $minLen characters';
   }
+
+  @override
+  String get nearbyPersons => 'Nearby Persons';
+
+  @override
+  String get mute => 'Mute';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get writeYourMessageHere => 'Write Your Message Here';
+
+  @override
+  String get tapToView => 'Tap To View';
+
+  @override
+  String get jan => 'Jan';
+
+  @override
+  String get feb => 'Feb';
+
+  @override
+  String get mar => 'Mar';
+
+  @override
+  String get apr => 'Apr';
+
+  @override
+  String get may => 'May';
+
+  @override
+  String get jun => 'Jun';
+
+  @override
+  String get jul => 'Jul';
+
+  @override
+  String get aug => 'Aug';
+
+  @override
+  String get sep => 'Sep';
+
+  @override
+  String get oct => 'Oct';
+
+  @override
+  String get nov => 'Nov';
+
+  @override
+  String get dec => 'Dec';
+
+  @override
+  String get invalidMonth => 'Invalid month';
+
+  @override
+  String get eventPayment => 'Event payment';
+
+  @override
+  String get availability => 'Availability';
+
+  @override
+  String get eventDate => 'Event Date';
 
   @override
   String get saveToBagsTitle => 'Add to bags';
@@ -508,4 +556,95 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get chooseFromGallery => 'Choose From Gallery';
 
+  String get lastTimeForSubscription => 'Last time for subscription';
+
+  @override
+  String get addPhoto => 'Add Photo';
+
+  @override
+  String get addVideo => 'Add Video';
+
+  @override
+  String get addPoll => 'Add Poll';
+
+  @override
+  String get poll => 'Poll';
+
+  @override
+  String get subscribeInEvent => 'Subscribe in event';
+
+  @override
+  String get addEvent => 'Add Event';
+
+  @override
+  String get eventTitle => 'Event title';
+
+  @override
+  String get eventDetails => 'Event details';
+
+  @override
+  String get eventLink => 'Event Link';
+
+  @override
+  String get chooseAGate => 'Choose a gate';
+
+  @override
+  String get chooseAType => 'Choose a type';
+
+  @override
+  String get selectDate => 'Select date';
+
+  @override
+  String get selectEventDateFirst => 'Select event date first';
+
+  @override
+  String get postEvent => 'Post Event';
+
+  @override
+  String get permissionDeniedPleaseEnableInSettings => 'Permission denied. Please enable in settings';
+
+  @override
+  String get addTopic => 'Add Topic';
+
+  @override
+  String get topicTitle => 'Topic title';
+
+  @override
+  String get topicDetails => 'Topic details (20 word as minimum)';
+
+  @override
+  String get postTopic => 'Post Topic';
+
+  @override
+  String get postDetailsLimitation => 'Post must be at least 20 words';
+
+  @override
+  String get postVideo => 'Post Video';
+
+  @override
+  String get saveVideoInGallery => 'Save video in gallery';
+
+  @override
+  String get videoTitle => 'Video Title';
+
+  @override
+  String get answer => 'Answer';
+
+  @override
+  String get addAnswer => 'Add Answer';
+
+  @override
+  String get pollQuestion => 'Poll Question';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get searchForType => 'Search for type';
+
+  @override
+  String get paid => 'Paid';
+
+  @override
+  String get notPaid => 'Not Paid';
 }

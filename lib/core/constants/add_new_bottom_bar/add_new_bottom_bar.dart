@@ -16,6 +16,8 @@ class AddNewBottomBar extends StatelessWidget{
   final Color buttonColor;
   final Widget? icon;
   final Color textColor;
+  final bool switchValue;
+  final Function(bool)? onSwitchChanged;
 
   const AddNewBottomBar({
     super.key,
@@ -26,9 +28,12 @@ class AddNewBottomBar extends StatelessWidget{
     this.switchTitle = "",
     this.items,
     this.buttonColor = AppColors.turnbullBlue,
-    this.icon = null,
-    this.textColor = AppColors.white
+    this.icon,
+    this.textColor = AppColors.white,
+    this.switchValue = false,
+    this.onSwitchChanged,
   });
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +52,11 @@ class AddNewBottomBar extends StatelessWidget{
 
           SizedBox(height: 16.h),
 
-          if(showSwitch)
+          if (showSwitch)
             OptionSwitch(
               title: switchTitle,
-              value: true,
-                onChanged: (bool value) {  }
+              value: switchValue,
+              onChanged: onSwitchChanged ?? (_) {},
             ),
 
           SizedBox(height: 16.h),
@@ -76,7 +81,6 @@ class _AddMedia extends StatelessWidget {
   final double spacing;
 
   const _AddMedia({
-    super.key,
     required this.items,
     this.spacing = 15,
   });

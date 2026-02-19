@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:traveller/core/constants/add_new_bottom_bar/add_new_bottom_bar.dart';
 import 'package:traveller/core/constants/text_feild/app_text_feild.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../../core/constants/add_new_header/add_new_header.dart';
 import '../../../core/constants/app_header/app_header.dart';
-import '../../../core/constants/button/app_button.dart';
 import '../../../core/theme/colors/app_colors.dart';
 
 class AddTypesArgs{
@@ -88,7 +89,7 @@ class _AddTypesState extends State<AddTypes> {
             AppTextFields(
               controller: controller,
               icon: Icons.search,
-              hintText: "Search for type",
+              hintText: context.l10n.searchForType,
             ),
 
             SizedBox(height: 40.h),
@@ -132,9 +133,15 @@ class _AddTypesState extends State<AddTypes> {
       ),
 
       bottomNavigationBar: AddNewBottomBar(
-          text: "Save",
-          onTap: (){}
-      )
+        text: context.l10n.save,
+        onTap: () {
+          final selectedTypes = selectedIndexes
+              .map((index) => types[index])
+              .toList();
+
+          context.pop(selectedTypes);
+        },
+      ),
     );
   }
 }

@@ -2,35 +2,74 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/constants/add_new_header/add_new_header.dart';
 import 'package:traveller/core/constants/app_header/app_header.dart';
-import 'package:traveller/core/constants/button/app_button.dart';
-import 'package:traveller/core/constants/option_switch/option_switch.dart';
 import 'package:traveller/core/constants/poll_option/poll_option.dart';
 import 'package:traveller/core/constants/text_area/text_area.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
-
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
+import '../../../add_new_topic/presentation/screen/poll_preview.dart';
 import '../../../core/constants/add_new_bottom_bar/add_new_bottom_bar.dart';
 
 class AddPoll extends StatefulWidget{
   final String imageUrl;
   final String location;
+  final PollData? initialPoll;
 
   const AddPoll({
     super.key,
     required this.imageUrl,
-    required this.location
+    required this.location,
+    this.initialPoll,
   });
 
   @override
   State<AddPoll> createState() => _AddPollState();
 }
 
-class _AddPollState extends State<AddPoll>{
-  List<String> options = ["Option 1", "Option 2", "Option 3"];
+class _AddPollState extends State<AddPoll> {
+
+  final TextEditingController questionController = TextEditingController();
+  late List<TextEditingController> optionControllers;
+
+  bool _initialized = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    if (!_initialized) {
+      if (widget.initialPoll != null) {
+        questionController.text = widget.initialPoll!.question;
+
+        optionControllers = widget.initialPoll!.options
+            .map((option) => TextEditingController(text: option))
+            .toList();
+      } else {
+        optionControllers = List.generate(
+          3,
+              (index) => TextEditingController(
+            text: "${context.l10n.answer} ${index + 1}",
+          ),
+        );
+      }
+
+      _initialized = true;
+    }
+  }
+
+  @override
+  void dispose() {
+    questionController.dispose();
+    for (final controller in optionControllers) {
+      controller.dispose();
+    }
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppHeader(title: "Add Topic"),
+      appBar: AppHeader(title: context.l10n.addTopic),
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(8),
@@ -44,42 +83,40 @@ class _AddPollState extends State<AddPoll>{
 
             SizedBox(height: 20.h),
 
-            OptionSwitch(
-              title: "Add Poll",
-              value: true,
-              onChanged: (bool value) {  },
-            ),
-
-            SizedBox(height: 10.h),
-
             TextArea(
-                hintText: "Poll Question",
-                height: 50.h
+                hintText: context.l10n.pollQuestion,
+                height: 50.h,
+                controller: questionController
             ),
 
             SizedBox(height: 12.h),
 
-            ...List.generate( options.length, (index){
-                  return Padding(
+            ...List.generate(optionControllers.length, (index){
+              return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: PollOption(
-                        initialText: "Option ${index+1}",
-                        onTap: (){
-                          setState(() {
-                            options.removeAt(index);
-                          });
-                        }
+                      controller: optionControllers[index],
+                      onTap: (){
+                        setState(() {
+                          if (optionControllers.length > 2) {
+                            optionControllers[index].dispose();
+                            optionControllers.removeAt(index);
+                          }
+                        });
+                      },
                     ),
-                  );
+              );
             }),
 
             SizedBox(height: 8.h),
 
             _DottedBorderButton(
-                text: "Add Answer",
+                text: context.l10n.addAnswer,
                 onTap: (){
                   setState(() {
-                    options.add("Option ${options.length + 1}");
+                    optionControllers.add(
+                      TextEditingController(text: "Answer ${optionControllers.length + 1}"),
+                    );
                   });
                 }
             )
@@ -87,11 +124,23 @@ class _AddPollState extends State<AddPoll>{
       ),
       ),
       bottomNavigationBar: AddNewBottomBar(
-        text: "Post Event",
-        onTap: (){},
+        text: context.l10n.addPoll,
         buttonColor: AppColors.yellow,
-        textColor: AppColors.black,
+        onTap: () {
+          final question = questionController.text.trim();
+
+          final options = optionControllers
+              .map((c) => c.text.trim())
+              .where((text) => text.isNotEmpty)
+              .toList();
+
+          if (question.isEmpty || options.length < 2) return;
+
+          final poll = PollData(question: question, options: options);
+          Navigator.of(context).pop(poll);
+        },
       )
+
     );
   }
 }

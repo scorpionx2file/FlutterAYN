@@ -7,6 +7,8 @@ import 'package:traveller/core/constants/add_new_bottom_bar/add_new_bottom_bar.d
 import 'package:traveller/core/constants/event_data/event_data.dart';
 import 'package:traveller/core/constants/post_types/post_types.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
+import '../../../auth/presentation/screen/choose_gates_screen.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/add_new_build_map/add_new_build_map.dart';
 import '../../../core/constants/add_new_header/add_new_header.dart';
@@ -38,7 +40,12 @@ class _AddNewEventState extends State<AddNewEvent>{
   DateTime? lastDate;
   double eventPayment = 120;
   int personsNumber = 150;
+  bool subscribeInEvent = true;
   LatLng? selectedLocation;
+  List<String> selectedTypes = [];
+  String? eventLink;
+  String? selectedGateName;
+  final TextEditingController linkController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
   final GlobalKey<MediaTextAreaState> mediaKey = GlobalKey<MediaTextAreaState>();
@@ -60,19 +67,19 @@ class _AddNewEventState extends State<AddNewEvent>{
 
   String convertMonthToText({required int month}) {
     return switch (month) {
-      1 => "Jan",
-      2 => "Feb",
-      3 => "Mar",
-      4 => "Apr",
-      5 => "May",
-      6 => "Jun",
-      7 => "Jul",
-      8 => "Aug",
-      9 => "Sep",
-      10 => "Oct",
-      11 => "Nov",
-      12 => "Dec",
-      _ => "Invalid month",
+      1 => context.l10n.jan,
+      2 => context.l10n.feb,
+      3 => context.l10n.mar,
+      4 => context.l10n.apr,
+      5 => context.l10n.may,
+      6 => context.l10n.jun,
+      7 => context.l10n.jul,
+      8 => context.l10n.aug,
+      9 => context.l10n.sep,
+      10 => context.l10n.oct,
+      11 => context.l10n.nov,
+      12 => context.l10n.dec,
+      _ => context.l10n.invalidMonth,
     };
   }
 
@@ -189,7 +196,7 @@ class _AddNewEventState extends State<AddNewEvent>{
           children: [
             Expanded(
               child: _buildCounterSection(
-                title: "Event payment",
+                title: context.l10n.eventPayment,
                 icon: "assets/images/icons/dollar.png",
                 value: eventPayment.toInt(),
                 onDecrement: () {
@@ -207,7 +214,7 @@ class _AddNewEventState extends State<AddNewEvent>{
             SizedBox(width: 10.w),
             Expanded(
               child: _buildCounterSection(
-                title: "Availability",
+                title: context.l10n.availability,
                 icon: "assets/images/icons/person.png",
                 value: personsNumber,
                 onDecrement: () {
@@ -232,12 +239,74 @@ class _AddNewEventState extends State<AddNewEvent>{
     );
   }
 
+  void _openLinkDialog() {
+    linkController.text = eventLink ?? "";
+    bool isValid = true;
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return StatefulBuilder(
+          builder: (context, setStateDialog) {
+            String? errorText = isValid ? null : "Invalid link";
+
+            return AlertDialog(
+              title: Text(context.l10n.eventLink),
+              content: TextField(
+                controller: linkController,
+                keyboardType: TextInputType.url,
+                decoration: InputDecoration(
+                  hintText: "https://example.com",
+                  errorText: errorText,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: isValid ? AppColors.spanishGrey : AppColors.lebaneseRed,
+                    ),
+                  ),
+                ),
+                onChanged: (_) {
+                  if (!isValid) setStateDialog(() => isValid = true);
+                },
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => context.pop(),
+                  child: Text("cancel"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    final text = linkController.text.trim();
+
+                    final urlPattern = r'^(https?:\/\/)?([\w\-]+\.)+[\w]{2,}(\/\S*)?$';
+                    final isUrlValid = RegExp(urlPattern).hasMatch(text);
+
+                    if (text.isEmpty || !isUrlValid) {
+                      setStateDialog(() => isValid = false);
+                      return;
+                    }
+
+                    setState(() {
+                      eventLink = text;
+                    });
+
+                    context.pop();
+                  },
+                  child: Text(context.l10n.save),
+                ),
+              ],
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     String month = convertMonthToText(month: eventDate?.month??0);
     return Scaffold(
         appBar: AppHeader(
-          title: "Add Event",
+          title: context.l10n.addEvent,
           showBack: true,
         ),
       resizeToAvoidBottomInset: true,
@@ -265,7 +334,7 @@ class _AddNewEventState extends State<AddNewEvent>{
                 SizedBox(height: 20.h),
         
                 TextArea(
-                  hintText: "Event title",
+                  hintText: context.l10n.eventTitle,
                   height: 55.h,
                   controller: titleController,
                 ),
@@ -274,7 +343,7 @@ class _AddNewEventState extends State<AddNewEvent>{
 
                 MediaTextArea(
                   key: mediaKey,
-                  hintText: "Event details",
+                  hintText: context.l10n.eventDetails,
                   height: 135.h,
                   controller: bodyController,
                 ),
@@ -283,66 +352,92 @@ class _AddNewEventState extends State<AddNewEvent>{
 
                 AddNewPostOptionTile(
                   icon: Image.asset("assets/images/icons/link.png"),
-                  title: "Event Link",
+                  title: eventLink == null
+                      ? context.l10n.eventLink
+                      : eventLink!,
                   showDivider: false,
                   showIcon: false,
-                  onTap: () {}
+                  onTap: _openLinkDialog,
                 ),
-        
+
                 SizedBox(height: 10.h),
 
                 AddNewPostOptionTile(
                   icon: Image.asset("assets/images/icons/gate.png"),
-                  title: "Choose a gate",
+                  title: selectedGateName ?? context.l10n.chooseAGate,
                   showDivider: false,
-                  onTap: (){}
+                  onTap: () async {
+                    final result = await context.push<GateItem>(
+                      AppRoutes.chooseGates,
+                      extra: {
+                        'allowMultiple': false,
+                        'title': context.l10n.addEvent,
+                      },
+                    );
+
+                    if (result != null) {
+                      setState(() {
+                        selectedGateName = result.title;
+                      });
+                    }
+                  },
                 ),
         
                 SizedBox(height: 10.h),
 
                 AddNewPostOptionTile(
                   icon: Image.asset("assets/images/icons/hashtag.png"),
-                  title: "Choose a type",
+                  title: selectedTypes.isEmpty
+                      ? context.l10n.chooseAType
+                      : selectedTypes.join(", "),
                   showDivider: false,
-                  onTap: (){
-                    context.push(
+                  onTap: () async {
+                    final result = await context.push(
                       AppRoutes.addTypes,
                       extra: AddTypesArgs(
-                          title: "Add Event",
-                          isEvent: true,
-                          selectedIndex: selectedIndex
+                        title: context.l10n.addEvent,
+                        isEvent: false,
+                        selectedIndex: 0,
                       ),
                     );
+
+                    if (result != null && result is List<String>) {
+                      setState(() {
+                        selectedTypes = result;
+                      });
+                    }
                   },
                 ),
-        
+
+
                 SizedBox(height: 10.h),
 
                 _buildDateSection(
-                  title: "Event Date",
+                  title: context.l10n.eventDate,
                   date: eventDate,
                   onTap: _pickEventDate,
                   text: eventDate != null
                       ? "${eventDate!.day} $month - "
                       "${eventDate!.hour.toString().padLeft(2, '0')}:"
                       "${eventDate!.minute.toString().padLeft(2, '0')}"
-                      : "Select date",
+                      : context.l10n.selectDate,
                 ),
 
                 SizedBox(height: 10.h),
 
-                _buildDateSection(
-                  title: "Last time for subscription",
-                  date: lastDate,
-                  onTap: eventDate == null ? () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Select event date first")),
-                    );
-                  } : _pickLastDate,
-                  text: lastDate != null
+                if(subscribeInEvent)
+                  _buildDateSection(
+                    title: context.l10n.lastTimeForSubscription,
+                    date: lastDate,
+                    onTap: eventDate == null ? () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(context.l10n.selectEventDateFirst)),
+                      );
+                    } : _pickLastDate,
+                    text: lastDate != null
                       ? "${lastDate!.day} $month"
-                      : "Select date",
-                ),
+                      : context.l10n.selectDate,
+                  ),
         
                 SizedBox(height: 10.h),
 
@@ -367,21 +462,27 @@ class _AddNewEventState extends State<AddNewEvent>{
       ),
 
         bottomNavigationBar: AddNewBottomBar(
-            text: "Post Event",
+            text: context.l10n.postEvent,
             onTap: (){},
           showSwitch: true,
-          switchTitle: "Subscribe in event",
+          switchTitle: context.l10n.subscribeInEvent,
+          switchValue: subscribeInEvent,
+          onSwitchChanged: (value){
+              setState(() {
+                subscribeInEvent = value;
+              });
+          },
           showTypes: true,
           items:  [
             PostTypeItem(
-              title: "Add Photo",
+              title: context.l10n.addEvent,
               imageUrl: "assets/images/icons/image_icon.png",
               color: AppColors.turnbullBlue,
               onTap: () async {
                 bool granted = await MediaPicker.requestPermissions();
                 if (!granted) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Permission denied. Please enable in settings.")),
+                    SnackBar(content: Text(context.l10n.permissionDeniedPleaseEnableInSettings)),
                   );
                   return;
                 }
@@ -391,14 +492,14 @@ class _AddNewEventState extends State<AddNewEvent>{
               },
             ),
             PostTypeItem(
-              title: "Add Video",
+              title: context.l10n.addVideo,
               imageUrl: "assets/images/icons/video.png",
               color: AppColors.lebaneseRed,
               onTap: () async {
                 bool granted = await MediaPicker.requestPermissions();
                 if (!granted) {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Permission denied")),
+                    SnackBar(content: Text(context.l10n.permissionDeniedPleaseEnableInSettings)),
                   );
                   return;
                 }
