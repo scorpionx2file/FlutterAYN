@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
@@ -10,6 +12,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../../core/utils/location/location_picker_bottom_sheet.dart';
 import '../../../core/utils/location/location_service.dart';
+import 'dart:io';
 
 class ChatInputBar extends StatefulWidget {
   final void Function(String) onSendMessage;

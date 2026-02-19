@@ -66,7 +66,7 @@ void openLocationPicker(BuildContext context,Function(String)SelectedLocation) a
         initialPosition: initialLatLng,
         onSend: (locationUrl) async {
           // Extract lat & lon from the OSM URL
-          final uri = Uri.parse(locationUrl);
+          final uri = Uri.parse(locationUrl as String);
           final lat = double.tryParse(uri.queryParameters['mlat'] ?? '');
           final lon = double.tryParse(uri.queryParameters['mlon'] ?? '');
           print("lat: $lat, lon: $lon");
