@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:traveller/core/constants/post_service_provider_header/post_or_service_provider_header.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
+import '../../../config/routes/app_routes.dart';
 import '../bag/save_to_bag_bottom_sheet.dart';
 import 'header_actions.dart';
 import 'header_avatar.dart';
@@ -24,7 +26,11 @@ class HeaderTopRow extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        HeaderAvatar(imageUrl: data.imageUrl),
+        HeaderAvatar(imageUrl: data.imageUrl,
+          onUserTap: () {
+            context.go(AppRoutes.profile);
+          },
+        ),
 
         SizedBox(width: 10.w),
 

@@ -66,21 +66,17 @@ void openLocationPicker(BuildContext context,Function(String)SelectedLocation) a
         initialPosition: initialLatLng,
         onSend: (locationUrl) async {
           // Extract lat & lon from the OSM URL
-          final uri = Uri.parse(locationUrl as String);
-          final lat = double.tryParse(uri.queryParameters['mlat'] ?? '');
-          final lon = double.tryParse(uri.queryParameters['mlon'] ?? '');
+          //final uri = Uri.parse(locationUrl);
+          final lat = locationUrl.latitude;
+          final lon = locationUrl.longitude;
           print("lat: $lat, lon: $lon");
 
 
-          if (lat != null && lon != null) {
-            // Get human-readable address
-            final address = await getAddressFromCoordinates(lat, lon);
-            print("Address: $address");
-            SelectedLocation(address);
-          } else {
-            SelectedLocation("Unknown Location");
-          }
-        },
+          // Get human-readable address
+          final address = await getAddressFromCoordinates(lat, lon);
+          print("Address: $address");
+          SelectedLocation(address);
+                },
       );
     },
   );

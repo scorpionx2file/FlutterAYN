@@ -2,6 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:traveller/config/routes/app_routes.dart';
 import 'package:traveller/core/constants/post_service_provider_header/header_avatar.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 
@@ -60,7 +62,11 @@ class CommentItem extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                HeaderAvatar(imageUrl: data.imageUrl),
+                HeaderAvatar(imageUrl: data.imageUrl,
+                  onUserTap: () {
+                  context.go(AppRoutes.profile);
+                  },
+                ),
                 SizedBox(width: 14.w),
 
                 Expanded(

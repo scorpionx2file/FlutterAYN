@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 
 import '../../../config/routes/app_routes.dart';
@@ -24,8 +27,21 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
   bool isSelected = false;
   bool isChecked = false;
   String? selectedLocation;
+  final TextEditingController _textController = TextEditingController();
 
   String selectedLanguage = "Language"; // default language
+
+  final ImagePicker _picker = ImagePicker();
+  final List<XFile> _images = [];
+
+  Future<void> _pickImages() async {
+    final List<XFile>? pickedFiles = await _picker.pickMultiImage();
+    if (pickedFiles != null) {
+      setState(() {
+        _images.addAll(pickedFiles);
+      });
+    }
+  }
 
   void _openLanguagePicker() {
     showModalBottomSheet(
@@ -270,40 +286,71 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.w),
                 child: Container(
-                  height: 120.h,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.w,
-                    vertical: 14.h,
-                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
                   decoration: BoxDecoration(
                     color: AppColors.white,
                     borderRadius: BorderRadius.circular(16.r),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min, // <-- important
                     children: [
                       /// Top Title
-                      Text("Your service details", style: AppTextStyles.text),
+                      /// Text Input
+                      TextField(
+                        controller: _textController, // your TextEditingController
+                        maxLines: null, // allows multiple lines
+                        decoration: InputDecoration(
+                          hintText: "Write your service details...",
+                          border: InputBorder.none,
+                        ),
+                        style: AppTextStyles.text,
+                      ),
 
-                      const Spacer(),
+                      SizedBox(height: 8.h),
 
-                      /// Bottom Row
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            "Add Photos",
-                            style: AppTextStyles.text.copyWith(
-                              color: AppColors.turnbullBlue,
+                      /// Images Preview Row
+                      if (_images.isNotEmpty)
+                        SizedBox(
+                          height: 70.h,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: _images.length,
+                            separatorBuilder: (_, __) => SizedBox(width: 8.w),
+                            itemBuilder: (_, index) => ClipRRect(
+                              borderRadius: BorderRadius.circular(8.r),
+                              child: Image.file(
+                                File(_images[index].path),
+                                width: 70.w,
+                                height: 70.h,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                          SizedBox(width: 6.w),
-                          Icon(
-                            Icons.image_outlined,
-                            size: 20.sp,
-                            color: AppColors.turnbullBlue,
-                          ),
-                        ],
+                        ),
+
+                      SizedBox(height: 12.h),
+
+                      /// Bottom Row
+                      GestureDetector(
+                        onTap: _pickImages,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              "Add Photos",
+                              style: AppTextStyles.text.copyWith(
+                                color: AppColors.turnbullBlue,
+                              ),
+                            ),
+                            SizedBox(width: 6.w),
+                            Icon(
+                              Icons.image_outlined,
+                              size: 20.sp,
+                              color: AppColors.turnbullBlue,
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

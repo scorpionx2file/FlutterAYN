@@ -15,11 +15,22 @@ class CustomBottomNavigationBar extends StatefulWidget {
 }
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> with SingleTickerProviderStateMixin {
-  int selectedIndex = 0;
+  //int selectedIndex = 0;
   bool isFabOpen = false;
 
   late AnimationController _controller;
   late Animation<double> _animation;
+
+  int getSelectedIndex(BuildContext context) {
+    final String location = GoRouterState.of(context).uri.toString();
+
+    if (location.startsWith(AppRoutes.home)) return 0;
+    if (location.startsWith(AppRoutes.map)) return 1;
+    if (location.startsWith(AppRoutes.gates)) return 2;
+    if (location.startsWith(AppRoutes.profile)) return 3;
+
+    return 0;
+  }
 
   @override
   void initState() {
@@ -131,6 +142,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> w
 */
 
   Widget buildBottomBar(BuildContext context) {
+
     return SizedBox(
       height: 60.h,
       child: Stack(
@@ -191,14 +203,16 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> w
   }
 
   Widget bottomNavigationItem(int index, IconData icon, String title) {
+   // final bool isSelected = selectedIndex == index;
+    final int selectedIndex = getSelectedIndex(context);
     final bool isSelected = selectedIndex == index;
 
     return Expanded(
       child: GestureDetector(
         onTap: () {
-          setState(() {
-            selectedIndex = index;
-          });
+          // setState(() {
+          //   selectedIndex = index;
+          // });
           switch (index) {
             case 0:
               context.go(AppRoutes.home);
