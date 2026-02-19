@@ -89,16 +89,6 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
               style: AppTextStyles.titles.copyWith(color: AppColors.white),
             ),
           ),
-
-          // AppButton(text: 'Send',
-          //   onPressed: (){
-          //     Navigator.pop(context);
-          //   },
-          //   width: double.infinity,
-          //   backgroundColor: AppColors.lebaneseRed,
-          //   textStyle: AppTextStyles.title,
-          //   foregroundColor: AppColors.white,
-          // )
         ],
       ),
     );

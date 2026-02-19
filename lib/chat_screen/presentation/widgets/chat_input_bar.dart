@@ -1,5 +1,3 @@
-import 'dart:async';
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
@@ -7,6 +5,7 @@ import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
+import '../../../core/utils/helper/location.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../../core/utils/location/location_picker_bottom_sheet.dart';
@@ -309,6 +308,8 @@ class _ChatInputBarState extends State<ChatInputBar> {
 
   @override
   Widget build(BuildContext context) {
+    final textController = TextEditingController();
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12.w),
       height: 60.h,

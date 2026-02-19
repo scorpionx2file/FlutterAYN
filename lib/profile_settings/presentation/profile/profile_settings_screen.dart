@@ -266,7 +266,9 @@ class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
                 ),
                 title: l10n.paymentMethods,
                 hasPermission: false,
-                onTap: () {},
+                onTap: () {
+                  context.push(AppRoutes.paymentMethod);
+                },
               ),
             ),
 
