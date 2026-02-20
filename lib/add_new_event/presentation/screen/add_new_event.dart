@@ -8,6 +8,7 @@ import 'package:traveller/core/constants/event_data/event_data.dart';
 import 'package:traveller/core/constants/post_types/post_types.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
+import 'package:flutter/services.dart';
 import '../../../auth/presentation/screen/choose_gates_screen.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/add_new_build_map/add_new_build_map.dart';
@@ -52,12 +53,16 @@ class _AddNewEventState extends State<AddNewEvent>{
   final TextEditingController linkController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
+  final TextEditingController paymentController = TextEditingController();
+  final TextEditingController availabilityController = TextEditingController();
   final GlobalKey<MediaTextAreaState> mediaKey = GlobalKey<MediaTextAreaState>();
 
   @override
   void initState() {
     super.initState();
     _loadCurrentLocation();
+    paymentController.text = eventPayment.toInt().toString();
+    availabilityController.text = personsNumber.toString();
   }
 
   Future<void> _loadCurrentLocation() async {
@@ -160,7 +165,7 @@ class _AddNewEventState extends State<AddNewEvent>{
   Widget _buildCounterSection({
     required String title,
     required String icon,
-    required int value,
+    required TextEditingController controller,
     required VoidCallback onIncrement,
     required VoidCallback onDecrement,
   }) {
@@ -171,7 +176,7 @@ class _AddNewEventState extends State<AddNewEvent>{
         GestureDetector(
           onTap: onDecrement,
           child: Icon(
-            Icons.minimize,
+            Icons.remove,
             color: AppColors.spanishGrey,
             size: 20.sp,
           ),
@@ -186,9 +191,31 @@ class _AddNewEventState extends State<AddNewEvent>{
           ),
         ),
       ],
-      child: Text(
-        "$value\$",
-        style: AppTextStyles.text,
+      child: SizedBox(
+        width: 20.w,
+        child: TextField(
+          controller: controller,
+          inputFormatters: [
+            FilteringTextInputFormatter.digitsOnly,
+          ],
+          keyboardType: TextInputType.number,
+          textAlign: TextAlign.start,
+          style: AppTextStyles.text,
+          decoration: const InputDecoration(
+            border: InputBorder.none,
+            isDense: true,
+          ),
+          onChanged: (value) {
+            final number = int.tryParse(value);
+            if (number != null) {
+              if (title == context.l10n.eventPayment) {
+                eventPayment = number.toDouble();
+              } else {
+                personsNumber = number;
+              }
+            }
+          },
+        ),
       ),
     );
   }
@@ -201,19 +228,21 @@ class _AddNewEventState extends State<AddNewEvent>{
         child: Row(
           children: [
             Expanded(
-              child: _buildCounterSection(
+              child:_buildCounterSection(
                 title: context.l10n.eventPayment,
                 icon: "assets/images/icons/dollar.png",
-                value: eventPayment.toInt(),
+                controller: paymentController,
                 onDecrement: () {
-                  setState(() {
-                    eventPayment--;
-                  });
+                  int current = int.tryParse(paymentController.text) ?? 0;
+                  if (current > 0) current--;
+                  paymentController.text = current.toString();
+                  eventPayment = current.toDouble();
                 },
                 onIncrement: () {
-                  setState(() {
-                    eventPayment++;
-                  });
+                  int current = int.tryParse(paymentController.text) ?? 0;
+                  current++;
+                  paymentController.text = current.toString();
+                  eventPayment = current.toDouble();
                 },
               ),
             ),
@@ -222,16 +251,18 @@ class _AddNewEventState extends State<AddNewEvent>{
               child: _buildCounterSection(
                 title: context.l10n.availability,
                 icon: "assets/images/icons/person.png",
-                value: personsNumber,
+                controller: availabilityController,
                 onDecrement: () {
-                  setState(() {
-                    personsNumber--;
-                  });
+                  int current = int.tryParse(availabilityController.text) ?? 0;
+                  if (current > 0) current--;
+                  availabilityController.text = current.toString();
+                  personsNumber = current;
                 },
                 onIncrement: () {
-                  setState(() {
-                    personsNumber++;
-                  });
+                  int current = int.tryParse(availabilityController.text) ?? 0;
+                  current++;
+                  availabilityController.text = current.toString();
+                  personsNumber = current;
                 },
               ),
             ),
@@ -257,7 +288,30 @@ class _AddNewEventState extends State<AddNewEvent>{
             String? errorText = isValid ? null : "Invalid link";
 
             return AlertDialog(
-              title: Text(context.l10n.eventLink),
+              titlePadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+              contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
+              actionsPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    context.l10n.eventLink,
+                    style: AppTextStyles.titles.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  GestureDetector(
+                    onTap: () => context.pop(),
+                    child: IconButton(
+                      onPressed: () => context.pop(),
+                      icon: Icon(Icons.close),
+                    )
+                  ),
+                ],
+              ),
+
               content: TextField(
                 controller: linkController,
                 keyboardType: TextInputType.url,
@@ -266,7 +320,9 @@ class _AddNewEventState extends State<AddNewEvent>{
                   errorText: errorText,
                   border: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: isValid ? AppColors.spanishGrey : AppColors.lebaneseRed,
+                      color: isValid
+                          ? AppColors.spanishGrey
+                          : AppColors.lebaneseRed,
                     ),
                   ),
                 ),
@@ -274,16 +330,14 @@ class _AddNewEventState extends State<AddNewEvent>{
                   if (!isValid) setStateDialog(() => isValid = true);
                 },
               ),
+
               actions: [
-                TextButton(
-                  onPressed: () => context.pop(),
-                  child: Text("cancel"),
-                ),
                 ElevatedButton(
                   onPressed: () {
                     final text = linkController.text.trim();
 
-                    final urlPattern = r'^(https?:\/\/)?([\w\-]+\.)+[\w]{2,}(\/\S*)?$';
+                    final urlPattern =
+                        r'^(https?:\/\/)?([\w\-]+\.)+[\w]{2,}(\/\S*)?$';
                     final isUrlValid = RegExp(urlPattern).hasMatch(text);
 
                     if (text.isEmpty || !isUrlValid) {
