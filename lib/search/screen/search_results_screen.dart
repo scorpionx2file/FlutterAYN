@@ -28,19 +28,25 @@ class SearchResultsScreen extends StatefulWidget {
   State<SearchResultsScreen> createState() => _SearchResultsScreenState();
 }
 
-class _SearchResultsScreenState extends State<SearchResultsScreen> {
+class _SearchResultsScreenState extends State<SearchResultsScreen>
+    with SingleTickerProviderStateMixin {
   late final TextEditingController _query;
+  late final TabController _tabs;
 
   @override
   void initState() {
     super.initState();
     _query = TextEditingController(text: widget.initialQuery);
     _query.addListener(() => setState(() {}));
+
+    _tabs = TabController(length: 4, vsync: this);
+    _tabs.addListener(() => setState(() {}));
   }
 
   @override
   void dispose() {
     _query.dispose();
+    _tabs.dispose();
     super.dispose();
   }
 
@@ -59,51 +65,70 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
       posts: widget.posts,
     );
 
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
-        appBar: SearchResultsAppBar(
-          title: l10n.searchResultsTitle,
-          onBack: () => context.pop(),
-        ),
-        body: SafeArea(
-          child: Column(
-            children: [
-              SearchBarRow(
-                controller: _query,
-                onFilterTap: () {},
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.w),
-                child: SearchCategoryTabs(
-                  tabs: [l10n.tabPeople, l10n.tabPlaces, l10n.tabServices, l10n.tabEvents],
-                ),
-              ),
-              SizedBox(height: 8.h),
-              SearchResultsHeader(
-                leftText: '${l10n.searchResultsFor} "${_query.text}"',
-                rightText: '${l10n.resultsCountPlaceholder}: ${peopleCount + postsCount}',
-              ),
-              SizedBox(height: 8.h),
-              Expanded(
-                child: TabBarView(
+    return Scaffold(
+      appBar: SearchResultsAppBar(
+        title: l10n.searchResultsTitle,
+        onBack: () => context.pop(),
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            SearchBarRow(
+              controller: _query,
+              selectedIndex: _tabs.index,
+              onApplyFilter: (i) => _tabs.animateTo(i),
+            ),
+
+            Expanded(
+              child: NestedScrollView(
+                headerSliverBuilder: (context, innerBoxIsScrolled) => [
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 12.w),
+                      child: SearchCategoryTabs(
+                        controller: _tabs,
+                        tabs: [
+                          l10n.tabPeople,
+                          l10n.tabPlaces,
+                          l10n.tabServices,
+                          l10n.tabEvents,
+                        ],
+                      ),
+                    ),
+                  ),
+                  SliverToBoxAdapter(child: SizedBox(height: 8.h)),
+                  SliverToBoxAdapter(
+                    child: SearchResultsHeader(
+                      leftText: '${l10n.searchResultsFor} "${_query.text}"',
+                      rightText:
+                      '${l10n.resultsCountPlaceholder}: ${peopleCount + postsCount}',
+                    ),
+                  ),
+                  SliverToBoxAdapter(child: SizedBox(height: 8.h)),
+                ],
+                body: TabBarView(
+                  controller: _tabs,
                   children: [
                     PeopleResultsList(
+                      key: const PageStorageKey('people_tab'),
                       query: _query.text,
                       following: widget.peopleFollowing,
                       followers: widget.peopleFollowers,
                     ),
                     PostResultsList(
+                      key: const PageStorageKey('places_tab'),
                       query: _query.text,
                       posts: widget.posts,
                       onOpenPost: (id) => context.push('/post/$id'),
                     ),
                     PostResultsList(
+                      key: const PageStorageKey('services_tab'),
                       query: _query.text,
                       posts: widget.posts,
                       onOpenPost: (id) => context.push('/post/$id'),
                     ),
                     PostResultsList(
+                      key: const PageStorageKey('events_tab'),
                       query: _query.text,
                       posts: widget.posts,
                       onOpenPost: (id) => context.push('/post/$id'),
@@ -111,8 +136,8 @@ class _SearchResultsScreenState extends State<SearchResultsScreen> {
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

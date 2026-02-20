@@ -7,18 +7,18 @@ class SearchCategoryTabs extends StatelessWidget {
   const SearchCategoryTabs({
     super.key,
     required this.tabs,
+    required this.controller,
     this.height = 36,
     this.gap = 10,
   });
 
   final List<String> tabs;
+  final TabController controller;
   final double height;
   final double gap;
 
   @override
   Widget build(BuildContext context) {
-    final controller = DefaultTabController.of(context);
-
     return AnimatedBuilder(
       animation: controller,
       builder: (context, _) {
@@ -41,10 +41,14 @@ class SearchCategoryTabs extends StatelessWidget {
                     child: Container(
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: isSelected ? AppColors.turnbullBlue : AppColors.white,
+                        color: isSelected
+                            ? AppColors.turnbullBlue
+                            : AppColors.white,
                         borderRadius: BorderRadius.circular(10.r),
                         border: Border.all(
-                          color: isSelected ? Colors.transparent : AppColors.lightSilver,
+                          color: isSelected
+                              ? Colors.transparent
+                              : AppColors.lightSilver,
                         ),
                       ),
                       child: Text(
@@ -52,7 +56,9 @@ class SearchCategoryTabs extends StatelessWidget {
                         style: AppTextStyles.title.copyWith(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w700,
-                          color: isSelected ? AppColors.white : AppColors.strongGrey,
+                          color: isSelected
+                              ? AppColors.white
+                              : AppColors.strongGrey,
                         ),
                       ),
                     ),

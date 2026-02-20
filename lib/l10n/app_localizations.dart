@@ -710,7 +710,6 @@ abstract class AppLocalizations {
   /// No description provided for @on.
   ///
   /// In en, this message translates to:
-  /// **'ON'**
   String get on;
 
   /// No description provided for @off.
@@ -1396,6 +1395,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No types found'**
   String get noTypesFound;
+
+  /// No description provided for @filter.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter'**
+  String get filter;
+
+  /// No description provided for @apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get apply;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

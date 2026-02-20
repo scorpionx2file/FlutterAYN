@@ -500,6 +500,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get unfollow => 'Unfollow';
 
   @override
+  String get filter => 'Filter';
+
+  @override
+  String get apply => 'Apply';
+
+  @override
   String get takePhoto => 'Take Photo';
 
   @override

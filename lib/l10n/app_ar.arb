@@ -428,4 +428,11 @@
   "invalidLink": "رابط غير صالح",
   "noTypesFound": "لم يتم العثور على تصنيفات"
 
+                               "postNotFound": "المنشور غير موجود",
+                               "searchResultsTitle": "نتائج البحث",
+                                 "searchHint": "ابحث...",
+
+                                   "filter": "فلترة",
+                                   "apply": "تطبيق"
+
 }
