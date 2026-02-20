@@ -68,6 +68,16 @@ class _AddTypesState extends State<AddTypes> {
       appBar: AppHeader(
         title: widget.title,
         showBack: true,
+        onBack: () {
+          final selectedTypes = selectedIndexes
+              .map((index) => types[index])
+              .toList();
+
+          context.pop({
+            "types": selectedTypes,
+            "selectedIndex": selectedIndex,
+          });
+        },
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(8),
@@ -135,11 +145,17 @@ class _AddTypesState extends State<AddTypes> {
       bottomNavigationBar: AddNewBottomBar(
         text: context.l10n.save,
         onTap: () {
-          final selectedTypes = selectedIndexes
-              .map((index) => types[index])
-              .toList();
+          final selectedTypes =
+          selectedIndexes.map((index) => types[index]).toList();
 
-          context.pop(selectedTypes);
+          if (widget.isEvent) {
+            context.pop({
+              "types": selectedTypes,
+              "selectedIndex": selectedIndex,
+            });
+          } else {
+            context.pop(selectedTypes);
+          }
         },
       ),
     );

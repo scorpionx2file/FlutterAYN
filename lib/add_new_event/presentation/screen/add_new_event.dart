@@ -463,9 +463,10 @@ class _AddNewEventState extends State<AddNewEvent>{
                       ),
                     );
 
-                    if (result != null && result is List<String>) {
+                    if (result != null && result is Map) {
                       setState(() {
-                        selectedTypes = result;
+                        selectedTypes = List<String>.from(result["types"] ?? []);
+                        selectedIndex = result["selectedIndex"] ?? selectedIndex;
                       });
                     }
                   },

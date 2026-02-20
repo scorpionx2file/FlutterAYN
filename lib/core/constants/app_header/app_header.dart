@@ -5,11 +5,13 @@ import 'package:traveller/core/theme/fonts/app_text_styles.dart';
 class AppHeader extends StatelessWidget implements PreferredSizeWidget {
   final String title;
   final bool showBack;
+  final VoidCallback? onBack;
 
   const AppHeader({
     super.key,
     required this.title,
     this.showBack = true,
+    this.onBack,
   });
 
   @override
@@ -18,13 +20,13 @@ class AppHeader extends StatelessWidget implements PreferredSizeWidget {
       leading: showBack
           ? IconButton(
         icon: const Icon(Icons.arrow_back),
-        onPressed: () => context.pop(),
+        onPressed: onBack ?? () => context.pop(),
       )
           : null,
       title: Text(
-          title,
+        title,
         style: AppTextStyles.titles.copyWith(
-        fontWeight: FontWeight.bold
+          fontWeight: FontWeight.bold,
         ),
       ),
       centerTitle: true,
