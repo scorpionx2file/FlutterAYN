@@ -19,6 +19,7 @@ import '../../../core/constants/media_text_area/media_text_area.dart';
 import '../../../core/constants/text_area/text_area.dart';
 import '../../../core/theme/colors/app_colors.dart';
 import '../../../core/utils/location/location_service.dart';
+import '../../../core/utils/map_keys/map_keys.dart';
 import '../../../core/utils/media_picker/media_picker.dart';
 
 class AddNewEvent extends StatefulWidget {
@@ -285,7 +286,7 @@ class _AddNewEventState extends State<AddNewEvent>{
       builder: (context) {
         return StatefulBuilder(
           builder: (context, setStateDialog) {
-            String? errorText = isValid ? null : "Invalid link";
+            String? errorText = isValid ? null : context.l10n.invalidLink;
 
             return AlertDialog(
               titlePadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
@@ -361,235 +362,302 @@ class _AddNewEventState extends State<AddNewEvent>{
     );
   }
 
+  bool get _hasUnsavedData {
+    return titleController.text.trim().isNotEmpty ||
+        bodyController.text.trim().isNotEmpty ||
+        eventDate != null ||
+        lastDate != null ||
+        eventLink != null ||
+        selectedTypes.isNotEmpty ||
+        selectedGateName != null ||
+        (mediaKey.currentState?.hasMedia ?? false);
+  }
+
+  Future<bool> _showDiscardDialog() async {
+    final result = await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(context.l10n.discardChanges),
+          content: Text(
+            context.l10n.checkDiscard,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: Text(context.l10n.cancel),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: Text(
+                context.l10n.discard,
+                style: TextStyle(color: AppColors.lebaneseRed),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    return result ?? false;
+  }
+
+  Future<void> _handleBack() async {
+    if (_hasUnsavedData) {
+      final shouldDiscard = await _showDiscardDialog();
+      if (shouldDiscard && mounted) {
+        context.pop();
+      }
+    } else {
+      context.pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     String month = convertMonthToText(month: eventDate?.month??0);
-    return Scaffold(
-        appBar: AppHeader(
-          title: context.l10n.addEvent,
-          showBack: true,
-        ),
-      resizeToAvoidBottomInset: true,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(8),
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              minHeight: MediaQuery.of(context).size.height - kToolbarHeight - 100.h,
-            ),
-            child: Column(
-              children: [
-                AddNewHeader(
-                  imageUrl: widget.imageUrl,
-                  location: widget.location,
-                  isEventPage: true,
-                  onToggleChanged: (index) {
-                    setState(() {
-                      selectedIndex = index;
-                    });
-                  },
-                  selectedIndex: selectedIndex,
-                ),
-        
-                SizedBox(height: 20.h),
-        
-                TextArea(
-                  hintText: context.l10n.eventTitle,
-                  height: 55.h,
-                  controller: titleController,
-                  showError: showTitleError,
-                  errorText: "Field required",
-                ),
-        
-                SizedBox(height: 10.h),
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) async {
+        if (didPop) return;
 
-                MediaTextArea(
-                  key: mediaKey,
-                  hintText: context.l10n.eventDetails,
-                  height: 135.h,
-                  controller: bodyController,
-                ),
-        
-                SizedBox(height: 10.h),
-
-                AddNewPostOptionTile(
-                  icon: Image.asset("assets/images/icons/link.png"),
-                  title: eventLink == null
-                      ? context.l10n.eventLink
-                      : eventLink!,
-                  showDivider: false,
-                  showIcon: false,
-                  onTap: _openLinkDialog,
-                ),
-
-                SizedBox(height: 10.h),
-
-                AddNewPostOptionTile(
-                  icon: Image.asset("assets/images/icons/gate.png"),
-                  title: selectedGateName ?? context.l10n.chooseAGate,
-                  showDivider: false,
-                  onTap: () async {
-                    final result = await context.push<GateItem>(
-                      AppRoutes.chooseGates,
-                      extra: {
-                        'allowMultiple': false,
-                        'title': context.l10n.addEvent,
-                      },
-                    );
-
-                    if (result != null) {
+        if (_hasUnsavedData) {
+          final shouldDiscard = await _showDiscardDialog();
+          if (shouldDiscard && mounted) {
+            context.pop();
+          }
+        } else {
+          context.pop();
+        }
+      },
+      child: Scaffold(
+          appBar: AppHeader(
+            title: context.l10n.addEvent,
+            showBack: true,
+            onBack: _handleBack,
+          ),
+        resizeToAvoidBottomInset: true,
+        body: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(8),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: MediaQuery.of(context).size.height - kToolbarHeight - 100.h,
+              ),
+              child: Column(
+                children: [
+                  AddNewHeader(
+                    imageUrl: widget.imageUrl,
+                    location: widget.location,
+                    isEventPage: true,
+                    onToggleChanged: (index) {
                       setState(() {
-                        selectedGateName = result.title;
+                        selectedIndex = index;
                       });
-                    }
-                  },
-                ),
-        
-                SizedBox(height: 10.h),
-
-                AddNewPostOptionTile(
-                  icon: Image.asset("assets/images/icons/hashtag.png"),
-                  title: selectedTypes.isEmpty
-                      ? context.l10n.chooseAType
-                      : selectedTypes.join(", "),
-                  showDivider: false,
-                  onTap: () async {
-                    final result = await context.push(
-                      AppRoutes.addTypes,
-                      extra: AddTypesArgs(
-                        title: context.l10n.addEvent,
-                        isEvent: true,
-                        selectedIndex: selectedIndex,
-                      ),
-                    );
-
-                    if (result != null && result is Map) {
-                      setState(() {
-                        selectedTypes = List<String>.from(result["types"] ?? []);
-                        selectedIndex = result["selectedIndex"] ?? selectedIndex;
-                      });
-                    }
-                  },
-                ),
-
-
-                SizedBox(height: 10.h),
-
-                _buildDateSection(
-                    title: context.l10n.eventDate,
-                    date: eventDate,
-                    onTap: _pickEventDate,
-                    text: eventDate != null
-                      ? "${eventDate!.day} $month - "
-                      "${eventDate!.hour.toString().padLeft(2, '0')}:"
-                      "${eventDate!.minute.toString().padLeft(2, '0')}"
-                      : context.l10n.selectDate,
-                    showError: showEventDateError
-                ),
-
-                SizedBox(height: 10.h),
-
-                if (subscribeInEvent)
-                  _buildDateSection(
-                    title: context.l10n.lastTimeForSubscription,
-                    date: lastDate,
-                    onTap: eventDate == null
-                        ? () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text(context.l10n.selectEventDateFirst)),
-                      );
-                    }
-                        : _pickLastDate,
-                    text: lastDate != null
-                        ? "${lastDate!.day} $month"
-                        : context.l10n.selectDate,
-                    showError: showLastDateError,
+                    },
+                    selectedIndex: selectedIndex,
                   ),
-        
-                SizedBox(height: 10.h),
 
-              _buildPaymentAndAvailability(),
-        
-                SizedBox(height: 10.h),
+                  SizedBox(height: 20.h),
 
-                selectedLocation == null
-                    ? const Center(child: CircularProgressIndicator())
-                    : AddNewBuildMap(
-                  selectedLocation: selectedLocation!,
-                  onLocationChanged: (newLocation) {
-                    setState(() {
-                      selectedLocation = newLocation;
-                    });
-                  },
-                ),
-              ],
+                  TextArea(
+                    hintText: context.l10n.eventTitle,
+                    height: 55.h,
+                    controller: titleController,
+                    showError: showTitleError,
+                    errorText: context.l10n.fieldRequired,
+                  ),
+
+                  SizedBox(height: 10.h),
+
+                  MediaTextArea(
+                    key: mediaKey,
+                    hintText: context.l10n.eventDetails,
+                    height: 135.h,
+                    controller: bodyController,
+                  ),
+
+                  SizedBox(height: 10.h),
+
+                  AddNewPostOptionTile(
+                    icon: Image.asset("assets/images/icons/link.png"),
+                    title: eventLink == null
+                        ? context.l10n.eventLink
+                        : eventLink!,
+                    showDivider: false,
+                    showIcon: false,
+                    onTap: _openLinkDialog,
+                  ),
+
+                  SizedBox(height: 10.h),
+
+                  AddNewPostOptionTile(
+                    icon: Image.asset("assets/images/icons/gate.png"),
+                    title: selectedGateName ?? context.l10n.chooseAGate,
+                    showDivider: false,
+                    onTap: () async {
+                      final result = await context.push<GateItem>(
+                        AppRoutes.chooseGates,
+                        extra: {
+                          MapKeys.allowMultiple: false,
+                          MapKeys.title: context.l10n.addEvent,
+                        },
+                      );
+
+                      if (result != null) {
+                        setState(() {
+                          selectedGateName = result.title;
+                        });
+                      }
+                    },
+                  ),
+
+                  SizedBox(height: 10.h),
+
+                  AddNewPostOptionTile(
+                    icon: Image.asset("assets/images/icons/hashtag.png"),
+                    title: selectedTypes.isEmpty
+                        ? context.l10n.chooseAType
+                        : selectedTypes.join(", "),
+                    showDivider: false,
+                    onTap: () async {
+                      final result = await context.push(
+                        AppRoutes.addTypes,
+                        extra: AddTypesArgs(
+                          title: context.l10n.addEvent,
+                          isEvent: true,
+                          selectedIndex: selectedIndex,
+                        ),
+                      );
+
+                      if (result != null && result is Map) {
+                        setState(() {
+                          selectedTypes = List<String>.from(result[MapKeys.types] ?? []);
+                          selectedIndex = result[MapKeys.selectedIndex] ?? selectedIndex;
+                        });
+                      }
+                    },
+                  ),
+
+
+                  SizedBox(height: 10.h),
+
+                  _buildDateSection(
+                      title: context.l10n.eventDate,
+                      date: eventDate,
+                      onTap: _pickEventDate,
+                      text: eventDate != null
+                        ? "${eventDate!.day} $month - "
+                        "${eventDate!.hour.toString().padLeft(2, '0')}:"
+                        "${eventDate!.minute.toString().padLeft(2, '0')}"
+                        : context.l10n.selectDate,
+                      showError: showEventDateError
+                  ),
+
+                  SizedBox(height: 10.h),
+
+                  if (subscribeInEvent)
+                    _buildDateSection(
+                      title: context.l10n.lastTimeForSubscription,
+                      date: lastDate,
+                      onTap: eventDate == null
+                          ? () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(context.l10n.selectEventDateFirst)),
+                        );
+                      }
+                          : _pickLastDate,
+                      text: lastDate != null
+                          ? "${lastDate!.day} $month"
+                          : context.l10n.selectDate,
+                      showError: showLastDateError,
+                    ),
+
+                  SizedBox(height: 10.h),
+
+                _buildPaymentAndAvailability(),
+
+                  SizedBox(height: 10.h),
+
+                  selectedLocation == null
+                      ? const Center(child: CircularProgressIndicator())
+                      : AddNewBuildMap(
+                    selectedLocation: selectedLocation!,
+                    onLocationChanged: (newLocation) {
+                      setState(() {
+                        selectedLocation = newLocation;
+                      });
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
 
-        bottomNavigationBar: AddNewBottomBar(
-          text: context.l10n.postEvent,
-          onTap: (){
-            final title = titleController.text.trim();
-            setState(() {
-              showTitleError = title.isEmpty;
-              showEventDateError = eventDate == null;
-              showLastDateError =
-                  subscribeInEvent && lastDate == null;
-            });
-            if (title.isEmpty) return;
-
-            if (eventDate == null) return;
-
-            if (subscribeInEvent && lastDate == null) return;
-          },
-          showSwitch: true,
-          switchTitle: context.l10n.subscribeInEvent,
-          switchValue: subscribeInEvent,
-          onSwitchChanged: (value){
+          bottomNavigationBar: AddNewBottomBar(
+            text: context.l10n.postEvent,
+            onTap: (){
+              final title = titleController.text.trim();
               setState(() {
-                subscribeInEvent = value;
+                showTitleError = title.isEmpty;
+                showEventDateError = eventDate == null;
+                showLastDateError =
+                    subscribeInEvent && lastDate == null;
               });
-          },
-          showTypes: true,
-          items:  [
-            PostTypeItem(
-              title: context.l10n.addEvent,
-              imageUrl: "assets/images/icons/image_icon.png",
-              color: AppColors.turnbullBlue,
-              onTap: () async {
-                bool granted = await MediaPicker.requestPermissions();
-                if (!granted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(context.l10n.permissionDeniedPleaseEnableInSettings)),
-                  );
-                  return;
-                }
+              if (title.isEmpty) return;
 
-                final file = await MediaPicker.pickImage();
-                if (file != null) mediaKey.currentState?.addMedia(file);
-              },
-            ),
-            PostTypeItem(
-              title: context.l10n.addVideo,
-              imageUrl: "assets/images/icons/video.png",
-              color: AppColors.lebaneseRed,
-              onTap: () async {
-                bool granted = await MediaPicker.requestPermissions();
-                if (!granted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(context.l10n.permissionDeniedPleaseEnableInSettings)),
-                  );
-                  return;
-                }
+              if (eventDate == null) return;
 
-                final file = await MediaPicker.pickVideo();
-                if (file != null) mediaKey.currentState?.addMedia(file);
-              },
-            ),
-          ],
-        )
+              if (subscribeInEvent && lastDate == null) return;
+            },
+            showSwitch: true,
+            switchTitle: context.l10n.subscribeInEvent,
+            switchValue: subscribeInEvent,
+            onSwitchChanged: (value){
+                setState(() {
+                  subscribeInEvent = value;
+                });
+            },
+            showTypes: true,
+            items:  [
+              PostTypeItem(
+                title: context.l10n.addEvent,
+                imageUrl: "assets/images/icons/image_icon.png",
+                color: AppColors.turnbullBlue,
+                onTap: () async {
+                  bool granted = await MediaPicker.requestPermissions();
+                  if (!granted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(context.l10n.permissionDeniedPleaseEnableInSettings)),
+                    );
+                    return;
+                  }
+
+                  final file = await MediaPicker.pickImage();
+                  if (file != null) mediaKey.currentState?.addMedia(file);
+                },
+              ),
+              PostTypeItem(
+                title: context.l10n.addVideo,
+                imageUrl: "assets/images/icons/video.png",
+                color: AppColors.lebaneseRed,
+                onTap: () async {
+                  bool granted = await MediaPicker.requestPermissions();
+                  if (!granted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(context.l10n.permissionDeniedPleaseEnableInSettings)),
+                    );
+                    return;
+                  }
+
+                  final file = await MediaPicker.pickVideo();
+                  if (file != null) mediaKey.currentState?.addMedia(file);
+                },
+              ),
+            ],
+          )
+      ),
     );
   }
 }

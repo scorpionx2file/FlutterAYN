@@ -14,6 +14,7 @@ import '../../../core/constants/add_new_post_option_tile/add_new_post_option_til
 import '../../../core/constants/text_area/text_area.dart';
 import '../../../core/theme/colors/app_colors.dart';
 import '../../../core/utils/location/location_service.dart';
+import '../../../core/utils/map_keys/map_keys.dart';
 import '../../../core/utils/media_picker/media_picker.dart';
 
 class AddNewVideo extends StatefulWidget {
@@ -52,130 +53,192 @@ class _AddNewVideoState extends State<AddNewVideo> {
     }
   }
 
+  bool get _hasUnsavedData {
+    return selectedTypes.isNotEmpty ||
+        selectedGateName != null ||
+        selectedLocation != null;
+  }
+
+  Future<bool> _showDiscardDialog() async {
+    final result = await showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title:  Text(context.l10n.discardChanges),
+          content:  Text(
+            context.l10n.checkDiscard,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: Text(context.l10n.cancel),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, true),
+              child:  Text(
+                context.l10n.discard,
+                style: TextStyle(color: AppColors.lebaneseRed),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+
+    return result ?? false;
+  }
+
+  Future<void> _handleBack() async {
+    if (_hasUnsavedData) {
+      final shouldDiscard = await _showDiscardDialog();
+      if (shouldDiscard && mounted) {
+        context.pop();
+      }
+    } else {
+      context.pop();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppHeader(
-        title: context.l10n.addVideo,
-        showBack: true,
-      ),
-      resizeToAvoidBottomInset: true,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          children: [
-            AddNewHeader(
-                imageUrl: widget.imageUrl,
-                location: widget.location,
-                isEventPage: false
-            ),
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (didPop) async {
+        if (didPop) return;
 
-            SizedBox(height: 20.h),
+        if (_hasUnsavedData) {
+          final shouldDiscard = await _showDiscardDialog();
+          if (shouldDiscard && mounted) {
+            context.pop();
+          }
+        } else {
+          context.pop();
+        }
+      },
+      child: Scaffold(
+        appBar: AppHeader(
+          title: context.l10n.addVideo,
+          showBack: true,
+          onBack: _handleBack,
+        ),
+        resizeToAvoidBottomInset: true,
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            children: [
+              AddNewHeader(
+                  imageUrl: widget.imageUrl,
+                  location: widget.location,
+                  isEventPage: false
+              ),
 
-            TextArea(
-              hintText: context.l10n.videoTitle,
-              height: 55.h,
-            ),
+              SizedBox(height: 20.h),
 
-            SizedBox(height: 10.h),
+              TextArea(
+                hintText: context.l10n.videoTitle,
+                height: 55.h,
+              ),
 
-          AddNewPostOptionTile(
-            icon: Image.asset("assets/images/icons/gate.png"),
-            title: selectedGateName ?? context.l10n.chooseAGate,
-            showDivider: false,
-            onTap: () async {
-              final result = await context.push<GateItem>(
-                AppRoutes.chooseGates,
-                extra: {
-                  'allowMultiple': false,
-                  'title': context.l10n.addVideo,
-                },
-              );
-
-              if (result != null) {
-                setState(() {
-                  selectedGateName = result.title;
-                });
-              }
-            },
-          ),
-
-            SizedBox(height: 10.h),
+              SizedBox(height: 10.h),
 
             AddNewPostOptionTile(
-              icon: Image.asset("assets/images/icons/hashtag.png"),
-              title: selectedTypes.isEmpty
-                  ? context.l10n.chooseAType
-                  : selectedTypes.join(", "),
+              icon: Image.asset("assets/images/icons/gate.png"),
+              title: selectedGateName ?? context.l10n.chooseAGate,
               showDivider: false,
               onTap: () async {
-                final result = await context.push(
-                  AppRoutes.addTypes,
-                  extra: AddTypesArgs(
-                    title: context.l10n.addVideo,
-                    isEvent: false,
-                    selectedIndex: 0,
-                  ),
+                final result = await context.push<GateItem>(
+                  AppRoutes.chooseGates,
+                  extra: {
+                    MapKeys.allowMultiple: false,
+                    MapKeys.title: context.l10n.addVideo,
+                  },
                 );
 
-                if (result != null && result is List<String>) {
+                if (result != null) {
                   setState(() {
-                    selectedTypes = result;
+                    selectedGateName = result.title;
                   });
                 }
               },
             ),
 
-            SizedBox(height: 10.h),
+              SizedBox(height: 10.h),
 
-            selectedLocation == null
-                ? const Center(child: CircularProgressIndicator())
-                : AddNewBuildMap(
-              selectedLocation: selectedLocation!,
-              onLocationChanged: (newLocation) {
-                setState(() {
-                  selectedLocation = newLocation;
-                });
-              },
-            ),
-          ],
+              AddNewPostOptionTile(
+                icon: Image.asset("assets/images/icons/hashtag.png"),
+                title: selectedTypes.isEmpty
+                    ? context.l10n.chooseAType
+                    : selectedTypes.join(", "),
+                showDivider: false,
+                onTap: () async {
+                  final result = await context.push(
+                    AppRoutes.addTypes,
+                    extra: AddTypesArgs(
+                      title: context.l10n.addVideo,
+                      isEvent: false,
+                      selectedIndex: 0,
+                    ),
+                  );
+
+                  if (result != null && result is List<String>) {
+                    setState(() {
+                      selectedTypes = result;
+                    });
+                  }
+                },
+              ),
+
+              SizedBox(height: 10.h),
+
+              selectedLocation == null
+                  ? const Center(child: CircularProgressIndicator())
+                  : AddNewBuildMap(
+                selectedLocation: selectedLocation!,
+                onLocationChanged: (newLocation) {
+                  setState(() {
+                    selectedLocation = newLocation;
+                  });
+                },
+              ),
+            ],
+          ),
         ),
-      ),
 
-      bottomNavigationBar: AddNewBottomBar(
-        text: context.l10n.recordVideo,
-        switchTitle: context.l10n.saveVideoInGallery,
-        showSwitch: true,
-        switchValue: saveToGallery,
-        onSwitchChanged: (value) {
-          setState(() {
-            saveToGallery = value;
-          });
-        },
-        onTap: () async {
-          final file = await MediaPicker.recordVideoFromCamera();
+        bottomNavigationBar: AddNewBottomBar(
+          text: context.l10n.recordVideo,
+          switchTitle: context.l10n.saveVideoInGallery,
+          showSwitch: true,
+          switchValue: saveToGallery,
+          onSwitchChanged: (value) {
+            setState(() {
+              saveToGallery = value;
+            });
+          },
+          onTap: () async {
+            final file = await MediaPicker.recordVideoFromCamera();
 
-          if (file != null && mounted) {
+            if (file != null && mounted) {
 
-            try {
-              if (saveToGallery) {
-                print("saved");
+              try {
+                if (saveToGallery) {
+                  print("saved");
+                }
+              } catch (e) {
+                debugPrint("Gallery save failed: $e");
               }
-            } catch (e) {
-              debugPrint("Gallery save failed: $e");
+
+              if (!mounted) return;
+
+              context.push(
+                AppRoutes.postVideo,
+                extra: file.path,
+              );
             }
-
-            if (!mounted) return;
-
-            context.push(
-              AppRoutes.postVideo,
-              extra: file.path,
-            );
-          }
-        },
-        icon: const Icon(
-          Icons.videocam,
-          color: AppColors.white,
+          },
+          icon: const Icon(
+            Icons.videocam,
+            color: AppColors.white,
+          ),
         ),
       ),
     );

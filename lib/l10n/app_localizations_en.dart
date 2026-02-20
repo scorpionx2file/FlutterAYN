@@ -60,15 +60,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chooseGatesTitle => 'Choose Your Favorite Gates';
 
   @override
-  String get chooseGatesSubtitle =>
-      'Pick at least 3 gates to tailor your experience.';
+  String get chooseGatesSubtitle => 'Pick at least 3 gates to tailor your experience.';
 
   @override
   String get chooseGatesMin3Snack => 'Please select at least 3 gates.';
 
   @override
-  String get chooseGatesMin3Snack_duplicate =>
-      'Please select at least 3 gates.';
+  String get chooseGatesMin3Snack_duplicate => 'Please select at least 3 gates.';
 
   @override
   String get chat => 'Chat';
@@ -116,8 +114,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get verifyPhoneNumber => 'Verify your phone number';
 
   @override
-  String get enterVerificationCode =>
-      'Enter the verification code we sent to your phone.';
+  String get enterVerificationCode => 'Enter the verification code we sent to your phone.';
 
   @override
   String get verify => 'Verify';
@@ -171,8 +168,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get premiumFeatures => 'Premium Package Features';
 
   @override
-  String get premiumFeatureExample =>
-      'Explanation of one of the Premium package features';
+  String get premiumFeatureExample => 'Explanation of one of the Premium package features';
 
   @override
   String get editMyInfo => 'Edit My Information';
@@ -202,8 +198,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get forgetPasswordTitle => 'Forget Password?';
 
   @override
-  String get forgetPasswordDesc =>
-      'Please enter your email address to receive a link to create a new password via email.';
+  String get forgetPasswordDesc => 'Please enter your email address to receive a link to create a new password via email.';
 
   @override
   String get emailAddressLabel => 'Email Address';
@@ -233,8 +228,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login => 'Login';
 
   @override
-  String get registerTerms =>
-      'By signing up, you agree to our Terms & Conditions and Privacy Policy.';
+  String get registerTerms => 'By signing up, you agree to our Terms & Conditions and Privacy Policy.';
 
   @override
   String get signUpAccountInfoTitle => 'Account Information';
@@ -264,36 +258,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboardingTitle1 => 'Share your journey with everyone';
 
   @override
-  String get onboardingSubtitle1 =>
-      'Post your moments and let others follow your travel story.';
+  String get onboardingSubtitle1 => 'Post your moments and let others follow your travel story.';
 
   @override
   String get onboardingTitle2 => 'Find the nearest tourist places around you';
 
   @override
-  String get onboardingSubtitle2 =>
-      'Discover top spots nearby with a simple and fast experience.';
+  String get onboardingSubtitle2 => 'Discover top spots nearby with a simple and fast experience.';
 
   @override
   String get onboardingTitle3 => 'Offer your tourism services easily';
 
   @override
-  String get onboardingSubtitle3 =>
-      'List and manage your services in a few quick steps.';
+  String get onboardingSubtitle3 => 'List and manage your services in a few quick steps.';
 
   @override
   String get onboardingTitle4 => 'A market for all tourism activities';
 
   @override
-  String get onboardingSubtitle4 =>
-      'Explore activities, attractions, and great experiences.';
+  String get onboardingSubtitle4 => 'Explore activities, attractions, and great experiences.';
 
   @override
   String get onboardingTitle5 => 'Meet new friends near you';
 
   @override
-  String get onboardingSubtitle5 =>
-      'Connect with travelers and build new experiences together.';
+  String get onboardingSubtitle5 => 'Connect with travelers and build new experiences together.';
 
   @override
   String get profileSettingsSectionAppPerformance => 'Application Performance';
@@ -414,6 +403,79 @@ class AppLocalizationsEn extends AppLocalizations {
   String get nearbyPersons => 'Nearby Persons';
 
   @override
+  String get saveToBagsTitle => 'Add to bags';
+
+  @override
+  String get createNewBag => 'Create new bag';
+
+  @override
+  String get createNewBagTitle => 'Create new bag';
+
+  @override
+  String get bagNameHint => 'Bag name';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get create => 'Create';
+
+  @override
+  String get myListTitle => 'My List';
+
+  @override
+  String bagsCount(int count) {
+    return 'Bags: $count';
+  }
+
+  @override
+  String savedCount(int count) {
+    return 'Saved: $count';
+  }
+
+  @override
+  String get termsPrivacyTitle => 'Terms of Use & Privacy';
+
+  @override
+  String get acceptTermsLabel => 'I confirm that I accept the terms';
+
+  @override
+  String get pointsDialogTitle => 'Welcome to the app';
+
+  @override
+  String get pointsUnitShort => 'pts';
+
+  @override
+  String get pointsDialogSubtitle => 'You earned welcome points. You can earn more points by completing tasks inside the app.';
+
+  @override
+  String get pointsDialogCta => 'Let\'s start';
+
+  @override
+  String get searchResultsTitle => 'Search results';
+
+  @override
+  String get searchResultsFor => 'Search results for';
+
+  @override
+  String get results => 'Results';
+
+  @override
+  String get resultsCountPlaceholder => 'Results:';
+
+  @override
+  String get tabPeople => 'People';
+
+  @override
+  String get tabPlaces => 'Places';
+
+  @override
+  String get tabServices => 'Services';
+
+  @override
+  String get tabEvents => 'Events';
+
+  @override
   String get mute => 'Mute';
 
   @override
@@ -424,6 +486,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tapToView => 'Tap To View';
+
+  @override
+  String get follow => 'Follow';
+
+  @override
+  String get following => 'Following';
+
+  @override
+  String get followers => 'Followers';
+
+  @override
+  String get unfollow => 'Unfollow';
+
+  @override
+  String get takePhoto => 'Take Photo';
+
+  @override
+  String get recordVideo => 'Record Video';
+
+  @override
+  String get chooseFromGallery => 'Choose From Gallery';
 
   @override
   String get jan => 'Jan';
@@ -474,100 +557,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get eventDate => 'Event Date';
 
   @override
-  String get saveToBagsTitle => 'Add to bags';
-
-  @override
-  String get createNewBag => 'Create new bag';
-
-  @override
-  String get createNewBagTitle => 'Create new bag';
-
-  @override
-  String get bagNameHint => 'Bag name';
-
-  @override
-  String get cancel => 'Cancel';
-
-  @override
-  String get create => 'Create';
-
-  @override
-  String get myListTitle => 'My List';
-
-  @override
-  String bagsCount(int count) {
-    return 'Bags: $count';
-  }
-
-  @override
-  String savedCount(int count) {
-    return 'Saved: $count';
-  }
-
-  @override
-  String get termsPrivacyTitle => 'Terms of Use & Privacy';
-
-  @override
-  String get acceptTermsLabel => 'I confirm that I accept the terms';
-
-  @override
-  String get pointsDialogTitle => 'Welcome to the app';
-
-  @override
-  String get pointsUnitShort => 'pts';
-
-  @override
-  String get pointsDialogSubtitle =>
-      'You earned welcome points. You can earn more points by completing tasks inside the app.';
-
-  @override
-  String get pointsDialogCta => 'Let\'s start';
-
-  @override
-  String get searchResultsTitle => 'Search results';
-
-  @override
-  String get searchResultsFor => 'Search results for';
-
-  @override
-  String get results => 'Results';
-
-  @override
-  String get resultsCountPlaceholder => 'Results:';
-
-  @override
-  String get tabPeople => 'People';
-
-  @override
-  String get tabPlaces => 'Places';
-
-  @override
-  String get tabServices => 'Services';
-
-  @override
-  String get tabEvents => 'Events';
-
-  @override
-  String get follow => 'Follow';
-
-  @override
-  String get following => 'Following';
-
-  @override
-  String get followers => 'Followers';
-
-  @override
-  String get unfollow => 'Unfollow';
-
-  @override
-  String get takePhoto => 'ُTake Photo';
-
-  @override
-  String get recordVideo => 'Record Video';
-
-  @override
-  String get chooseFromGallery => 'Choose From Gallery';
-
   String get lastTimeForSubscription => 'Last time for subscription';
 
   @override
@@ -613,8 +602,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get postEvent => 'Post Event';
 
   @override
-  String get permissionDeniedPleaseEnableInSettings =>
-      'Permission denied. Please enable in settings';
+  String get permissionDeniedPleaseEnableInSettings => 'Permission denied. Please enable in settings';
 
   @override
   String get addTopic => 'Add Topic';
@@ -660,4 +648,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notPaid => 'Not Paid';
+
+  @override
+  String get discardChanges => 'Discard Changes?';
+
+  @override
+  String get checkDiscard => 'If you go back now, your changes will be lost.';
+
+  @override
+  String get discard => 'Discard';
+
+  @override
+  String get fieldRequired => 'Field Required';
+
+  @override
+  String get invalidLink => 'Invalid link';
+
+  @override
+  String get noTypesFound => 'No types found';
 }

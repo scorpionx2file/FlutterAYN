@@ -15,6 +15,7 @@ import '../../../core/constants/button/app_button.dart';
 import '../../../core/constants/profile_settings/profile_settings_header.dart';
 import '../../../core/theme/colors/app_colors.dart';
 import '../../../core/utils/helper/location.dart';
+import '../../../core/utils/map_keys/map_keys.dart';
 import '../widgets/info_screen_header.dart';
 import '../widgets/service_date_and_time.dart';
 
@@ -282,8 +283,8 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
                     final result = await context.push<GateItem>(
                       AppRoutes.chooseGates,
                       extra: {
-                        'allowMultiple': false,
-                        'title': "Service Provider Info",
+                        MapKeys.allowMultiple: false,
+                        MapKeys.title: "Service Provider Info",
                       },
                     );
 

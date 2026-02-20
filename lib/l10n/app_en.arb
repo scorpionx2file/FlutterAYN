@@ -218,11 +218,11 @@
   "tabServices": "Services",
   "tabEvents": "Events",
 
-  "nearbyPersons": "Nearby Persons"
-  "mute": "Mute"
-  "delete": "Delete"
-  "writeYourMessageHere": "Write Your Message Here"
-  "tapToView": "Tap To View"
+  "nearbyPersons": "Nearby Persons",
+  "mute": "Mute",
+  "delete": "Delete",
+  "writeYourMessageHere": "Write Your Message Here",
+  "tapToView": "Tap To View",
 
 
   "follow": "Follow",
@@ -230,13 +230,12 @@
   "followers": "Followers",
   "unfollow": "Unfollow",
 
-  "mute": "Mute",
   "delete": "Delete",
-  "writeYourMessageHere": "Write Your Message Here"
+  "writeYourMessageHere": "Write Your Message Here",
 
-  "takePhoto": "Take Photo"
-  "recordVideo": "Record Video"
-  "chooseFromGallery": "Choose From Gallery"
+  "takePhoto": "Take Photo",
+  "recordVideo": "Record Video",
+  "chooseFromGallery": "Choose From Gallery",
 
 
    "map": "Map",
@@ -419,5 +418,10 @@
     "searchForType": "Search for type",
     "paid": "Paid",
     "notPaid": "Not Paid",
-    "recordVideo": "Record Video"
+    "discardChanges": "Discard Changes?",
+    "checkDiscard": "If you go back now, your changes will be lost.",
+    "discard": "Discard",
+    "fieldRequired": "Field Required",
+    "invalidLink": "Invalid link",
+    "noTypesFound": "No types found"
 }

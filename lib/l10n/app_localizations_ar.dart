@@ -403,66 +403,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get nearbyPersons => 'الاشخاص القريبين';
 
   @override
-  String get mute => 'الغاء الصوت';
-
-  @override
-  String get delete => 'حذف';
-
-  @override
-  String get writeYourMessageHere => 'اكتب رسالة هنا';
-
-  @override
-  String get tapToView => 'انقر للعرض';
-
-  @override
-  String get jan => 'يناير';
-
-  @override
-  String get feb => 'فبراير';
-
-  @override
-  String get mar => 'مارس';
-
-  @override
-  String get apr => 'إبريل';
-
-  @override
-  String get may => 'مايو';
-
-  @override
-  String get jun => 'يونيو';
-
-  @override
-  String get jul => 'يوليو';
-
-  @override
-  String get aug => 'اغسطس';
-
-  @override
-  String get sep => 'سبتمبر';
-
-  @override
-  String get oct => 'اكتوبر';
-
-  @override
-  String get nov => 'نوفمبر';
-
-  @override
-  String get dec => 'ديسمبر';
-
-  @override
-  String get invalidMonth => 'Invalid month';
-
-  @override
-  String get eventPayment => 'رسوم الحدث';
-
-  @override
-  String get availability => 'الاتاحة';
-
-  @override
-  String get eventDate => 'تاريخ الحدث';
-
-  @override
   String get saveToBagsTitle => 'أضِفه إلى الحقائب';
 
   @override
@@ -536,6 +476,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get tabEvents => 'أحداث';
 
   @override
+  String get mute => 'كتم';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get writeYourMessageHere => 'اكتب رسالة هنا';
+
+  @override
+  String get tapToView => 'انقر للعرض';
+
+  @override
   String get follow => 'متابعة';
 
   @override
@@ -556,6 +508,55 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get chooseFromGallery => 'اختر من المعرض';
 
+  @override
+  String get jan => 'يناير';
+
+  @override
+  String get feb => 'فبراير';
+
+  @override
+  String get mar => 'مارس';
+
+  @override
+  String get apr => 'إبريل';
+
+  @override
+  String get may => 'مايو';
+
+  @override
+  String get jun => 'يونيو';
+
+  @override
+  String get jul => 'يوليو';
+
+  @override
+  String get aug => 'اغسطس';
+
+  @override
+  String get sep => 'سبتمبر';
+
+  @override
+  String get oct => 'اكتوبر';
+
+  @override
+  String get nov => 'نوفمبر';
+
+  @override
+  String get dec => 'ديسمبر';
+
+  @override
+  String get invalidMonth => 'Invalid month';
+
+  @override
+  String get eventPayment => 'رسوم الحدث';
+
+  @override
+  String get availability => 'الاتاحة';
+
+  @override
+  String get eventDate => 'تاريخ الحدث';
+
+  @override
   String get lastTimeForSubscription => 'آخر موعد للاشتراك';
 
   @override
@@ -647,4 +648,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get notPaid => 'غير مدفوع';
+
+  @override
+  String get discardChanges => 'هل تريد تجاهل التغييرات؟';
+
+  @override
+  String get checkDiscard => 'إذا عدت الآن، ستفقد التغييرات التي قمت بها.';
+
+  @override
+  String get discard => 'تجاهل';
+
+  @override
+  String get fieldRequired => 'حقل مطلوب';
+
+  @override
+  String get invalidLink => 'رابط غير صالح';
+
+  @override
+  String get noTypesFound => 'لم يتم العثور على تصنيفات';
 }

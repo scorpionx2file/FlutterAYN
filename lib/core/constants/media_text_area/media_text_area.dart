@@ -28,6 +28,8 @@ class MediaTextArea extends StatefulWidget {
 class MediaTextAreaState extends State<MediaTextArea> {
   final List<File> mediaFiles = [];
 
+  bool get hasMedia => mediaFiles.isNotEmpty;
+
   void addMedia(File file) {
     setState(() {
       mediaFiles.add(file);

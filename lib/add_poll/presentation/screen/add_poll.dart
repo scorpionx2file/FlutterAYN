@@ -115,7 +115,7 @@ class _AddPollState extends State<AddPoll> {
                 onTap: (){
                   setState(() {
                     optionControllers.add(
-                      TextEditingController(text: "Answer ${optionControllers.length + 1}"),
+                      TextEditingController(text: "${context.l10n.answer} ${optionControllers.length + 1}"),
                     );
                   });
                 }

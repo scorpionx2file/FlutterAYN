@@ -1013,6 +1013,30 @@ abstract class AppLocalizations {
   /// **'Events'**
   String get tabEvents;
 
+  /// No description provided for @mute.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute'**
+  String get mute;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @writeYourMessageHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Write Your Message Here'**
+  String get writeYourMessageHere;
+
+  /// No description provided for @tapToView.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap To View'**
+  String get tapToView;
+
   /// No description provided for @follow.
   ///
   /// In en, this message translates to:
@@ -1037,46 +1061,22 @@ abstract class AppLocalizations {
   /// **'Unfollow'**
   String get unfollow;
 
-  /// No description provided for @mute.
-  ///
-  /// In en, this message translates to:
-  /// **'Mute'**
-  String get mute;
-
-  /// No description provided for @delete.
-  ///
-  /// In en, this message translates to:
-  /// **'Delete'**
-  String get delete;
-
-  /// No description provided for @writeYourMessageHere.
-  ///
-  /// In en, this message translates to:
-  /// **'Write Your Message Here'**
-  String get writeYourMessageHere;
-
-  /// No description provided for @tapToView.
-  ///
-  /// In en, this message translates to:
-  /// **'tapToView'**
-  String get tapToView;
-
   /// No description provided for @takePhoto.
   ///
   /// In en, this message translates to:
-  /// **'takePhoto'**
+  /// **'Take Photo'**
   String get takePhoto;
 
   /// No description provided for @recordVideo.
   ///
   /// In en, this message translates to:
-  /// **'recordVideo'**
+  /// **'Record Video'**
   String get recordVideo;
 
   /// No description provided for @chooseFromGallery.
   ///
   /// In en, this message translates to:
-  /// **'chooseFromGallery'**
+  /// **'Choose From Gallery'**
   String get chooseFromGallery;
 
   /// No description provided for @jan.
@@ -1361,9 +1361,41 @@ abstract class AppLocalizations {
   /// **'Not Paid'**
   String get notPaid;
 
-  /// No description provided for @recordVideo.
+  /// No description provided for @discardChanges.
   ///
   /// In en, this message translates to:
+  /// **'Discard Changes?'**
+  String get discardChanges;
+
+  /// No description provided for @checkDiscard.
+  ///
+  /// In en, this message translates to:
+  /// **'If you go back now, your changes will be lost.'**
+  String get checkDiscard;
+
+  /// No description provided for @discard.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard'**
+  String get discard;
+
+  /// No description provided for @fieldRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Field Required'**
+  String get fieldRequired;
+
+  /// No description provided for @invalidLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid link'**
+  String get invalidLink;
+
+  /// No description provided for @noTypesFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No types found'**
+  String get noTypesFound;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

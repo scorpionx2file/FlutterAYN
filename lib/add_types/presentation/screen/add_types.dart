@@ -7,6 +7,7 @@ import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 import '../../../core/constants/add_new_header/add_new_header.dart';
 import '../../../core/constants/app_header/app_header.dart';
 import '../../../core/theme/colors/app_colors.dart';
+import '../../../core/utils/map_keys/map_keys.dart';
 
 class AddTypesArgs{
   final String title;
@@ -85,8 +86,8 @@ class _AddTypesState extends State<AddTypes> {
               .toList();
 
           context.pop({
-            "types": selectedTypes,
-            "selectedIndex": selectedIndex,
+            MapKeys.types: selectedTypes,
+            MapKeys.selectedIndex: selectedIndex,
           });
         },
       ),
@@ -156,7 +157,7 @@ class _AddTypesState extends State<AddTypes> {
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: Text(
-                  "No types found",
+                  context.l10n.noTypesFound,
                   style: TextStyle(color: AppColors.strongGrey),
                 ),
               ),
@@ -172,8 +173,8 @@ class _AddTypesState extends State<AddTypes> {
 
           if (widget.isEvent) {
             context.pop({
-              "types": selectedTypes,
-              "selectedIndex": selectedIndex,
+              MapKeys.types: selectedTypes,
+              MapKeys.selectedIndex: selectedIndex,
             });
           } else {
             context.pop(selectedTypes);

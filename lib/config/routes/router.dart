@@ -44,6 +44,7 @@ import '../../core/constants/post_service_provider_header/post_or_service_provid
 import '../../core/constants/story_item/story_item.dart';
 import '../../core/theme/colors/app_colors.dart';
 import '../../core/utils/map_bottom_sheet_util.dart';
+import '../../core/utils/map_keys/map_keys.dart';
 import '../../core/utils/post_utils.dart';
 import '../../event_option/presentation/widgets/content_section/content_section.dart';
 import '../../gates/presentation/screens/gates_screen.dart';
@@ -939,8 +940,8 @@ final GoRouter router = GoRouter(
       path: AppRoutes.chooseGates,
       builder: (context, state) {
         final extra = state.extra as Map<String, dynamic>? ?? {};
-        final allowMultiple = extra['allowMultiple'] ?? true;
-        final title = extra['title'] ?? "Choose Gates";
+        final allowMultiple = extra[MapKeys.allowMultiple] ?? true;
+        final title = extra[MapKeys.title] ?? "Choose Gates";
         return ChooseGatesScreen(
           allowMultiple: allowMultiple,
           appBar: allowMultiple ? null : AppHeader(title: title),
