@@ -45,6 +45,10 @@ class _AddNewEventState extends State<AddNewEvent>{
   List<String> selectedTypes = [];
   String? eventLink;
   String? selectedGateName;
+  bool showTitleError = false;
+  bool showBodyError = false;
+  bool showEventDateError = false;
+  bool showLastDateError = false;
   final TextEditingController linkController = TextEditingController();
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
@@ -88,10 +92,12 @@ class _AddNewEventState extends State<AddNewEvent>{
     required DateTime? date,
     required VoidCallback onTap,
     required String text,
+    bool showError = false,
   }) {
     return EventData(
       title: title,
       icon: "assets/images/icons/calender.png",
+      showError: showError,
       child: GestureDetector(
         onTap: onTap,
         child: Text(
@@ -337,6 +343,8 @@ class _AddNewEventState extends State<AddNewEvent>{
                   hintText: context.l10n.eventTitle,
                   height: 55.h,
                   controller: titleController,
+                  showError: showTitleError,
+                  errorText: "Field required",
                 ),
         
                 SizedBox(height: 10.h),
@@ -413,30 +421,34 @@ class _AddNewEventState extends State<AddNewEvent>{
                 SizedBox(height: 10.h),
 
                 _buildDateSection(
-                  title: context.l10n.eventDate,
-                  date: eventDate,
-                  onTap: _pickEventDate,
-                  text: eventDate != null
+                    title: context.l10n.eventDate,
+                    date: eventDate,
+                    onTap: _pickEventDate,
+                    text: eventDate != null
                       ? "${eventDate!.day} $month - "
                       "${eventDate!.hour.toString().padLeft(2, '0')}:"
                       "${eventDate!.minute.toString().padLeft(2, '0')}"
                       : context.l10n.selectDate,
+                    showError: showEventDateError
                 ),
 
                 SizedBox(height: 10.h),
 
-                if(subscribeInEvent)
+                if (subscribeInEvent)
                   _buildDateSection(
                     title: context.l10n.lastTimeForSubscription,
                     date: lastDate,
-                    onTap: eventDate == null ? () {
+                    onTap: eventDate == null
+                        ? () {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text(context.l10n.selectEventDateFirst)),
                       );
-                    } : _pickLastDate,
+                    }
+                        : _pickLastDate,
                     text: lastDate != null
-                      ? "${lastDate!.day} $month"
-                      : context.l10n.selectDate,
+                        ? "${lastDate!.day} $month"
+                        : context.l10n.selectDate,
+                    showError: showLastDateError,
                   ),
         
                 SizedBox(height: 10.h),
@@ -462,8 +474,21 @@ class _AddNewEventState extends State<AddNewEvent>{
       ),
 
         bottomNavigationBar: AddNewBottomBar(
-            text: context.l10n.postEvent,
-            onTap: (){},
+          text: context.l10n.postEvent,
+          onTap: (){
+            final title = titleController.text.trim();
+            setState(() {
+              showTitleError = title.isEmpty;
+              showEventDateError = eventDate == null;
+              showLastDateError =
+                  subscribeInEvent && lastDate == null;
+            });
+            if (title.isEmpty) return;
+
+            if (eventDate == null) return;
+
+            if (subscribeInEvent && lastDate == null) return;
+          },
           showSwitch: true,
           switchTitle: context.l10n.subscribeInEvent,
           switchValue: subscribeInEvent,

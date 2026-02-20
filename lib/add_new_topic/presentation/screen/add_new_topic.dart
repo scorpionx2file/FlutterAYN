@@ -37,6 +37,8 @@ class _AddNewTopicState extends State<AddNewTopic> {
   List<String> selectedTypes = [];
   String? selectedGateName;
   PollData? createdPoll;
+  bool showTitleError = false;
+  bool showBodyError = false;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +59,8 @@ class _AddNewTopicState extends State<AddNewTopic> {
               hintText: context.l10n.topicTitle,
               height: 55.h,
               controller: titleController,
+              showError: showTitleError,
+              errorText: "Field required",
             ),
             SizedBox(height: 10.h),
             MediaTextArea(
@@ -64,6 +68,8 @@ class _AddNewTopicState extends State<AddNewTopic> {
               hintText: context.l10n.topicDetails,
               height: 135.h,
               controller: bodyController,
+              showError: showBodyError,
+              errorText: "Field required",
             ),
             SizedBox(height: 10.h),
             AddNewPostOptionTile(
@@ -140,15 +146,28 @@ class _AddNewTopicState extends State<AddNewTopic> {
       ),
       bottomNavigationBar: AddNewBottomBar(
         text: context.l10n.postTopic,
-        onTap: () {
-          final text = bodyController.text.trim();
-          final wordCount = text.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
-          if (wordCount < 20) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(context.l10n.postDetailsLimitation)),
-            );
-            return;
-          }
+          onTap: () {
+            final title = titleController.text.trim();
+            final body = bodyController.text.trim();
+
+            setState(() {
+              showTitleError = title.isEmpty;
+              showBodyError = body.isEmpty;
+            });
+
+            if (title.isEmpty || body.isEmpty) {
+              return;
+            }
+
+            final wordCount =
+                body.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).length;
+
+            if (wordCount < 20) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(context.l10n.postDetailsLimitation)),
+              );
+              return;
+            }
         },
         showTypes: true,
         items: [

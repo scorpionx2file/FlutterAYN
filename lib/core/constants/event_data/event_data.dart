@@ -8,6 +8,7 @@ class EventData extends StatelessWidget{
   final String icon;
   final Widget child;
   final List<Widget>? trailing;
+  final bool showError;
 
   const EventData({
     super.key,
@@ -15,6 +16,7 @@ class EventData extends StatelessWidget{
     required this.icon,
     required this.child,
     this.trailing,
+    this.showError = false,
   });
 
   @override
@@ -27,29 +29,43 @@ class EventData extends StatelessWidget{
           style: AppTextStyles.titles,
         ),
         SizedBox(height: 10.h),
-        Container(
-          padding: EdgeInsets.all(10.r),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12.r),
-            color: AppColors.white
-          ),
-          child: Row(
-            children: [
-              Image.asset(
-                icon,
-                width: 20.w,
-                height: 20.h,
-                color: AppColors.turnbullBlue,
+            Container(
+              padding: EdgeInsets.all(10.r),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12.r),
+                color: AppColors.white,
+                border: showError
+                    ? Border.all(color: AppColors.lebaneseRed, width: 1.5)
+                    : null,
               ),
+              child: Row(
+                children: [
+                  Image.asset(
+                    icon,
+                    width: 20.w,
+                    height: 20.h,
+                    color: AppColors.turnbullBlue,
+                  ),
 
-              SizedBox(width: 10.w),
+                  SizedBox(width: 10.w),
 
-              Expanded(child: child),
+                  Expanded(child: child),
 
-              if(trailing != null)... trailing!
-            ],
+                  if(trailing != null)... trailing!
+                ],
+              ),
+            ),
+        if (showError)
+          Padding(
+            padding: EdgeInsets.only(top: 4.h, left: 8.w),
+            child: Text(
+              "Field required",
+              style: TextStyle(
+                color: AppColors.lebaneseRed,
+                fontSize: 12.sp,
+              ),
+            ),
           ),
-        )
       ],
     );
   }
