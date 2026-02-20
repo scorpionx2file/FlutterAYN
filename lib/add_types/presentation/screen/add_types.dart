@@ -42,6 +42,8 @@ class AddTypes extends StatefulWidget{
 
 class _AddTypesState extends State<AddTypes> {
   final Set<int> selectedIndexes = {};
+  List<String> filteredTypes = [];
+  int selectedIndex = 0;
   final controller = TextEditingController();
   final types = [
     "Tourism",
@@ -54,12 +56,21 @@ class _AddTypesState extends State<AddTypes> {
     "Travel Information"
   ];
 
-  int selectedIndex = 0;
+  void _filterTypes(String query) {
+    final lowerQuery = query.toLowerCase();
+
+    setState(() {
+      filteredTypes = types.where((type) {
+        return type.toLowerCase().contains(lowerQuery);
+      }).toList();
+    });
+  }
 
   @override
   void initState() {
     super.initState();
     selectedIndex = widget.selectedIndex ?? 0;
+    filteredTypes = types;
   }
 
   @override
@@ -100,23 +111,26 @@ class _AddTypesState extends State<AddTypes> {
               controller: controller,
               icon: Icons.search,
               hintText: context.l10n.searchForType,
+              onChanged: _filterTypes,
             ),
 
             SizedBox(height: 40.h),
 
             Wrap(
               spacing: 10.w,
-              children: List.generate(types.length, (index){
-                final isSelected = selectedIndexes.contains(index);
+              children: List.generate(filteredTypes.length, (index) {
+                final originalIndex = types.indexOf(filteredTypes[index]);
+                final isSelected = selectedIndexes.contains(originalIndex);
+
                 return ChoiceChip(
-                  label: Text(types[index]),
+                  label: Text(filteredTypes[index]),
                   selected: isSelected,
-                  onSelected: (value){
+                  onSelected: (value) {
                     setState(() {
                       if (value) {
-                        selectedIndexes.add(index);
+                        selectedIndexes.add(originalIndex);
                       } else {
-                        selectedIndexes.remove(index);
+                        selectedIndexes.remove(originalIndex);
                       }
                     });
                   },
@@ -137,7 +151,15 @@ class _AddTypesState extends State<AddTypes> {
                   showCheckmark: false,
                 );
               }),
-            )
+            ),
+            if (filteredTypes.isEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Text(
+                  "No types found",
+                  style: TextStyle(color: AppColors.strongGrey),
+                ),
+              ),
           ]
         )
       ),
