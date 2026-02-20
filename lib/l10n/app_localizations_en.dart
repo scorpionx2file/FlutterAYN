@@ -474,4 +474,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unfollow => 'Unfollow';
+
+  @override
+  String get filter => 'Filter';
+
+  @override
+  String get apply => 'Apply';
 }

@@ -190,5 +190,9 @@
                                   "followers": "Followers",
                                   "unfollow": "Unfollow",
 
-                                  "postNotFound": "Post not found"
+                                  "postNotFound": "Post not found",
+
+                                    "filter": "Filter",
+                                    "apply": "Apply"
+
 }

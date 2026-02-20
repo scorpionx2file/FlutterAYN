@@ -474,4 +474,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get unfollow => 'إلغاء المتابعة';
+
+  @override
+  String get filter => 'فلترة';
+
+  @override
+  String get apply => 'تطبيق';
 }

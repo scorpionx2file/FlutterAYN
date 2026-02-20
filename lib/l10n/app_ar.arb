@@ -192,5 +192,9 @@
 
                                "postNotFound": "المنشور غير موجود",
                                "searchResultsTitle": "نتائج البحث",
-                                 "searchHint": "ابحث..."
+                                 "searchHint": "ابحث...",
+
+                                   "filter": "فلترة",
+                                   "apply": "تطبيق"
+
 }
