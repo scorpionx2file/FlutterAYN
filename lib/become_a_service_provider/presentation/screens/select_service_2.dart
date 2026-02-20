@@ -5,7 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
+import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
+import '../../../auth/presentation/screen/choose_gates_screen.dart';
 import '../../../config/routes/app_routes.dart';
 import '../../../core/constants/add_new_post_option_tile/add_new_post_option_tile.dart';
 import '../../../core/constants/becom_service_indecator/page_indicator.dart';
@@ -30,7 +32,7 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
   final TextEditingController _textController = TextEditingController();
 
   String selectedLanguage = "Language";
-  String selectedGates = "Choose Gate";
+  String? selectedGateName;
 
   final ImagePicker _picker = ImagePicker();
   final List<XFile> _images = [];
@@ -273,24 +275,24 @@ class _SelectServiceScreen2State extends State<SelectServiceScreen2> {
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.0.w),
                 child: AddNewPostOptionTile(
-                  icon: Icon(
-                    Icons.door_back_door_outlined,
-                    size: 24.r,
-                    color: AppColors.turnbullBlue,
-                  ),
-                  title: selectedGates,
-                  onTap: () async{
-                    final result = await context.push<List<String>>(
-                      "${AppRoutes.chooseGates}?isRegister=false",
+                  icon: Image.asset("assets/images/icons/gate.png"),
+                  title: selectedGateName ?? context.l10n.chooseAGate,
+                  showDivider: false,
+                  onTap: () async {
+                    final result = await context.push<GateItem>(
+                      AppRoutes.chooseGates,
+                      extra: {
+                        'allowMultiple': false,
+                        'title': "Service Provider Info",
+                      },
                     );
 
-                    if(result != null) {
+                    if (result != null) {
                       setState(() {
-                        selectedGates = result.join(", ");
+                        selectedGateName = result.title;
                       });
                     }
                   },
-                  showDivider: false,
                 ),
               ),
             ),

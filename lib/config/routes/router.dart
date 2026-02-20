@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:traveller/add_new_event/presentation/screen/add_new_event.dart';
@@ -942,9 +941,7 @@ final GoRouter router = GoRouter(
         final extra = state.extra as Map<String, dynamic>? ?? {};
         final allowMultiple = extra['allowMultiple'] ?? true;
         final title = extra['title'] ?? "Choose Gates";
-        final extra = state.uri.queryParameters["isRegister"]=='true';
         return ChooseGatesScreen(
-          isRegister: extra,
           allowMultiple: allowMultiple,
           appBar: allowMultiple ? null : AppHeader(title: title),
         );

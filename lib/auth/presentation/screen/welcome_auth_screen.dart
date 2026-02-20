@@ -6,8 +6,6 @@ import 'package:traveller/core/constants/auth/auth_screen_bg.dart';
 import 'package:traveller/core/constants/button/app_button.dart';
 import 'package:traveller/core/theme/colors/app_colors.dart';
 import 'package:traveller/core/theme/fonts/app_text_styles.dart';
-
-import 'package:traveller/auth/presentation/widgets/social_icon_button.dart';
 import 'package:traveller/core/utils/extensions/build_context_extensions.dart';
 
 class WelcomeAuthScreen extends StatelessWidget {
@@ -35,7 +33,7 @@ class WelcomeAuthScreen extends StatelessWidget {
             width: double.infinity,
             child: AppButton(
               text: l10n.signUp,
-              onPressed: () => context.go("${AppRoutes.chooseGates}?isRegister=true"),
+              onPressed: () => context.go(AppRoutes.chooseGates),
               height: 36.h,
               backgroundColor: AppColors.turnbullBlue,
             ),

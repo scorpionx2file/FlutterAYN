@@ -396,8 +396,8 @@ class _AddNewEventState extends State<AddNewEvent>{
                       AppRoutes.addTypes,
                       extra: AddTypesArgs(
                         title: context.l10n.addEvent,
-                        isEvent: false,
-                        selectedIndex: 0,
+                        isEvent: true,
+                        selectedIndex: selectedIndex,
                       ),
                     );
 
