@@ -149,7 +149,7 @@ class _AddNewTopicState extends State<AddNewTopic> {
                     AppRoutes.chooseGates,
                     extra: {
                       MapKeys.allowMultiple: false,
-                      MapKeys.title: context.l10n.addVideo,
+                      MapKeys.title: context.l10n.addTopic,
                     },
                   );
       
